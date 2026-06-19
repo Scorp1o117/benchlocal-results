@@ -315,12 +315,11 @@ function sortModels(key, btn) {
   
   models.sort((a,b) => b[key] - a[key]);
   
-  // Remove all cards first, then re-append in sorted order
-  models.forEach(m => { if(m.el.parentNode) m.el.parentNode.removeChild(m.el); });
-  models.forEach((m,i) => {
-    m.el.querySelector('.card-rank').textContent = i + 1;
-    grid.appendChild(m.el);
-  });
+  // Move each card to front of grid in reverse order so first ends up first
+  for (let i = models.length - 1; i >= 0; i--) {
+    grid.insertBefore(models[i].el, grid.firstChild);
+    models[i].el.querySelector('.card-rank').textContent = i + 1;
+  }
 }
 </script>
 
