@@ -131,9 +131,9 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
 <!-- Hero -->
 <section class="hero">
   <h1>本地模型<br><span>测试数据库</span></h1>
-  <p>基于 <a href="https://github.com/stevibe/BenchLocal" target="_blank" style="color:var(--red);font-weight:600">BenchLocal</a> 桌面应用，在本地对真实任务进行基准测试，横向对比模型表现</p>
+  <p>基于 <a href="https://github.com/stevibe/BenchLocal" target="_blank" style="color:var(--red);font-weight:600">BenchLocal</a> 桌面应用，在本地对真实任务进行基准测试，横向对比模型表现</p><p style="font-size:13px;color:var(--text3);margin-top:8px">当前测试环境：RTX 5070 Ti 16GB + 128GB RAM · 部分层 offload 到 GPU</p>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="val">1</div><div class="lbl">已测试模型</div></div>
+    <div class="hero-stat"><div class="val">2</div><div class="lbl">已测试模型</div></div>
     <div class="hero-stat"><div class="val">50</div><div class="lbl">总测试题数</div></div>
     <div class="hero-stat"><div class="val">3</div><div class="lbl">测试项目</div></div>
   </div>
@@ -159,7 +159,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <div class="card-score">79.5<span>/100</span></div>
       </div>
       <div class="card-model">
-        <h3>Step-3.7-Flash-APEX-I-Mini</h3>
+        <h3>Step-3.7-Flash-APEX-I-Mini <span style="font-size:12px;color:var(--text3);font-weight:400">(思考)</span></h3>
         <div class="desc">198B MoE (11B active) · Q3_K imatrix · mudler APEX 量化</div>
       </div>
       <div class="card-meta">
@@ -233,30 +233,30 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
       </div>
     </div>
 
-    <!-- Placeholder: Qwen3-Embedding-0.6B -->
-    <div class="model-card rank-default" style="opacity:.45;pointer-events:none">
+    <!-- Model 2: Nex-N2-Mini -->
+    <div class="model-card rank-2" onclick="location.href='models/n2mini.html'">
       <div class="card-top">
-        <div class="card-rank">—</div>
-        <div class="card-score">—<span>/100</span></div>
+        <div class="card-rank">2</div>
+        <div class="card-score">75.7<span>/100</span></div>
       </div>
       <div class="card-model">
-        <h3>Nex-N2-Mini</h3>
-        <div class="desc">35B MoE · Q4_K · 去审查化版本</div>
+        <h3>Nex-N2-Mini-abliterated-APEX <span style="font-size:12px;color:var(--text3);font-weight:400">(思考)</span></h3>
+        <div class="desc">35B MoE (3B active) · Q4_K imatrix · APEX 量化 · 去审查化</div>
       </div>
       <div class="card-meta">
         <span class="card-tag">🧠 MoE</span>
         <span class="card-tag">📦 ~20GB</span>
-        <span class="card-tag">⚡ 待测</span>
+        <span class="card-tag">⚡ ~44 tok/s</span>
         <span class="card-tag">🎮 RTX 5070 Ti</span>
       </div>
       <div class="card-bars">
-        <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:0%;background:var(--grad)"></div></div><span class="bar-val">—</span></div>
-        <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:0%;background:#ED8936"></div></div><span class="bar-val">—</span></div>
-        <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:0%;background:#548235"></div></div><span class="bar-val">—</span></div>
+        <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:90%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">90</span></div>
+        <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:69%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">68.7</span></div>
+        <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:71%;background:#548235"></div></div><span class="bar-val" style="color:#548235">71</span></div>
       </div>
       <div class="card-footer">
-        <span class="date">⏳ 待测试</span>
-        <span class="cta" style="color:var(--text3)">即将测试</span>
+        <span class="date">2026-06-19 测试</span>
+        <span class="cta">查看详情 →</span>
       </div>
     </div>
   </div>
@@ -286,7 +286,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     <div><div class="brand">⚡ BenchLocal</div><div style="font-size:13px">本地模型测试数据库 · 由阿洛娜维护 🌊</div></div>
     <div class="links">
       <div><h5>测试项目</h5><a href="#">ToolCall-15</a><a href="#">BugFind-15</a><a href="#">HermesAgent-20</a><a href="#">更多 Bench Packs →</a></div>
-      <div><h5>模型</h5><a href="#">Step-3.7-Flash</a><a href="#">Qwen3.5-35B</a><a href="#">DeepSeek V4</a></div>
+      <div><h5>模型</h5><a href="models/step37-flash.html">Step-3.7-Flash</a><a href="models/n2mini.html">Nex-N2-Mini</a><a href="#">Qwen3.5-35B</a></div>
       <div><h5>BenchLocal</h5><a href="https://github.com/stevibe/BenchLocal" target="_blank">GitHub 仓库</a><a href="https://benchlocal.com" target="_blank">官网</a><a href="https://github.com/stevibe/BenchLocal/releases/latest" target="_blank">下载最新版</a></div>
     </div>
   </div>
@@ -295,10 +295,10 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
 
 <script>
 const models = [
-  {el:null, total:79.5, tc:93, bf:78, ha:70, name:'Step-3.7-Flash-APEX-I-Mini'},
+  {el:null, total:79.5, tc:93, bf:78, ha:70, name:'Step-3.7-Flash (思考)'},
+  {el:null, total:75.7, tc:90, bf:68.7, ha:71, name:'Nex-N2-Mini (思考)'},
   {el:null, total:0, tc:0, bf:0, ha:0, name:'Qwen3.5-35B-A3B'},
   {el:null, total:0, tc:0, bf:0, ha:0, name:'DeepSeek-V4-Flash'},
-  {el:null, total:0, tc:0, bf:0, ha:0, name:'Nex-N2-Mini'},
 ];
 const grid = document.querySelector('.models-grid');
 const cards = grid.querySelectorAll('.model-card');
