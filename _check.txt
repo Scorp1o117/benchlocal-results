@@ -167,7 +167,6 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <span class="card-tag">📦 73GB</span>
         <span class="card-tag">⚡ 15 tok/s</span>
         <span class="card-tag">🎮 RTX 5070 Ti</span>
-        <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=1.0</span>
       </div>
       <div class="card-bars">
         <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:93%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">93</span></div>
@@ -195,7 +194,6 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <span class="card-tag">📦 ~20GB</span>
         <span class="card-tag">⚡ ~44 tok/s</span>
         <span class="card-tag">🎮 RTX 5070 Ti</span>
-        <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=0.7 top_p=0.95 top_k=40</span>
       </div>
       <div class="card-bars">
         <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:90%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">90</span></div>
@@ -224,7 +222,6 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <span class="card-tag">📦 ~22GB</span>
         <span class="card-tag">⚡ ~44 tok/s</span>
         <span class="card-tag">🎮 RTX 5070 Ti</span>
-        <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=0.7 top_p=0.8 top_k=20 rep=1.5</span>
       </div>
       <div class="card-bars">
         <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:83%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">83.3</span></div>
