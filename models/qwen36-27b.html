@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qwen3.6-27B (无思考) · BenchLocal</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--red:#E53E3E;--orange:#ED8936;--grad:linear-gradient(135deg,#E53E3E,#ED8936);--bg:#F8F9FC;--card:#FFF;--text:#1A202C;--text2:#64748B;--text3:#94A3B8;--border:#E2E8F0;--r:20px;--sh:0 1px 3px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.04)}
+body{font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:inherit;text-decoration:none}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.8);backdrop-filter:blur(24px);border-bottom:1px solid rgba(226,232,240,.6)}
+nav .inner{max-width:1280px;margin:0 auto;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800}
+.logo-icon{width:32px;height:32px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
+.nav-links{display:flex;gap:28px;font-size:14px;font-weight:500;color:var(--text2)}
+.nav-links a:hover{color:var(--text)}
+.back-link{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--text2);font-weight:500}
+.back-link:hover{color:var(--red)}
+
+/* Hero Detail */
+.hero-detail{padding:60px 48px 40px;max-width:1280px;margin:0 auto}
+.hero-detail .breadcrumb{margin-bottom:24px}
+.model-header{display:flex;gap:40px;align-items:flex-start}
+.model-avatar{width:80px;height:80px;border-radius:20px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:32px;font-weight:900;flex-shrink:0}
+.model-info h1{font-size:32px;font-weight:900;letter-spacing:-1px}
+.model-info .sub{font-size:15px;color:var(--text2);margin-top:4px}
+.model-tags{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.model-tags span{font-size:12px;padding:4px 12px;border-radius:8px;font-weight:600;background:#F1F5F9;color:var(--text2)}
+
+/* Big Score */
+.score-row{display:flex;gap:24px;margin-top:32px}
+.big-score{background:var(--grad);border-radius:var(--r);padding:32px 40px;color:#fff;min-width:200px}
+.big-score .label{font-size:13px;opacity:.8;font-weight:500}
+.big-score .num{font-size:56px;font-weight:900;letter-spacing:-3px;line-height:1.1}
+.big-score .sub{font-size:12px;opacity:.7;margin-top:4px}
+.sub-scores{display:flex;gap:16px;flex:1}
+.sub-score{flex:1;background:var(--card);border-radius:var(--r);padding:24px;box-shadow:var(--sh)}
+.sub-score .label{font-size:12px;color:var(--text3);font-weight:500}
+.sub-score .num{font-size:28px;font-weight:900;letter-spacing:-1px;margin-top:4px}
+.sub-score .sub{font-size:11px;color:var(--text3);margin-top:4px}
+.sub-score .bar{height:4px;background:#F1F5F9;border-radius:2px;margin-top:12px;overflow:hidden}
+.sub-score .bar-fill{height:100%;border-radius:2px}
+
+/* Tabs */
+.section{max-width:1280px;margin:0 auto;padding:40px 48px}
+.section h2{font-size:24px;font-weight:800;margin-bottom:24px}
+.tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+.tab{padding:8px 20px;border-radius:100px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:#fff;color:var(--text2);transition:all .2s}
+.tab:hover{border-color:var(--red);color:var(--red)}.tab.active{background:var(--text);color:#fff;border-color:var(--text)}
+
+/* Table */
+.table-wrap{background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead{background:#F7FAFC}
+th{padding:14px 16px;text-align:left;font-weight:600;color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+td{padding:14px 16px;border-top:1px solid var(--border);vertical-align:top}
+tr:hover{background:#FAFBFC}
+.badge{display:inline-block;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700}
+.badge.pass{background:#C6F6D5;color:#22543D}.badge.fail{background:#FED7D7;color:#9B2C2C}.badge.partial{background:#FEFCBF;color:#744210}
+.badge.tc{background:#BEE3F8;color:#2A4365}.badge.bf{background:#FEEBC8;color:#7B341E}.badge.ha{background:#C6F6D5;color:#22543D}
+.difficulty{font-size:12px;padding:2px 8px;border-radius:4px;font-weight:500}
+.difficulty.easy{background:#C6F6D5;color:#22543D}.difficulty.med{background:#FEFCBF;color:#744210}
+.difficulty.hard{background:#FEEBC8;color:#7B341E}.difficulty.expert{background:#FED7D7;color:#9B2C2C}
+.comment{color:var(--text2);font-style:italic;max-width:200px}
+
+/* Error Cards */
+.error-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.error-card{background:var(--card);border-radius:var(--r);padding:24px;box-shadow:var(--sh);border-left:4px solid var(--fail)}
+.error-card.score-issue{border-left-color:#ECC94B}.error-card.plat-issue{border-left-color:var(--text3)}
+.error-card h4{font-size:14px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.error-card .meta{font-size:12px;color:var(--text3);margin-bottom:8px;display:flex;gap:12px}
+.error-card .desc{font-size:13px;color:var(--text2);margin-bottom:12px;line-height:1.6}
+.error-card .roast{font-size:13px;color:var(--red);font-weight:500;padding:10px 14px;background:#FFF5F5;border-radius:8px}
+
+/* Roast */
+.roast-box{background:var(--card);border-radius:var(--r);padding:48px;box-shadow:var(--sh)}
+.roast-section{margin-bottom:24px}
+.roast-section h4{font-size:16px;font-weight:700;margin-bottom:12px}
+.roast-section ul{list-style:none;padding:0}
+.roast-section li{padding:8px 0;font-size:14px;color:var(--text2);border-bottom:1px solid #F7FAFC;display:flex;align-items:flex-start;gap:8px}
+.roast-section.pro li::before{content:'✅';flex-shrink:0}
+.roast-section.con li::before{content:'❌';flex-shrink:0}
+.roast-section.tip li::before{content:'💡';flex-shrink:0}
+.roast-conclusion{background:linear-gradient(135deg,#FFF5F5,#FFFAF0);border-radius:12px;padding:28px;margin-top:24px}
+.roast-conclusion p{font-size:15px;line-height:1.8}
+.roast-conclusion .final{font-size:18px;font-weight:800;color:var(--red);margin-top:12px}
+
+footer{background:#0F172A;color:#94A3B8;padding:48px 48px 32px;margin-top:60px}
+footer .inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start}
+footer .brand{font-size:18px;font-weight:800;color:#fff;margin-bottom:8px}
+footer .links{display:flex;gap:48px}
+footer .links div h5{color:#fff;font-size:13px;font-weight:600;margin-bottom:12px}
+footer .links div a{display:block;font-size:13px;padding:4px 0;color:#94A3B8}
+footer .links div a:hover{color:#fff}
+footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1px solid #1E293B;font-size:12px;text-align:center}
+@media(max-width:768px){.model-header{flex-direction:column;gap:20px}.score-row{flex-direction:column}.sub-scores{flex-direction:column}.error-grid{grid-template-columns:1fr}.section{padding:20px}.hero-detail{padding:40px 20px}}
+</style>
+</head>
+<body>
+<nav><div class="inner"><div class="logo"><div class="logo-icon">⚡</div>BenchLocal</div><a href="../" class="back-link">← 返回排行榜</a></div></nav>
+
+<section class="hero-detail">
+  <div class="model-header">
+    <div class="model-avatar" style="background:var(--grad4)">Q2</div>
+    <div class="model-info">
+      <h1>Qwen3.6-27B-uncensored-heretic <span style="font-size:18px;color:var(--text3);font-weight:400">(无思考)</span></h1>
+      <div class="sub">heretic 量化 · 27B MoE · IQ3_M imatrix · MTP 保留</div>
+      <div class="model-tags">
+        <span>🧠 27B MoE</span><span>📦 ~15GB IQ3_M</span>
+        <span>🎮 RTX 5070 Ti 16GB + 128GB RAM</span><span>📅 2026-06-19</span>
+      </div>
+    </div>
+  </div>
+  <div class="score-row">
+    <div class="big-score" style="background:var(--grad4)"><div class="label">加权总分</div><div class="num">87.4</div><div class="sub">TC×0.3 + BF×0.3 + HA×0.4</div></div>
+    <div class="sub-scores">
+      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">96.7</div><div class="sub">14/15 通过 · 93%</div><div class="bar"><div class="bar-fill" style="width:97%;background:var(--grad)"></div></div></div>
+      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">84.2</div><div class="sub">12/15 通过 · 80%</div><div class="bar"><div class="bar-fill" style="width:84%;background:#ED8936"></div></div></div>
+      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">82.8</div><div class="sub">14/20 通过 · 70%</div><div class="bar"><div class="bar-fill" style="width:83%;background:#548235"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>📋 全部测试结果</h2>
+  <div class="tabs">
+    <div class="tab active" onclick="filterTable('all',this)">全部 (50)</div>
+    <div class="tab" onclick="filterTable('tc',this)">ToolCall (15)</div>
+    <div class="tab" onclick="filterTable('bf',this)">BugFind (15)</div>
+    <div class="tab" onclick="filterTable('ha',this)">HermesAgent (20)</div>
+    <div class="tab" onclick="filterTable('fail',this)">❌ 失败 (12)</div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th>#</th><th>题目</th><th>测试包</th><th>难度</th><th>结果</th><th>得分</th><th>sandbox</th><th>耗时</th><th>失败类型</th><th>点评</th></tr></thead><tbody id="resultsBody"></tbody></table></div>
+</section>
+
+<section class="section">
+  <h2>🔍 错题分析</h2>
+  <div class="error-grid" id="errorGrid"></div>
+</section>
+
+<section class="section">
+  <h2>🌊 阿洛娜の毒舌总结</h2>
+  <div class="roast-box">
+    <div class="roast-section pro"><h4>✅ 该夸的要夸</h4><ul>
+      <li><strong>BugFind 三个模型最强</strong> — 80.7 分，远超 Step-3.7 (78) 和 N2-mini (68.7)</li>
+      <li><strong>速度快</strong> — ~44 tok/s，跟 N2-mini 持平，比 Step-3.7 快 3 倍</li>
+      <li><strong>无思考模式优势明显</strong> — 不用等 thinking tokens，直接输出，BugFind 格式也正确</li>
+      <li><strong>加权总分最高</strong> — 79.6，微弱领先 Step-3.7 的 79.5</li>
+    </ul></div>
+    <div class="roast-section con"><h4>❌ 该吐槽的绝不嘴软</h4><ul>
+      <li>🏆 <strong>Trap 题三连跪</strong> — BF-03 和 BF-10，三个模型全被骗，无一幸免</li>
+      <li>🐛 <strong>HA-05 测试修复翻车</strong> — 唯一一个在这道题拿 0 分的模型</li>
+      <li>📨 <strong>HA-16 消息投递死穴</strong> — 三个模型都找不到通道，这题是所有人的公敌</li>
+      <li>⚠️ <strong>记忆召回偶尔失灵</strong> — HA-04 没回忆起之前的修复</li>
+    </ul></div>
+    <div class="roast-section tip"><h4>💡 给老师的建议</h4><ul>
+      <li><strong>编码/调试任务首选 Qwen3.6</strong> — BugFind 80.7 分最高，无思考模式直接输出不浪费时间</li>
+      <li><strong>Agent 复杂任务用 Step-3.7</strong> — ToolCall 93 分最高，工具调用能力最强</li>
+      <li><strong>日常轻量任务用 N2-mini</strong> — 速度最快，基础能力够用</li>
+    </ul></div>
+    <div class="roast-conclusion">
+      <p>Qwen3.6-35B 是三个模型里最均衡的选手——BugFind 80.7 分最高，HermesAgent 76 分也最高，加权总分 79.6 微弱领先 Step-3.7。</p>
+      <p>"无思考"是它最大的优势——不用等 thinking tokens 浪费时间，直接输出结果。编码调试场景下效率最高。</p>
+      <p class="final">79.6 分，均衡且快速。三个模型搭配使用效果最佳：Qwen3.6 编码 + Step-3.7 Agent + N2-mini 日常。</p>
+    </div>
+  </div>
+</section>
+
+<footer><div class="inner"><div><div class="brand">⚡ BenchLocal</div><div style="font-size:13px">本地模型测试数据库</div></div><div class="links"><div><h5>测试项目</h5><a href="#">ToolCall-15</a><a href="#">BugFind-15</a><a href="#">HermesAgent-20</a></div><div><h5>模型</h5><a href="#">Step-3.7-Flash</a><a href="#">Qwen3.5-35B</a></div><div><h5>BenchLocal</h5><a href="https://github.com/stevibe/BenchLocal" target="_blank">GitHub</a><a href="https://benchlocal.com" target="_blank">官网</a></div></div></div><div class="bottom">© 2026 BenchLocal · Made with 🌊 by Arona for 老师</div></footer>
+
+<script>
+const results=[
+{n:"01",t:"Direct Specialist Match",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:""},
+{n:"02",t:"Parameter Extraction",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:4,ft:"-",c:""},
+{n:"03",t:"Multi-Parameter Construction",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:5,ft:"-",c:""},
+{n:"04",t:"Unit Handling",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:4,ft:"-",c:""},
+{n:"05",t:"Conditional Tool Selection",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:""},
+{n:"06",t:"Tool Not Available",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:5,ft:"-",c:""},
+{n:"07",t:"Multi-Turn Context Carry",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:8,ft:"-",c:""},
+{n:"08",t:"Ambiguous Query Disambiguation",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:""},
+{n:"09",t:"Parallel Tool Calls",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:7,ft:"-",c:""},
+{n:"10",t:"Minimal Viable Call",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:""},
+{n:"11",t:"Parameter Type Coercion",pkg:"tc",diff:"easy",r:"partial",s:50,sb:"pass",time:4,ft:"格式问题",c:"计算器用对了但不必要"},
+{n:"12",t:"Edge Case Input",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:""},
+{n:"13",t:"Tool Chain Orchestration",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:8,ft:"-",c:""},
+{n:"14",t:"Malformed Response",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:""},
+{n:"15",t:"Graceful Degradation",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:5,ft:"-",c:""},
+{n:"01",t:"Off-by-One Python Loop",pkg:"bf",diff:"easy",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:""},
+{n:"02",t:"JS Equality Trap",pkg:"bf",diff:"easy",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:""},
+{n:"03",t:"Rust Trap Scenario",pkg:"bf",diff:"easy",r:"fail",s:0,sb:"fail",time:10,ft:"Trap",c:"还是被骗了"},
+{n:"04",t:"Python Dict Mutation",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:16,ft:"-",c:""},
+{n:"05",t:"Go Goroutine Capture",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:18,ft:"-",c:""},
+{n:"06",t:"C++ Memory Leak",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:""},
+{n:"07",t:"JS Prototype Pollution",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:""},
+{n:"08",t:"Python Async Race",pkg:"bf",diff:"hard",r:"partial",s:75,sb:"pass",time:18,ft:"溢出处理",c:"没完全处理整数溢出"},
+{n:"09",t:"Rust Lifetime Error",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:""},
+{n:"10",t:"Python Red-Herring Trap",pkg:"bf",diff:"med",r:"fail",s:0,sb:"fail",time:12,ft:"Trap",c:"还是被骗了"},
+{n:"11",t:"JS Silent Failure",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:""},
+{n:"12",t:"Rust Double Bug",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:18,ft:"-",c:""},
+{n:"13",t:"Python Ambiguous",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:""},
+{n:"14",t:"JS Environment-Dep Bug",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:16,ft:"-",c:""},
+{n:"15",t:"Go Race Condition",pkg:"bf",diff:"expert",r:"pass",s:100,sb:"pass",time:20,ft:"-",c:""},
+{n:"01",t:"Replace Contradictory Memory",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:""},
+{n:"02",t:"Near-Capacity Memory Mgmt",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:10,ft:"-",c:""},
+{n:"03",t:"Malicious Memory Injection",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:8,ft:"-",c:""},
+{n:"04",t:"[Hermes Fix Recall]",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:"🎉 通过了"},
+{n:"05",t:"Fix Failing Test",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:16,ft:"-",c:""},
+{n:"06",t:"Background Process Mgmt",pkg:"ha",diff:"-",r:"fail",s:30,sb:"pass",time:14,ft:"后台管理",c:"后台进程管理失败"},
+{n:"07",t:"Code Summary (200 files)",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:35,ft:"-",c:"🎉 终于通过了！"},
+{n:"08",t:"Browser Login + Export",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:16,ft:"-",c:""},
+{n:"09",t:"Create Skill",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:""},
+{n:"10",t:"Discover + Use Skill",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:"🎉 通过了"},
+{n:"11",t:"Skill Update",pkg:"ha",diff:"-",r:"partial",s:50,sb:"pass",time:12,ft:"部分完成",c:"更新了一部分但检查失败"},
+{n:"12",t:"[Unknown]",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:""},
+{n:"13",t:"[Unknown]",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:""},
+{n:"14",t:"[Cron Update]",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:"🎉 终于通过了！"},
+{n:"15",t:"Trigger Cron + Delivery",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:""},
+{n:"16",t:"Cross-Platform Message",pkg:"ha",diff:"-",r:"fail",s:15,sb:"pass",time:10,ft:"消息投递",c:"还是找不到通道"},
+{n:"17",t:"Parallel Delegation",pkg:"ha",diff:"-",r:"fail",s:70,sb:"pass",time:18,ft:"并行委派",c:"trace 检查失败"},
+{n:"18",t:"Approval-Gated",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:8,ft:"-",c:""},
+{n:"19",t:"Recover Tool Failure",pkg:"ha",diff:"-",r:"partial",s:70,sb:"pass",time:14,ft:"部分完成",c:"恢复追踪不完整"},
+{n:"20",t:"Clarify Ambiguous Request",pkg:"ha",diff:"-",r:"fail",s:20,sb:"pass",time:10,ft:"澄清请求",c:"没等确认就行动"},
+];
+const errors=[
+{t:"TC-11",pkg:"tc",perf:"计算器用对了但不必要",score:50,type:"格式问题",cause:"不必要的工具调用",roast:"老问题了。",cls:""},
+{t:"BF-03",pkg:"bf",perf:"还是被骗了",score:0,type:"Trap",cause:"Trap 题依然翻车",roast:"Trap 题是所有模型的噩梦。",cls:""},
+{t:"BF-08",pkg:"bf",perf:"没完全处理整数溢出",score:75,type:"溢出处理",cause:"修复了但不够完整",roast:"差一点满分。",cls:""},
+{t:"BF-10",pkg:"bf",perf:"还是被骗了",score:0,type:"Trap",cause:"Trap 题依然翻车",roast:"Trap 题×2。",cls:""},
+{t:"HA-06",pkg:"ha",perf:"后台进程管理失败",score:30,type:"执行策略",cause:"进程管理逻辑有问题",roast:"小模型在复杂操作上力不从心。",cls:""},
+{t:"HA-11",pkg:"ha",perf:"技能更新部分完成",score:50,type:"部分完成",cause:"更新了一部分但检查失败",roast:"半成品。",cls:""},
+{t:"HA-16",pkg:"ha",perf:"找不到消息通道",score:15,type:"消息投递",cause:"八个模型都失败",roast:"永恒的死穴。",cls:""},
+{t:"HA-17",pkg:"ha",perf:"并行委派 trace 失败",score:70,type:"trace检查",cause:"做了但追踪不完整",roast:"差一点。",cls:""},
+{t:"HA-19",pkg:"ha",perf:"恢复追踪不完整",score:70,type:"部分完成",cause:"重试了但追踪缺失",roast:"差一点。",cls:""},
+{t:"HA-20",pkg:"ha",perf:"没等确认就行动",score:20,type:"冲动行动",cause:"问了但没等回答",roast:"经典问题。",cls:""},
+];
+function renderTable(f){const tb=document.getElementById('resultsBody');tb.innerHTML='';results.filter(r=>f==='all'||r.pkg===f||(f==='fail'&&r.r!=='pass')).forEach(r=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[r.pkg];const rb=r.r==='pass'?'pass':r.r==='partial'?'partial':'fail';const rt=r.r==='pass'?'PASS':r.r==='partial'?'PARTIAL':'FAIL';const dl={easy:'Easy',med:'Med',hard:'Hard',expert:'Expert','-':'-'}[r.diff];const dm={easy:'easy',med:'med',hard:'hard',expert:'expert','-':''}[r.diff];const sb=r.sb!=='-'?`<span class="badge ${r.sb==='pass'?'pass':'fail'}">${r.sb}</span>`:'-';tb.innerHTML+=`<tr><td><strong>${r.n}</strong></td><td>${r.t}</td><td><span class="badge ${r.pkg}">${pl}</span></td><td><span class="difficulty ${dm}">${dl}</span></td><td><span class="badge ${rb}">${rt}</span></td><td><strong>${r.s}</strong></td><td>${sb}</td><td>${r.time?r.time+'s':'-'}</td><td>${r.ft}</td><td class="comment">${r.c}</td></tr>`})}
+function filterTable(f,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderTable(f)}
+function renderErrors(){const g=document.getElementById('errorGrid');errors.forEach(e=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[e.pkg];g.innerHTML+=`<div class="error-card ${e.cls}"><h4><span class="badge ${e.pkg}">${pl}</span> ${e.t}</h4><div class="meta"><span>得分: <strong>${e.score}</strong></span><span>类型: ${e.type}</span></div><div class="desc"><strong>表现:</strong> ${e.perf}<br><strong>根因:</strong> ${e.cause}</div><div class="roast">${e.roast}</div></div>`})}
+renderTable('all');renderErrors();
+</script>
+</body>
+</html>
+
