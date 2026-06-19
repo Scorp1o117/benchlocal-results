@@ -311,6 +311,9 @@ function sortModels(key, btn) {
   btn.classList.add('active');
   
   models.sort((a,b) => b[key] - a[key]);
+  
+  // Remove all cards first, then re-append in sorted order
+  models.forEach(m => { if(m.el.parentNode) m.el.parentNode.removeChild(m.el); });
   models.forEach((m,i) => {
     m.el.querySelector('.card-rank').textContent = i + 1;
     grid.appendChild(m.el);
