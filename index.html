@@ -351,6 +351,8 @@ function sortModels(key, btn) {
     m.el.querySelector('.card-rank').textContent = i + 1;
   });
 }
+// Auto-sort by total on page load
+sortModels('total', document.querySelector('.sort-btn'));
 </script>
 
 </body>
