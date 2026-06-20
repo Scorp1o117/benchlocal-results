@@ -41,7 +41,9 @@ nav .inner{max-width:1280px;margin:0 auto;padding:0 48px;height:64px;display:fle
 
 /* Model Cards Grid */
 .models-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:24px}
-.model-card{background:var(--card);border-radius:var(--r);padding:32px;box-shadow:var(--sh);transition:transform .25s,box-shadow .25s,order .3s;cursor:pointer;position:relative;overflow:hidden}
+.model-card{background:var(--card);border-radius:var(--r);padding:32px;box-shadow:var(--sh);transition:transform .25s,box-shadow .25s,order .3s;cursor:pointer;position:relative;overflow:hidden;border-left:4px solid transparent}
+.model-card.thinking{border-left-color:var(--red)}
+.model-card.no-thinking{border-left-color:#94A3B8}
 .model-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
 .model-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
 .model-card.rank-1::before{background:var(--grad)}
@@ -169,7 +171,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
 
   <div class="models-grid">
     <!-- Model 1: Step-3.7-Flash -->
-    <div class="model-card rank-1" onclick="location.href='models/step37-flash.html'">
+    <div class="model-card rank-1 thinking" onclick="location.href='models/step37-flash.html'">
       <div class="card-top">
         <div class="card-rank">1</div>
         <div class="card-score">79.5<span>/100</span></div>
@@ -197,7 +199,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     </div>
 
     <!-- Model 2: Nex-N2-Mini -->
-    <div class="model-card rank-2" onclick="location.href='models/n2mini.html'">
+    <div class="model-card rank-2 thinking" onclick="location.href='models/n2mini.html'">
       <div class="card-top">
         <div class="card-rank">2</div>
         <div class="card-score">75.7<span>/100</span></div>
@@ -225,7 +227,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
   </div>
 
     <!-- Model 3: Qwen3.6-35B -->
-    <div class="model-card rank-2" onclick="location.href='models/qwen36-35b.html'">
+    <div class="model-card rank-2 no-thinking" onclick="location.href='models/qwen36-35b.html'">
       <div class="card-top">
         <div class="card-rank" style="background:#548235">3</div>
         <div class="card-score">79.6<span>/100</span></div>
@@ -281,7 +283,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     </div>
 
     <!-- Model 5: Gemma 4 26B -->
-    <div class="model-card rank-1" onclick="location.href='models/gemma4-26b.html'">
+    <div class="model-card rank-1 no-thinking" onclick="location.href='models/gemma4-26b.html'">
       <div class="card-top">
         <div class="card-rank">1</div>
         <div class="card-score">88.7<span>/100</span></div>
@@ -308,7 +310,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     </div>
 
     <!-- Model 6: Gemma 4 26B (思考) -->
-    <div class="model-card rank-1" onclick="location.href='models/gemma4-26b-thinking.html'">
+    <div class="model-card rank-1 thinking" onclick="location.href='models/gemma4-26b-thinking.html'">
       <div class="card-top">
         <div class="card-rank">1</div>
         <div class="card-score">91.6<span>/100</span></div>
@@ -335,7 +337,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     </div>
 
     <!-- Model 7: QwenPaw-Flash-9B -->
-    <div class="model-card rank-2" onclick="location.href='models/qwenpaw-flash-9b.html'">
+    <div class="model-card rank-2 thinking" onclick="location.href='models/qwenpaw-flash-9b.html'">
       <div class="card-top">
         <div class="card-rank" style="background:linear-gradient(135deg,#f093fb,#f5576c)">2</div>
         <div class="card-score">87.2<span>/100</span></div>
@@ -362,7 +364,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     </div>
 
     <!-- Model 8: Qwen3.6-27B (无思考) -->
-    <div class="model-card rank-2" onclick="location.href='models/qwen36-27b.html'">
+    <div class="model-card rank-2 no-thinking" onclick="location.href='models/qwen36-27b.html'">
       <div class="card-top">
         <div class="card-rank" style="background:#548235">3</div>
         <div class="card-score">87.4<span>/100</span></div>
@@ -389,7 +391,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     </div>
 
     <!-- Model 9: Qwen3.6-27B (思考) -->
-    <div class="model-card rank-1" onclick="location.href='models/qwen36-27b-thinking.html'">
+    <div class="model-card rank-1 thinking" onclick="location.href='models/qwen36-27b-thinking.html'">
       <div class="card-top">
         <div class="card-rank">1</div>
         <div class="card-score">91.9<span>/100</span></div>
@@ -498,7 +500,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
 
 <footer>
   <div class="inner">
-    <div><div class="brand">⚡ BenchLocal</div><div style="font-size:13px">本地模型测试数据库 · 由阿洛娜维护 🌊</div></div>
+    <div><div class="brand">⚡ BenchLocal</div><div style="font-size:13px">本地模型测试数据库</div></div>
     <div class="links">
       <div><h5>测试项目</h5><a href="#">ToolCall-15</a><a href="#">BugFind-15</a><a href="#">HermesAgent-20</a><a href="#">更多 Bench Packs →</a></div>
       <div><h5>模型</h5><a href="models/step37-flash.html">Step-3.7-Flash</a><a href="models/n2mini.html">Nex-N2-Mini</a><a href="models/qwen36-35b.html">Qwen3.6 (无思考)</a><a href="models/qwen36-35b-thinking.html">Qwen3.6 (思考)</a><a href="models/gemma4-26b.html">Gemma-4 (无思考)</a><a href="models/gemma4-26b-thinking.html">Gemma-4 (思考)</a><a href="models/qwenpaw-flash-9b.html">QwenPaw-Flash-9B</a><a href="models/qwen36-27b.html">Qwen3.6-27B (无思考)</a><a href="models/qwen36-27b-thinking.html">Qwen3.6-27B (思考)</a></div>
