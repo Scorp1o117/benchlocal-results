@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -97,6 +97,22 @@ nav .inner{max-width:1280px;margin:0 auto;padding:0 48px;height:64px;display:fle
 .about-list li:nth-child(3)::before{background:var(--grad2)}
 .about-list li:nth-child(4)::before{background:var(--grad4)}
 
+/* Section & Summary */
+.section{max-width:1280px;margin:60px auto;padding:0 48px}
+.section-header{margin-bottom:32px}
+.section-header h2{font-size:28px;font-weight:800;letter-spacing:-.5px}
+.section-header p{font-size:14px;color:var(--text2);margin-top:4px}
+.roast-box{background:var(--card);border-radius:var(--r);padding:48px;box-shadow:var(--sh)}
+.roast-section{margin-bottom:28px}
+.roast-section h4{font-size:16px;font-weight:700;margin-bottom:12px}
+.roast-section ul{list-style:none;padding:0}
+.roast-section li{padding:8px 0;font-size:14px;color:var(--text2);border-bottom:1px solid #F7FAFC;display:flex;align-items:flex-start;gap:8px}
+.roast-section.pro li::before{content:'✅';flex-shrink:0}
+.roast-section.con li::before{content:'⚠️';flex-shrink:0}
+.roast-section.tip li::before{content:'💡';flex-shrink:0}
+.roast-conclusion{background:linear-gradient(135deg,#FFF5F5,#FFFAF0);border-radius:12px;padding:28px;margin-top:24px}
+.roast-conclusion p{font-size:15px;line-height:1.8}
+
 /* Footer */
 footer{background:#0F172A;color:#94A3B8;padding:48px 48px 32px}
 footer .inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start}
@@ -111,7 +127,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
   .hero h1{font-size:36px}.hero-stats{gap:32px}.hero-stat .val{font-size:32px}
   .models-grid,.future-grid{grid-template-columns:1fr}
   .about-box{grid-template-columns:1fr}
-  .board,.future,.about{padding-left:20px;padding-right:20px}
+  .board,.future,.about,.section{padding-left:20px;padding-right:20px}
   nav .inner{padding:0 20px}.hero{padding:60px 20px 40px}
   footer .inner{flex-direction:column;gap:32px}
 }
@@ -472,9 +488,9 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     </ul></div>
     <div class="roast-section tip"><h4>💡 测试环境</h4><ul>
       <li><strong>硬件</strong> — RTX 5070 Ti 16GB + 128GB RAM，部分层 offload 到 GPU</li>
-      <li><strong>推理后端</strong> — llama.cpp（cdome94 fork, CUDA 编译）</li>
+      <li><strong>推理后端</strong> — llama.cpp</li>
       <li><strong>测试包</strong> — ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</li>
-      <li><strong>模型下载</strong> — <a href="https://huggingface.co/SC117" target="_blank" style="color:var(--red)">HF: SC117</a>（heretic 量化版本）</li>
+      <li><strong>模型下载</strong> — <a href="https://huggingface.co/SC117" target="_blank" style="color:var(--red)">HF: SC117</a></li>
     </ul></div>
   </div>
 </section>
