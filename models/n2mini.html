@@ -143,27 +143,24 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
 <section class="section">
   <h2>🌊 阿洛娜の毒舌总结</h2>
   <div class="roast-box">
-    <div class="roast-section pro"><h4>✅ 该夸的要夸</h4><ul>
-      <li><strong>速度快</strong> — ~44 tok/s，比 Step-3.7 (15 tok/s) 快 3 倍，日常使用体验好很多</li>
-      <li><strong>ToolCall 表现不错</strong> — 90 分，仅次于 Step-3.7 的 93 分</li>
-      <li><strong>真 bug 修对了不少</strong> — Python/JS/Rust/Go 都有正确修复</li>
-      <li><strong>HermesAgent 基础能力扎实</strong> — 71 分，记忆管理和审批守卫全满分</li>
+    <div class="roast-section pro"><h4>✅ 优势</h4><ul>
+      <li>推理速度 62.5 t/s，在 MoE 模型中表现良好，适合需要快速响应的场景</li>
+      <li>HermesAgent 基础能力扎实（71分），记忆管理和审批守卫全满分</li>
+      <li>ToolCall 表现不错（90分），仅次于 Step-3.7 和 Qwen3.6</li>
     </ul></div>
-    <div class="roast-section con"><h4>❌ 该吐槽的绝不嘴软</h4><ul>
-      <li>📝 <strong>BugFind 格式灾难</strong> — 9 道题修对了但没用 <code>&lt;solution&gt;</code> 标签，60 分的题拿了 60 分而不是 100 分，白白丢分</li>
-      <li>🏆 <strong>Trap 题跟 Step-3.7 一样跪</strong> — BF-03 和 BF-10 都被骗了</li>
-      <li>🧠 <strong>记忆召回不稳定</strong> — HA-04 没回忆起之前的 Docker 修复，之前的修复白做了</li>
-      <li>🛠️ <strong>技能操作弱</strong> — HA-09/10 创建和发现技能都失败，Agent 基础能力不如 Step-3.7</li>
+    <div class="roast-section con"><h4>⚠️ 不足</h4><ul>
+      <li>BugFind 分数全场最低（68.7分），深度代码调试能力不足</li>
+      <li>Trap 题（BF-03/BF-10）全部失败，批判性思维能力有限</li>
+      <li>HermesAgent 中 HA-10 技能发现失败（20分），HA-16 消息投递也失败</li>
     </ul></div>
-    <div class="roast-section tip"><h4>💡 给老师的建议</h4><ul>
-      <li><strong>BugFind 格式问题可修</strong> — system prompt 加 "必须用 &lt;solution&gt; 标签包裹修复代码" 可能解决</li>
-      <li><strong>日常用 N2-mini 更快</strong> — 44 tok/s vs 15 tok/s，响应速度差 3 倍</li>
-      <li><strong>复杂任务用 Step-3.7</strong> — BugFind 真题修复能力更强，Agent 场景更稳</li>
+    <div class="roast-section tip"><h4>📋 测试环境</h4><ul>
+      <li>硬件 — RTX 5070 Ti 16GB + 128GB RAM，部分层 offload 到 GPU</li>
+      <li>推理后端 — llama.cpp</li>
+      <li>测试包 — ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</li>
+      <li>模型下载 — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>Nex-N2-Mini 就像一个手速很快的实习生——干活飞快，但经常不按格式交作业。BugFind 9 道题修对了 9 道，但格式全错导致分数腰斩。</p>
-      <p>速度是它最大的优势——44 tok/s 的日常体验远好于 Step-3.7 的 15 tok/s。但遇到需要精确格式或复杂推理的场景，还是得靠大哥。</p>
-      <p class="final">75.7 分，速度见长，格式拉胯。跟 Step-3.7 搭配用是最佳方案。</p>
+      <p><strong>Nex-N2-Mini-abliterated-APEX (思考)</strong> — 加权总分取决于具体测试配置，详见顶部卡片数据。</p>
     </div>
   </div>
 </section>

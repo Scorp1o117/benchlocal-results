@@ -143,27 +143,24 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
 <section class="section">
   <h2>🌊 阿洛娜の毒舌总结</h2>
   <div class="roast-box">
-    <div class="roast-section pro"><h4>✅ 该夸的要夸</h4><ul>
-      <li>🏆 <strong>加权总分 91.6，六模型绝对王者</strong> — 断层领先第二名 Gemma 无思考版 (88.7) 近 3 分</li>
-      <li>🐛 <strong>BugFind 96 分全场最高</strong> — 思考模式让 BugFind 从 86 飙到 96，+10 分</li>
-      <li>🎯 <strong>BF-10 Trap 思考版突破了</strong> — 之前五个模型全跪，思考版终于通过</li>
-      <li>🤖 <strong>HermesAgent 87 全场最高</strong> — HA-10 技能发现也通过了（之前五个模型全跪）</li>
+    <div class="roast-section pro"><h4>✅ 优势</h4><ul>
+      <li>BugFind 96 分全场最高，思考模式让代码调试能力从 86 飙升到 96（+10分）</li>
+      <li>BF-10 Trap 题通过——这是九个模型中唯一一个通过此题的</li>
+      <li>HermesAgent 87 分全场最高，Agent 场景综合能力最强</li>
     </ul></div>
-    <div class="roast-section con"><h4>❌ 该吐槽的绝不嘴软</h4><ul>
-      <li>⚠️ <strong>TC-08 条件流翻车</strong> — thinking 让模型想多了反而走错流程，无思考版反而通过</li>
-      <li>😤 <strong>BF-03 Trap 还是 partial</strong> — 比无思考版好但还没完全通过</li>
-      <li>📨 <strong>HA-16 消息投递</strong> — 六个模型全跪，永恒的死穴</li>
-      <li>🛠️ <strong>HA-07 批量处理</strong> — 六个模型都栽在这道题</li>
+    <div class="roast-section con"><h4>⚠️ 不足</h4><ul>
+      <li>ToolCall 93.3 分，低于无思考版（96.7），思考模式在工具调用场景反而有负面影响</li>
+      <li>HA-07 代码批量处理仍然失败（30分），HA-16 消息投递仍然失败</li>
+      <li>思考模式增加推理延迟，实际吞吐量低于无思考版</li>
     </ul></div>
-    <div class="roast-section tip"><h4>💡 给老师的建议</h4><ul>
-      <li><strong>Gemma 4 思考版 = 最强全能选手</strong> — 91.6 分，三科成绩都极高</li>
-      <li><strong>Gemma 4 无思考版 = 最快的日常助手</strong> — 88.7 分，速度更快，体积 16GB 最小</li>
-      <li><strong>思考模式有取舍</strong> — BugFind +10 但 TC-08 条件流翻车，按场景选择</li>
+    <div class="roast-section tip"><h4>📋 测试环境</h4><ul>
+      <li>硬件 — RTX 5070 Ti 16GB + 128GB RAM，部分层 offload 到 GPU</li>
+      <li>推理后端 — llama.cpp</li>
+      <li>测试包 — ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</li>
+      <li>模型下载 — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>Gemma-4-26B 思考模式是本次测试的<strong>终极答案</strong>——91.6 分六模型绝对第一，BugFind 96 分、HermesAgent 87 分都是全场最高。</p>
-      <p>最亮眼的是 BF-10 Trap 终于被思考版突破了——之前五个模型全跪，Gemma 思考版是唯一通过的。HA-10 技能发现也历史性通过。</p>
-      <p class="final">91.6 分，26B MoE 封王。思考版当专家，无思考版当日常——这就是老师的最佳组合。</p>
+      <p><strong>Gemma-4-26B-A4B-it (思考)</strong> — 加权总分取决于具体测试配置，详见顶部卡片数据。</p>
     </div>
   </div>
 </section>

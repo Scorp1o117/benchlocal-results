@@ -143,27 +143,24 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
 <section class="section">
   <h2>🌊 阿洛娜の毒舌总结</h2>
   <div class="roast-box">
-    <div class="roast-section pro"><h4>✅ 该夸的要夸</h4><ul>
-      <li>🏆 <strong>ToolCall 满分 100/100</strong> — 五个模型里唯一一个满分，15/15 全部通过</li>
-      <li>🧠 <strong>思考模式让 ToolCall 质变</strong> — 无思考版 83.3，思考版直接拉到 100，思考在工具调用场景收益巨大</li>
-      <li>🎯 <strong>Trap 题终于突破了 1/3</strong> — BF-03 历史性通过（其他三个模型全跪）</li>
-      <li><strong>加权总分 87.2</strong> — 断层领先第二名 Step-3.7 (79.5) 近 8 分</li>
+    <div class="roast-section pro"><h4>✅ 优势</h4><ul>
+      <li>ToolCall 满分 100/100，与 Qwen3.6-35B 思考版并列全场最高</li>
+      <li>9B 稠密模型仅 7.9GB 体积，性价比极高，适合资源受限环境</li>
+      <li>推理速度 90.3 t/s 全场最快（输出速度），响应速度优势明显</li>
     </ul></div>
-    <div class="roast-section con"><h4>❌ 该吐槽的绝不嘴软</h4><ul>
-      <li>😤 <strong>BF-10 依然是死穴</strong> — 五个模型全部被骗，包括思考模式的这一个。这道题是所有模型的终极噩梦</li>
-      <li>📨 <strong>HA-16 消息投递依然是死穴</strong> — 五个模型全跪</li>
-      <li>⏱️ <strong>HA-04 verifier 超时</strong> — 10 分钟超时不是模型的锅，但扣了分</li>
-      <li>🛠️ <strong>HA-07 代码批量处理</strong> — 五个模型都没解决这道题</li>
+    <div class="roast-section con"><h4>⚠️ 不足</h4><ul>
+      <li>BugFind 84 分低于大多数思考版模型，深度代码调试能力受限于 9B 参数量</li>
+      <li>HermesAgent 80 分，低于 Gemma-4 系列（84.8/87）和 Qwen3.6-27B（84.8）</li>
+      <li>BF-03/BF-10 Trap 题均失败，HA-07/HA-16 也失败</li>
     </ul></div>
-    <div class="roast-section tip"><h4>💡 给老师的建议</h4><ul>
-      <li><strong>需要最高质量就开思考</strong> — Qwen3.6 思考模式 87.2 分断层第一，ToolCall 满分</li>
-      <li><strong>需要速度就关思考</strong> — Qwen3.6 无思考版 79.6 分，日常够用且响应快 3 倍</li>
-      <li><strong>Trap 题是所有模型的短板</strong> — BF-10 全军覆没，建议在 system prompt 加 "先独立验证代码是否真的有 bug"</li>
+    <div class="roast-section tip"><h4>📋 测试环境</h4><ul>
+      <li>硬件 — RTX 5070 Ti 16GB + 128GB RAM，部分层 offload 到 GPU</li>
+      <li>推理后端 — llama.cpp</li>
+      <li>测试包 — ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</li>
+      <li>模型下载 — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>Qwen3.6-35B 思考模式是本次测试的<strong>最大惊喜</strong>——ToolCall 拿到全场唯一满分 100/100，BugFind 也从无思考版的 80.7 飙到 88.7。</p>
-      <p>思考模式的代价是 HA-04 verifier 超时和 HA-17/19 的 trace 检查失败，但核心能力提升巨大。BF-03 Trap 题历史性通过，虽然 BF-10 还是翻车。</p>
-      <p class="final">87.2 分，断层第一。思考模式 = 质变，无思考 = 日常够用。按场景选择才是最优解。</p>
+      <p><strong>QwenPaw-Flash-9B-MTP-heretic (思考)</strong> — 加权总分取决于具体测试配置，详见顶部卡片数据。</p>
     </div>
   </div>
 </section>

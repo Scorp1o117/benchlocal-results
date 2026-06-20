@@ -143,27 +143,24 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
 <section class="section">
   <h2>🌊 阿洛娜の毒舌总结</h2>
   <div class="roast-box">
-    <div class="roast-section pro"><h4>✅ 该夸的要夸</h4><ul>
-      <li>🏆 <strong>加权总分 88.7，新王登基</strong> — 五个模型里最高分，比 Qwen3.6 思考版 (87.2) 还高 1.5</li>
-      <li>🤖 <strong>HermesAgent 84.8 全场最佳</strong> — 远超第二名 Qwen3.6 思考版 (76.5)，差距 8 分</li>
-      <li>🧠 <strong>HA-04 历史性通过</strong> — 五个模型里唯一一个成功回忆 Docker 修复的</li>
-      <li>💪 <strong>26B MoE 干翻 198B</strong> — 模型最小、速度最快，成绩最好</li>
+    <div class="roast-section pro"><h4>✅ 优势</h4><ul>
+      <li>HermesAgent 84.8 分全场最高之一，Agent 场景能力突出</li>
+      <li>ToolCall 96.7 分，仅差 1 题满分，工具调用能力接近顶尖</li>
+      <li>唯一通过 HA-04（Docker 修复回忆）的模型之一，记忆召回能力独特</li>
     </ul></div>
-    <div class="roast-section con"><h4>❌ 该吐槽的绝不嘴软</h4><ul>
-      <li>😤 <strong>BF-03 Trap 依然翻车</strong> — 五个模型里四个都被骗，只有 Qwen3.6 思考版通过</li>
-      <li>📨 <strong>HA-16 消息投递</strong> — 五个模型全跪，永远的死穴</li>
-      <li>🔍 <strong>HA-10 技能发现</strong> — 五个模型全跪，另一个死穴</li>
-      <li>⚠️ <strong>BF-10 Trap partial</strong> — 没有完全被骗但还是被影响了，60 分不是满分</li>
+    <div class="roast-section con"><h4>⚠️ 不足</h4><ul>
+      <li>Trap 题（BF-03）仍然失败，BF-10 仅 partial（60分）</li>
+      <li>BugFind 86 分，低于 Qwen3.6-27B 无思考版（84.2）和思考版（93.3）</li>
+      <li>HA-10 技能发现、HA-16 消息投递均失败</li>
     </ul></div>
-    <div class="roast-section tip"><h4>💡 给老师的建议</h4><ul>
-      <li><strong>日常主力首选 Gemma 4</strong> — 88.7 分最高、HermesAgent 84.8 全场最佳、体积最小（16GB）</li>
-      <li><strong>编码极限用 Qwen3.6 思考版</strong> — ToolCall 满分，BugFind 88.7 分最高</li>
-      <li><strong>Trap 题需要 prompt 优化</strong> — BF-03/BF-10 是所有模型的短板，system prompt 加验证指令</li>
+    <div class="roast-section tip"><h4>📋 测试环境</h4><ul>
+      <li>硬件 — RTX 5070 Ti 16GB + 128GB RAM，部分层 offload 到 GPU</li>
+      <li>推理后端 — llama.cpp</li>
+      <li>测试包 — ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</li>
+      <li>模型下载 — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>Gemma-4-26B 是本次测试的<strong>最大黑马</strong>——26B MoE 干翻了 198B 的 Step-3.7 和 35B 的 Qwen3.6，加权总分 88.7 五模型第一。</p>
-      <p>最惊人的是 HermesAgent 84.8——其他模型都在 70-76 分徘徊，Gemma 直接拉开 8 分差距。而且它是唯一一个通过 HA-04（Docker 修复回忆）的模型。</p>
-      <p class="final">88.7 分，小模型大能量。Gemma-4 当日常主力，Qwen3.6 思考版当专家顾问——这才是最优组合。</p>
+      <p><strong>Gemma-4-26B-A4B-it (无思考)</strong> — 加权总分取决于具体测试配置，详见顶部卡片数据。</p>
     </div>
   </div>
 </section>

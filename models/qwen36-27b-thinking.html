@@ -143,27 +143,24 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
 <section class="section">
   <h2>🌊 阿洛娜の毒舌总结</h2>
   <div class="roast-box">
-    <div class="roast-section pro"><h4>✅ 该夸的要夸</h4><ul>
-      <li><strong>BugFind 三个模型最强</strong> — 80.7 分，远超 Step-3.7 (78) 和 N2-mini (68.7)</li>
-      <li><strong>速度快</strong> — ~44 tok/s，跟 N2-mini 持平，比 Step-3.7 快 3 倍</li>
-      <li><strong>无思考模式优势明显</strong> — 不用等 thinking tokens，直接输出，BugFind 格式也正确</li>
-      <li><strong>加权总分最高</strong> — 79.6，微弱领先 Step-3.7 的 79.5</li>
+    <div class="roast-section pro"><h4>✅ 优势</h4><ul>
+      <li>加权总分 91.9 全场第一，BugFind 93.3 + HermesAgent 84.8 均为高水平</li>
+      <li>ToolCall 满分 100/100，BF-03 Trap 题通过——思考模式显著提升了批判性思维</li>
+      <li>IQ3_M 量化仅 11.9GB，体积在高分模型中最小，资源效率极高</li>
     </ul></div>
-    <div class="roast-section con"><h4>❌ 该吐槽的绝不嘴软</h4><ul>
-      <li>🏆 <strong>Trap 题三连跪</strong> — BF-03 和 BF-10，三个模型全被骗，无一幸免</li>
-      <li>🐛 <strong>HA-05 测试修复翻车</strong> — 唯一一个在这道题拿 0 分的模型</li>
-      <li>📨 <strong>HA-16 消息投递死穴</strong> — 三个模型都找不到通道，这题是所有人的公敌</li>
-      <li>⚠️ <strong>记忆召回偶尔失灵</strong> — HA-04 没回忆起之前的修复</li>
+    <div class="roast-section con"><h4>⚠️ 不足</h4><ul>
+      <li>BF-10 Trap 题仍然失败——九个模型中仅 Gemma-4 思考版通过此题</li>
+      <li>HA-16 消息投递 0 分，HA-14 Cron 更新也失败（无思考版反而通过）</li>
+      <li>思考模式有副作用：HA-14 从无思考版的 100 分退步到 70 分</li>
     </ul></div>
-    <div class="roast-section tip"><h4>💡 给老师的建议</h4><ul>
-      <li><strong>编码/调试任务首选 Qwen3.6</strong> — BugFind 80.7 分最高，无思考模式直接输出不浪费时间</li>
-      <li><strong>Agent 复杂任务用 Step-3.7</strong> — ToolCall 93 分最高，工具调用能力最强</li>
-      <li><strong>日常轻量任务用 N2-mini</strong> — 速度最快，基础能力够用</li>
+    <div class="roast-section tip"><h4>📋 测试环境</h4><ul>
+      <li>硬件 — RTX 5070 Ti 16GB + 128GB RAM，部分层 offload 到 GPU</li>
+      <li>推理后端 — llama.cpp</li>
+      <li>测试包 — ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</li>
+      <li>模型下载 — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>Qwen3.6-35B 是三个模型里最均衡的选手——BugFind 80.7 分最高，HermesAgent 76 分也最高，加权总分 79.6 微弱领先 Step-3.7。</p>
-      <p>"无思考"是它最大的优势——不用等 thinking tokens 浪费时间，直接输出结果。编码调试场景下效率最高。</p>
-      <p class="final">79.6 分，均衡且快速。三个模型搭配使用效果最佳：Qwen3.6 编码 + Step-3.7 Agent + N2-mini 日常。</p>
+      <p><strong>Qwen3.6-27B-uncensored (思考)</strong> — 加权总分取决于具体测试配置，详见顶部卡片数据。</p>
     </div>
   </div>
 </section>

@@ -143,25 +143,25 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
 <section class="section">
   <h2>🌊 阿洛娜の毒舌总结</h2>
   <div class="roast-box">
-    <div class="roast-section pro"><h4>✅ 该夸的要夸</h4><ul>
-      <li><strong>工具调用教科书级</strong> — A-D 维度全满分，精准选对 15 个工具，参数格式零失误</li>
-      <li><strong>真 bug 全修对</strong> — Python/JS/Rust/Go 跨 4 种语言，sandbox 通过率极高</li>
-      <li><strong>Agent 有亮点</strong> — 浏览器登录导出、审批守卫、技能创建全满分</li>
+    <div class="roast-section pro"><h4>✅ 优势</h4><ul>
+      <li>ToolCall 场景表现突出（93分），在多工具协调和参数提取方面能力较强</li>
+      <li>198B MoE 架构每 token 仅激活 11B，推理效率高于同参数量稠密模型</li>
+      <li>跨语言代码调试（Python/JS/Rust/Go）全部通过，BugFind 真题修复能力扎实</li>
     </ul></div>
-    <div class="roast-section con"><h4>❌ 该吐槽的绝不嘴软</h4><ul>
-      <li>🏆 <strong>Trap 题两连跪</strong> — 用户说有 bug 就急着修，198B 模型连 <code>format!</code> 不夺走所有权都想不明白</li>
-      <li>🐌 <strong>Thinking 关不掉</strong> — 简单题想 16 分钟，等好久然后给错误答案</li>
-      <li>🤦 <strong>Agent 执行力不稳</strong> — 问完"删哪个"没等回答就动手，JSON key 差一个驼峰</li>
+    <div class="roast-section con"><h4>⚠️ 不足</h4><ul>
+      <li>思考模式不可关闭，简单问题也会产生大量 thinking tokens，降低响应速度</li>
+      <li>推理速度仅 13.9 t/s，在所有测试模型中最慢，受 71.6GB 模型体积限制</li>
+      <li>Trap 题（BF-03/BF-10）全部失败，容易被用户话术误导修改正确代码</li>
+      <li>HermesAgent 场景中 HA-16 消息投递完全失败，HA-07 代码批量处理也未通过</li>
     </ul></div>
-    <div class="roast-section tip"><h4>💡 给老师的建议</h4><ul>
-      <li><strong>双模型策略</strong> — Qwen3 日常 + Step-3.7 复杂任务</li>
-      <li><strong>Prompt 加固</strong> — "先独立验证，再决定是否修复"</li>
-      <li><strong>parallel 改 2-3</strong> — 避免 fetch failed</li>
+    <div class="roast-section tip"><h4>📋 测试环境</h4><ul>
+      <li>硬件 — RTX 5070 Ti 16GB + 128GB RAM，部分层 offload 到 GPU</li>
+      <li>推理后端 — llama.cpp</li>
+      <li>测试包 — ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</li>
+      <li>模型下载 — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>Step-3.7-Flash 就像一个 985 毕业的程序员——技术基础扎实，但情商有问题。你说"帮我看看代码"，他上来就改了。</p>
-      <p>适合当副手——你指哪它打哪，但别让它自己判断该不该打。</p>
-      <p class="final">79.5 分，能用，但别指望它当独当一面的大将。</p>
+      <p><strong>Step-3.7-Flash-APEX-I-Mini (思考)</strong> — 加权总分取决于具体测试配置，详见顶部卡片数据。</p>
     </div>
   </div>
 </section>
