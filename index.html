@@ -47,7 +47,7 @@ nav .inner{max-width:1280px;margin:0 auto;padding:0 48px;height:64px;display:fle
 .model-card.thinking::before{background:var(--red)}
 .model-card.no-thinking::before{background:#CBD5E1}
 .card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
-.card-rank{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff}
+.card-rank{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;background:var(--text)}
 .rank-1 .card-rank{background:var(--grad)}.rank-2 .card-rank{background:var(--grad2)}
 .rank-3 .card-rank{background:var(--grad3)}.rank-default .card-rank{background:var(--grad4)}
 .card-score{font-size:36px;font-weight:900;letter-spacing:-1px;line-height:1}
@@ -251,7 +251,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     </div>
 
         <!-- Model 4: Qwen3.6-35B (思考) -->
-    <div class="model-card rank-1" onclick="location.href='models/qwen36-35b-thinking.html'">
+    <div class="model-card rank-1 thinking" onclick="location.href='models/qwen36-35b-thinking.html'">
       <div class="card-top">
         <div class="card-rank">1</div>
         <div class="card-score">87.2<span>/100</span></div>
@@ -414,7 +414,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     </div>
 
     <!-- Placeholder: DeepSeek V4 Flash -->
-    <div class="model-card rank-3" style="opacity:.45;pointer-events:none">
+    <div class="model-card rank-3 no-thinking" style="opacity:.45;pointer-events:none">
       <div class="card-top">
         <div class="card-rank">—</div>
         <div class="card-score">—<span>/100</span></div>
