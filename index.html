@@ -534,9 +534,13 @@ function sortModels(key, btn) {
   models.sort((a,b) => b[key] - a[key]);
   
   // Use CSS order to visually reorder grid children
+  const rankClasses = ['rank-1','rank-2','rank-3','rank-default'];
   models.forEach((m,i) => {
     m.el.style.order = i;
     m.el.querySelector('.card-rank').textContent = i + 1;
+    // Update rank CSS class for top border color
+    rankClasses.forEach(c => m.el.classList.remove(c));
+    m.el.classList.add(i < 3 ? rankClasses[i] : rankClasses[3]);
   });
 }
 // Auto-sort by total on page load
