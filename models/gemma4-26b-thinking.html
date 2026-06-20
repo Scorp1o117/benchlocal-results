@@ -151,7 +151,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
       <li>思考模式增加推理延迟，实际吞吐量低于无思考版</li>
     </ul></div>
     <div class="roast-section tip"><h4>📋 测试环境</h4><ul>
-      <li>硬件 — RTX 5070 Ti 16GB + 128GB RAM，部分层 offload 到 GPU</li>
+      <li>硬件 — RTX 5070 Ti 16GB + 128GB RAM，MoE模型部分专家层offload到CPU</li>
       <li>推理后端 — llama.cpp</li>
       <li>测试包 — ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</li>
       <li>模型下载 — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>

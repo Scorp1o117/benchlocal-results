@@ -143,7 +143,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
 <!-- Hero -->
 <section class="hero">
   <h1>本地模型<br><span>测试数据库</span></h1>
-  <p>基于 <a href="https://github.com/stevibe/BenchLocal" target="_blank" style="color:var(--red);font-weight:600">BenchLocal</a> 桌面应用，在本地对真实任务进行基准测试，横向对比模型表现</p><p style="font-size:13px;color:var(--text3);margin-top:8px">当前测试环境：RTX 5070 Ti 16GB + 128GB RAM · 部分层 offload 到 GPU</p>
+  <p>基于 <a href="https://github.com/stevibe/BenchLocal" target="_blank" style="color:var(--red);font-weight:600">BenchLocal</a> 桌面应用，在本地对真实任务进行基准测试，横向对比模型表现</p><p style="font-size:13px;color:var(--text3);margin-top:8px">当前测试环境：RTX 5070 Ti 16GB + 128GB RAM · MoE模型部分专家层offload到CPU</p>
   <div class="hero-stats">
     <div class="hero-stat"><div class="val">10</div><div class="lbl">已测试模型</div></div>
     <div class="hero-stat"><div class="val">50</div><div class="lbl">总测试题数</div></div>
@@ -482,7 +482,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
       <li><strong>思考模式有副作用</strong> — Qwen3.6-27B 思考版 HA-14 反而比无思考版差（100→70），TC-08 条件流也可能翻车</li>
     </ul></div>
     <div class="roast-section tip"><h4>💡 测试环境</h4><ul>
-      <li><strong>硬件</strong> — RTX 5070 Ti 16GB + 128GB RAM，部分层 offload 到 GPU</li>
+      <li><strong>硬件</strong> — RTX 5070 Ti 16GB + 128GB RAM，MoE模型部分专家层offload到CPU</li>
       <li><strong>推理后端</strong> — llama.cpp</li>
       <li><strong>测试包</strong> — ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</li>
       <li><strong>模型下载</strong> — <a href="https://huggingface.co/SC117" target="_blank" style="color:var(--red)">HF: SC117</a></li>
