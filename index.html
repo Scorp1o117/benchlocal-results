@@ -272,7 +272,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
       </div>
       <div class="card-model">
         <h3>Gemma-4-26B-A4B-it <span style="font-size:12px;color:var(--text3);font-weight:400">(无思考)</span></h3>
-        <div class="desc">26B MoE (4B active) · QAT heretic 量化</div>
+        <div class="desc">25B MoE (4B active) · Q4_0 · QAT heretic 量化</div>
       </div>
       <div class="card-meta">
         <span class="card-tag">🧠 MoE</span>
@@ -299,7 +299,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
       </div>
       <div class="card-model">
         <h3>Gemma-4-26B-A4B-it <span style="font-size:12px;color:var(--text3);font-weight:400">(思考)</span></h3>
-        <div class="desc">26B MoE (4B active) · QAT heretic 量化</div>
+        <div class="desc">25B MoE (4B active) · Q4_0 · QAT heretic 量化</div>
       </div>
       <div class="card-meta">
         <span class="card-tag">🧠 MoE</span>
@@ -436,7 +436,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
   <div class="about-box">
     <div>
       <h3>⚡ 关于 BenchLocal</h3>
-      <p><a href="https://github.com/stevibe/BenchLocal" target="_blank" style="color:var(--red);font-weight:600">BenchLocal</a> 是一个本地优先的桌面应用，用于运行、比较和管理可安装的 LLM Bench Packs，支持本地或远程模型。本页面展示的是老师在自己硬件上的实测成绩，不做云端注水，每一分都是本地推理的真实表现。</p>
+      <p><a href="https://github.com/stevibe/BenchLocal" target="_blank" style="color:var(--red);font-weight:600">BenchLocal</a> 是一个本地优先的桌面应用，用于运行、比较和管理可安装的 LLM Bench Packs。支持本地或远程模型，通过可安装的测试包对模型进行标准化评估。</p>
     </div>
     <div>
       <h3>📋 测试项目</h3>
@@ -447,6 +447,35 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <li><strong>加权总分</strong> — ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</li>
       </ul>
     </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <h2>📊 测试总结</h2>
+    <p>基于 BenchLocal 在同一硬件环境下的本地推理测试，横向对比 9 个模型配置</p>
+  </div>
+  <div class="roast-box">
+    <div class="roast-section pro"><h4>🏆 核心发现</h4><ul>
+      <li><strong>思考模式显著提升成绩</strong> — Qwen3.6-27B 从无思考版 87.4 提升到思考版 91.9（+4.5），Gemma-4 从 88.7 提升到 91.6（+2.9）</li>
+      <li><strong>BugFind 是区分度最高的测试</strong> — 从最低 68.7（N2-Mini）到最高 96（Gemma-4 思考版），差距 27.3 分</li>
+      <li><strong>HA-16 消息投递是所有模型的死穴</strong> — 九个模型全部失败，最高分仅 30 分</li>
+      <li><strong>BF-10 Trap 是最难突破的陷阱题</strong> — 九个模型中只有 Gemma-4 思考版（91.6 分）通过</li>
+      <li><strong>27B 稠密模型（87.4/91.9）全面碾压 35B MoE 无思考版（79.6）</strong> — 说明架构类型和思考模式比参数量更重要</li>
+      <li><strong>最小模型也能拿高分</strong> — QwenPaw-Flash-9B（7.9GB）拿到 87.2 分，ToolCall 满分</li>
+    </ul></div>
+    <div class="roast-section con"><h4>⚠️ 已知局限</h4><ul>
+      <li><strong>HA-16（消息投递）全军覆没</strong> — 所有模型都无法找到正确的消息通道，可能是测试框架问题而非模型能力</li>
+      <li><strong>HA-07（代码批量处理）大部分失败</strong> — 仅 Qwen3.6-27B 无思考版和 Qwen3.6-27B 思考版通过</li>
+      <li><strong>Trap 题仍然难以应对</strong> — BF-03 和 BF-10 测试模型的批判性思维，大多数模型会被用户话术误导</li>
+      <li><strong>思考模式有副作用</strong> — Qwen3.6-27B 思考版 HA-14 反而比无思考版差（100→70），TC-08 条件流也可能翻车</li>
+    </ul></div>
+    <div class="roast-section tip"><h4>💡 测试环境</h4><ul>
+      <li><strong>硬件</strong> — RTX 5070 Ti 16GB + 128GB RAM，部分层 offload 到 GPU</li>
+      <li><strong>推理后端</strong> — llama.cpp（cdome94 fork, CUDA 编译）</li>
+      <li><strong>测试包</strong> — ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</li>
+      <li><strong>模型下载</strong> — <a href="https://huggingface.co/SC117" target="_blank" style="color:var(--red)">HF: SC117</a>（heretic 量化版本）</li>
+    </ul></div>
   </div>
 </section>
 
