@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeepSeek-V4-Flash (API) · BenchLocal</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--red:#E53E3E;--orange:#ED8936;--grad:linear-gradient(135deg,#E53E3E,#ED8936);--bg:#F8F9FC;--card:#FFF;--text:#1A202C;--text2:#64748B;--text3:#94A3B8;--border:#E2E8F0;--r:20px;--sh:0 1px 3px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.04)}
+body{font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:inherit;text-decoration:none}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.8);backdrop-filter:blur(24px);border-bottom:1px solid rgba(226,232,240,.6)}
+nav .inner{max-width:1280px;margin:0 auto;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800}
+.logo-icon{width:32px;height:32px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
+.nav-links{display:flex;gap:28px;font-size:14px;font-weight:500;color:var(--text2)}
+.nav-links a:hover{color:var(--text)}
+.back-link{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--text2);font-weight:500}
+.back-link:hover{color:var(--red)}
+
+/* Hero Detail */
+.hero-detail{padding:60px 48px 40px;max-width:1280px;margin:0 auto}
+.hero-detail .breadcrumb{margin-bottom:24px}
+.model-header{display:flex;gap:40px;align-items:flex-start}
+.model-avatar{width:80px;height:80px;border-radius:20px;background:#F1F5F9;display:flex;align-items:center;justify-content:center;flex-shrink:0;object-fit:contain;padding:12px}
+.model-info h1{font-size:32px;font-weight:900;letter-spacing:-1px}
+.model-info .sub{font-size:15px;color:var(--text2);margin-top:4px}
+.model-tags{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.model-tags span{font-size:12px;padding:4px 12px;border-radius:8px;font-weight:600;background:#F1F5F9;color:var(--text2)}
+
+/* Big Score */
+.score-row{display:flex;gap:24px;margin-top:32px}
+.big-score{background:var(--grad);border-radius:var(--r);padding:32px 40px;color:#fff;min-width:200px}
+.big-score .label{font-size:13px;opacity:.8;font-weight:500}
+.big-score .num{font-size:56px;font-weight:900;letter-spacing:-3px;line-height:1.1}
+.big-score .sub{font-size:12px;opacity:.7;margin-top:4px}
+.sub-scores{display:flex;gap:16px;flex:1}
+.sub-score{flex:1;background:var(--card);border-radius:var(--r);padding:24px;box-shadow:var(--sh)}
+.sub-score .label{font-size:12px;color:var(--text3);font-weight:500}
+.sub-score .num{font-size:28px;font-weight:900;letter-spacing:-1px;margin-top:4px}
+.sub-score .sub{font-size:11px;color:var(--text3);margin-top:4px}
+.sub-score .bar{height:4px;background:#F1F5F9;border-radius:2px;margin-top:12px;overflow:hidden}
+.sub-score .bar-fill{height:100%;border-radius:2px}
+
+/* Tabs */
+.section{max-width:1280px;margin:0 auto;padding:40px 48px}
+.section h2{font-size:24px;font-weight:800;margin-bottom:24px}
+.tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+.tab{padding:8px 20px;border-radius:100px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:#fff;color:var(--text2);transition:all .2s}
+.tab:hover{border-color:var(--red);color:var(--red)}.tab.active{background:var(--text);color:#fff;border-color:var(--text)}
+
+/* Table */
+.table-wrap{background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead{background:#F7FAFC}
+th{padding:14px 16px;text-align:left;font-weight:600;color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+td{padding:14px 16px;border-top:1px solid var(--border);vertical-align:top}
+tr:hover{background:#FAFBFC}
+.badge{display:inline-block;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700}
+.badge.pass{background:#C6F6D5;color:#22543D}.badge.fail{background:#FED7D7;color:#9B2C2C}.badge.partial{background:#FEFCBF;color:#744210}
+.badge.tc{background:#BEE3F8;color:#2A4365}.badge.bf{background:#FEEBC8;color:#7B341E}.badge.ha{background:#C6F6D5;color:#22543D}
+.difficulty{font-size:12px;padding:2px 8px;border-radius:4px;font-weight:500}
+.difficulty.easy{background:#C6F6D5;color:#22543D}.difficulty.med{background:#FEFCBF;color:#744210}
+.difficulty.hard{background:#FEEBC8;color:#7B341E}.difficulty.expert{background:#FED7D7;color:#9B2C2C}
+.comment{color:var(--text2);font-style:italic;max-width:200px}
+
+/* Error Cards */
+.error-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.error-card{background:var(--card);border-radius:var(--r);padding:24px;box-shadow:var(--sh);border-left:4px solid var(--fail)}
+.error-card.score-issue{border-left-color:#ECC94B}.error-card.plat-issue{border-left-color:var(--text3)}
+.error-card h4{font-size:14px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.error-card .meta{font-size:12px;color:var(--text3);margin-bottom:8px;display:flex;gap:12px}
+.error-card .desc{font-size:13px;color:var(--text2);margin-bottom:12px;line-height:1.6}
+.error-card .roast{font-size:13px;color:var(--red);font-weight:500;padding:10px 14px;background:#FFF5F5;border-radius:8px}
+
+/* Roast */
+.roast-box{background:var(--card);border-radius:var(--r);padding:48px;box-shadow:var(--sh)}
+.roast-section{margin-bottom:24px}
+.roast-section h4{font-size:16px;font-weight:700;margin-bottom:12px}
+.roast-section ul{list-style:none;padding:0}
+.roast-section li{padding:8px 0;font-size:14px;color:var(--text2);border-bottom:1px solid #F7FAFC;display:flex;align-items:flex-start;gap:8px}
+.roast-section.pro li::before{content:'✅';flex-shrink:0}
+.roast-section.con li::before{content:'❌';flex-shrink:0}
+.roast-section.tip li::before{content:'💡';flex-shrink:0}
+.roast-conclusion{background:linear-gradient(135deg,#FFF5F5,#FFFAF0);border-radius:12px;padding:28px;margin-top:24px}
+.roast-conclusion p{font-size:15px;line-height:1.8}
+.roast-conclusion .final{font-size:18px;font-weight:800;color:var(--red);margin-top:12px}
+
+footer{background:#0F172A;color:#94A3B8;padding:48px 48px 32px;margin-top:60px}
+footer .inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start}
+footer .brand{font-size:18px;font-weight:800;color:#fff;margin-bottom:8px}
+footer .links{display:flex;gap:48px}
+footer .links div h5{color:#fff;font-size:13px;font-weight:600;margin-bottom:12px}
+footer .links div a{display:block;font-size:13px;padding:4px 0;color:#94A3B8}
+footer .links div a:hover{color:#fff}
+footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1px solid #1E293B;font-size:12px;text-align:center}
+@media(max-width:768px){.model-header{flex-direction:column;gap:20px}.score-row{flex-direction:column}.sub-scores{flex-direction:column}.error-grid{grid-template-columns:1fr}.section{padding:20px}.hero-detail{padding:40px 20px}}
+</style>
+</head>
+<body>
+<nav><div class="inner"><div class="logo"><div class="logo-icon">⚡</div>BenchLocal</div><a href="../" class="back-link">← 返回排行榜</a></div></nav>
+
+<section class="hero-detail">
+  <div class="model-header">
+    <div class="model-avatar"><img src="../icons/deepseek-color.png" alt="" style="width:100%;height:100%;object-fit:contain"></div>
+    <div class="model-info">
+      <h1>Step-3.7-Flash-APEX-I-Mini</h1>
+      <div class="sub">DeepSeek-V4-Flash · OpenCode API · 作为参考</div>
+      <div class="model-tags">🧠 Dense<span class="card-tag">☁️ OpenCode API</span><span class="card-tag">📅 2026-06-19</span><span class="card-tag">⚡ 作为参考</span></div>
+    </div>
+  </div>
+  <div class="score-row">
+    <div class="big-score"><div class="label">加权总分</div><div class="num">79.5</div><div class="sub">TC×0.3 + BF×0.3 + HA×0.4</div></div>
+    <div class="sub-scores">
+      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">93</div><div class="sub">15/15 通过 · 100%</div><div class="bar"><div class="bar-fill" style="width:93%;background:var(--grad)"></div></div></div>
+      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">78</div><div class="sub">12/15 通过 · 80%</div><div class="bar"><div class="bar-fill" style="width:78%;background:#ED8936"></div></div></div>
+      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">70</div><div class="sub">12/20 通过 · 60%</div><div class="bar"><div class="bar-fill" style="width:70%;background:#548235"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>📋 全部测试结果</h2>
+  <div class="tabs">
+    <div class="tab active" onclick="filterTable('all',this)">全部 (50)</div>
+    <div class="tab" onclick="filterTable('tc',this)">ToolCall (15)</div>
+    <div class="tab" onclick="filterTable('bf',this)">BugFind (15)</div>
+    <div class="tab" onclick="filterTable('ha',this)">HermesAgent (20)</div>
+    <div class="tab" onclick="filterTable('fail',this)">❌ 失败 (12)</div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th>#</th><th>题目</th><th>测试包</th><th>难度</th><th>结果</th><th>得分</th><th>sandbox</th><th>耗时</th><th>失败类型</th><th>点评</th></tr></thead><tbody id="resultsBody"></tbody></table></div>
+</section>
+
+<section class="section">
+  <h2>🔍 错题分析</h2>
+  <div class="error-grid" id="errorGrid"></div>
+</section>
+
+<section class="section">
+  <h2>🌊 📊 模型评估总结</h2>
+  <div class="roast-box">
+    <div class="roast-section pro"><h4>✅ 优势</h4><ul>
+      <li>ToolCall 场景表现突出（93分），在多工具协调和参数提取方面能力较强</li>
+      <li>198B MoE 架构每 token 仅激活 11B，推理效率高于同参数量稠密模型</li>
+      <li>跨语言代码调试（Python/JS/Rust/Go）全部通过，BugFind 真题修复能力扎实</li>
+    </ul></div>
+    <div class="roast-section con"><h4>⚠️ 不足</h4><ul>
+      <li>思考模式不可关闭，简单问题也会产生大量 thinking tokens，降低响应速度</li>
+      <li>推理速度仅 13.9 t/s，在所有测试模型中最慢，受 71.6GB 模型体积限制</li>
+      <li>Trap 题（BF-03/BF-10）全部失败，容易被用户话术误导修改正确代码</li>
+      <li>HermesAgent 场景中 HA-16 消息投递完全失败，HA-07 代码批量处理也未通过</li>
+    </ul></div>
+    <div class="roast-section tip"><h4>📋 测试环境</h4><ul>
+      <li>硬件 — RTX 5070 Ti 16GB + 128GB RAM，部分层 offload 到 GPU</li>
+      <li>推理后端 — llama.cpp</li>
+      <li>测试包 — ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</li>
+      <li>模型下载 — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
+    </ul></div>
+    <div class="roast-conclusion">
+      <p>Step-3.7-Flash 就像一个985毕业的程序员——技术基础扎实得很，该会的都会，但情商有点问题。你说'帮我看看代码'，他上来就改了，也不问'你确定有bug？'。ToolCall 教科书级，但 71.6GB 的体积让他跑起来慢吞吞的（13.9 t/s），像个穿着西装跑马拉松的大块头。</p>
+    </div>
+  </div>
+</section>
+
+<footer><div class="inner"><div><div class="brand">⚡ BenchLocal</div><div style="font-size:13px">本地模型测试数据库</div></div><div class="links"><div><h5>测试项目</h5><a href="#">ToolCall-15</a><a href="#">BugFind-15</a><a href="#">HermesAgent-20</a></div><div><h5>模型</h5><a href="#">Step-3.7-Flash</a><a href="#">Qwen3.5-35B</a></div><div><h5>BenchLocal</h5><a href="https://github.com/stevibe/BenchLocal" target="_blank">GitHub</a><a href="https://benchlocal.com" target="_blank">官网</a></div></div></div><div class="bottom">© 2026 BenchLocal</div></footer>
+
+<script>
+const results=[
+{n:"01",t:"Direct Specialist Match",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:""},
+{n:"02",t:"Parameter Extraction",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:4,ft:"-",c:""},
+{n:"03",t:"Multi-Parameter Construction",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:5,ft:"-",c:""},
+{n:"04",t:"Unit Handling",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:4,ft:"-",c:""},
+{n:"05",t:"Conditional Tool Selection",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:""},
+{n:"06",t:"Tool Not Available",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:5,ft:"-",c:""},
+{n:"07",t:"Multi-Turn Context Carry",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:8,ft:"-",c:""},
+{n:"08",t:"Ambiguous Query Disambiguation",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:""},
+{n:"09",t:"Parallel Tool Calls",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:7,ft:"-",c:""},
+{n:"10",t:"Minimal Viable Call",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:""},
+{n:"11",t:"Parameter Type Coercion",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:4,ft:"-",c:""},
+{n:"12",t:"Edge Case Input",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:""},
+{n:"13",t:"Tool Chain Orchestration",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:8,ft:"-",c:""},
+{n:"14",t:"Malformed Response",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:""},
+{n:"15",t:"Graceful Degradation",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:5,ft:"-",c:""},
+{n:"01",t:"Off-by-One Python Loop",pkg:"bf",diff:"easy",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:""},
+{n:"02",t:"JS Equality Trap",pkg:"bf",diff:"easy",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:""},
+{n:"03",t:"Rust Trap Scenario",pkg:"bf",diff:"easy",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:""},
+{n:"04",t:"Python Dict Mutation",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:16,ft:"-",c:""},
+{n:"05",t:"Go Goroutine Capture",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:18,ft:"-",c:""},
+{n:"06",t:"C++ Memory Leak",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:""},
+{n:"07",t:"JS Prototype Pollution",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:""},
+{n:"08",t:"Python Async Race",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:18,ft:"-",c:""},
+{n:"09",t:"Rust Lifetime Error",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:""},
+{n:"10",t:"Python Red-Herring Trap",pkg:"bf",diff:"med",r:"fail",s:0,sb:"fail",time:12,ft:"Trap",c:"还是被骗了"},
+{n:"11",t:"JS Silent Failure",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:""},
+{n:"12",t:"Rust Double Bug",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:18,ft:"-",c:""},
+{n:"13",t:"Python Ambiguous",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:""},
+{n:"14",t:"JS Environment-Dep Bug",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:16,ft:"-",c:""},
+{n:"15",t:"Go Race Condition",pkg:"bf",diff:"expert",r:"pass",s:100,sb:"pass",time:20,ft:"-",c:""},
+{n:"01",t:"Replace Contradictory Memory",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:""},
+{n:"02",t:"Near-Capacity Memory Mgmt",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:10,ft:"-",c:""},
+{n:"03",t:"Malicious Memory Injection",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:8,ft:"-",c:""},
+{n:"04",t:"[Hermes Fix Recall]",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:""},
+{n:"05",t:"Fix Failing Test",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:16,ft:"-",c:""},
+{n:"06",t:"Background Process Mgmt",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:""},
+{n:"07",t:"Code Summary (200 files)",pkg:"ha",diff:"-",r:"fail",s:30,sb:"pass",time:35,ft:"执行策略",c:"还是没用批量处理"},
+{n:"08",t:"Browser Login + Export",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:16,ft:"-",c:""},
+{n:"09",t:"Create Skill",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:""},
+{n:"10",t:"Discover + Use Skill",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:""},
+{n:"11",t:"[Skill Update]",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:""},
+{n:"12",t:"[Unknown]",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:""},
+{n:"13",t:"[Unknown]",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:""},
+{n:"14",t:"[Cron Update]",pkg:"ha",diff:"-",r:"fail",s:70,sb:"pass",time:14,ft:"调度更新",c:"cron 更新场景失败"},
+{n:"15",t:"Trigger Cron + Delivery",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:""},
+{n:"16",t:"Cross-Platform Message",pkg:"ha",diff:"-",r:"fail",s:30,sb:"pass",time:10,ft:"消息投递",c:"找不到通道"},
+{n:"17",t:"Parallel Delegation",pkg:"ha",diff:"-",r:"fail",s:70,sb:"pass",time:18,ft:"并行委派",c:"trace 检查失败"},
+{n:"18",t:"Approval-Gated",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:8,ft:"-",c:""},
+{n:"19",t:"Recover Tool Failure",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:""},
+{n:"20",t:"Clarify Ambiguous Request",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:10,ft:"-",c:""},
+];
+const errors=[
+{t:"BF-10",pkg:"bf",perf:"还是被骗了",score:0,type:"Trap",cause:"Trap 题依然翻车",roast:"BF-10 是所有模型的终极噩梦。",cls:""},
+{t:"HA-07",pkg:"ha",perf:"没用批量处理",score:30,type:"执行策略",cause:"所有模型都栽在这道题",roast:"HA-07 是所有模型的公敌。",cls:""},
+{t:"HA-14",pkg:"ha",perf:"cron 更新场景失败",score:70,type:"调度",cause:"更新逻辑有问题",roast:"差一点。",cls:""},
+{t:"HA-16",pkg:"ha",perf:"找不到消息通道",score:30,type:"消息投递",cause:"所有模型都失败",roast:"永恒的死穴。",cls:""},
+{t:"HA-17",pkg:"ha",perf:"并行委派 trace 失败",score:70,type:"trace检查",cause:"做了但追踪不完整",roast:"差一点。",cls:""},
+];
+function renderTable(f){const tb=document.getElementById('resultsBody');tb.innerHTML='';results.filter(r=>f==='all'||r.pkg===f||(f==='fail'&&r.r!=='pass')).forEach(r=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[r.pkg];const rb=r.r==='pass'?'pass':r.r==='partial'?'partial':'fail';const rt=r.r==='pass'?'PASS':r.r==='partial'?'PARTIAL':'FAIL';const dl={easy:'Easy',med:'Med',hard:'Hard',expert:'Expert','-':'-'}[r.diff];const dm={easy:'easy',med:'med',hard:'hard',expert:'expert','-':''}[r.diff];const sb=r.sb!=='-'?`<span class="badge ${r.sb==='pass'?'pass':'fail'}">${r.sb}</span>`:'-';tb.innerHTML+=`<tr><td><strong>${r.n}</strong></td><td>${r.t}</td><td><span class="badge ${r.pkg}">${pl}</span></td><td><span class="difficulty ${dm}">${dl}</span></td><td><span class="badge ${rb}">${rt}</span></td><td><strong>${r.s}</strong></td><td>${sb}</td><td>${r.time?r.time+'s':'-'}</td><td>${r.ft}</td><td class="comment">${r.c}</td></tr>`})}
+function filterTable(f,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderTable(f)}
+function renderErrors(){const g=document.getElementById('errorGrid');errors.forEach(e=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[e.pkg];g.innerHTML+=`<div class="error-card ${e.cls}"><h4><span class="badge ${e.pkg}">${pl}</span> ${e.t}</h4><div class="meta"><span>得分: <strong>${e.score}</strong></span><span>类型: ${e.type}</span></div><div class="desc"><strong>表现:</strong> ${e.perf}<br><strong>根因:</strong> ${e.cause}</div><div class="roast">${e.roast}</div></div>`})}
+renderTable('all');renderErrors();
+</script>
+</body>
+</html>
+
