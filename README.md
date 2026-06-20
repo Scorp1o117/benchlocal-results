@@ -6,6 +6,8 @@
 
 ---
 
+![首页排行榜](screenshots/leaderboard.png)
+
 ## 📊 测试概览
 
 基于 BenchLocal 桌面应用，在同一硬件环境下对多个 LLM 模型进行本地推理基准测试。
@@ -35,6 +37,12 @@
 | 9 | Step-3.7-Flash (思考) | 79.5 | 93 | 78 | 70 | 198B MoE (11B active) |
 | 10 | Nex-N2-Mini (思考) | 75.7 | 90 | 68.7 | 71 | |
 
+## 🖥️ 界面预览
+
+![首页](screenshots/hero.png)
+
+![模型详情页](screenshots/detail.png)
+
 ## 🔧 测试环境
 
 - **硬件**：RTX 5070 Ti 16GB + 128GB RAM，MoE模型部分专家层offload到CPU
@@ -56,7 +64,8 @@
 │   ├── qwen36-27b.html
 │   ├── qwen36-27b-thinking.html
 │   └── dsv4-flash.html
-└── icons/                  # 模型图标（@lobehub/icons）
+├── icons/                  # 模型图标（@lobehub/icons）
+└── screenshots/            # README 截图
 ```
 
 ## 🚀 本地开发
