@@ -94,13 +94,22 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     </div>
   </div>
   <div class="score-row">
-    <div class="big-score"><div class="label">加权总分</div><div class="num">94.0</div><div class="sub">TC×0.3 + BF×0.3 + HA×0.4</div></div>
+    <div class="big-score"><div class="label">加权总分</div><div class="num">85.0</div><div class="sub">原始 94.0 − 重试扣分 9</div></div>
     <div class="sub-scores">
       <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">100</div><div class="sub">15/15 通过 · 100% 🏆</div><div class="bar"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div></div>
-      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">93.3</div><div class="sub">14/15 通过 · 93%</div><div class="bar"><div class="bar-fill" style="width:93%;background:#ED8936"></div></div></div>
-      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">90</div><div class="sub">16/20 通过 · 80%</div><div class="bar"><div class="bar-fill" style="width:90%;background:#548235"></div></div></div>
+      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">93.3</div><div class="sub">14/15 通过 · 93% · 重试 -2</div><div class="bar"><div class="bar-fill" style="width:93%;background:#ED8936"></div></div></div>
+      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">90</div><div clas16/20 通过 · 80% · 重试 -5通过 · 80%</div><div class="bar"><div class="bar-fill" style="width:90%;background:#548235"></div></div></div>
     </div>
   </div>
+  <div style="max-width:1280px;margin:16px auto 0;padding:0 48px">
+    <div style="background:#F1F5F9;border-radius:12px;padding:16px 20px;font-size:13px;color:#64748B;line-height:1.8">
+      <strong style="color:#1A202C">📊 计分规则</strong> — 加权总分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4，再扣除重试惩罚分。
+      <strong>重试扣分</strong>：每道题首次通过不扣分，重试后才通过的题目每重试 1 次扣 1 分，重试后仍失败的不参与扣分。
+      <strong>公式</strong>：最终分 = 原始加权分 − Σ(每题重试次数)。
+      <span style="color:#E53E3E;font-weight:600">本模型共重试 9 次（TC-2 + BF-5 + HA-2）</span>
+    </div>
+  </div>
+
 </section>
 
 <section class="section">
@@ -141,9 +150,8 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
       <li><strong>模型下载</strong> — <a href="https://huggingface.co/SC117" target="_blank" style="color:var(--red)">HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>DeepSeek-V4-Flash 通过 API 测试拿到了全场最高分。作为云端大模型，这个成绩在预期范围内——API 大模型本身在参数量和训练数据上就远超本地小参数模型，表现更强是正常的。</p>
-      <p>本页成绩仅供参考，与其他本地推理模型不完全可比。本地部署的模型在延迟和隐私方面有独特优势。</p>
-      <p class="final">94.0 分，API 大模型的正常水平。</p>
+      <p>DeepSeek-V4-Flash 调整后 85.0 分（原始 94.0，重试 9 次）。作为 API 大模型，284B MoE（13B 激活）在参数量和训练数据上远超本地小模型，成绩在预期范围内。ToolCall 满分、BF 93.3、HA 90，三项都很强。</p>
+      <p class="final">一句话评价：API 大模型的正常水平——284B 参数量的优势明显，本页成绩仅供参考。</p>
     </div>
   </div>
 </section>

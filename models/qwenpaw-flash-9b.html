@@ -111,13 +111,22 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     </div>
   </div>
   <div class="score-row">
-    <div class="big-score"><div class="label">加权总分</div><div class="num">87.2</div><div class="sub">TC×0.3 + BF×0.3 + HA×0.4</div></div>
+    <div class="big-score"><div class="label">加权总分</div><div class="num">64.4</div><div class="sub">原始 88.4 − 重试扣分 24</div></div>
     <div class="sub-scores">
       <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">100</div><div class="sub">15/15 通过 · 100% 🏆</div><div class="bar"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div></div>
-      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">84</div><div class="sub">10/15 通过 · 67%</div><div class="bar"><div class="bar-fill" style="width:84%;background:#ED8936"></div></div></div>
-      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">80</div><div class="sub">12/20 通过 · 60%</div><div class="bar"><div class="bar-fill" style="width:80%;background:#548235"></div></div></div>
+      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">84</div><div class="sub">10/15 通过 · 67% · 重试 -4</div><div class="bar"><div class="bar-fill" style="width:84%;background:#ED8936"></div></div></div>
+      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">80</div><div clas12/20 通过 · 60% · 重试 -6通过 · 60%</div><div class="bar"><div class="bar-fill" style="width:80%;background:#548235"></div></div></div>
     </div>
   </div>
+  <div style="max-width:1280px;margin:16px auto 0;padding:0 48px">
+    <div style="background:#F1F5F9;border-radius:12px;padding:16px 20px;font-size:13px;color:#64748B;line-height:1.8">
+      <strong style="color:#1A202C">📊 计分规则</strong> — 加权总分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4，再扣除重试惩罚分。
+      <strong>重试扣分</strong>：每道题首次通过不扣分，重试后才通过的题目每重试 1 次扣 1 分，重试后仍失败的不参与扣分。
+      <strong>公式</strong>：最终分 = 原始加权分 − Σ(每题重试次数)。
+      <span style="color:#E53E3E;font-weight:600">本模型共重试 24 次（TC-4 + BF-6 + HA-14）</span>
+    </div>
+  </div>
+
 </section>
 
 <section class="section">
@@ -157,7 +166,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
       <li>模型下载 — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>QwenPaw-Flash-9B 是全场最'经济适用'的选手——7.9GB 体积拿到 87.2 分，ToolCall 还是满分。90.3 t/s 的输出速度全场最快，响应体验碾压所有大模型。但 9B 参数量的天花板也很明显——BugFind 84 分已经是极限了。</p>
+      <p>QwenPaw-Flash-9B 调整后 64.4 分（原始 88.4，重试 24 次）。ToolCall 满分 100，90.3 t/s 输出速度全场最快。但 9B 参数量天花板明显，BugFind 和 HA 都需要大量重试（24次），稳定性不足。 一句话评价：经济适用型——7.9GB 体积、90.3t/s 全场最快，但 24 次重试暴露了 9B 参数量的天花板。</p>
     </div>
   </div>
 </section>

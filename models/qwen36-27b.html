@@ -106,18 +106,27 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     <div class="model-avatar"><img src="../icons/qwen-color.png" alt="" style="width:100%;height:100%;object-fit:contain"></div>
     <div class="model-info">
       <h1>Qwen3.6-27B (无思考)</h1>
-      <div class="sub">TC×0.3 + BF×0.3 + HA×0.4</div>
+      <div class="sub">原始 87.4 − 重试扣分 3</div>
       <div class="model-tags">🧠 Dense 27B<span class="card-tag">📦 11.9 GB</span><span class="card-tag">⚡ In 725 t/s · Out 60.6 t/s</span><span class="card-tag">🎮 RTX 5070 Ti 16GB + 128GB RAM</span><span class="card-tag">📅 2026-06-19</span></div>
     </div>
   </div>
   <div class="score-row">
-    <div class="big-score" style="background:var(--grad4)"><div class="label">加权总分</div><div class="num">87.4</div><div class="sub">TC×0.3 + BF×0.3 + HA×0.4</div></div>
+    <div class="big-score" style="background:var(--grad4)"><div class="label">加权总分</div><div class="num">84.4</div><div class="sub">TC×0.3 + BF×0.3 + HA×0.4</div></div>
     <div class="sub-scores">
-      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">96.7</div><div class="sub">14/15 通过 · 93%</div><div class="bar"><div class="bar-fill" style="width:97%;background:var(--grad)"></div></div></div>
+      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">96.7</div><div class="sub">14/15 通过 · 93% · 重试 -1</div><div class="bar"><div class="bar-fill" style="width:97%;background:var(--grad)"></div></div></div>
       <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">84.2</div><div class="sub">12/15 通过 · 80%</div><div class="bar"><div class="bar-fill" style="width:84%;background:#ED8936"></div></div></div>
-      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">82.8</div><div class="sub">14/20 通过 · 70%</div><div class="bar"><div class="bar-fill" style="width:83%;background:#548235"></div></div></div>
+      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">82.8</div><div clas14/20 通过 · 70% · 重试 -2通过 · 70%</div><div class="bar"><div class="bar-fill" style="width:83%;background:#548235"></div></div></div>
     </div>
   </div>
+  <div style="max-width:1280px;margin:16px auto 0;padding:0 48px">
+    <div style="background:#F1F5F9;border-radius:12px;padding:16px 20px;font-size:13px;color:#64748B;line-height:1.8">
+      <strong style="color:#1A202C">📊 计分规则</strong> — 加权总分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4，再扣除重试惩罚分。
+      <strong>重试扣分</strong>：每道题首次通过不扣分，重试后才通过的题目每重试 1 次扣 1 分，重试后仍失败的不参与扣分。
+      <strong>公式</strong>：最终分 = 原始加权分 − Σ(每题重试次数)。
+      <span style="color:#E53E3E;font-weight:600">本模型共重试 3 次（TC-1 + BF-0 + HA-2）</span>
+    </div>
+  </div>
+
 </section>
 
 <section class="section">
@@ -157,7 +166,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
       <li>模型下载 — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>Qwen3.6-27B 无思考版是一个'闷声干大事'的选手——通过了 HA-07（代码批量处理），之前七个模型都栽在这道题上。11.9GB 的 IQ3_M 量化体积全场最小，但 84.2 分的 BugFind 成绩说明 27B 参数量在深度调试上确实有点力不从心。</p>
+      <p>Qwen3.6-27B 无思考版调整后 84.4 分（原始 87.4，重试 3 次）。仅 3 次重试就拿到原始分，稳定性全场最佳之一。11.9GB IQ3_M 量化体积全场最小，ToolCall 96.7、BugFind 84.2、HA 82.8 三项均衡。 一句话评价：闷声干大事——11.9GB 最小体积、仅 3 次重试、三项均衡，稳定性和性价比兼得。</p>
     </div>
   </div>
 </section>

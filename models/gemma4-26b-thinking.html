@@ -111,13 +111,22 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     </div>
   </div>
   <div class="score-row">
-    <div class="big-score"><div class="label">加权总分</div><div class="num">91.6</div><div class="sub">TC×0.3 + BF×0.3 + HA×0.4</div></div>
+    <div class="big-score"><div class="label">加权总分</div><div class="num">83.6</div><div class="sub">原始 91.6 − 重试扣分 8</div></div>
     <div class="sub-scores">
       <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">93.3</div><div class="sub">14/15 通过 · 93%</div><div class="bar"><div class="bar-fill" style="width:93%;background:var(--grad)"></div></div></div>
       <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">96</div><div class="sub">14/15 通过 · 93% 🏆</div><div class="bar"><div class="bar-fill" style="width:96%;background:#ED8936"></div></div></div>
-      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">87</div><div class="sub">14/20 通过 · 70%</div><div class="bar"><div class="bar-fill" style="width:87%;background:#548235"></div></div></div>
+      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">87</div><div class="sub">14/20 通过 · 70% · 重试 -3</div><div class="bar"><div class="bar-fill" style="width:87%;background:#548235"></div></div></div>
     </div>
   </div>
+  <div style="max-width:1280px;margin:16px auto 0;padding:0 48px">
+    <div style="background:#F1F5F9;border-radius:12px;padding:16px 20px;font-size:13px;color:#64748B;line-height:1.8">
+      <strong style="color:#1A202C">📊 计分规则</strong> — 加权总分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4，再扣除重试惩罚分。
+      <strong>重试扣分</strong>：每道题首次通过不扣分，重试后才通过的题目每重试 1 次扣 1 分，重试后仍失败的不参与扣分。
+      <strong>公式</strong>：最终分 = 原始加权分 − Σ(每题重试次数)。
+      <span style="color:#E53E3E;font-weight:600">本模型共重试 8 次（TC-0 + BF-3 + HA-5）</span>
+    </div>
+  </div>
+
 </section>
 
 <section class="section">
@@ -157,7 +166,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
       <li>模型下载 — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>Gemma-4 思考版是本次测试的'黑马之王'——BugFind 96 分全场最高，BF-10 Trap 题九个模型里唯一通过的。HermesAgent 87 分也是全场最高。但 ToolCall 反而比无思考版低了（96.7→93.3），说明'想太多'有时候会干扰简单的工具调用流程。</p>
+      <p>Gemma-4 思考版调整后 83.6 分（原始 91.6，重试 8 次）。BugFind 96 分全场最高，BF-10 Trap 题是唯一通过的模型。HermesAgent 87 分同样全场最高。思考模式让 debug 和 Agent 能力大幅提升。 一句话评价：黑马之王——BugFind 全场最高、HA 全场最高，思考模式的天花板级表现。</p>
     </div>
   </div>
 </section>

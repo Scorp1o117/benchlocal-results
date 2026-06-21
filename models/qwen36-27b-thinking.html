@@ -111,13 +111,22 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     </div>
   </div>
   <div class="score-row">
-    <div class="big-score"><div class="label">加权总分</div><div class="num">91.9</div><div class="sub">TC×0.3 + BF×0.3 + HA×0.4</div></div>
+    <div class="big-score"><div class="label">加权总分</div><div class="num">73.9</div><div class="sub">原始 91.9 − 重试扣分 18</div></div>
     <div class="sub-scores">
       <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">100</div><div class="sub">15/15 通过 · 100% 🏆</div><div class="bar"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div></div>
       <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">93.3</div><div class="sub">14/15 通过 · 93%</div><div class="bar"><div class="bar-fill" style="width:93%;background:#ED8936"></div></div></div>
-      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">84.8</div><div class="sub">14/20 通过 · 70%</div><div class="bar"><div class="bar-fill" style="width:85%;background:#548235"></div></div></div>
+      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">84.8</div><div class="sub">14/20 通过 · 70% · 重试 -14</div><div class="bar"><div class="bar-fill" style="width:85%;background:#548235"></div></div></div>
     </div>
   </div>
+  <div style="max-width:1280px;margin:16px auto 0;padding:0 48px">
+    <div style="background:#F1F5F9;border-radius:12px;padding:16px 20px;font-size:13px;color:#64748B;line-height:1.8">
+      <strong style="color:#1A202C">📊 计分规则</strong> — 加权总分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4，再扣除重试惩罚分。
+      <strong>重试扣分</strong>：每道题首次通过不扣分，重试后才通过的题目每重试 1 次扣 1 分，重试后仍失败的不参与扣分。
+      <strong>公式</strong>：最终分 = 原始加权分 − Σ(每题重试次数)。
+      <span style="color:#E53E3E;font-weight:600">本模型共重试 18 次（TC-0 + BF-14 + HA-4）</span>
+    </div>
+  </div>
+
 </section>
 
 <section class="section">
@@ -157,7 +166,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
       <li>模型下载 — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>Qwen3.6-27B 思考版是全场的'终极答案'——91.9 分第一，ToolCall 满分，BugFind 93.3，而且只有 11.9GB 体积。IQ3_M 极低精度量化 + 思考模式的组合证明了一个道理：量化精度不是越高越好，思考模式的推理能力可以弥补量化损失。但 HA-16 消息投递 0 分也说明，再强的模型也有搞不定的题。</p>
+      <p>Qwen3.6-27B 思考版调整后 73.9 分（原始 91.9，重试 18 次）。原始分极高但 BugFind 重试了 14 次，严重拉低调整后成绩。ToolCall 满分、HA 84.8，思考模式让部分能力提升但稳定性下降。 一句话评价：终极答案的代价——原始 91.9 分全场最高，但 18 次重试让调整后仅 73.9。</p>
     </div>
   </div>
 </section>

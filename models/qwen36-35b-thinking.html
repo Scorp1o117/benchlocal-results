@@ -111,13 +111,22 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     </div>
   </div>
   <div class="score-row">
-    <div class="big-score"><div class="label">加权总分</div><div class="num">87.2</div><div class="sub">TC×0.3 + BF×0.3 + HA×0.4</div></div>
+    <div class="big-score"><div class="label">加权总分</div><div class="num">81.2</div><div class="sub">原始 87.2 − 重试扣分 6</div></div>
     <div class="sub-scores">
       <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">100</div><div class="sub">15/15 通过 · 100% 🏆</div><div class="bar"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div></div>
-      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">88.7</div><div class="sub">12/15 通过 · 80%</div><div class="bar"><div class="bar-fill" style="width:89%;background:#ED8936"></div></div></div>
-      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">76.5</div><div class="sub">12/20 通过 · 60%</div><div class="bar"><div class="bar-fill" style="width:77%;background:#548235"></div></div></div>
+      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">88.7</div><div class="sub">12/15 通过 · 80% · 重试 -1</div><div class="bar"><div class="bar-fill" style="width:89%;background:#ED8936"></div></div></div>
+      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">76.5</div><div clas12/20 通过 · 60% · 重试 -1通过 · 60%</div><div class="bar"><div class="bar-fill" style="width:77%;background:#548235"></div></div></div>
     </div>
   </div>
+  <div style="max-width:1280px;margin:16px auto 0;padding:0 48px">
+    <div style="background:#F1F5F9;border-radius:12px;padding:16px 20px;font-size:13px;color:#64748B;line-height:1.8">
+      <strong style="color:#1A202C">📊 计分规则</strong> — 加权总分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4，再扣除重试惩罚分。
+      <strong>重试扣分</strong>：每道题首次通过不扣分，重试后才通过的题目每重试 1 次扣 1 分，重试后仍失败的不参与扣分。
+      <strong>公式</strong>：最终分 = 原始加权分 − Σ(每题重试次数)。
+      <span style="color:#E53E3E;font-weight:600">本模型共重试 6 次（TC-1 + BF-1 + HA-4）</span>
+    </div>
+  </div>
+
 </section>
 
 <section class="section">
@@ -157,7 +166,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
       <li>模型下载 — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>Qwen3.6-35B 思考版就像一个突然开窍的学霸——ToolCall 直接满分 100，BugFind 也从 80.7 飙到 88.7。但思考模式不是万能药，HA-14 反而比无思考版差了（100→70），说明'想多了'有时候反而会犯迷糊。</p>
+      <p>Qwen3.6-35B 思考版调整后 81.2 分（原始 87.2，重试 6 次）。ToolCall 满分 100，BugFind 88.7，思考模式提升了工具调用和 debug 能力。重试仅 6 次，稳定性不错。 一句话评价：突然开窍的学霸——思考模式让工具调用从 83.3 飙到 100，但 HA-14 反而不如无思考版。</p>
     </div>
   </div>
 </section>

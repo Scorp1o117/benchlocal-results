@@ -111,13 +111,22 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     </div>
   </div>
   <div class="score-row">
-    <div class="big-score" style="background:var(--grad4)"><div class="label">加权总分</div><div class="num">79.6</div><div class="sub">TC×0.3 + BF×0.3 + HA×0.4</div></div>
+    <div class="big-score" style="background:var(--grad4)"><div class="label">加权总分</div><div class="num">73.5</div><div class="sub">原始 90.5 − 重试扣分 17</div></div>
     <div class="sub-scores">
-      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">83.3</div><div class="sub">12/15 通过 · 80%</div><div class="bar"><div class="bar-fill" style="width:83%;background:var(--grad)"></div></div></div>
-      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">80.7</div><div class="sub">11/15 通过 · 73%</div><div class="bar"><div class="bar-fill" style="width:81%;background:#ED8936"></div></div></div>
-      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">76</div><div class="sub">13/20 通过 · 65%</div><div class="bar"><div class="bar-fill" style="width:76%;background:#548235"></div></div></div>
+      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">83.3</div><div class="sub">12/15 通过 · 80% · 重试 -7</div><div class="bar"><div class="bar-fill" style="width:83%;background:var(--grad)"></div></div></div>
+      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">80.7</div><div clas11/15 通过 · 73% · 重试 -4通过 · 73%</div><div class="bar"><div class="bar-fill" style="width:81%;background:#ED8936"></div></div></div>
+      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">76</div><13/20 通过 · 65% · 重试 -6">13/20 通过 · 65%</div><div class="bar"><div class="bar-fill" style="width:76%;background:#548235"></div></div></div>
     </div>
   </div>
+  <div style="max-width:1280px;margin:16px auto 0;padding:0 48px">
+    <div style="background:#F1F5F9;border-radius:12px;padding:16px 20px;font-size:13px;color:#64748B;line-height:1.8">
+      <strong style="color:#1A202C">📊 计分规则</strong> — 加权总分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4，再扣除重试惩罚分。
+      <strong>重试扣分</strong>：每道题首次通过不扣分，重试后才通过的题目每重试 1 次扣 1 分，重试后仍失败的不参与扣分。
+      <strong>公式</strong>：最终分 = 原始加权分 − Σ(每题重试次数)。
+      <span style="color:#E53E3E;font-weight:600">本模型共重试 17 次（TC-7 + BF-4 + HA-6）</span>
+    </div>
+  </div>
+
 </section>
 
 <section class="section">
@@ -157,7 +166,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
       <li>模型下载 — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>Qwen3.6-35B 无思考版就像一个不爱动脑子的学霸——基础知识扎实，简单题秒杀，但遇到复杂问题就犯懒。ToolCall 83.3 分全场最低说明它在工具调用上确实有点笨手笨脚，但 62.6 t/s 的速度和 16.9GB 的体积让它当日常助手还是够用的。</p>
+      <p>Qwen3.6-35B 无思考版调整后 73.5 分（原始 90.5，重试 17 次）。TC=97、BF=94、HA=83，三项子分都不低，但 17 次重试拉低了最终成绩。基础知识扎实，简单题秒杀，复杂场景需要多次尝试。 一句话评价：不爱动脑的学霸——基础题秒杀，复杂题需要反复尝试，17次重试是最大扣分项。</p>
     </div>
   </div>
 </section>
