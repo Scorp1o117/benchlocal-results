@@ -145,7 +145,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
 <section class="hero">
   <h1>本地模型<br><span>测试数据库</span></h1>
   <p>基于 <a href="https://github.com/stevibe/BenchLocal" target="_blank" style="color:var(--red);font-weight:600">BenchLocal</a> 桌面应用，在本地对真实任务进行基准测试，横向对比模型表现</p><p style="font-size:13px;color:var(--text3);margin-top:8px">当前测试环境：RTX 5070 Ti 16GB + 128GB RAM · MoE模型部分专家层offload到CPU</p>
-  <p style="font-size:13px;color:var(--text3);margin-top:8px">排名基于调整后分数（原始加权分 − 重试扣分），每道题重试1次扣1分</p>
+  <p style="font-size:13px;color:var(--text3);margin-top:8px">排名基于<strong style="color:var(--text2)">调整后分数</strong>：加权总分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4，再扣除重试惩罚分（每道题首次通过不扣分，重试后才通过的题目每重试1次扣1分，重试后仍失败的不参与扣分）</p>
   <div class="hero-stats">
     <div class="hero-stat"><div class="val">10</div><div class="lbl">已测试模型</div></div>
     <div class="hero-stat"><div class="val">50</div><div class="lbl">总测试题数</div></div>
@@ -474,10 +474,11 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
       <h3>📋 测试项目</h3>
       <ul class="about-list">
         <li><strong>ToolCall-15</strong> — 15 题工具调用测试，覆盖参数提取、多轮上下文、并行调用等</li>
-        <li><strong>BugFind-15</strong> — 15 题跨语言代码调试，含 2 道 Trap 陷阱题，难度 Easy~Expert</li>
+        <li><strong>BugFind-15</strong> — 15 题跨语言代码调试，含 Trap 陷阱题，难度 Easy~Expert</li>
         <li><strong>HermesAgent-20</strong> — 20 题 Agent 场景测试，覆盖记忆管理、技能创建、调度投递等</li>
-        <li><strong>测试标准</strong> — 错题可不断重试，直到多次重试后分数不再增加为止</li>
         <li><strong>加权总分</strong> — ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</li>
+        <li><strong>计分规则</strong> — 每道题首次通过（score=100）不扣分；重试后才通过的题目每重试1次扣1分；重试后仍失败的不参与扣分</li>
+        <li><strong>最终分</strong> — 原始加权分 − Σ(每题重试次数)</li>
       </ul>
     </div>
   </div>
@@ -490,18 +491,18 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
   </div>
   <div class="roast-box">
     <div class="roast-section pro"><h4>🏆 核心发现</h4><ul>
-      <li><strong>两个模型重测大幅进步</strong> — Step-3.7 从 79.5→88.8（+9.3），N2-Mini 从 75.7→87.2（+11.5），进步最明显的是 BugFind 和 HermesAgent</li>
-      <li><strong>ToolCall 满分不再是难事</strong> — Step-3.7 拿到 ToolCall 100 满分（15/15），N2-Mini 也拿到 93</li>
-      <li><strong>BugFind BF-03 Trap 依然是全场最难</strong> — 重测后仍有多个模型在"代码没bug"场景翻车</li>
-      <li><strong>HA-16 消息投递依然是死穴</strong> — 多数模型在此失分，可能是测试框架问题而非模型能力</li>
-      <li><strong>27B 稠密模型（87.4/91.9）全面碾压 35B MoE 无思考版（79.6）</strong> — 架构类型和思考模式比参数量更重要</li>
-      <li><strong>最小模型也能拿高分</strong> — QwenPaw-Flash-9B（7.9GB）拿到 87.2 分，ToolCall 满分</li>
+      <li><strong>重试扣分大幅拉开差距</strong> — 原始分 87~94 的模型，调整后变成 60~85，排名变化剧烈</li>
+      <li><strong>稳定性是关键指标</strong> — 仅 3 次重试的 Qwen3.6-27B 无思考版（84.4）超过了原始分更高的模型</li>
+      <li><strong>ToolCall 满分常见</strong> — Step-3.7、Qwen3.6-35B 思考版、QwenPaw-9B、27B 思考版、DeepSeek 均满分</li>
+      <li><strong>BugFind BF-03 Trap 题全场最难</strong> — 多数模型在"代码没bug"场景翻车，无法判断代码是正确的</li>
+      <li><strong>API 大模型优势明显</strong> — DeepSeek-V4-Flash（284B MoE）调整后 85.0 分，三项均衡</li>
+      <li><strong>最小体积也能拿高分</strong> — Qwen3.6-27B 无思考版 11.9GB，仅 3 次重试，调整后 84.4</li>
     </ul></div>
     <div class="roast-section con"><h4>⚠️ 已知局限</h4><ul>
-      <li><strong>BF-03 Trap 依然是模型的"阿喀琉斯之踵"</strong> — 多数模型无法判断"代码没bug"这个选项</li>
-      <li><strong>HA-07（代码批量处理）大部分失败</strong> — 仅少数模型通过，execute_code 能力普遍薄弱</li>
-      <li><strong>HA-16（消息投递）全军覆没</strong> — 所有模型都无法找到正确的消息通道，可能是测试框架问题</li>
-      <li><strong>速度与质量的取舍</strong> — Step-3.7（13.9 t/s）质量高但慢，N2-Mini（62.5 t/s）快但部分场景失分</li>
+      <li><strong>Trap 题普遍失分</strong> — BF-03（代码没bug）和 BF-10（红鲱鱼）是多数模型的软肋</li>
+      <li><strong>HA-07（代码批量处理）大部分失败</strong> — execute_code 能力普遍薄弱</li>
+      <li><strong>HA-16（消息投递）全军覆没</strong> — 所有模型都无法找到正确的消息通道</li>
+      <li><strong>重试成本差异巨大</strong> — 最少 3 次（27B 无思考）vs 最多 27 次（N2-Mini），稳定性差距明显</li>
     </ul></div>
     <div class="roast-section tip"><h4>💡 测试环境</h4><ul>
       <li><strong>硬件</strong> — RTX 5070 Ti 16GB + 128GB RAM，MoE模型部分专家层offload到CPU</li>
@@ -517,7 +518,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     <div><div class="brand">⚡ BenchLocal</div><div style="font-size:13px">本地模型测试数据库</div></div>
     <div class="links">
       <div><h5>测试项目</h5><a href="#">ToolCall-15</a><a href="#">BugFind-15</a><a href="#">HermesAgent-20</a><a href="#">更多 Bench Packs →</a></div>
-      <div><h5>模型</h5><a href="models/step37-flash.html">Step-3.7-Flash</a><a href="models/n2mini.html">Nex-N2-Mini</a><a href="models/qwen36-35b.html">Qwen3.6 (无思考)</a><a href="models/qwen36-35b-thinking.html">Qwen3.6 (思考)</a><a href="models/gemma4-26b.html">Gemma-4-26B-A4B-it-qat (无思考)</a><a href="models/gemma4-26b-thinking.html">Gemma-4-26B-A4B-it-qat (思考)</a><a href="models/qwenpaw-flash-9b.html">QwenPaw-Flash-9B</a><a href="models/qwen36-27b.html">Qwen3.6-27B (无思考)</a><a href="models/qwen36-27b-thinking.html">Qwen3.6-27B (思考)</a></div>
+      <div><h5>模型</h5><a href="models/step37-flash.html">Step-3.7-Flash</a><a href="models/n2mini.html">Nex-N2-Mini</a><a href="models/qwen36-35b.html">Qwen3.6 (无思考)</a><a href="models/qwen36-35b-thinking.html">Qwen3.6 (思考)</a><a href="models/gemma4-26b.html">Gemma-4-26B-A4B-it-qat (无思考)</a><a href="models/gemma4-26b-thinking.html">Gemma-4-26B-A4B-it-qat (思考)</a><a href="models/qwenpaw-flash-9b.html">QwenPaw-Flash-9B</a><a href="models/qwen36-27b.html">Qwen3.6-27B (无思考)</a><a href="models/qwen36-27b-thinking.html">Qwen3.6-27B (思考)</a><a href="models/dsv4-flash.html">DeepSeek-V4-Flash</a></div>
       <div><h5>BenchLocal</h5><a href="https://github.com/stevibe/BenchLocal" target="_blank">GitHub 仓库</a><a href="https://benchlocal.com" target="_blank">官网</a><a href="https://github.com/stevibe/BenchLocal/releases/latest" target="_blank">下载最新版</a></div>
     </div>
   </div>
