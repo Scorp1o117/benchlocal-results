@@ -107,15 +107,15 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     <div class="model-info">
       <h1>Step-3.7-Flash-APEX-I-Mini</h1>
       <div class="sub">Step-3.7-Flash-APEX-I-Mini.gguf · Q3_K_M · 67.9 GB</div>
-      <div class="model-tags">🧠 MoE (11B active)<span class="card-tag">📦 67.9 GB</span><span class="card-tag">⚡ In 98 t/s · Out 13.9 t/s</span><span class="card-tag">🎮 RTX 5070 Ti 16GB + 128GB RAM</span><span class="card-tag">📅 2026-06-18</span></div>
+      <div class="model-tags">🧠 MoE (11B active)<span class="card-tag">📦 67.9 GB</span><span class="card-tag">⚡ In 98 t/s · Out 13.9 t/s</span><span class="card-tag">🎮 RTX 5070 Ti 16GB + 128GB RAM</span><span class="card-tag">📅 2026-06-21</span></div>
     </div>
   </div>
   <div class="score-row">
     <div class="big-score"><div class="label">加权总分</div><div class="num">88.8</div><div class="sub">TC×0.3 + BF×0.3 + HA×0.4</div></div>
     <div class="sub-scores">
-      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">93</div><div class="sub">15/15 通过 · 100%</div><div class="bar"><div class="bar-fill" style="width:93%;background:var(--grad)"></div></div></div>
-      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">78</div><div class="sub">12/15 通过 · 80%</div><div class="bar"><div class="bar-fill" style="width:78%;background:#ED8936"></div></div></div>
-      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">70</div><div class="sub">12/20 通过 · 60%</div><div class="bar"><div class="bar-fill" style="width:70%;background:#548235"></div></div></div>
+      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">100</div><div class="sub">15/15 通过 · 100% 🏆</div><div class="bar"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div></div>
+      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">87</div><div class="sub">12/15 通过 · 80%</div><div class="bar"><div class="bar-fill" style="width:87%;background:#ED8936"></div></div></div>
+      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">81</div><div class="sub">15/20 通过 · 75%</div><div class="bar"><div class="bar-fill" style="width:81%;background:#548235"></div></div></div>
     </div>
   </div>
 </section>
@@ -127,7 +127,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     <div class="tab" onclick="filterTable('tc',this)">ToolCall (15)</div>
     <div class="tab" onclick="filterTable('bf',this)">BugFind (15)</div>
     <div class="tab" onclick="filterTable('ha',this)">HermesAgent (20)</div>
-    <div class="tab" onclick="filterTable('fail',this)">❌ 失败 (12)</div>
+    <div class="tab" onclick="filterTable('fail',this)">❌ 失败 (8)</div>
   </div>
   <div class="table-wrap"><table><thead><tr><th>#</th><th>题目</th><th>测试包</th><th>难度</th><th>结果</th><th>得分</th><th>sandbox</th><th>耗时</th><th>失败类型</th><th>点评</th></tr></thead><tbody id="resultsBody"></tbody></table></div>
 </section>
@@ -141,15 +141,16 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
   <h2>🌊 📊 模型评估总结</h2>
   <div class="roast-box">
     <div class="roast-section pro"><h4>✅ 优势</h4><ul>
-      <li>ToolCall 场景表现突出（93分），在多工具协调和参数提取方面能力较强</li>
-      <li>198B MoE 架构每 token 仅激活 11B，推理效率高于同参数量稠密模型</li>
-      <li>跨语言代码调试（Python/JS/Rust/Go）全部通过，BugFind 真题修复能力扎实</li>
+      <li>ToolCall 满分 100 🏆 — 15/15 全通过，包括 TC-12 拒绝场景也正确处理了</li>
+      <li>BugFind 大幅进步 — BF-10 红鲱鱼陷阱从失败变为通过（333s但通过）</li>
+      <li>HermesAgent 进步显著 — HA-06 后台进程管理、HA-10 技能发现、HA-11 技能修补、HA-17 并行委派全部翻盘</li>
+      <li>跨语言 debug 能力依然强劲（Python/JS/Rust/Go 全覆盖）</li>
     </ul></div>
     <div class="roast-section con"><h4>⚠️ 不足</h4><ul>
-      <li>思考模式不可关闭，简单问题也会产生大量 thinking tokens，降低响应速度</li>
-      <li>推理速度仅 13.9 t/s，在所有测试模型中最慢，受 71.6GB 模型体积限制</li>
-      <li>Trap 题（BF-03/BF-10）全部失败，容易被用户话术误导修改正确代码</li>
-      <li>HermesAgent 场景中 HA-16 消息投递完全失败，HA-07 代码批量处理也未通过</li>
+      <li>BugFind BF-03 trap 题依然翻车 — "没有bug也要硬找"的老毛病未解决</li>
+      <li>HA-04 verifier 环境超时（0分）— 非模型问题但拉低总分</li>
+      <li>HA-07 execute_code（30分）、HA-12 技能文件（20分）、HA-16 消息投递（30分）仍然薄弱</li>
+      <li>速度 13.9 t/s 在大模型中偏慢，但 71.6GB 体量下可以理解</li>
     </ul></div>
     <div class="roast-section tip"><h4>📋 测试环境</h4><ul>
       <li>硬件 — RTX 5070 Ti 16GB + 128GB RAM，MoE模型部分专家层offload到CPU</li>
@@ -158,7 +159,8 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
       <li>模型下载 — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>Step-3.7-Flash 就像一个985毕业的程序员——技术基础扎实得很，该会的都会，但情商有点问题。你说'帮我看看代码'，他上来就改了，也不问'你确定有bug？'。ToolCall 教科书级，但 71.6GB 的体积让他跑起来慢吞吞的（13.9 t/s），像个穿着西装跑马拉松的大块头。</p>
+      <p>Step-3.7-Flash 从 79.5 涨到 88.8，进步了 9.3 分！最亮眼的是 ToolCall 满分（15/15），包括之前大部分模型都栽了的 TC-12 拒绝场景。HermesAgent 也从 70 涨到 81，HA-06/10/11/17 四道题从失败变通过。</p>
+      <p class="final">一句话评价：技术扎实的985程序员终于学会了拒绝不该做的事（TC-12满分）——但trap题(BF-03)依然是"阿喀琉斯之踵"。71.6GB的体量，88.8分，稳中有进～ 🌊</p>
     </div>
   </div>
 </section>
