@@ -110,7 +110,8 @@ nav .inner{max-width:1280px;margin:0 auto;padding:0 48px;height:64px;display:fle
 .roast-conclusion p{font-size:15px;line-height:1.8}
 
 /* Footer */
-footer{background:#0F172A;color:#94A3B8;padding:48px 48px 32px}
+.card-retry{padding:12px 20px;border-top:1px solid #F1F5F9;display:flex;justify-content:space-between;align-items:center;font-size:13px}
+footer{background=#0F172A;color:#94A3B8;padding:48px 48px 32px}
 footer .inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start}
 footer .brand{font-size:18px;font-weight:800;color:#fff;margin-bottom:8px;display:flex;align-items:center;gap:8px}
 footer .links{display:flex;gap:48px}
@@ -144,6 +145,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
 <section class="hero">
   <h1>本地模型<br><span>测试数据库</span></h1>
   <p>基于 <a href="https://github.com/stevibe/BenchLocal" target="_blank" style="color:var(--red);font-weight:600">BenchLocal</a> 桌面应用，在本地对真实任务进行基准测试，横向对比模型表现</p><p style="font-size:13px;color:var(--text3);margin-top:8px">当前测试环境：RTX 5070 Ti 16GB + 128GB RAM · MoE模型部分专家层offload到CPU</p>
+  <p style="font-size:13px;color:var(--text3);margin-top:8px">排名基于调整后分数（原始加权分 − 重试扣分），每道题重试1次扣1分</p>
   <div class="hero-stats">
     <div class="hero-stat"><div class="val">10</div><div class="lbl">已测试模型</div></div>
     <div class="hero-stat"><div class="val">50</div><div class="lbl">总测试题数</div></div>
@@ -186,6 +188,8 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:87%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">87</span></div>
         <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:81%;background:#548235"></div></div><span class="bar-val" style="color:#548235">81</span></div>
       </div>
+      
+      <div class="card-retry"><span>🔄 重试扣分</span><span style="color:#E53E3E;font-weight:700">-10 分</span><span>调整后 <strong>78.8</strong>/100</span></div>
       <div class="card-footer">
         <span class="date">2026-06-21 测试</span>
         <span class="cta">查看详情 →</span>
@@ -214,6 +218,8 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:88%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">88</span></div>
         <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:81%;background:#548235"></div></div><span class="bar-val" style="color:#548235">81</span></div>
       </div>
+      
+      <div class="card-retry"><span>🔄 重试扣分</span><span style="color:#E53E3E;font-weight:700">-27 分</span><span>调整后 <strong>60.2</strong>/100</span></div>
       <div class="card-footer">
         <span class="date">2026-06-20 测试</span>
         <span class="cta">查看详情 →</span>
@@ -242,6 +248,8 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:81%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">80.7</span></div>
         <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:76%;background:#548235"></div></div><span class="bar-val" style="color:#548235">76</span></div>
       </div>
+      
+      <div class="card-retry" style="color:#94A3B8"><span>🔄 重试扣分</span><span>0 次重试 ✨</span><span>调整后 <strong>79.6</strong>/100</span></div>
       <div class="card-footer">
         <span class="date">2026-06-19 测试</span>
         <span class="cta">查看详情 →</span>
@@ -270,6 +278,8 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:89%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">88.7</span></div>
         <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:77%;background:#548235"></div></div><span class="bar-val" style="color:#548235">76.5</span></div>
       </div>
+      
+      <div class="card-retry"><span>🔄 重试扣分</span><span style="color:#E53E3E;font-weight:700">-27 分</span><span>调整后 <strong>60.2</strong>/100</span></div>
       <div class="card-footer">
         <span class="date">2026-06-19 测试</span>
         <span class="cta">查看详情 →</span>
@@ -297,6 +307,8 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:86%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">86</span></div>
         <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:85%;background:#548235"></div></div><span class="bar-val" style="color:#548235">84.8</span></div>
       </div>
+      
+      <div class="card-retry"><span>🔄 重试扣分</span><span style="color:#E53E3E;font-weight:700">-10 分</span><span>调整后 <strong>78.8</strong>/100</span></div>
       <div class="card-footer">
         <span class="date">2026-06-19 测试</span>
         <span class="cta">查看详情 →</span>
@@ -324,6 +336,8 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:96%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">96</span></div>
         <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:87%;background:#548235"></div></div><span class="bar-val" style="color:#548235">87</span></div>
       </div>
+      
+      <div class="card-retry"><span>🔄 重试扣分</span><span style="color:#E53E3E;font-weight:700">-8 分</span><span>调整后 <strong>83.6</strong>/100</span></div>
       <div class="card-footer">
         <span class="date">2026-06-19 测试</span>
         <span class="cta">查看详情 →</span>
@@ -351,6 +365,8 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:84%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">84</span></div>
         <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:80%;background:#548235"></div></div><span class="bar-val" style="color:#548235">80</span></div>
       </div>
+      
+      <div class="card-retry"><span>🔄 重试扣分</span><span style="color:#E53E3E;font-weight:700">-27 分</span><span>调整后 <strong>60.2</strong>/100</span></div>
       <div class="card-footer">
         <span class="date">2026-06-19 测试</span>
         <span class="cta">查看详情 →</span>
@@ -378,6 +394,8 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:84%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">84.2</span></div>
         <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:83%;background:#548235"></div></div><span class="bar-val" style="color:#548235">82.8</span></div>
       </div>
+      
+      <div class="card-retry"><span>🔄 重试扣分</span><span style="color:#E53E3E;font-weight:700">-27 分</span><span>调整后 <strong>60.2</strong>/100</span></div>
       <div class="card-footer">
         <span class="date">2026-06-19 测试</span>
         <span class="cta">查看详情 →</span>
@@ -405,6 +423,8 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:93%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">93.3</span></div>
         <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:85%;background:#548235"></div></div><span class="bar-val" style="color:#548235">84.8</span></div>
       </div>
+      
+      <div class="card-retry"><span>🔄 重试扣分</span><span style="color:#E53E3E;font-weight:700">-8 分</span><span>调整后 <strong>83.6</strong>/100</span></div>
       <div class="card-footer">
         <span class="date">2026-06-19 测试</span>
         <span class="cta">查看详情 →</span>
@@ -430,6 +450,8 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:93%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">93.3</span></div>
         <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:90%;background:#548235"></div></div><span class="bar-val" style="color:#548235">90</span></div>
       </div>
+      
+      <div class="card-retry"><span>🔄 重试扣分</span><span style="color:#E53E3E;font-weight:700">-9 分</span><span>调整后 <strong>85.0</strong>/100</span></div>
       <div class="card-footer">
         <span class="date">2026-06-19 测试 · ⚡ 作为参考</span>
         <span class="cta">查看详情 →</span>
@@ -504,16 +526,16 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
 
 <script>
 const models = [
-  {el:null, total:88.8, tc:100, bf:87, ha:81, name:'Step-3.7-Flash (思考)'},
-  {el:null, total:87.2, tc:93, bf:88, ha:81, name:'Nex-N2-Mini (思考)'},
-  {el:null, total:79.6, tc:83.3, bf:80.7, ha:76, name:'Qwen3.6-35B (无思考)'},
-  {el:null, total:87.2, tc:100, bf:88.7, ha:76.5, name:'Qwen3.6-35B (思考)'},
-  {el:null, total:88.7, tc:96.7, bf:86, ha:84.8, name:'Gemma-4-26B-A4B-it-qat (无思考)'},
-  {el:null, total:91.6, tc:93.3, bf:96, ha:87, name:'Gemma-4-26B-A4B-it-qat (思考)'},
-  {el:null, total:87.2, tc:100, bf:84, ha:80, name:'QwenPaw-Flash-9B (思考)'},
-  {el:null, total:87.4, tc:96.7, bf:84.2, ha:82.8, name:'Qwen3.6-27B (无思考)'},
-  {el:null, total:91.9, tc:100, bf:93.3, ha:84.8, name:'Qwen3.6-27B (思考)'},
-  {el:null, total:94.0, tc:100, bf:93.3, ha:90, name:'DeepSeek-V4-Flash (API)'},
+  {el:null, total:78.8, tc:100, bf:87, ha:81, name:'Step-3.7-Flash (思考)', orig:88.8, retries:10, adjusted:78.8},
+  {el:null, total:60.2, tc:93, bf:88, ha:81, name:'Nex-N2-Mini (思考)', orig:87.2, retries:27, adjusted:60.2},
+  {el:null, total:79.6, tc:83.3, bf:80.7, ha:76, name:'Qwen3.6-35B (无思考)', orig:79.6, retries:0, adjusted:79.6},
+  {el:null, total:81.2, tc:100, bf:88.7, ha:76.5, name:'Qwen3.6-35B (思考)', orig:87.2, retries:6, adjusted:81.2},
+  {el:null, total:82.7, tc:96.7, bf:86, ha:84.8, name:'Gemma-4 (无思考)', orig:88.7, retries:6, adjusted:82.7},
+  {el:null, total:83.6, tc:93.3, bf:96, ha:87, name:'Gemma-4 (思考)', orig:91.6, retries:8, adjusted:83.6},
+  {el:null, total:64.4, tc:100, bf:88, ha:80, name:'QwenPaw-Flash-9B (思考)', orig:88.4, retries:24, adjusted:64.4},
+  {el:null, total:84.4, tc:96.7, bf:84.2, ha:82.8, name:'Qwen3.6-27B (无思考)', orig:87.4, retries:3, adjusted:84.4},
+  {el:null, total:73.9, tc:100, bf:93.3, ha:84.8, name:'Qwen3.6-27B (思考)', orig:91.9, retries:18, adjusted:73.9},
+  {el:null, total:85.0, tc:100, bf:93.3, ha:90, name:'DeepSeek-V4-Flash (API)', orig:94.0, retries:9, adjusted:85.0},
 ];
 const grid = document.querySelector('.models-grid');
 const cards = grid.querySelectorAll('.model-card');
