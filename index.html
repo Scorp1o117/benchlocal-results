@@ -47,7 +47,15 @@ nav .inner{max-width:1280px;margin:0 auto;padding:0 48px;height:64px;display:fle
 .model-card.thinking::before{background:var(--red)}
 .model-card.no-thinking::before{background:#CBD5E1}
 .card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
-.card-rank{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;background:var(--text)!important}
+.card-top-left{display:flex;align-items:flex-start;gap:12px}
+.card-rank{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;background:var(--text)!important;flex-shrink:0}
+.card-scores{display:flex;gap:8px;flex:1;justify-content:flex-end}
+.card-score-box{text-align:center;padding:8px 14px;border-radius:12px;min-width:80px}
+.card-score-box.primary{background:var(--grad);color:#fff}
+.card-score-box.secondary{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff}
+.card-score-box .lbl{font-size:10px;font-weight:500;opacity:.85}
+.card-score-box .val{font-size:24px;font-weight:900;line-height:1.1}
+.card-score-box .sub{font-size:9px;opacity:.7;margin-top:2px}
 .card-score{font-size:36px;font-weight:900;letter-spacing:-1px;line-height:1}
 .card-score span{font-size:16px;font-weight:500;color:var(--text3)}
 .card-model{margin-bottom:16px}
@@ -171,7 +179,10 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     <div class="model-card rank-1 thinking" onclick="location.href='models/step37-flash.html'">
       <div class="card-top">
         <div class="card-rank">1</div>
-        <div class="card-score">88.8<span>/100</span></div>
+        <div class="card-scores">
+        <div class="card-score-box primary"><div class="lbl">上限</div><div class="val">88.8</div></div>
+        <div class="card-score-box secondary"><div class="lbl">实用</div><div class="val">78.8</div></div>
+      </div>
       </div>
       <div class="card-model">
         <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/stepfun-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Step-3.7-Flash-APEX-I-Mini <span style="font-size:12px;color:var(--text3);font-weight:400">(思考)</span></h3>
@@ -190,7 +201,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:81%;background:#548235"></div></div><span class="bar-val" style="color:#548235">81</span></div>
       </div>
       
-      <div class="card-retry"><span>🔄 原始 88.8 → 重试 -10 → 调整 78.8</span><span style="font-weight:700">调整后 <strong>78.8</strong>/100</span></div>
+      <div class="card-retry">🔄 上限分 88.8 → 重试 -10 → 实用 <strong>78.8</strong></div>
       <div class="card-footer">
         <span class="date">2026-06-21 测试</span>
         <span class="cta">查看详情 →</span>
@@ -201,7 +212,10 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     <div class="model-card rank-2 thinking" onclick="location.href='models/n2mini.html'">
       <div class="card-top">
         <div class="card-rank">2</div>
-        <div class="card-score">87.2<span>/100</span></div>
+        <div class="card-scores">
+        <div class="card-score-box primary"><div class="lbl">上限</div><div class="val">87.2</div></div>
+        <div class="card-score-box secondary"><div class="lbl">实用</div><div class="val">60.2</div></div>
+      </div>
       </div>
       <div class="card-model">
         <h3><img src="icons/nex.svg" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Nex-N2-Mini-abliterated-APEX <span style="font-size:12px;color:var(--text3);font-weight:400">(思考)</span></h3>
@@ -220,7 +234,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:81%;background:#548235"></div></div><span class="bar-val" style="color:#548235">81</span></div>
       </div>
       
-      <div class="card-retry"><span>🔄 原始 87.2 → 重试 -27 → 调整 60.2</span><span style="font-weight:700">调整后 <strong>60.2</strong>/100</span></div>
+      <div class="card-retry">🔄 上限分 87.2 → 重试 -27 → 实用 <strong>60.2</strong></div>
       <div class="card-footer">
         <span class="date">2026-06-20 测试</span>
         <span class="cta">查看详情 →</span>
@@ -231,7 +245,10 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     <div class="model-card rank-2 no-thinking" onclick="location.href='models/qwen36-35b.html'">
       <div class="card-top">
         <div class="card-rank" style="background:#548235">3</div>
-        <div class="card-score">90.5<span>/100</span></div>
+        <div class="card-scores">
+        <div class="card-score-box primary"><div class="lbl">上限</div><div class="val">90.5</div></div>
+        <div class="card-score-box secondary"><div class="lbl">实用</div><div class="val">73.5</div></div>
+      </div>
       </div>
       <div class="card-model">
         <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Qwen3.6-35B-A3B-uncensored <span style="font-size:12px;color:var(--text3);font-weight:400">(无思考)</span></h3>
@@ -250,7 +267,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:83%;background:#548235"></div></div><span class="bar-val" style="color:#548235">83</span></div>
       </div>
       
-      <div class="card-retry"><span>🔄 原始 90.5 → 重试 -17 → 调整 73.5</span><span style="font-weight:700">调整后 <strong>73.5</strong>/100</span></div>
+      <div class="card-retry">🔄 上限分 90.5 → 重试 -17 → 实用 <strong>73.5</strong></div>
       <div class="card-footer">
         <span class="date">2026-06-21 测试</span>
         <span class="cta">查看详情 →</span>
@@ -261,7 +278,10 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     <div class="model-card rank-1 thinking" onclick="location.href='models/qwen36-35b-thinking.html'">
       <div class="card-top">
         <div class="card-rank">1</div>
-        <div class="card-score">87.2<span>/100</span></div>
+        <div class="card-scores">
+        <div class="card-score-box primary"><div class="lbl">上限</div><div class="val">87.2</div></div>
+        <div class="card-score-box secondary"><div class="lbl">实用</div><div class="val">81.2</div></div>
+      </div>
       </div>
       <div class="card-model">
         <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Qwen3.6-35B-A3B-uncensored <span style="font-size:12px;color:var(--text3);font-weight:400">(思考)</span></h3>
@@ -280,7 +300,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:77%;background:#548235"></div></div><span class="bar-val" style="color:#548235">76.5</span></div>
       </div>
       
-      <div class="card-retry"><span>🔄 原始 87.2 → 重试 -6 → 调整 81.2</span><span style="font-weight:700">调整后 <strong>81.2</strong>/100</span></div>
+      <div class="card-retry">🔄 上限分 87.2 → 重试 -6 → 实用 <strong>81.2</strong></div>
       <div class="card-footer">
         <span class="date">2026-06-19 测试</span>
         <span class="cta">查看详情 →</span>
@@ -291,7 +311,10 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     <div class="model-card rank-1 no-thinking" onclick="location.href='models/gemma4-26b.html'">
       <div class="card-top">
         <div class="card-rank">1</div>
-        <div class="card-score">88.7<span>/100</span></div>
+        <div class="card-scores">
+        <div class="card-score-box primary"><div class="lbl">上限</div><div class="val">88.7</div></div>
+        <div class="card-score-box secondary"><div class="lbl">实用</div><div class="val">82.7</div></div>
+      </div>
       </div>
       <div class="card-model">
         <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/gemma-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Gemma-4-26B-A4B-it-qat <span style="font-size:12px;color:var(--text3);font-weight:400">(无思考)</span></h3>
@@ -309,7 +332,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:85%;background:#548235"></div></div><span class="bar-val" style="color:#548235">84.8</span></div>
       </div>
       
-      <div class="card-retry"><span>🔄 原始 88.7 → 重试 -6 → 调整 82.7</span><span style="font-weight:700">调整后 <strong>82.7</strong>/100</span></div>
+      <div class="card-retry">🔄 上限分 88.7 → 重试 -6 → 实用 <strong>82.7</strong></div>
       <div class="card-footer">
         <span class="date">2026-06-19 测试</span>
         <span class="cta">查看详情 →</span>
@@ -320,7 +343,10 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     <div class="model-card rank-1 thinking" onclick="location.href='models/gemma4-26b-thinking.html'">
       <div class="card-top">
         <div class="card-rank">1</div>
-        <div class="card-score">91.6<span>/100</span></div>
+        <div class="card-scores">
+        <div class="card-score-box primary"><div class="lbl">上限</div><div class="val">91.6</div></div>
+        <div class="card-score-box secondary"><div class="lbl">实用</div><div class="val">83.6</div></div>
+      </div>
       </div>
       <div class="card-model">
         <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/gemma-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Gemma-4-26B-A4B-it-qat <span style="font-size:12px;color:var(--text3);font-weight:400">(思考)</span></h3>
@@ -338,7 +364,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:87%;background:#548235"></div></div><span class="bar-val" style="color:#548235">87</span></div>
       </div>
       
-      <div class="card-retry"><span>🔄 原始 91.6 → 重试 -8 → 调整 83.6</span><span style="font-weight:700">调整后 <strong>83.6</strong>/100</span></div>
+      <div class="card-retry">🔄 上限分 91.6 → 重试 -8 → 实用 <strong>83.6</strong></div>
       <div class="card-footer">
         <span class="date">2026-06-19 测试</span>
         <span class="cta">查看详情 →</span>
@@ -349,7 +375,10 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     <div class="model-card rank-1 thinking" onclick="location.href='models/gemma4-12b.html'">
       <div class="card-top">
         <div class="card-rank">1</div>
-        <div class="card-score">90.3<span>/100</span></div>
+        <div class="card-scores">
+        <div class="card-score-box primary"><div class="lbl">上限</div><div class="val">90.3</div></div>
+        <div class="card-score-box secondary"><div class="lbl">实用</div><div class="val">85.3</div></div>
+      </div>
       </div>
       <div class="card-model">
         <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/gemma-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Gemma-4-12B-it-heretic-QAT <span style="font-size:12px;color:var(--text3);font-weight:400">(思考)</span></h3>
@@ -367,7 +396,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:87%;background:#548235"></div></div><span class="bar-val" style="color:#548235">87</span></div>
       </div>
       
-      <div class="card-retry"><span>🔄 原始 90.3 → 重试 -5 → 调整 85.3</span><span style="font-weight:700">调整后 <strong>85.3</strong>/100</span></div>
+      <div class="card-retry">🔄 上限分 90.3 → 重试 -5 → 实用 <strong>85.3</strong></div>
       <div class="card-footer">
         <span class="date">2026-06-21 测试</span>
         <span class="cta">查看详情 →</span>
@@ -376,7 +405,10 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     <div class="model-card rank-2 thinking" onclick="location.href='models/qwenpaw-flash-9b.html'">
       <div class="card-top">
         <div class="card-rank" style="background:linear-gradient(135deg,#f093fb,#f5576c)">2</div>
-        <div class="card-score">88.4<span>/100</span></div>
+        <div class="card-scores">
+        <div class="card-score-box primary"><div class="lbl">上限</div><div class="val">88.4</div></div>
+        <div class="card-score-box secondary"><div class="lbl">实用</div><div class="val">64.4</div></div>
+      </div>
       </div>
       <div class="card-model">
         <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">QwenPaw-Flash-9B-MTP-heretic <span style="font-size:12px;color:var(--text3);font-weight:400">(思考)</span></h3>
@@ -394,7 +426,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:80%;background:#548235"></div></div><span class="bar-val" style="color:#548235">80</span></div>
       </div>
       
-      <div class="card-retry"><span>🔄 原始 88.4 → 重试 -24 → 调整 64.4</span><span style="font-weight:700">调整后 <strong>64.4</strong>/100</span></div>
+      <div class="card-retry">🔄 上限分 88.4 → 重试 -24 → 实用 <strong>64.4</strong></div>
       <div class="card-footer">
         <span class="date">2026-06-19 测试</span>
         <span class="cta">查看详情 →</span>
@@ -405,7 +437,10 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     <div class="model-card rank-2 no-thinking" onclick="location.href='models/qwen36-27b.html'">
       <div class="card-top">
         <div class="card-rank" style="background:#548235">3</div>
-        <div class="card-score">87.4<span>/100</span></div>
+        <div class="card-scores">
+        <div class="card-score-box primary"><div class="lbl">上限</div><div class="val">87.4</div></div>
+        <div class="card-score-box secondary"><div class="lbl">实用</div><div class="val">84.4</div></div>
+      </div>
       </div>
       <div class="card-model">
         <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Qwen3.6-27B-uncensored <span style="font-size:12px;color:var(--text3);font-weight:400">(无思考)</span></h3>
@@ -423,7 +458,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:83%;background:#548235"></div></div><span class="bar-val" style="color:#548235">82.8</span></div>
       </div>
       
-      <div class="card-retry"><span>🔄 原始 87.4 → 重试 -3 → 调整 84.4</span><span style="font-weight:700">调整后 <strong>84.4</strong>/100</span></div>
+      <div class="card-retry">🔄 上限分 87.4 → 重试 -3 → 实用 <strong>84.4</strong></div>
       <div class="card-footer">
         <span class="date">2026-06-19 测试</span>
         <span class="cta">查看详情 →</span>
@@ -434,7 +469,10 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     <div class="model-card rank-1 thinking" onclick="location.href='models/qwen36-27b-thinking.html'">
       <div class="card-top">
         <div class="card-rank">1</div>
-        <div class="card-score">91.9<span>/100</span></div>
+        <div class="card-scores">
+        <div class="card-score-box primary"><div class="lbl">上限</div><div class="val">91.9</div></div>
+        <div class="card-score-box secondary"><div class="lbl">实用</div><div class="val">73.9</div></div>
+      </div>
       </div>
       <div class="card-model">
         <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Qwen3.6-27B-uncensored <span style="font-size:12px;color:var(--text3);font-weight:400">(思考)</span></h3>
@@ -452,7 +490,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:85%;background:#548235"></div></div><span class="bar-val" style="color:#548235">84.8</span></div>
       </div>
       
-      <div class="card-retry"><span>🔄 原始 91.9 → 重试 -18 → 调整 73.9</span><span style="font-weight:700">调整后 <strong>73.9</strong>/100</span></div>
+      <div class="card-retry">🔄 上限分 91.9 → 重试 -18 → 实用 <strong>73.9</strong></div>
       <div class="card-footer">
         <span class="date">2026-06-19 测试</span>
         <span class="cta">查看详情 →</span>
@@ -463,7 +501,10 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     <div class="model-card rank-1 thinking" onclick="location.href='models/dsv4-flash.html'">
       <div class="card-top">
         <div class="card-rank">1</div>
-        <div class="card-score">94.0<span>/100</span></div>
+        <div class="card-scores">
+        <div class="card-score-box primary"><div class="lbl">上限</div><div class="val">94.0</div></div>
+        <div class="card-score-box secondary"><div class="lbl">实用</div><div class="val">85.0</div></div>
+      </div>
       </div>
       <div class="card-model">
         <img src="icons/deepseek-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">DeepSeek-V4-Flash <span style="font-size:12px;color:var(--text3);font-weight:400">(思考 · API)</span>
@@ -479,7 +520,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:90%;background:#548235"></div></div><span class="bar-val" style="color:#548235">90</span></div>
       </div>
       
-      <div class="card-retry"><span>🔄 原始 94.0 → 重试 -9 → 调整 85.0</span><span style="font-weight:700">调整后 <strong>85.0</strong>/100</span></div>
+      <div class="card-retry">🔄 上限分 94.0 → 重试 -9 → 实用 <strong>85.0</strong></div>
       <div class="card-footer">
         <span class="date">2026-06-19 测试 · ⚡ 作为参考</span>
         <span class="cta">查看详情 →</span>

@@ -87,6 +87,10 @@ tr:hover{background:#FAFBFC}
 .roast-conclusion p{font-size:15px;line-height:1.8}
 .roast-conclusion .final{font-size:18px;font-weight:800;color:var(--red);margin-top:12px}
 
+.adj-score{background:linear-gradient(135deg,#667eea,#764ba2);border-radius:var(--r);padding:32px 40px;color:#fff;min-width:180px}
+.adj-score .label{font-size:13px;opacity:.8;font-weight:500}
+.adj-score .num{font-size:42px;font-weight:900;letter-spacing:-2px;line-height:1.1;margin-top:4px}
+.adj-score .sub{font-size:11px;opacity:.7;margin-top:4px}
 footer{background:#0F172A;color:#94A3B8;padding:48px 48px 32px;margin-top:60px}
 footer .inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start}
 footer .brand{font-size:18px;font-weight:800;color:#fff;margin-bottom:8px}
@@ -112,7 +116,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
   </div>
   <div class="score-row">
     <div class="big-score"><div class="label">加权总分</div><div class="num">90.3</div><div class="sub">加权原始分 = TC×0.3 + BF×0.3 + HA×0.4</div></div>
-    <div style="background:linear-gradient(135deg,#667eea,#764ba2);border-radius:var(--r);padding:32px 40px;color:#fff;min-width:180px"><div class="label">实用得分</div><div class="num">85.3</div><div class="sub">扣除重试惩罚后</div></div>
+    <div class="adj-score"><div class="label">实用得分</div><div class="num">85.3</div><div class="sub">−5 重试扣分</div></div>
     <div class="sub-scores">
       <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">97</div><div class="sub">15/15 通过 · 100% 🏆 · 重试 -4</div><div class="bar"><div class="bar-fill" style="width:97%;background:var(--grad)"></div></div></div>
       <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">88</div><div class="sub">13/15 通过 · 87% · 重试 -1</div><div class="bar"><div class="bar-fill" style="width:88%;background:#ED8936"></div></div></div>
@@ -121,10 +125,8 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
   </div>
   <div style="max-width:1280px;margin:16px auto 0;padding:0 48px">
     <div style="background:#F1F5F9;border-radius:12px;padding:16px 20px;font-size:13px;color:#64748B;line-height:1.8">
-      <strong style="color:#1A202C">📊 计分规则</strong> — 加权总分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4，再扣除重试惩罚分。
-      <strong>重试扣分</strong>：每道题首次通过不扣分，重试后才通过的题目每重试 1 次扣 1 分，重试后仍失败的不参与扣分。
-      <strong>公式</strong>：最终分 = 原始加权分 − Σ(每题重试次数)。
-      <span style="color:#E53E3E;font-weight:600">本模型共重试 5 次（TC-4 + BF-1 + HA-0）
+      <strong style="color:#1A202C">📊 计分规则</strong> — <strong>能力上限</strong> = 加权原始分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4<br><strong>实用得分</strong> = 能力上限 − 重试扣分（每题首次通过不扣分，重试后通过每重试1次扣1分，重试后仍失败不参与扣分）。
+      
     </div>
   </div>
 
