@@ -545,9 +545,9 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
         <li><strong>ToolCall-15</strong> — 15 题工具调用测试，覆盖参数提取、多轮上下文、并行调用等</li>
         <li><strong>BugFind-15</strong> — 15 题跨语言代码调试，含 Trap 陷阱题，难度 Easy~Expert</li>
         <li><strong>HermesAgent-20</strong> — 20 题 Agent 场景测试，覆盖记忆管理、技能创建、调度投递等</li>
-        <li><strong>加权总分</strong> — ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</li>
-        <li><strong>计分规则</strong> — 每道题首次通过（score=100）不扣分；重试后才通过的题目每重试1次扣1分；重试后仍失败的不参与扣分</li>
-        <li><strong>最终分</strong> — 原始加权分 − Σ(每题重试次数)</li>
+        <li><strong>能力上限</strong> — 加权原始分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4（模型最高能拿多少分）</li>
+        <li><strong>实用得分</strong> — 能力上限 − 重试扣分（每题首次通过不扣分，重试后通过每重试1次扣1分，重试后仍失败不参与扣分）</li>
+        <li><strong>排序方式</strong> — 能力上限排序（看天花板）、实用得分排序（看实际表现）、三项专项排序</li>
       </ul>
     </div>
   </div>
