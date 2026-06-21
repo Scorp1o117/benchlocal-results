@@ -147,7 +147,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
   <p>基于 <a href="https://github.com/stevibe/BenchLocal" target="_blank" style="color:var(--red);font-weight:600">BenchLocal</a> 桌面应用，在本地对真实任务进行基准测试，横向对比模型表现</p><p style="font-size:13px;color:var(--text3);margin-top:8px">当前测试环境：RTX 5070 Ti 16GB + 128GB RAM · MoE模型部分专家层offload到CPU</p>
   <p style="font-size:13px;color:var(--text3);margin-top:8px">排名基于<strong style="color:var(--text2)">调整后分数</strong>：加权总分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4，再扣除重试惩罚分（每道题首次通过不扣分，重试后才通过的题目每重试1次扣1分，重试后仍失败的不参与扣分）</p>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="val">10</div><div class="lbl">已测试模型</div></div>
+    <div class="hero-stat"><div class="val">11</div><div class="lbl">已测试模型</div></div>
     <div class="hero-stat"><div class="val">50</div><div class="lbl">总测试题数</div></div>
     <div class="hero-stat"><div class="val">3</div><div class="lbl">测试项目</div></div>
   </div>
@@ -344,7 +344,34 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
       </div>
     </div>
 
-    <!-- Model 7: QwenPaw-Flash-9B -->
+    <!-- Model 7: Gemma 4 12B -->
+    <div class="model-card rank-1 no-thinking" onclick="location.href='models/gemma4-12b.html'">
+      <div class="card-top">
+        <div class="card-rank">1</div>
+        <div class="card-score">85.3<span>/100</span></div>
+      </div>
+      <div class="card-model">
+        <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/gemma-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Gemma-4-12B-it-heretic-QAT <span style="font-size:12px;color:var(--text3);font-weight:400"></span></h3>
+        <div class="desc">gemma-4-12B-it-heretic-QAT-Q4_0.gguf · Q4_0 · 6.4 GB</div>
+      </div>
+      <div class="card-meta">
+        <span class="card-tag">🧠 Dense 12B</span>
+        <span class="card-tag">📦 6.4 GB</span>
+        <span class="card-tag">⚡ In 1522 t/s · Out 126.3 t/s</span>
+        <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ QAT量化</span>
+      </div>
+      <div class="card-bars">
+        <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:97%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">97</span></div>
+        <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:88%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">88</span></div>
+        <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:87%;background:#548235"></div></div><span class="bar-val" style="color:#548235">87</span></div>
+      </div>
+      
+      <div class="card-retry"><span>🔄 原始 90.3 → 重试 -5</span><span style="font-weight:700">调整后 <strong>85.3</strong>/100</span></div>
+      <div class="card-footer">
+        <span class="date">2026-06-21 测试</span>
+        <span class="cta">查看详情 →</span>
+      </div>
+    </div>
     <div class="model-card rank-2 thinking" onclick="location.href='models/qwenpaw-flash-9b.html'">
       <div class="card-top">
         <div class="card-rank" style="background:linear-gradient(135deg,#f093fb,#f5576c)">2</div>
@@ -518,7 +545,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     <div><div class="brand">⚡ BenchLocal</div><div style="font-size:13px">本地模型测试数据库</div></div>
     <div class="links">
       <div><h5>测试项目</h5><a href="#">ToolCall-15</a><a href="#">BugFind-15</a><a href="#">HermesAgent-20</a><a href="#">更多 Bench Packs →</a></div>
-      <div><h5>模型</h5><a href="models/step37-flash.html">Step-3.7-Flash</a><a href="models/n2mini.html">Nex-N2-Mini</a><a href="models/qwen36-35b.html">Qwen3.6 (无思考)</a><a href="models/qwen36-35b-thinking.html">Qwen3.6 (思考)</a><a href="models/gemma4-26b.html">Gemma-4-26B-A4B-it-qat (无思考)</a><a href="models/gemma4-26b-thinking.html">Gemma-4-26B-A4B-it-qat (思考)</a><a href="models/qwenpaw-flash-9b.html">QwenPaw-Flash-9B</a><a href="models/qwen36-27b.html">Qwen3.6-27B (无思考)</a><a href="models/qwen36-27b-thinking.html">Qwen3.6-27B (思考)</a><a href="models/dsv4-flash.html">DeepSeek-V4-Flash</a></div>
+      <div><h5>模型</h5><a href="models/step37-flash.html">Step-3.7-Flash</a><a href="models/n2mini.html">Nex-N2-Mini</a><a href="models/qwen36-35b.html">Qwen3.6 (无思考)</a><a href="models/qwen36-35b-thinking.html">Qwen3.6 (思考)</a><a href="models/gemma4-26b.html">Gemma-4-26B-A4B-it-qat (无思考)</a><a href="models/gemma4-26b-thinking.html">Gemma-4-26B-A4B-it-qat (思考)</a><a href="models/gemma4-12b.html">Gemma-4-12B (QAT)</a><a href="models/qwenpaw-flash-9b.html">QwenPaw-Flash-9B</a><a href="models/qwen36-27b.html">Qwen3.6-27B (无思考)</a><a href="models/qwen36-27b-thinking.html">Qwen3.6-27B (思考)</a><a href="models/dsv4-flash.html">DeepSeek-V4-Flash</a></div>
       <div><h5>BenchLocal</h5><a href="https://github.com/stevibe/BenchLocal" target="_blank">GitHub 仓库</a><a href="https://benchlocal.com" target="_blank">官网</a><a href="https://github.com/stevibe/BenchLocal/releases/latest" target="_blank">下载最新版</a></div>
     </div>
   </div>
@@ -533,6 +560,7 @@ const models = [
   {el:null, total:81.2, tc:100, bf:88.7, ha:76.5, name:'Qwen3.6-35B (思考)', orig:87.2, retries:6, adjusted:81.2},
   {el:null, total:82.7, tc:96.7, bf:86, ha:84.8, name:'Gemma-4 (无思考)', orig:88.7, retries:6, adjusted:82.7},
   {el:null, total:83.6, tc:93.3, bf:96, ha:87, name:'Gemma-4 (思考)', orig:91.6, retries:8, adjusted:83.6},
+  {el:null, total:85.3, tc:97, bf:88, ha:87, name:'Gemma-4-12B (QAT)', orig:90.3, retries:5, adjusted:85.3},
   {el:null, total:64.4, tc:100, bf:88, ha:80, name:'QwenPaw-Flash-9B (思考)', orig:88.4, retries:24, adjusted:64.4},
   {el:null, total:84.4, tc:96.7, bf:84.2, ha:82.8, name:'Qwen3.6-27B (无思考)', orig:87.4, retries:3, adjusted:84.4},
   {el:null, total:73.9, tc:100, bf:93.3, ha:84.8, name:'Qwen3.6-27B (思考)', orig:91.9, retries:18, adjusted:73.9},

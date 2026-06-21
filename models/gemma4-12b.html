@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gemma-4-26B-A4B-it-qat (无思考) · BenchLocal</title>
+<title>Gemma-4-12B-it-heretic-QAT · BenchLocal</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
@@ -105,15 +105,18 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
   <div class="model-header">
     <div class="model-avatar"><img src="../icons/gemma-color.png" alt="" style="width:100%;height:100%;object-fit:contain"></div>
     <div class="model-info">
-      <h1>Gemma-4-26B-A4B-it-qat (无思考)</h1>
-      <div class="sub">gemma-4-26B-A4B-it-qat-heretic-UD-Q4_K_XL.gguf · Q4_K_XL · 13.3 GB</div>
-      <div class="model-tags">🧠 MoE (4B active)<span class="card-tag">📦 13.3 GB</span><span class="card-tag">⚡ In 832 t/s · Out 53.9 t/s</span><span class="card-tag">🎮 RTX 5070 Ti 16GB + 128GB RAM</span><span class="card-tag">📅 2026-06-19</span></div>
+      <h1>Gemma-4-12B-it-heretic-QAT</h1>
+      <div class="sub">gemma-4-12B-it-heretic-QAT-Q4_0.gguf · Q4_0 · 6.4 GB</div>
+      <div class="model-tags">🧠 MoE (4B active)<span class="card-tag">📦 6.4 GB</span><span class="card-tag">⚡ In 1522 t/s · Out 126.3 t/s</span><span class="card-tag">🎮 RTX 5070 Ti 16GB + 128GB RAM</span><span class="card-tag">📅 2026-06-21</span></div>
     </div>
   </div>
   <div class="score-row">
-    <div class="big-score"><div class="label">加权总分</div><div class="num">82.7</div><div class="sub">原始 88.7 − 重试扣分 6</div></div>
-        <div class="sub-scores">
-      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">96.7</div><div class="sub">14/15 通过 · 93% · 重试 -3</div><div class="bar"><div class="bar-fill" style="width:96%;background:var(--grad)"></div></div></div>
+    <div class="big-score"><div class="label">加权总分</div><div class="num">85.3</div><div class="sub">原始 90.3 − 重试扣分 5</div></div>
+            <div class="sub-scores">
+      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">97</div><div class="sub">15/15 通过 · 100% 🏆 · 重试 -4</div><div class="bar"><div class="bar-fill" style="width:97%;background:var(--grad)"></div></div></div>
+      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">88</div><div class="sub">13/15 通过 · 87% · 重试 -1</div><div class="bar"><div class="bar-fill" style="width:88%;background:#ED8936"></div></div></div>
+      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">87</div><div class="sub">17/20 通过 · 85%</div><div class="bar"><div class="bar-fill" style="width:87%;background:#548235"></div></div></div>
+    </div>
       <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">86</div><div class="sub">13/15 通过 · 87%</div><div class="bar"><div class="bar-fill" style="width:86%;background:#ED8936"></div></div></div>
       <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">84.8</div><div class="sub">16/20 通过 · 80% · 重试 -3</div><div class="bar"><div class="bar-fill" style="width:84%;background:#548235"></div></div></div>
     </div>
@@ -123,7 +126,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
       <strong style="color:#1A202C">📊 计分规则</strong> — 加权总分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4，再扣除重试惩罚分。
       <strong>重试扣分</strong>：每道题首次通过不扣分，重试后才通过的题目每重试 1 次扣 1 分，重试后仍失败的不参与扣分。
       <strong>公式</strong>：最终分 = 原始加权分 − Σ(每题重试次数)。
-      <span style="color:#E53E3E;font-weight:600">本模型共重试 6 次（TC-3 + BF-0 + HA-3）</span>
+      <span style="color:#E53E3E;font-weight:600">本模型共重试 5 次（TC-4 + BF-1 + HA-0）</span>
     </div>
   </div>
 
@@ -166,128 +169,72 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
       <li>模型下载 — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>Gemma-4 无思考版调整后 82.7 分（原始 88.7，重试 6 次）。HermesAgent 84.8 是所有模型中最高的，Agent 场景综合能力强。14.4GB 体积适中，MoE 架构高效。QAT（Quantization-Aware Training）量化技术让 26B 参数模型在 Q4_K_XL 精度下仍保持优秀性能——训练时模拟量化误差，让模型学会适应低精度推理，相比普通量化损失更小。 一句话评价：闷声发大财——HA 全场最高但没人注意，Agent 能力被低估的选手。</p>
+      <p>Gemma-4-12B 调整后 85.3 分（原始 90.3，重试 5 次）。6.4GB 体积、126.3 t/s 输出速度，是 Gemma-4 系列中最轻量的版本。QAT（Quantization-Aware Training）量化技术让模型在极低精度下仍保持不错的性能。ToolCall 97 分、BF 88 分、HA 87 分，三项均衡。重试仅 5 次，稳定性好。</p>
+      <p class="final">一句话评价：Gemma-4 家族最轻量的成员——6.4GB 体积、126t/s 速度、85.3 分调整后成绩，QAT 量化技术的优秀范例。</p>
     </div>
-  </div>
 </section>
 
 <footer><div class="inner"><div><div class="brand">⚡ BenchLocal</div><div style="font-size:13px">本地模型测试数据库</div></div><div class="links"><div><h5>测试项目</h5><a href="#">ToolCall-15</a><a href="#">BugFind-15</a><a href="#">HermesAgent-20</a></div><div><h5>模型</h5><a href="#">Step-3.7-Flash</a><a href="#">Qwen3.5-35B</a></div><div><h5>BenchLocal</h5><a href="https://github.com/stevibe/BenchLocal" target="_blank">GitHub</a><a href="https://benchlocal.com" target="_blank">官网</a></div></div></div><div class="bottom">© 2026 BenchLocal</div></footer>
 
 <script>
 const results=[
-{n:"01",t:"Direct Specialist Match",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:"",rt:0},
-
-{n:"02",t:"Parameter Extraction",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:4,ft:"-",c:"",rt:0},
-
-{n:"03",t:"Multi-Parameter Construction",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:5,ft:"-",c:"",rt:1},
-
-{n:"04",t:"Unit Handling",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:4,ft:"-",c:"",rt:0},
-
-{n:"05",t:"Conditional Tool Selection",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:"",rt:1},
-
-{n:"06",t:"Tool Not Available",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:5,ft:"-",c:"",rt:0},
-
-{n:"07",t:"Multi-Turn Context Carry",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:8,ft:"-",c:"",rt:0},
-
-{n:"08",t:"Ambiguous Query Disambiguation",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:"",rt:0},
-
-{n:"09",t:"Parallel Tool Calls",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:7,ft:"-",c:"",rt:0},
-
-{n:"10",t:"Minimal Viable Call",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:"",rt:0},
-
-{n:"11",t:"Parameter Type Coercion",pkg:"tc",diff:"easy",r:"partial",s:50,sb:"pass",time:4,ft:"格式问题",c:"计算器用对了但不必要",rt:0},
-
-{n:"12",t:"Edge Case Input",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:"",rt:0},
-
-{n:"13",t:"Tool Chain Orchestration",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:8,ft:"-",c:"",rt:0},
-
-{n:"14",t:"Malformed Response",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:"",rt:1},
-
-{n:"15",t:"Graceful Degradation",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:5,ft:"-",c:"",rt:0},
-
-{n:"01",t:"Off-by-One Python Loop",pkg:"bf",diff:"easy",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:"",rt:0},
-
-{n:"02",t:"JS Equality Trap",pkg:"bf",diff:"easy",r:"pass",s:100,sb:"pass",time:16,ft:"-",c:"",rt:0},
-
-{n:"03",t:"Rust Trap Scenario",pkg:"bf",diff:"easy",r:"fail",s:0,sb:"fail",time:12,ft:"Trap",c:"还是被骗了",rt:0},
-
-{n:"04",t:"Python Dict Mutation",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:18,ft:"-",c:"",rt:0},
-
-{n:"05",t:"Go Goroutine Capture",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:20,ft:"-",c:"",rt:0},
-
-{n:"06",t:"C++ Memory Leak",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:18,ft:"-",c:"",rt:0},
-
-{n:"07",t:"JS Prototype Pollution",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:16,ft:"-",c:"",rt:0},
-
-{n:"08",t:"Python Async Race",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:20,ft:"-",c:"",rt:0},
-
-{n:"09",t:"Rust Lifetime Error",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:18,ft:"-",c:"",rt:0},
-
-{n:"10",t:"Python Red-Herring Trap",pkg:"bf",diff:"med",r:"partial",s:60,sb:"pass",time:14,ft:"Trap",c:"比全失败好一点，partial",rt:0},
-
-{n:"11",t:"JS Silent Failure",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:16,ft:"-",c:"",rt:0},
-
-{n:"12",t:"Rust Double Bug",pkg:"bf",diff:"hard",r:"partial",s:70,sb:"pass",time:22,ft:"漏诊",c:"sandbox pass 但诊断不全",rt:0},
-
-{n:"13",t:"Python Ambiguous",pkg:"bf",diff:"med",r:"partial",s:60,sb:"pass",time:16,ft:"排序问题",c:"没处理好字符串排序",rt:0},
-
-{n:"14",t:"JS Environment-Dep Bug",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:20,ft:"-",c:"",rt:0},
-
-{n:"15",t:"Go Race Condition",pkg:"bf",diff:"expert",r:"pass",s:100,sb:"pass",time:25,ft:"-",c:"",rt:0},
-
-{n:"01",t:"Replace Contradictory Memory",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:8,ft:"-",c:"",rt:0},
-
-{n:"02",t:"Near-Capacity Memory Mgmt",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:"",rt:0},
-
-{n:"03",t:"Malicious Memory Injection",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:10,ft:"-",c:"",rt:0},
-
-{n:"04",t:"[Hermes Fix Recall]",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:"🎉 终于通过了！其他模型都失败",rt:1},
-
-{n:"05",t:"Fix Failing Test",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:18,ft:"-",c:"",rt:1},
-
-{n:"06",t:"Background Process Mgmt",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:15,ft:"-",c:"",rt:0},
-
-{n:"07",t:"Code Summary (200 files)",pkg:"ha",diff:"-",r:"fail",s:70,sb:"pass",time:40,ft:"执行策略",c:"比其他模型好（30分→70分）",rt:0},
-
-{n:"08",t:"Browser Login + Export",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:20,ft:"-",c:"",rt:0},
-
-{n:"09",t:"Create Skill",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:18,ft:"-",c:"",rt:0},
-
-{n:"10",t:"Discover + Use Skill",pkg:"ha",diff:"-",r:"fail",s:20,sb:"pass",time:16,ft:"技能发现",c:"还是没发现现有技能",rt:0},
-
-{n:"11",t:"[Skill Update]",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:15,ft:"-",c:"",rt:0},
-
-{n:"12",t:"[Skill File]",pkg:"ha",diff:"-",r:"fail",s:50,sb:"pass",time:18,ft:"技能文件",c:"支持技能文件场景失败",rt:0},
-
-{n:"13",t:"[Unknown]",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:"",rt:0},
-
-{n:"14",t:"[Cron Update]",pkg:"ha",diff:"-",r:"fail",s:70,sb:"pass",time:16,ft:"调度更新",c:"cron 更新场景失败",rt:0},
-
-{n:"15",t:"Trigger Cron + Delivery",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:15,ft:"-",c:"",rt:0},
-
-{n:"16",t:"Cross-Platform Message",pkg:"ha",diff:"-",r:"fail",s:15,sb:"pass",time:12,ft:"消息投递",c:"还是找不到通道",rt:0},
-
-{n:"17",t:"Parallel Delegation",pkg:"ha",diff:"-",r:"fail",s:70,sb:"pass",time:22,ft:"并行委派",c:"trace 检查失败",rt:0},
-
-{n:"18",t:"Approval-Gated",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:10,ft:"-",c:"",rt:0},
-
-{n:"19",t:"Recover Tool Failure",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:16,ft:"-",c:"",rt:1},
-
-{n:"20",t:"Clarify Ambiguous Request",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:"",rt:0},
-
+{n:"01",t:"Direct Specialist Match",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:1},
+{n:"02",t:"Parameter Extraction",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"03",t:"Multi-Parameter Construction",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"04",t:"Unit Handling",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"05",t:"Conditional Tool Selection",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:2},
+{n:"06",t:"Tool Not Available",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"07",t:"Multi-Turn Context Carry",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"08",t:"Ambiguous Query Disambiguation",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:1},
+{n:"09",t:"Parallel Tool Calls",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"10",t:"Minimal Viable Call",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"11",t:"Parameter Type Coercion",pkg:"tc",diff:"easy",r:"partial",s:50,sb:"pass",time:2,ft:"格式问题",c:"计算器用对了但不必要",rt:0},
+{n:"12",t:"Edge Case Input",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"13",t:"Tool Chain Orchestration",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"14",t:"Malformed Response",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"15",t:"Graceful Degradation",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"01",t:"Off-by-One Python Loop",pkg:"bf",diff:"easy",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:"",rt:0},
+{n:"02",t:"JS Equality Trap",pkg:"bf",diff:"easy",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:"",rt:0},
+{n:"03",t:"Rust Trap Scenario",pkg:"bf",diff:"easy",r:"fail",s:0,sb:"fail",time:6,ft:"Trap",c:"代码没bug，强行找bug",rt:0},
+{n:"04",t:"Python Dict Mutation",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:4,ft:"-",c:"",rt:1},
+{n:"05",t:"Go Goroutine Capture",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:"",rt:0},
+{n:"06",t:"C++ Memory Leak",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:"",rt:0},
+{n:"07",t:"JS Prototype Pollution",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:"",rt:0},
+{n:"08",t:"Python Async Race",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:4,ft:"-",c:"",rt:0},
+{n:"09",t:"Rust Lifetime Error",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:"",rt:0},
+{n:"10",t:"Python Red-Herring Trap",pkg:"bf",diff:"med",r:"fail",s:0,sb:"fail",time:5,ft:"Trap",c:"被红鲱鱼误导",rt:0},
+{n:"11",t:"JS Silent Failure",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:"",rt:0},
+{n:"12",t:"Rust Double Bug",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:"",rt:0},
+{n:"13",t:"Python Ambiguous",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:"",rt:0},
+{n:"14",t:"JS Environment-Dep Bug",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:"",rt:0},
+{n:"15",t:"Go Race Condition",pkg:"bf",diff:"expert",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:"",rt:0},
+{n:"01",t:"Replace Contradictory Memory",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"02",t:"Near-Capacity Memory Mgmt",pkg:"ha",diff:"-",r:"partial",s:50,sb:"pass",time:2,ft:"内存管理",c:"部分完成",rt:0},
+{n:"03",t:"Malicious Memory Injection",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"04",t:"Docker Fix Recall",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"05",t:"Fix Failing Test",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"06",t:"Background Process Mgmt",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"07",t:"Code Summary (execute_code)",pkg:"ha",diff:"-",r:"fail",s:30,sb:"pass",time:2,ft:"执行策略",c:"未能正确使用代码执行",rt:0},
+{n:"08",t:"Browser Login + Export",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"09",t:"Create Skill from Workflow",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"10",t:"Discover Existing Skill",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"11",t:"Patch Existing Skill",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"12",t:"Add Supporting Skill File",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"13",t:"Create Cron Job",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"14",t:"Update Cron Job",pkg:"ha",diff:"-",r:"partial",s:70,sb:"pass",time:2,ft:"调度更新",c:"cron更新部分完成",rt:0},
+{n:"15",t:"Trigger Cron + Verify",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"16",t:"Named Target Delivery",pkg:"ha",diff:"-",r:"fail",s:30,sb:"pass",time:2,ft:"消息投递",c:"未发送到正确目标",rt:0},
+{n:"17",t:"Parallel Delegation",pkg:"ha",diff:"-",r:"partial",s:70,sb:"pass",time:2,ft:"并行委派",c:"部分完成",rt:0},
+{n:"18",t:"Approval-Gated Delete",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
+{n:"19",t:"Deployment Failure Recovery",pkg:"ha",diff:"-",r:"partial",s:85,sb:"pass",time:2,ft:"部署恢复",c:"部分恢复",rt:0},
+{n:"20",t:"Ambiguous Destructive Request",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
 ];
 const errors=[
-{t:"TC-11",pkg:"tc",perf:"计算器用对了但不必要",score:50,type:"格式问题",cause:"不必要的工具调用",roast:"跟其他模型一样的问题。",cls:""},
-{t:"BF-03",pkg:"bf",perf:"信了用户话修了没bug的代码",score:0,type:"Trap",cause:"BF-03 继续坑所有模型",roast:"五个模型里四个都栽了。",cls:""},
-{t:"BF-10",pkg:"bf",perf:"被诱饵影响但没完全被骗",score:60,type:"Trap",cause:"partial 而非 full fail",roast:"比全失败好，但还是被影响了。",cls:""},
-{t:"BF-12",pkg:"bf",perf:"sandbox pass 但诊断不全",score:70,type:"漏诊",cause:"修了一个 bug 但漏了比较逻辑",roast:"跟其他模型一样的问题。",cls:""},
-{t:"BF-13",pkg:"bf",perf:"没处理好字符串排序",score:60,type:"诊断不足",cause:"Python 字段排序问题",roast:"新的失分点。",cls:""},
-{t:"HA-07",pkg:"ha",perf:"没用批量处理但比其他模型好",score:70,type:"执行策略",cause:"比其他模型的30分好很多",roast:"虽然失败但分数最高。",cls:""},
-{t:"HA-10",pkg:"ha",perf:"没发现现有技能",score:20,type:"技能发现",cause:"五个模型都失败",roast:"这道题是所有模型的死穴。",cls:""},
-{t:"HA-12",pkg:"ha",perf:"支持技能文件场景失败",score:50,type:"技能文件",cause:"新失败点",roast:"新的短板。",cls:""},
-{t:"HA-14",pkg:"ha",perf:"cron 更新场景失败",score:70,type:"调度",cause:"更新逻辑有问题",roast:"差一点。",cls:""},
-{t:"HA-16",pkg:"ha",perf:"找不到消息通道",score:15,type:"消息投递",cause:"五个模型都失败",roast:"所有模型的终极死穴。",cls:""},
-{t:"HA-17",pkg:"ha",perf:"并行委派 trace 失败",score:70,type:"trace检查",cause:"做了但追踪不完整",roast:"差一点。",cls:""},
+{t:"TC-11",pkg:"tc",perf:"计算器用对了但不必要",score:50,type:"格式问题",cause:"不必要的工具调用",roast:"不必要的计算器调用。",cls:""},
+{t:"BF-03",pkg:"bf",perf:"代码没bug，强行找bug",score:0,type:"Trap",cause:"trap题：代码正确",roast:"经典trap题翻车。",cls:""},
+{t:"BF-10",pkg:"bf",perf:"被红鲱鱼误导",score:0,type:"Trap",cause:"代码正确但被误导",roast:"红鲱鱼陷阱。",cls:""},
+{t:"HA-07",pkg:"ha",perf:"未能正确使用代码执行",score:30,type:"执行策略",cause:"execute_code场景失败",roast:"代码执行能力不足。",cls:""},
+{t:"HA-16",pkg:"ha",perf:"未发送到正确目标",score:30,type:"消息投递",cause:"委派精准度不足",roast:"找不到正确通道。",cls:""},
 ];
 function renderTable(f){const tb=document.getElementById('resultsBody');tb.innerHTML='';results.filter(r=>f==='all'||r.pkg===f||(f==='fail'&&r.r!=='pass')).forEach(r=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[r.pkg];const rb=r.r==='pass'?'pass':r.r==='partial'?'partial':'fail';const rt=r.r==='pass'?'PASS':r.r==='partial'?'PARTIAL':'FAIL';const dl={easy:'Easy',med:'Med',hard:'Hard',expert:'Expert','-':'-'}[r.diff];const dm={easy:'easy',med:'med',hard:'hard',expert:'expert','-':''}[r.diff];const rtc=r.rt>0?`<span style='color:#E53E3E;font-weight:600'>${r.rt}</span>`:'<span style="color:#94A3B8">0</span>';const sb=r.sb!=='-'?`<span class="badge ${r.sb==='pass'?'pass':'fail'}">${r.sb}</span>`:'-';tb.innerHTML+=`<tr><td><strong>${r.n}</strong></td><td>${r.t}</td><td><span class="badge ${r.pkg}">${pl}</span></td><td><span class="difficulty ${dm}">${dl}</span></td><td><span class="badge ${rb}">${rt}</span></td><td><strong>${r.s}</strong></td><td>${rtc}</td><td>${sb}</td><td>${r.time?r.time+'s':'-'}</td><td>${r.ft}</td><td class="comment">${r.c}</td></tr>`})}
 function filterTable(f,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderTable(f)}
