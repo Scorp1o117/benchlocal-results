@@ -94,8 +94,9 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     </div>
   </div>
   <div class="score-row">
-    <div class="big-score"><div class="label">加权总分</div><div class="num">85.0</div><div class="sub">原始 94.0 − 重试扣分 9</div></div>
-        <div class="sub-scores">
+    <div class="big-score"><div class="label">加权总分</div><div class="num">94.0</div><div class="sub">加权原始分 = TC×0.3 + BF×0.3 + HA×0.4</div></div>
+    <div style="background:linear-gradient(135deg,#667eea,#764ba2);border-radius:var(--r);padding:32px 40px;color:#fff;min-width:180px"><div class="label">实用得分</div><div class="num">85.0</div><div class="sub">扣除重试惩罚后</div></div>
+    <div class="sub-scores">
       <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">100</div><div class="sub">15/15 通过 · 100% 🏆 · 重试 -2</div><div class="bar"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div></div>
       <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">93.3</div><div class="sub">14/15 通过 · 93% · 重试 -5</div><div class="bar"><div class="bar-fill" style="width:93%;background:#ED8936"></div></div></div>
       <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">90</div><div class="sub">16/20 通过 · 80% · 重试 -2</div><div class="bar"><div class="bar-fill" style="width:90%;background:#548235"></div></div></div>
@@ -106,7 +107,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
       <strong style="color:#1A202C">📊 计分规则</strong> — 加权总分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4，再扣除重试惩罚分。
       <strong>重试扣分</strong>：每道题首次通过不扣分，重试后才通过的题目每重试 1 次扣 1 分，重试后仍失败的不参与扣分。
       <strong>公式</strong>：最终分 = 原始加权分 − Σ(每题重试次数)。
-      <span style="color:#E53E3E;font-weight:600">本模型共重试 9 次（TC-2 + BF-5 + HA-2）</span>
+      <span style="color:#E53E3E;font-weight:600">本模型共重试 9 次（TC-2 + BF-5 + HA-2）
     </div>
   </div>
 
