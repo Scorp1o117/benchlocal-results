@@ -111,7 +111,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     </div>
   </div>
   <div class="score-row">
-    <div class="big-score"><div class="label">加权总分</div><div class="num">87.2</div><div class="sub">TC×0.3 + BF×0.3 + HA×0.4</div></div>
+    <div class="big-score"><div class="label">加权总分</div><div class="num">60.2</div><div class="sub">原始 87.2 − 重试扣分 27</div></div>
     <div class="sub-scores">
       <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">93</div><div class="sub">14/15 通过 · 93%</div><div class="bar"><div class="bar-fill" style="width:93%;background:var(--grad)"></div></div></div>
       <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">88</div><div class="sub">13/15 通过 · 87%</div><div class="bar"><div class="bar-fill" style="width:88%;background:#ED8936"></div></div></div>
@@ -141,18 +141,18 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
   <h2>🌊 📊 模型评估总结</h2>
   <div class="roast-box">
     <div class="roast-section pro"><h4>✅ 优势</h4><ul>
-      <li>ToolCall 93分 ★★★★★ Excellent——工具选择、参数精度、多步链全部满分，错误恢复也是满分</li>
-      <li>BugFind 大幅进步 88分——跨语言 debug 能力强劲（Python/JS/Rust/Go 全覆盖），逻辑推理和隐蔽bug识别满分</li>
-      <li>HermesAgent 记忆管理满分（100分）——替换矛盾记忆、近容量管理、恶意注入防御全部通过</li>
+      <li>ToolCall 93分 ★★★★★ — 工具选择、参数精度、多步链全部满分，错误恢复也是满分</li>
+      <li>BugFind 88分 — 跨语言 debug 能力强劲（Python/JS/Rust/Go），逻辑推理和隐蔽bug识别满分</li>
+      <li>HermesAgent 记忆管理满分（100分）— 替换矛盾记忆、近容量管理、恶意注入防御全部通过</li>
       <li>速度 62.5 t/s + 体积仅 15.4GB，性价比极高</li>
-      <li>BugFind 13/15 通过，从之前的"格式全错"进步到"格式基本正确"</li>
+      <li>BugFind 13/15 通过，跨语言格式输出质量好</li>
     </ul></div>
     <div class="roast-section con"><h4>⚠️ 不足</h4><ul>
-      <li>Trap 题（BF-03/BF-10）依然失败——"过度诊断"问题未解决，不会判断"代码没问题"</li>
-      <li>安全拒绝能力（TC-12）——面对不支持的破坏性操作没能拒绝</li>
-      <li>HermesAgent 委派协调薄弱——并行委派(HA-17)仅20分，目标投递(HA-16)仅30分</li>
-      <li>技能生态不成熟——技能发现(HA-10)和修补(HA-11)都不完整</li>
-      <li>execute_code 编程能力（HA-07）仅30分，复杂代码执行场景仍需提升</li>
+      <li>Trap 题（BF-03/BF-10）失败 — "代码没bug"场景仍会过度诊断</li>
+      <li>安全拒绝能力（TC-12）— 面对不支持的破坏性操作没能拒绝</li>
+      <li>HermesAgent 委派协调薄弱 — 并行委派(HA-17)仅20分，目标投递(HA-16)仅30分</li>
+      <li>技能生态不成熟 — 技能发现(HA-10)和修补(HA-11)都不完整</li>
+      <li>重试 27 次，重试成本较高，调整后仅 60.2 分</li>
     </ul></div>
     <div class="roast-section tip"><h4>📋 测试环境</h4><ul>
       <li>硬件 — RTX 5070 Ti 16GB + 128GB RAM，MoE模型部分专家层offload到CPU</li>
@@ -161,8 +161,8 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
       <li>模型下载 — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>NEX N2-Mini 这次从 75.7 暴涨到 87.2，直接从第9名跃升至并列第2！进步最明显的是 BugFind（68.7→88），之前"修对了但格式全错"的问题基本解决了。</p>
-      <p class="final">一句话评价：干活又快又准的实习生终于学会了交作业格式——但"该说不的时候说不"和"复杂委派协调"这两门课还得补～ 🌊</p>
+      <p>NEX N2-Mini 拿到调整后 60.2 分（原始 87.2，重试 27 次扣 27 分）。ToolCall 93分表现出色，工具调用能力一流。BugFind 88分跨语言 debug 功底扎实。但重试次数多（27次）说明模型稳定性不足，原始分虽高但调整后大幅缩水。</p>
+      <p class="final">一句话评价：手速快的实习生——干活飞快（62.5t/s）工具调用满分，但需要大量重试才能做对，稳定性是最大短板。</p>
     </div>
   </div>
 </section>
