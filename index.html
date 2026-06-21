@@ -556,16 +556,16 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
 <section class="section">
   <div class="section-header">
     <h2>📊 测试总结</h2>
-    <p>基于 BenchLocal 在同一硬件环境下的本地推理测试，横向对比 9 个模型配置</p>
+    <p>基于 BenchLocal 在同一硬件环境下的本地推理测试，横向对比 11 个模型配置</p>
   </div>
   <div class="roast-box">
     <div class="roast-section pro"><h4>🏆 核心发现</h4><ul>
-      <li><strong>重试扣分大幅拉开差距</strong> — 原始分 87~94 的模型，调整后变成 60~85，排名变化剧烈</li>
-      <li><strong>稳定性是关键指标</strong> — 仅 3 次重试的 Qwen3.6-27B 无思考版（84.4）超过了原始分更高的模型</li>
+      <li><strong>能力上限 vs 实用得分差距显著</strong> — 重试次数越多，两者的差距越大：N2-Mini 差 27 分（87.2→60.2），27B 无思考版仅差 3 分（87.4→84.4）</li>
+      <li><strong>稳定性是最好的竞争力</strong> — 仅 3 次重试的 Qwen3.6-27B 无思考版实用得分 84.4，超过多个原始分更高的模型</li>
+      <li><strong>Gemma-4 QAT 量化表现亮眼</strong> — 12B 版本仅 6.4GB 却拿到实用得分 85.3，26B 思考版 BugFind 全场最高 96 分</li>
       <li><strong>ToolCall 满分常见</strong> — Step-3.7、Qwen3.6-35B 思考版、QwenPaw-9B、27B 思考版、DeepSeek 均满分</li>
+      <li><strong>API 大模型作为参考</strong> — DeepSeek-V4-Flash（284B MoE）能力上限 94.0，实用得分 85.0，三项均衡</li>
       <li><strong>BugFind BF-03 Trap 题全场最难</strong> — 多数模型在"代码没bug"场景翻车，无法判断代码是正确的</li>
-      <li><strong>API 大模型优势明显</strong> — DeepSeek-V4-Flash（284B MoE）调整后 85.0 分，三项均衡</li>
-      <li><strong>最小体积也能拿高分</strong> — Qwen3.6-27B 无思考版 11.9GB，仅 3 次重试，调整后 84.4</li>
     </ul></div>
     <div class="roast-section con"><h4>⚠️ 已知局限</h4><ul>
       <li><strong>Trap 题普遍失分</strong> — BF-03（代码没bug）和 BF-10（红鲱鱼）是多数模型的软肋</li>

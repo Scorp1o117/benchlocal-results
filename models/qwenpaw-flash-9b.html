@@ -169,7 +169,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
       <li>模型下载 — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>QwenPaw-Flash-9B 调整后 64.4 分（原始 88.4，重试 24 次）。ToolCall 满分 100，90.3 t/s 输出速度全场最快。但 9B 参数量天花板明显，BugFind 和 HA 都需要大量重试（24次），稳定性不足。 一句话评价：经济适用型——7.9GB 体积、90.3t/s 全场最快，但 24 次重试暴露了 9B 参数量的天花板。</p>
+      <p>QwenPaw-Flash-9B 能力上限 88.4 分，实用得分 64.4 分（重试 24 次）。9B 稠密模型，7.9GB 体积，90.3 t/s 输出速度全场最快。ToolCall 满分 100，但 9B 参数量天花板明显——BugFind 和 HA 都需要大量重试，24 次重试让实用得分大幅缩水。 一句话评价：速度王者——90.3t/s 全场最快、7.9GB 最小，但 24 次重试暴露了 9B 参数量的天花板。</p>
     </div>
   </div>
 </section>
