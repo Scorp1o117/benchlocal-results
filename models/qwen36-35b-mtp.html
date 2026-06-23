@@ -101,12 +101,12 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     </div>
   </div>
   <div class="score-row">
-    <div class="big-score"><div class="label">能力上限</div><div class="num">91.5</div><div class="sub">加权原始分 = TC×0.3 + BF×0.3 + HA×0.4</div></div>
-    <div class="adj-score"><div class="label">实用得分</div><div class="num">80.5</div><div class="sub">−11 重试扣分</div></div>
+    <div class="big-score"><div class="label">能力上限</div><div class="num">91.3</div><div class="sub">加权原始分 = TC×0.3 + BF×0.3 + HA×0.4</div></div>
+    <div class="adj-score"><div class="label">实用得分</div><div class="num">80.3</div><div class="sub">−11 重试扣分</div></div>
     <div class="sub-scores">
-      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">97</div><div class="sub">14/15 通过 · 93% · 重试 -5</div><div class="bar"><div class="bar-fill" style="width:97%;background:var(--grad)"></div></div></div>
-      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">96</div><div class="sub">13/15 通过 · 87% · 重试 -5</div><div class="bar"><div class="bar-fill" style="width:96%;background:#ED8936"></div></div></div>
-      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">84</div><div class="sub">15/20 通过 · 75% · 重试 -1</div><div class="bar"><div class="bar-fill" style="width:84%;background:#548235"></div></div></div>
+      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">97</div>/15 通过 · 93% · 重试 -5</div><div class="bar"><div class="bar-fill" style="width:97%;background:var(--grad)"></div></div></div>
+      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">96</div>/15 通过 · 87% · 重试 -5</div><div class="bar"><div class="bar-fill" style="width:96%;background:#ED8936"></div></div></div>
+      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">84</div>/20 通过 · 75% · 重试 -1</div><div class="bar"><div class="bar-fill" style="width:84%;background:#548235"></div></div></div>
     </div>
   </div>
   <div style="max-width:1280px;margin:16px auto 0;padding:0 48px">
@@ -123,7 +123,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
     <div class="tab" onclick="filterTable('tc',this)">ToolCall (15)</div>
     <div class="tab" onclick="filterTable('bf',this)">BugFind (15)</div>
     <div class="tab" onclick="filterTable('ha',this)">HermesAgent (20)</div>
-    <div class="tab" onclick="filterTable('fail',this)">❌ 失败 (11)</div>
+    <div class="tab" onclick="filterTable('fail',this)">❌ 失败 (8)</div>
   </div>
   <div class="table-wrap"><table><thead><tr><th>#</th><th>题目</th><th>测试包</th><th>难度</th><th>结果</th><th>得分</th><th>重试</th><th>sandbox</th><th>耗时</th><th>失败类型</th><th>点评</th></tr></thead><tbody id="resultsBody"></tbody></table></div>
 </section>
@@ -164,7 +164,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
 
 <script>
 const results=[
-{n:"01",t:"Direct Specialist Match",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
+{n:"01",t:"Direct Specialist Match",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:1},
 {n:"02",t:"Parameter Extraction",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
 {n:"03",t:"Multi-Parameter Construction",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
 {n:"04",t:"Unit Handling",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
@@ -176,11 +176,11 @@ const results=[
 {n:"10",t:"Minimal Viable Call",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
 {n:"11",t:"Parameter Type Coercion",pkg:"tc",diff:"easy",r:"partial",s:50,sb:"pass",time:0,ft:"工具调用",c:"计算器用对了但不必要",rt:0},
 {n:"12",t:"Edge Case Input",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
-{n:"13",t:"Tool Chain Orchestration",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:1},
+{n:"13",t:"Tool Chain Orchestration",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
 {n:"14",t:"Malformed Response",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
 {n:"15",t:"Graceful Degradation",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
 {n:"01",t:"Off-by-One Python Loop",pkg:"bf",diff:"easy",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
-{n:"02",t:"JS Equality Trap",pkg:"bf",diff:"easy",r:"pass",s:88,sb:"pass",time:0,ft:"-",c:"缺空字符串 case",rt:0},
+{n:"02",t:"JS Equality Trap",pkg:"bf",diff:"easy",r:"fail",s:88,sb:"pass",time:0,ft:"-",c:"缺空字符串 case",rt:0},
 {n:"03",t:"Rust Trap Scenario",pkg:"bf",diff:"easy",r:"fail",s:40,sb:"pass",time:0,ft:"Trap",c:"没识别出代码已正确",rt:0},
 {n:"04",t:"Python Dict Mutation",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
 {n:"05",t:"Go Goroutine Capture",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
@@ -188,11 +188,11 @@ const results=[
 {n:"07",t:"JS Prototype Pollution",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
 {n:"08",t:"Python Async Race",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
 {n:"09",t:"Rust Lifetime Error",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
-{n:"10",t:"Python Red-Herring Trap",pkg:"bf",diff:"med",r:"fail",s:0,sb:"pass",time:0,ft:"Trap",c:"误判正确代码",rt:0},
-{n:"11",t:"JS Silent Failure",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
+{n:"10",t:"Python Red-Herring Trap",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:0,ft:"Trap",c:"误判正确代码",rt:3},
+{n:"11",t:"JS Silent Failure",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:1},
 {n:"12",t:"Rust Double Bug",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
 {n:"13",t:"Python Ambiguous",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
-{n:"14",t:"JS Environment-Dep Bug",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:5},
+{n:"14",t:"JS Environment-Dep Bug",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:1},
 {n:"15",t:"Go Race Condition",pkg:"bf",diff:"expert",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
 {n:"01",t:"Replace Contradictory Memory",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
 {n:"02",t:"Near-Capacity Memory Mgmt",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
@@ -201,7 +201,7 @@ const results=[
 {n:"05",t:"Fix Failing Test",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
 {n:"06",t:"Background Process Mgmt",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
 {n:"07",t:"Code Summary (200 files)",pkg:"ha",diff:"-",r:"fail",s:30,sb:"pass",time:0,ft:"执行策略",c:"没用批量处理",rt:0},
-{n:"08",t:"Browser Login + Export",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
+{n:"08",t:"Browser Login + Export",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:1},
 {n:"09",t:"Create Skill",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
 {n:"10",t:"Discover + Use Skill",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
 {n:"11",t:"Skill Update",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
@@ -213,7 +213,7 @@ const results=[
 {n:"17",t:"Parallel Delegation",pkg:"ha",diff:"-",r:"fail",s:20,sb:"pass",time:0,ft:"委派协调",c:"并行委派失败",rt:0},
 {n:"18",t:"Approval-Gated",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
 {n:"19",t:"Recover Tool Failure",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0},
-{n:"20",t:"Clarify Ambiguous Request",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:1},
+{n:"20",t:"Clarify Ambiguous Request",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:0,ft:"-",c:"",rt:0}
 ];
 const errors=[
 {t:"TC-11",pkg:"tc",perf:"计算器用对了但不必要",score:50,type:"工具调用",cause:"不必要的工具调用",roast:"跟无MTP版一样的问题，说明这不是MTP能修的。",cls:""},
