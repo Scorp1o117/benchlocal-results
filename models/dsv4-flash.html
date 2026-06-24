@@ -108,16 +108,16 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
   </div>
   <div class="score-row">
     <div class="big-score"><div class="label"><span data-lang="zh">加权总分</span><span data-lang="en">Weighted Total</span></div><div class="num">94.0</div><div class="sub"><span data-lang="zh">加权原始分 = TC×0.3 + BF×0.3 + HA×0.4</span><span data-lang="en">Weighted raw score = TC×0.3 + BF×0.3 + HA×0.4</span></div></div>
-    <div class="adj-score"><div class="label"><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></div><div class="num">85.0</div><div class="sub">−9 <span data-lang="zh">重试</span><span data-lang="en">Retry</span>扣分</div></div>
+    <div class="adj-score"><div class="label"><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></div><div class="num">85.0</div><div class="sub"><span data-lang="zh">−9 重试扣分</span><span data-lang="en">−9 retry penalty</span></div></div>
     <div class="sub-scores">
-      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">100</div><div class="sub"><span data-lang="zh">15/15 通过 · 100% 🏆</span><span data-lang="en">15/15 passed · 100% 🏆</span> · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -2</div><div class="bar"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div></div>
-      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">93.3</div><div class="sub">14/15 通过 · 93% · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -5</div><div class="bar"><div class="bar-fill" style="width:93%;background:#ED8936"></div></div></div>
-      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">90</div><div class="sub">16/20 通过 · 80% · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -2</div><div class="bar"><div class="bar-fill" style="width:90%;background:#548235"></div></div></div>
+      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">100</div><div class="sub"><span data-lang="zh"><span data-lang="zh">15/15 通过 · 100% 🏆</span><span data-lang="en">15/15 passed · 100% 🏆</span></span><span data-lang="en">15/15 passed · 100% 🏆</span> · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -2</div><div class="bar"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div></div>
+      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">93.3</div><div class="sub"><span data-lang="zh">14/15 通过 · 93%</span><span data-lang="en">14/15 passed · 93%</span> · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -5</div><div class="bar"><div class="bar-fill" style="width:93%;background:#ED8936"></div></div></div>
+      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">90</div><div class="sub"><span data-lang="zh">16/20 通过 · 80%</span><span data-lang="en">16/20 passed · 80%</span> · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -2</div><div class="bar"><div class="bar-fill" style="width:90%;background:#548235"></div></div></div>
     </div>
   </div>
   <div style="max-width:1280px;margin:16px auto 0;padding:0 48px">
     <div style="background:#F1F5F9;border-radius:12px;padding:16px 20px;font-size:13px;color:#64748B;line-height:1.8">
-      <strong style="color:#1A202C">📊 <span data-lang="zh">计分规则</span><span data-lang="en">Scoring Rules</span></strong> — <strong><span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span></strong> <span data-lang="zh">= 加权原始分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</span><span data-lang="en">= Weighted raw score = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</span><br><strong><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></strong> = <span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span> − <span data-lang="zh">重试</span><span data-lang="en">Retry</span>扣分（每题首次通过不扣分，<span data-lang="zh">重试</span><span data-lang="en">Retry</span>后通过每<span data-lang="zh">重试</span><span data-lang="en">Retry</span>1次扣1分，<span data-lang="zh">重试</span><span data-lang="en">Retry</span>后仍失败不参与扣分）。
+      <strong style="color:#1A202C">📊 <span data-lang="zh">计分规则</span><span data-lang="en">Scoring Rules</span></strong> — <strong><span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span></strong> <span data-lang="zh">= 加权原始分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</span><span data-lang="en">= Weighted raw score = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</span><br><strong><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></strong> = <span data-lang="zh">能力上限 − 重试扣分（每题首次通过不扣分，重试后通过每重试1次扣1分，重试后仍失败不参与扣分）。</span><span data-lang="en">Max Score − retry penalty (first pass = no penalty, each retry = +1pt, failed retries excluded).</span>
       
     </div>
   </div>
@@ -145,12 +145,12 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
     <p>⚡ 此<span data-lang="zh">模型</span><span data-lang="en">Models</span>通过 OpenCode API <span data-lang="zh">测试</span><span data-lang="en">tested</span>（非本地推理），成绩<span data-lang="zh">作为参考</span><span data-lang="en">reference</span></p>
   </div>
   <div class="roast-box">
-    <div class="roast-section pro"><h4>✅ 优势</h4><ul>
+    <div class="roast-section pro"><h4>✅ <span data-lang="zh">优势</span><span data-lang="en">Strengths</span></h4><ul>
       <li><span data-lang="zh">ToolCall 满分 100/100，工具调用能力扎实</span><span data-lang="en">ToolCall full score 100/100, solid tool-calling capability.</span></li>
       <li><span data-lang="zh">HermesAgent 90 分，Agent 场景表现突出</span><span data-lang="en">HermesAgent 90 points, outstanding performance in Agent scenarios.</span></li>
       <li><span data-lang="zh">BugFind 93.3 分，通过了 BF-03 Trap</span><span data-lang="en">BugFind 93.3 points, passed BF-03 Trap.</span></li>
     </ul></div>
-    <div class="roast-section con"><h4>⚠️ 不足</h4><ul>
+    <div class="roast-section con"><h4>⚠️ <span data-lang="zh">不足</span><span data-lang="en">Weaknesses</span></h4><ul>
       <li><span data-lang="zh">BF-10 Trap 题仍然失败</span><span data-lang="en">Still failed BF-10 Trap question.</span></li>
       <li><span data-lang="zh">HA-07 代码批量处理（30分）和 HA-16 消息投递（30分）是主要失分点</span><span data-lang="en">HA-07 batch code processing (30 points) and HA-16 message delivery (30 points) are the main point deductions.</span></li>
       <li><span data-lang="zh">HA-14 Cron 更新（70分）和 HA-17 并行委派（70分）差一点通过</span><span data-lang="en">HA-14 Cron update (70 points) and HA-17 parallel delegation (70 points) narrowly missed passing.</span></li>
@@ -163,7 +163,7 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
     </ul></div>
     <div class="roast-conclusion">
       <p>DeepSeek-V4-Flash <span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span> 94.0 分，<span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span> 85.0 分（<span data-lang="zh">重试</span><span data-lang="en">Retry</span> 9 次）。作为 API 大<span data-lang="zh">模型</span><span data-lang="en">Models</span>，284B MoE（13B 激活）在参数量和训练数据上远超本地小<span data-lang="zh">模型</span><span data-lang="en">Models</span>。ToolCall 满分、BF 93.3、HA 90，三项均衡且都很强。本页成绩仅供参考。</p>
-      <p class="final"><span data-lang="zh">一句话评价</span><span data-lang="en">TL;DR</span>：API 大<span data-lang="zh">模型</span><span data-lang="en">Models</span>的正常水平——284B 参数量优势明显，本页成绩仅供参考。</p>
+      <p class="final"><span data-lang="zh">一句话评价</span><span data-lang="en">TL;DR</span>：API 大<span data-lang="zh">模型</span><span data-lang="en">Models</span>的正常水平——284B 参数量<span data-lang="zh">优势</span><span data-lang="en">Strengths</span>明显，本页成绩仅供参考。</p>
     </div>
   </div>
 </section>

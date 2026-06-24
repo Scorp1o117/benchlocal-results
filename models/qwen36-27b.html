@@ -130,16 +130,16 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
   </div>
   <div class="score-row">
     <div class="big-score"><div class="label"><span data-lang="zh">加权总分</span><span data-lang="en">Weighted Total</span></div><div class="num">87.4</div><div class="sub">原始 87.4 − <span data-lang="zh">重试</span><span data-lang="en">Retry</span>扣分 3</div></div>
-    <div class="adj-score"><div class="label"><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></div><div class="num">84.4</div><div class="sub">−3 <span data-lang="zh">重试</span><span data-lang="en">Retry</span>扣分</div></div>
+    <div class="adj-score"><div class="label"><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></div><div class="num">84.4</div><div class="sub"><span data-lang="zh">−3 重试扣分</span><span data-lang="en">−3 retry penalty</span></div></div>
     <div class="sub-scores">
-      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">96.7</div><div class="sub">14/15 通过 · 93% · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -1</div><div class="bar"><div class="bar-fill" style="width:96%;background:var(--grad)"></div></div></div>
-      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">84.2</div><div class="sub">12/15 通过 · 80%</div><div class="bar"><div class="bar-fill" style="width:84%;background:#ED8936"></div></div></div>
-      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">82.8</div><div class="sub">14/20 通过 · 70% · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -2</div><div class="bar"><div class="bar-fill" style="width:82%;background:#548235"></div></div></div>
+      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">96.7</div><div class="sub"><span data-lang="zh">14/15 通过 · 93%</span><span data-lang="en">14/15 passed · 93%</span> · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -1</div><div class="bar"><div class="bar-fill" style="width:96%;background:var(--grad)"></div></div></div>
+      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">84.2</div><div class="sub"><span data-lang="zh">12/15 通过 · 80%</span><span data-lang="en">12/15 passed · 80%</span></div><div class="bar"><div class="bar-fill" style="width:84%;background:#ED8936"></div></div></div>
+      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">82.8</div><div class="sub"><span data-lang="zh">14/20 通过 · 70%</span><span data-lang="en">14/20 passed · 70%</span> · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -2</div><div class="bar"><div class="bar-fill" style="width:82%;background:#548235"></div></div></div>
     </div>
   </div>
   <div style="max-width:1280px;margin:16px auto 0;padding:0 48px">
     <div style="background:#F1F5F9;border-radius:12px;padding:16px 20px;font-size:13px;color:#64748B;line-height:1.8">
-      <strong style="color:#1A202C">📊 <span data-lang="zh">计分规则</span><span data-lang="en">Scoring Rules</span></strong> — <strong><span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span></strong> <span data-lang="zh">= 加权原始分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</span><span data-lang="en">= Weighted raw score = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</span><br><strong><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></strong> = <span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span> − <span data-lang="zh">重试</span><span data-lang="en">Retry</span>扣分（每题首次通过不扣分，<span data-lang="zh">重试</span><span data-lang="en">Retry</span>后通过每<span data-lang="zh">重试</span><span data-lang="en">Retry</span>1次扣1分，<span data-lang="zh">重试</span><span data-lang="en">Retry</span>后仍失败不参与扣分）。
+      <strong style="color:#1A202C">📊 <span data-lang="zh">计分规则</span><span data-lang="en">Scoring Rules</span></strong> — <strong><span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span></strong> <span data-lang="zh">= 加权原始分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</span><span data-lang="en">= Weighted raw score = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</span><br><strong><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></strong> = <span data-lang="zh">能力上限 − 重试扣分（每题首次通过不扣分，重试后通过每重试1次扣1分，重试后仍失败不参与扣分）。</span><span data-lang="en">Max Score − retry penalty (first pass = no penalty, each retry = +1pt, failed retries excluded).</span>
       
     </div>
   </div>
@@ -166,18 +166,18 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
 <section class="section">
   <h2>🌊 📊 <span data-lang="zh">模型评估总结</span><span data-lang="en">Model Evaluation Summary</span></h2>
   <div class="roast-box">
-    <div class="roast-section pro"><h4>✅ 优势</h4><ul>
+    <div class="roast-section pro"><h4>✅ <span data-lang="zh">优势</span><span data-lang="en">Strengths</span></h4><ul>
       <li>HermesAgent 82.8 分，通过了 HA-07（代码批量处理）——之前七个<span data-lang="zh">模型</span><span data-lang="en">Models</span>都失败</li>
       <li><span data-lang="zh">ToolCall 96.7 分接近满分，工具调用能力接近 Gemma-4 水平</span><span data-lang="en">ToolCall 96.7 points, close to full marks; tool calling capability approaches Gemma-4 level.</span></li>
       <li>27B 稠密<span data-lang="zh">模型</span><span data-lang="en">Models</span> 11.9GB 体积，IQ3_M 量化下仍保持良好性能</li>
     </ul></div>
-    <div class="roast-section con"><h4>⚠️ 不足</h4><ul>
-      <li>Trap 题（BF-03/BF-10）<span data-lang="zh">全部</span><span data-lang="en">All</span>失败，批判性思维能力不足</li>
+    <div class="roast-section con"><h4>⚠️ <span data-lang="zh">不足</span><span data-lang="en">Weaknesses</span></h4><ul>
+      <li>Trap 题（BF-03/BF-10）<span data-lang="zh">全部</span><span data-lang="en">All</span>失败，批判性思维能力<span data-lang="zh">不足</span><span data-lang="en">Weaknesses</span></li>
       <li><span data-lang="zh">HA-06 后台进程管理失败（30分），HA-16 消息投递也失败</span><span data-lang="en">HA-06 background process management failed (30 points); HA-16 message delivery also failed.</span></li>
       <li><span data-lang="zh">BugFind 84.2 分，低于 Gemma-4 无思考版（86）和 Qwen3.6-35B 思考版（88.7）</span><span data-lang="en">BugFind 84.2 points, lower than Gemma-4 non-thinking (86) and Qwen3.6-35B thinking (88.7).</span></li>
     </ul></div>
     <div class="roast-section tip"><h4>📋 <span data-lang="zh">测试环境</span><span data-lang="en">Test Environment</span></h4><ul>
-      <li><span data-lang="zh">硬件</span><span data-lang="en">Hardware</span> — RTX 5070 Ti 16GB + 128GB RAM，MoE<span data-lang="zh">模型</span><span data-lang="en">Models</span>部分专家层offload到CPU</li>
+      <li><span data-lang="zh">硬件</span><span data-lang="en">Hardware</span> — RTX 5070 Ti 16GB + 128GB RAM，MoE<span data-lang="zh">模型</span><span data-lang="en">Models</span><span data-lang="zh">部分专家层offload到CPU</span><span data-lang="en">expert layers partially offloaded to CPU</span></li>
       <li><span data-lang="zh">推理后端</span><span data-lang="en">Inference Backend</span> — llama.cpp</li>
       <li><span data-lang="zh">测试包</span><span data-lang="en">Pack</span> <span data-lang="zh">— ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</span><span data-lang="en">— ToolCall-15 / BugFind-15 / HermesAgent-20 (total 50 questions)</span></li>
       <li><span data-lang="zh">模型下载</span><span data-lang="en">Model Download</span> — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
@@ -312,7 +312,7 @@ const errors=[
 ];
 function renderTable(f){const tb=document.getElementById('resultsBody');tb.innerHTML='';results.filter(r=>f==='all'||r.pkg===f||(f==='fail'&&r.r!=='pass')).forEach(r=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[r.pkg];const rb=r.r==='pass'?'pass':r.r==='partial'?'partial':'fail';const rt=r.r==='pass'?'PASS':r.r==='partial'?'PARTIAL':'FAIL';const dl={easy:'Easy',med:'Med',hard:'Hard',expert:'Expert','-':'-'}[r.diff];const dm={easy:'easy',med:'med',hard:'hard',expert:'expert','-':''}[r.diff];const rtc=r.rt>0?`<span style='color:#E53E3E;font-weight:600'>${r.rt}</span>`:'<span style="color:#94A3B8">0</span>';const sb=r.sb!=='-'?`<span class="badge ${r.sb==='pass'?'pass':'fail'}">${r.sb}</span>`:'-';tb.innerHTML+=`<tr><td><strong>${r.n}</strong></td><td>${r.t}</td><td><span class="badge ${r.pkg}">${pl}</span></td><td><span class="difficulty ${dm}">${dl}</span></td><td><span class="badge ${rb}">${rt}</span></td><td><strong>${r.s}</strong></td><td>${rtc}</td><td>${sb}</td><td>${r.time?r.time+'s':'-'}</td><td>${i18nField(r.ft, i18nMap)}</td><td class="comment">${i18nField(r.c, i18nMap)}</td></tr>`})}
 function filterTable(f,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderTable(f)}
-function renderErrors(){const g=document.getElementById('errorGrid');errors.forEach(e=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[e.pkg];g.innerHTML+=`<div class="error-card ${e.cls}"><h4><span class="badge ${e.pkg}">${pl}</span> ${e.t}</h4><div class="meta"><span>得分: <strong>${e.score}</strong></span><span>类型: ${i18nField(e.type, i18nMap)}</span></div><div class="desc"><strong>表现:</strong> ${i18nField(e.perf, i18nMap)}<br><strong>根因:</strong> ${i18nField(e.cause, i18nMap)}</div><div class="roast">${i18nField(e.roast, i18nMap)}</div></div>`})}
+function renderErrors(){const g=document.getElementById('errorGrid');errors.forEach(e=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[e.pkg];g.innerHTML+=`<div class="error-card ${e.cls}"><h4><span class="badge ${e.pkg}">${pl}</span> ${e.t}</h4><div class="meta"><span>得分: <strong>${e.score}</strong></span><span>${i18n('类型:','Type:')} ${i18nField(e.type, i18nMap)}</span></div><div class="desc"><strong>${i18n('表现:','Performance:')}</strong> ${i18nField(e.perf, i18nMap)}<br><strong>${i18n('根因:','Root Cause:')}</strong> ${i18nField(e.cause, i18nMap)}</div><div class="roast">${i18nField(e.roast, i18nMap)}</div></div>`})}
 renderTable('all');renderErrors();
 </script>
 <script>(function(){
