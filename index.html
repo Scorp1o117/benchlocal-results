@@ -166,8 +166,8 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
 <!-- Hero -->
 <section class="hero">
   <h1><span data-lang="zh">本地模型</span><span data-lang="en">Local Models</span><br><span><span data-lang="zh">测试数据库</span><span data-lang="en">Benchmark Database</span></span></h1>
-  <p><span data-lang="zh">基于</span><span data-lang="en">Based on</span> <a href="https://github.com/stevibe/BenchLocal" target="_blank" style="color:var(--red);font-weight:600">BenchLocal</a> 桌面应用，在本地对真实任务进行基准<span data-lang="zh">测试</span><span data-lang="en">tested</span>，横向对比<span data-lang="zh">模型</span><span data-lang="en">Models</span><span data-lang="zh">表现</span><span data-lang="en">Performance</span></p><p style="font-size:13px;color:var(--text3);margin-top:8px">当前<span data-lang="zh">测试环境</span><span data-lang="en">Test Environment</span>：RTX 5070 Ti 16GB + 128GB RAM · MoE<span data-lang="zh">模型</span><span data-lang="en">Models</span><span data-lang="zh">部分专家层offload到CPU</span><span data-lang="en">expert layers partially offloaded to CPU</span></p>
-  <p style="font-size:13px;color:var(--text3);margin-top:8px"><span data-lang="zh">排名基于</span><span data-lang="en">Ranked by</span><strong style="color:var(--text2)"><span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span></strong><span data-lang="zh">（加权原始分）</span><span data-lang="en">(weighted raw score)</span>，<strong style="color:var(--text2)"><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></strong> = <span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span> − <span data-lang="zh">重试</span><span data-lang="en">Retry</span>扣分（每题首次通过不扣分，<span data-lang="zh">重试</span><span data-lang="en">Retry</span>后通过每<span data-lang="zh">重试</span><span data-lang="en">Retry</span>1次扣1分）</p>
+  <p><span data-lang="zh">基于 BenchLocal 桌面应用，在本地对真实任务进行基准测试，横向对比模型表现</span><span data-lang="en">Based on BenchLocal desktop app, benchmarking LLMs on real-world tasks locally</span></p><p style="font-size:13px;color:var(--text3);margin-top:8px"><span data-lang="zh">当前测试环境：RTX 5070 Ti 16GB + 128GB RAM · MoE模型部分专家层offload到CPU</span><span data-lang="en">Test environment: RTX 5070 Ti 16GB + 128GB RAM · MoE expert layers partially offloaded to CPU</span></p>
+  <p style="font-size:13px;color:var(--text3);margin-top:8px"><span data-lang="zh">排名基于<strong style="color:var(--text2)">能力上限</strong>（加权原始分），<strong style="color:var(--text2)">实用得分</strong> = 能力上限 − 重试扣分（每题首次通过不扣分，重试后通过每重试1次扣1分）</span><span data-lang="en">Ranked by <strong style="color:var(--text2)">Max Score</strong> (weighted raw score), <strong style="color:var(--text2)">Effective Score</strong> = Max Score − retry penalty (first pass = no penalty, each retry = +1pt)</span></p>
   <div class="hero-stats">
     <div class="hero-stat"><div class="val">12</div><div class="lbl"><span data-lang="zh">已测试模型</span><span data-lang="en">Models Tested</span></div></div>
     <div class="hero-stat"><div class="val">50</div><div class="lbl"><span data-lang="zh">总测试题数</span><span data-lang="en">Total Questions</span></div></div>
@@ -567,8 +567,8 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
         <li><span data-lang="zh"><strong>ToolCall-15</strong> — 15 题工具调用测试，覆盖参数提取、多轮上下文、并行调用等</span><span data-lang="en"><strong>ToolCall-15</strong> — 15-question tool calling test covering parameter extraction, multi-turn context, parallel calls</span></li>
         <li><span data-lang="zh"><strong>BugFind-15</strong> — 15 题跨语言代码调试，含 Trap 陷阱题，难度 Easy~Expert</span><span data-lang="en"><strong>BugFind-15</strong> — 15-question cross-language debugging with Trap questions, Easy~Expert</span></li>
         <li><span data-lang="zh"><strong>HermesAgent-20</strong> — 20 题 Agent 场景测试，覆盖记忆管理、技能创建、调度投递等</span><span data-lang="en"><strong>HermesAgent-20</strong> — 20-question Agent scenarios covering memory management, skill creation, scheduling</span></li>
-        <li><strong><span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span></strong> <span data-lang="zh">— 加权原始分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</span><span data-lang="en">— Weighted raw score = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</span><span data-lang="zh">（模型最高能拿多少分）</span><span data-lang="en">(highest possible score)</span></li>
-        <li><strong><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></strong> — <span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span> − <span data-lang="zh">重试</span><span data-lang="en">Retry</span>扣分（每题首次通过不扣分，<span data-lang="zh">重试</span><span data-lang="en">Retry</span>后通过每<span data-lang="zh">重试</span><span data-lang="en">Retry</span>1次扣1分，<span data-lang="zh">重试</span><span data-lang="en">Retry</span>后仍失败不参与扣分）</li>
+        <li><span data-lang="zh"><strong>能力上限</strong> — 加权原始分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4（模型最高能拿多少分）</span><span data-lang="en"><strong>Max Score</strong> — Weighted raw score = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4 (highest possible score)</span></li>
+        <li><span data-lang="zh"><strong>实用得分</strong> — 能力上限 − 重试扣分（每题首次通过不扣分，重试后通过每重试1次扣1分，重试后仍失败不参与扣分）</span><span data-lang="en"><strong>Effective Score</strong> — Max Score − retry penalty (first pass = no penalty, each retry = +1pt, failed retries excluded)</span></li>
         <li><span data-lang="zh">能力上限排序（看天花板）、实用得分排序（看实际表现）、三项专项排序</span><span data-lang="en">Sort by max score (ceiling), effective score (actual performance), or per-suite ranking</span></li>
       </ul>
     </div>
@@ -577,27 +577,27 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
 
 <section class="section">
   <div class="section-header">
-    <h2>📊 <span data-lang="zh">测试</span><span data-lang="en">tested</span>总结</h2>
+    <h2>📊 <span data-lang="zh">测试总结</span><span data-lang="en">Test Summary</span></h2>
     <p><span data-lang="zh">基于 BenchLocal 在同一硬件环境下的本地推理测试，横向对比 11 个模型配置</span><span data-lang="en">Based on BenchLocal local inference tests on the same hardware, comparing 11 model configurations</span></p>
   </div>
   <div class="roast-box">
     <div class="roast-section pro"><h4>🏆 <span data-lang="zh">核心发现</span><span data-lang="en">Key Findings</span></h4><ul>
-      <li><strong><span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span> vs <span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span>差距显著</strong> — <span data-lang="zh">重试</span><span data-lang="en">Retry</span>次数越多，两者的差距越大：N2-Mini 差 27 分（87.2→60.2），27B 无思考版仅差 3 分（87.4→84.4）</li>
+      <li><span data-lang="zh"><strong>能力上限 vs 实用得分差距显著</strong> — 重试次数越多，两者的差距越大：N2-Mini 差 27 分（87.2→60.2），27B 无思考版仅差 3 分（87.4→84.4）</span><span data-lang="en"><strong>Big gap between Max Score and Effective Score</strong> — The more retries, the bigger the gap: N2-Mini drops 27 pts (87.2→60.2), while 27B no-think only drops 3 (87.4→84.4)</span></li>
       <li><span data-lang="zh">ToolCall 满分常见</span><span data-lang="en">ToolCall perfect scores are common</span></li>
       <li><span data-lang="zh">DeepSeek-V4-Flash（284B MoE）拿到 94.0 分，实用 85.0 分，三项均衡</span><span data-lang="en">DeepSeek-V4-Flash (284B MoE) scored 94.0, effective 85.0, well-balanced across all three</span></li>
-      <li><strong><span data-lang="zh">BugFind BF-03 Trap 题全场最难</span><span data-lang="en">BugFind BF-03 Trap question was the hardest in the entire set</span></strong> — 多数<span data-lang="zh">模型</span><span data-lang="en">Models</span>在"代码没bug"场景翻车，无法判断代码是正确的</li>
+      <li><span data-lang="zh"><strong>BugFind BF-03 Trap 题全场最难</strong> — 多数模型在"代码没bug"场景翻车，无法判断代码是正确的</span><span data-lang="en"><strong>BugFind BF-03 Trap was the hardest</strong> — Most models fail in "code has no bug" scenarios, unable to judge that code is correct</span></li>
     </ul></div>
     <div class="roast-section con"><h4>⚠️ <span data-lang="zh">已知局限</span><span data-lang="en">Known Limitations</span></h4><ul>
       <li><span data-lang="zh">BF-03（代码没bug）和 BF-10（红鲱鱼）是多数模型的软肋</span><span data-lang="en">BF-03 (code has no bug) and BF-10 (red herring) are weak points for most models</span></li>
-      <li><strong><span data-lang="zh">HA-07（代码批量处理）大部分失败</span><span data-lang="en">HA-07 (batch code processing) mostly failed.</span></strong> <span data-lang="zh">— execute_code 能力普遍薄弱</span><span data-lang="en">— execute_code capability is generally weak.</span></li>
-      <li><strong><span data-lang="zh">HA-16（消息投递）全军覆没</span><span data-lang="en">HA-16 (message delivery) completely failed.</span></strong> — 所有<span data-lang="zh">模型</span><span data-lang="en">Models</span>都无法找到正确的消息通道</li>
+      <li><span data-lang="zh"><strong>HA-07（代码批量处理）大部分失败</strong> — execute_code 能力普遍薄弱</span><span data-lang="en"><strong>HA-07 (batch code processing) mostly failed</strong> — execute_code capability is generally weak</span></li>
+      <li><span data-lang="zh"><strong>HA-16（消息投递）全军覆没</strong> — 所有模型都无法找到正确的消息通道</span><span data-lang="en"><strong>HA-16 (message delivery) completely failed</strong> — No model could find the correct message channel</span></li>
       <li><span data-lang="zh">重试成本差异巨大</span><span data-lang="en">Retry costs vary dramatically</span></li>
     </ul></div>
     <div class="roast-section tip"><h4>💡 <span data-lang="zh">测试环境</span><span data-lang="en">Test Environment</span></h4><ul>
-      <li><strong><span data-lang="zh">硬件</span><span data-lang="en">Hardware</span></strong> — RTX 5070 Ti 16GB + 128GB RAM，MoE<span data-lang="zh">模型</span><span data-lang="en">Models</span><span data-lang="zh">部分专家层offload到CPU</span><span data-lang="en">expert layers partially offloaded to CPU</span></li>
-      <li><strong><span data-lang="zh">推理后端</span><span data-lang="en">Inference Backend</span></strong> — llama.cpp</li>
-      <li><strong><span data-lang="zh">测试包</span><span data-lang="en">Pack</span></strong> <span data-lang="zh">— ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</span><span data-lang="en">— ToolCall-15 / BugFind-15 / HermesAgent-20 (total 50 questions)</span></li>
-      <li><strong><span data-lang="zh">模型下载</span><span data-lang="en">Model Download</span></strong> — <a href="https://huggingface.co/SC117" target="_blank" style="color:var(--red)">HF: SC117</a></li>
+      <li><span data-lang="zh"><strong>硬件</strong> — RTX 5070 Ti 16GB + 128GB RAM，MoE模型部分专家层offload到CPU</span><span data-lang="en"><strong>Hardware</strong> — RTX 5070 Ti 16GB + 128GB RAM, MoE expert layers partially offloaded to CPU</span></li>
+      <li><span data-lang="zh"><strong>推理后端</strong> — llama.cpp</span><span data-lang="en"><strong>Inference Backend</strong> — llama.cpp</span></li>
+      <li><span data-lang="zh"><strong>测试包</strong> — ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</span><span data-lang="en"><strong>Test Suites</strong> — ToolCall-15 / BugFind-15 / HermesAgent-20 (50 questions total)</span></li>
+      <li><span data-lang="zh"><strong>模型下载</strong></span><span data-lang="en"><strong>Model Download</strong></span> — <a href="https://huggingface.co/SC117" target="_blank" style="color:var(--red)">HF: SC117</a></li>
     </ul></div>
   </div>
 </section>
