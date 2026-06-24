@@ -152,26 +152,26 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
   <h2>🌊 📊 <span data-lang="zh">模型评估总结</span><span data-lang="en">Model Evaluation Summary</span></h2>
   <div class="roast-box">
     <div class="roast-section pro"><h4>✅ <span data-lang="zh">优势</span><span data-lang="en">Strengths</span></h4><ul>
-      <li>ToolCall 97 分，仅 TC-11 部分失败（50分），其余 14 题<span data-lang="zh">全部</span><span data-lang="en">All</span>通过，工具调用基础扎实</li>
+      <li><span data-lang="zh">ToolCall 97 分，仅 TC-11 部分失败（50分），其余 14 题通过，工具调用基础扎实</span><span data-lang="en">ToolCall scored 97, with only TC-11 failing (50 points); passed the remaining 14 questions, demonstrating solid tool-calling fundamentals.</span></li>
       <li><span data-lang="zh">BugFind 88 分（12/15 通过），Trap 题（BF-03、BF-10）成功识别，展现了较强的代码判断力</span><span data-lang="en">BugFind 88 points (12/15 passed); Trap questions (BF-03, BF-10) successfully identified, demonstrating strong code judgment ability.</span></li>
-      <li>HermesAgent 85 分（14/20 通过），HA-10 首次通过（40分），HA-19 <span data-lang="zh">重试</span><span data-lang="en">Retry</span>后提升至 80 分，多轮推理能力有实质性收益</li>
-      <li><span data-lang="zh">重试</span><span data-lang="en">Retry</span>仅 8 次（TC-1、HA-2、HA-2、HA-1、HA-3），整体<span data-lang="zh">表现</span><span data-lang="en">Performance</span>较为稳定</li>
+      <li><span data-lang="zh">HermesAgent 85 分（14/20 通过），HA-10 首次通过（40分），HA-19 后提升至 80 分，多轮推理能力有实质性收益</span><span data-lang="en">HermesAgent scored 85 (14/20 passed). HA-10 passed for the first time (40 points), and improved to 80 later; multi-turn reasoning showed substantial gains.</span></li>
+      <li><span data-lang="zh">仅 8 次（TC-1、HA-2、HA-2、HA-1、HA-3），整体较为稳定</span><span data-lang="en">Only 8 instances (TC-1, HA-2, HA-2, HA-1, HA-3); overall performance was quite stable.</span></li>
     </ul></div>
     <div class="roast-section con"><h4>⚠️ <span data-lang="zh">不足</span><span data-lang="en">Weaknesses</span></h4><ul>
       <li><span data-lang="zh">HermesAgent 仍有 6 题失败（HA-04/07/10/14/16/19），Agent 场景（记忆召回、批量处理、消息投递）仍存在短板</span><span data-lang="en">HermesAgent still failed 6 questions (HA-04/07/10/14/16/19); Agent scenarios (memory recall, batch processing, message delivery) remain weak points.</span></li>
       <li><span data-lang="zh">TC-11 部分失败（50分），不必要的工具调用问题未能解决</span><span data-lang="en">TC-11 partially failed (50 points); unnecessary tool calling issue unresolved.</span></li>
-      <li>BF-10 虽然通过但仅得 40 分（<span data-lang="zh">重试</span><span data-lang="en">Retry</span>前），说明 Trap 场景下仍需多次尝试才能定位</li>
+      <li><span data-lang="zh">BF-10 虽然通过但仅得 40 分（前），说明 Trap 场景下仍需多次尝试才能定位</span><span data-lang="en">BF-10 passed but scored only 40 points (early), indicating that multiple attempts are still needed to locate the trap in Trap scenarios.</span></li>
     </ul></div>
     <div class="roast-section tip"><h4>📋 <span data-lang="zh">测试环境</span><span data-lang="en">Test Environment</span></h4><ul>
-      <li><span data-lang="zh">硬件</span><span data-lang="en">Hardware</span> — RTX 5070 Ti 16GB + 128GB RAM，MoE <span data-lang="zh">模型</span><span data-lang="en">Models</span>部分专家层 offload 到 CPU</li>
+      <li><span data-lang="zh">— RTX 5070 Ti 16GB + 128GB RAM，MoE 部分专家层 offload 到 CPU</span><span data-lang="en">— RTX 5070 Ti 16GB + 128GB RAM, MoE expert layers offloaded to CPU.</span></li>
       <li><span data-lang="zh">推理后端</span><span data-lang="en">Inference Backend</span> — llama.cpp</li>
       <li><span data-lang="zh">采样参数 — temperature=1.0, top_p=0.95, top_k=20, repetition_penalty=1.5</span><span data-lang="en">Sampling parameters — temperature=1.0, top_p=0.95, top_k=20, repetition_penalty=1.5</span></li>
       <li><span data-lang="zh">测试包</span><span data-lang="en">Pack</span> <span data-lang="zh">— ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</span><span data-lang="en">— ToolCall-15 / BugFind-15 / HermesAgent-20 (total 50 questions)</span></li>
       <li><span data-lang="zh">模型下载</span><span data-lang="en">Model Download</span> — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>Qwen3.6-35B MTP 思考版<span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span> 89.5 分，<span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span> 81.5 分（<span data-lang="zh">重试</span><span data-lang="en">Retry</span> 8 次）。35B MoE（3B 激活），16.6 GB，62.6 t/s。ToolCall 稳健（97），BugFind 通过率 80%，HermesAgent 在 Agent 场景下<span data-lang="zh">表现</span><span data-lang="en">Performance</span>中规中矩。思考模式在 Trap 场景和多轮推理上有明显提升。</p>
-      <p class="final"><span data-lang="zh">一句话评价</span><span data-lang="en">TL;DR</span>：思考模式让 Trap 题和 Agent 复杂场景有了明显改善——<span data-lang="zh">重试</span><span data-lang="en">Retry</span>仅 8 次，<span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span> 81.5。</p>
+      <p><span data-lang="zh">Qwen3.6-35B MTP 思考版 89.5 分， 81.5 分（ 8 次）。35B MoE（3B 激活），16.6 GB，62.6 t/s。ToolCall 稳健（97），BugFind 通过率 80%，HermesAgent 在 Agent 场景下中规中矩。思考模式在 Trap 场景和多轮推理上有明显提升。</span><span data-lang="en">Qwen3.6-35B MTP Thinking version scored 89.5, with 81.5 (8 times). 35B MoE (3B activated), 16.6 GB, 62.6 t/s. ToolCall was robust (97), BugFind pass rate 80%, HermesAgent performed average in Agent scenarios. Thinking mode showed significant improvements in Trap scenarios and multi-turn reasoning.</span></p>
+      <p class="final"><span data-lang="zh">：思考模式让 Trap 题和 Agent 复杂场景有了明显改善——仅 8 次， 81.5。</span><span data-lang="en">: The thinking mode brought clear improvements to Trap questions and complex Agent scenarios—only 8 instances, scoring 81.5.</span></p>
     </div>
   </div>
 </section>

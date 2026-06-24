@@ -170,11 +170,11 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
       <li><span data-lang="zh">ToolCall 满分 100 🏆 — 15/15 全通过，包括拒绝不支持操作（TC-12）也正确处理</span><span data-lang="en">ToolCall full marks 100 🏆 — 15/15 fully passed, including correct handling of rejecting unsupported operations (TC-12).</span></li>
       <li><span data-lang="zh">BugFind 87 分 — 跨语言 debug 能力强劲（Python/JS/Rust/Go 全覆盖），BF-10 红鲱鱼陷阱通过</span><span data-lang="en">BugFind 87 — Strong cross-language debugging capability (full coverage of Python/JS/Rust/Go), passed BF-10 red herring trap.</span></li>
       <li><span data-lang="zh">HermesAgent 81 分 — HA-06 后台进程管理、HA-10 技能发现、HA-11 技能修补、HA-17 并行委派均通过</span><span data-lang="en">HermesAgent 81 — Passed HA-06 background process management, HA-10 skill discovery, HA-11 skill patching, and HA-17 parallel delegation.</span></li>
-      <li><span data-lang="zh">重试</span><span data-lang="en">Retry</span>成本低 — 仅 10 次<span data-lang="zh">重试</span><span data-lang="en">Retry</span>即拿到 88.8 原始分，调整后 78.8</li>
+      <li><span data-lang="zh">成本低 — 仅 10 次即拿到 88.8 原始分，调整后 78.8</span><span data-lang="en">Low cost — only 10 runs to get 88.8 raw score, adjusted 78.8</span></li>
     </ul></div>
     <div class="roast-section con"><h4>⚠️ <span data-lang="zh">不足</span><span data-lang="en">Weaknesses</span></h4><ul>
       <li><span data-lang="zh">BugFind BF-03 trap 题失败 — "代码没bug"场景仍会过度诊断，强行找bug</span><span data-lang="en">BugFind BF-03 trap failure — Over-diagnoses in "no bug" scenarios, forcing bug detection.</span></li>
-      <li>HA-04 verifier 环境超时（0分）— <span data-lang="zh">测试环境</span><span data-lang="en">Test Environment</span>问题非<span data-lang="zh">模型</span><span data-lang="en">Models</span>能力</li>
+      <li><span data-lang="zh">HA-04 verifier 环境超时（0分）— 问题非能力</span><span data-lang="en">HA-04 verifier environment timeout (0 points) — issue not due to capability</span></li>
       <li><span data-lang="zh">HA-07 execute_code（30分）、HA-12 技能文件（20分）、HA-16 消息投递（30分）薄弱</span><span data-lang="en">Weaknesses in HA-07 execute_code (30 points), HA-12 skill files (20 points), and HA-16 message delivery (30 points).</span></li>
       <li><span data-lang="zh">速度 13.9 t/s，71.6GB 体量下合理但不适合实时交互场景</span><span data-lang="en">Speed 13.9 t/s; reasonable for 71.6GB size but unsuitable for real-time interaction scenarios.</span></li>
     </ul></div>
@@ -185,8 +185,8 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
       <li><span data-lang="zh">模型下载</span><span data-lang="en">Model Download</span> — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>Step-3.7-Flash <span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span> 88.8 分，<span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span> 78.8 分（<span data-lang="zh">重试</span><span data-lang="en">Retry</span> 10 次）。198B MoE 架构（11B 激活），67.9GB 体积。ToolCall 满分 100，工具调用和参数提取能力顶尖；BugFind 87 分，跨语言 debug 功底扎实（Python/JS/Rust/Go）；HermesAgent 81 分，技能管理和后台进程处理不错，但消息投递和 execute_code 是短板。速度 13.9 t/s，71.6GB 体量下合理。</p>
-      <p class="final"><span data-lang="zh">一句话评价</span><span data-lang="en">TL;DR</span>：技术扎实的大块头——ToolCall 满分、跨语言 debug 全能，但 trap 题和消息投递是软肋。</p>
+      <p><span data-lang="zh">Step-3.7-Flash  88.8 分， 78.8 分（ 10 次）。198B MoE 架构（11B 激活），67.9GB 体积。ToolCall 满分 100，工具调用和参数提取能力顶尖；BugFind 87 分，跨语言 debug 功底扎实（Python/JS/Rust/Go）；HermesAgent 81 分，技能管理和后台进程处理不错，但消息投递和 execute_code 是短板。速度 13.9 t/s，71.6GB 体量下合理。</span><span data-lang="en">Step-3.7-Flash: 88.8 points, 78.8 points (10 runs). 198B MoE architecture (11B activated), 67.9GB size. ToolCall full score 100, top-tier tool calling and parameter extraction; BugFind 87 points, solid cross-language debugging skills (Python/JS/Rust/Go); HermesAgent 81 points, decent skill management and background process handling, but message delivery and execute_code are weaknesses. Speed 13.9 t/s, reasonable for 71.6GB model size.</span></p>
+      <p class="final"><span data-lang="zh">：技术扎实的大块头——ToolCall 满分、跨语言 debug 全能，但 trap 题和消息投递是软肋。</span><span data-lang="en">: Technically solid heavyweight — ToolCall full score, cross-language debugging all-rounder, but trap questions and message delivery are weak points.</span></p>
     </div>
   </div>
 </section>

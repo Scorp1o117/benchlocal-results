@@ -167,12 +167,12 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
   <h2>🌊 📊 <span data-lang="zh">模型评估总结</span><span data-lang="en">Model Evaluation Summary</span></h2>
   <div class="roast-box">
     <div class="roast-section pro"><h4>✅ <span data-lang="zh">优势</span><span data-lang="en">Strengths</span></h4><ul>
-      <li><span data-lang="zh">加权总分</span><span data-lang="en">Weighted Total</span> 91.9 全场第一，BugFind 93.3 + HermesAgent 84.8 均为高水平</li>
+      <li><span data-lang="zh">91.9 全场第一，BugFind 93.3 + HermesAgent 84.8 均为高水平</span><span data-lang="en">91.9, first place overall; BugFind 93.3 + HermesAgent 84.8 are both high-level scores</span></li>
       <li><span data-lang="zh">ToolCall 满分 100/100，BF-03 Trap 题通过——思考模式显著提升了批判性思维</span><span data-lang="en">ToolCall perfect score 100/100, passed BF-03 Trap question — Thinking mode significantly enhanced critical thinking.</span></li>
-      <li>IQ3_M 量化仅 11.9GB，体积在高分<span data-lang="zh">模型</span><span data-lang="en">Models</span>中最小，资源效率极高</li>
+      <li><span data-lang="zh">IQ3_M 量化仅 11.9GB，体积在高分中最小，资源效率极高</span><span data-lang="en">IQ3_M quantization at only 11.9GB, smallest size among high-scoring models, extremely resource-efficient</span></li>
     </ul></div>
     <div class="roast-section con"><h4>⚠️ <span data-lang="zh">不足</span><span data-lang="en">Weaknesses</span></h4><ul>
-      <li><span data-lang="zh">BF-10 Trap 题仍然失败</span><span data-lang="en">Still failed BF-10 Trap question.</span>——九个<span data-lang="zh">模型</span><span data-lang="en">Models</span>中仅 Gemma-4 思考版通过此题</li>
+      <li><span data-lang="zh">——九个中仅 Gemma-4 思考版通过此题</span><span data-lang="en">—— Only Gemma-4 Thinking passed this question out of nine</span></li>
       <li><span data-lang="zh">HA-16 消息投递 0 分，HA-14 Cron 更新也失败（无思考版反而通过）</span><span data-lang="en">HA-16 Message Delivery scored 0; HA-14 Cron Update also failed (non-thinking version passed instead).</span></li>
       <li><span data-lang="zh">思考模式有副作用：HA-14 从无思考版的 100 分退步到 70 分</span><span data-lang="en">Thinking mode has side effects: HA-14 regressed from 100 to 70 points compared to its non-thinking version.</span></li>
     </ul></div>
@@ -183,8 +183,8 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
       <li><span data-lang="zh">模型下载</span><span data-lang="en">Model Download</span> — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>Qwen3.6-27B 思考版 <span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span> 91.9 分，<span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span> 73.9 分（<span data-lang="zh">重试</span><span data-lang="en">Retry</span> 18 次）。ToolCall 满分、HA 84.8，思考模式让部分能力提升。但 BugFind <span data-lang="zh">重试</span><span data-lang="en">Retry</span>了 14 次，严重拉低<span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span>——原始分极高但稳定性<span data-lang="zh">不足</span><span data-lang="en">Weaknesses</span>。</p>
-      <p class="final"><span data-lang="zh">一句话评价</span><span data-lang="en">TL;DR</span>：原始分最高但<span data-lang="zh">重试</span><span data-lang="en">Retry</span>最多——思考模式提升了<span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span>，但 BugFind 14 次<span data-lang="zh">重试</span><span data-lang="en">Retry</span>让<span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span>大打折扣。</p>
+      <p><span data-lang="zh">Qwen3.6-27B 思考版  91.9 分， 73.9 分（ 18 次）。ToolCall 满分、HA 84.8，思考模式让部分能力提升。但 BugFind 了 14 次，严重拉低——原始分极高但稳定性。</span><span data-lang="en">Qwen3.6-27B Thinking: 91.9 points, 73.9 (18 times). ToolCall full score, HA 84.8; thinking mode improved some capabilities. However, BugFind occurred 14 times, significantly dragging down the score—original score was very high but stability suffered.</span></p>
+      <p class="final"><span data-lang="zh">：原始分最高但最多——思考模式提升了，但 BugFind 14 次让大打折扣。</span><span data-lang="en">: Highest original score but most errors—thinking mode helped, but 14 BugFind instances greatly reduced performance.</span></p>
     </div>
   </div>
 </section>

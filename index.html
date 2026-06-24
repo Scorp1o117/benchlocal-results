@@ -408,7 +408,7 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
         <span class="card-tag">🧠 Dense 12B</span>
         <span class="card-tag">📦 6.4 GB</span>
         <span class="card-tag">⚡ In 1522 t/s · Out 126.3 t/s</span>
-        <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ QAT量化</span>
+        <span class="card-tag" style="background:#FFF5F5;color:#E53E3E"><span data-lang="zh">🌡️ QAT量化</span><span data-lang="en">🌡️ QAT Quantization</span></span>
       </div>
       <div class="card-bars">
         <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:97%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">97</span></div>
@@ -559,17 +559,17 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
   <div class="about-box">
     <div>
       <h3>⚡ <span data-lang="zh">关于 BenchLocal</span><span data-lang="en">About BenchLocal</span></h3>
-      <p><a href="https://github.com/stevibe/BenchLocal" target="_blank" style="color:var(--red);font-weight:600">BenchLocal</a> 是一个本地优先的桌面应用，用于运行、比较和管理可安装的 LLM Bench Packs。支持本地或远程<span data-lang="zh">模型</span><span data-lang="en">Models</span>，通过可安装的<span data-lang="zh">测试包</span><span data-lang="en">Pack</span>对<span data-lang="zh">模型</span><span data-lang="en">Models</span>进行标准化评估。</p>
+      <p><span data-lang="zh"><a href="https://github.com/stevibe/BenchLocal" target="_blank" style="color:var(--red);font-weight:600">BenchLocal</a> 是一个本地优先的桌面应用，用于运行、比较和管理可安装的 LLM Bench Packs。支持本地或远程模型，通过可安装的测试包对模型进行标准化评估。</span><span data-lang="en"><a href="https://github.com/stevibe/BenchLocal" target="_blank" style="color:var(--red);font-weight:600">BenchLocal</a> is a local-first desktop app for running, comparing, and managing installable LLM Bench Packs. Supports local or remote models with standardized evaluation via installable test packs.</span></p>
     </div>
     <div>
       <h3>📋 <span data-lang="zh">测试项目</span><span data-lang="en">Test Suites</span></h3>
       <ul class="about-list">
-        <li><strong>ToolCall-15</strong> — 15 题工具调用<span data-lang="zh">测试</span><span data-lang="en">tested</span>，覆盖参数提取、多轮上下文、并行调用等</li>
-        <li><strong>BugFind-15</strong> — 15 题跨语言代码调试，含 Trap 陷阱题，<span data-lang="zh">难度</span><span data-lang="en">Difficulty</span> Easy~Expert</li>
-        <li><strong>HermesAgent-20</strong> — 20 题 Agent 场景<span data-lang="zh">测试</span><span data-lang="en">tested</span>，覆盖记忆管理、技能创建、调度投递等</li>
-        <li><strong><span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span></strong> — 加权原始分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4<span data-lang="zh">（模型最高能拿多少分）</span><span data-lang="en">(highest possible score)</span></li>
+        <li><span data-lang="zh"><strong>ToolCall-15</strong> — 15 题工具调用测试，覆盖参数提取、多轮上下文、并行调用等</span><span data-lang="en"><strong>ToolCall-15</strong> — 15-question tool calling test covering parameter extraction, multi-turn context, parallel calls</span></li>
+        <li><span data-lang="zh"><strong>BugFind-15</strong> — 15 题跨语言代码调试，含 Trap 陷阱题，难度 Easy~Expert</span><span data-lang="en"><strong>BugFind-15</strong> — 15-question cross-language debugging with Trap questions, Easy~Expert</span></li>
+        <li><span data-lang="zh"><strong>HermesAgent-20</strong> — 20 题 Agent 场景测试，覆盖记忆管理、技能创建、调度投递等</span><span data-lang="en"><strong>HermesAgent-20</strong> — 20-question Agent scenarios covering memory management, skill creation, scheduling</span></li>
+        <li><strong><span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span></strong> <span data-lang="zh">— 加权原始分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</span><span data-lang="en">— Weighted raw score = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</span><span data-lang="zh">（模型最高能拿多少分）</span><span data-lang="en">(highest possible score)</span></li>
         <li><strong><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></strong> — <span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span> − <span data-lang="zh">重试</span><span data-lang="en">Retry</span>扣分（每题首次通过不扣分，<span data-lang="zh">重试</span><span data-lang="en">Retry</span>后通过每<span data-lang="zh">重试</span><span data-lang="en">Retry</span>1次扣1分，<span data-lang="zh">重试</span><span data-lang="en">Retry</span>后仍失败不参与扣分）</li>
-        <li><strong><span data-lang="zh">排序方式</span><span data-lang="en">Sort by</span></strong> — <span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span>排序（看天花板）、<span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span>排序（看实际<span data-lang="zh">表现</span><span data-lang="en">Performance</span>）、三项专项排序</li>
+        <li><span data-lang="zh">能力上限排序（看天花板）、实用得分排序（看实际表现）、三项专项排序</span><span data-lang="en">Sort by max score (ceiling), effective score (actual performance), or per-suite ranking</span></li>
       </ul>
     </div>
   </div>
@@ -578,20 +578,20 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
 <section class="section">
   <div class="section-header">
     <h2>📊 <span data-lang="zh">测试</span><span data-lang="en">tested</span>总结</h2>
-    <p><span data-lang="zh">基于</span><span data-lang="en">Based on</span> BenchLocal 在同一<span data-lang="zh">硬件</span><span data-lang="en">Hardware</span>环境下的本地推理<span data-lang="zh">测试</span><span data-lang="en">tested</span>，横向对比 11 个<span data-lang="zh">模型</span><span data-lang="en">Models</span>配置</p>
+    <p><span data-lang="zh">基于 BenchLocal 在同一硬件环境下的本地推理测试，横向对比 11 个模型配置</span><span data-lang="en">Based on BenchLocal local inference tests on the same hardware, comparing 11 model configurations</span></p>
   </div>
   <div class="roast-box">
     <div class="roast-section pro"><h4>🏆 <span data-lang="zh">核心发现</span><span data-lang="en">Key Findings</span></h4><ul>
       <li><strong><span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span> vs <span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span>差距显著</strong> — <span data-lang="zh">重试</span><span data-lang="en">Retry</span>次数越多，两者的差距越大：N2-Mini 差 27 分（87.2→60.2），27B 无思考版仅差 3 分（87.4→84.4）</li>
-      <li><strong>ToolCall 满分常见</strong> <span data-lang="zh">— Step-3.7、QwenPaw-9B、27B 思考版、DeepSeek 均满分</span><span data-lang="en">— Step-3.7, QwenPaw-9B, 27B thinking version, and DeepSeek all achieved perfect scores</span></li>
-      <li><strong>API 大<span data-lang="zh">模型</span><span data-lang="en">Models</span><span data-lang="zh">作为参考</span><span data-lang="en">reference</span></strong> — DeepSeek-V4-Flash（284B MoE）<span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span> 94.0，<span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span> 85.0，三项均衡</li>
+      <li><span data-lang="zh">ToolCall 满分常见</span><span data-lang="en">ToolCall perfect scores are common</span></li>
+      <li><span data-lang="zh">DeepSeek-V4-Flash（284B MoE）拿到 94.0 分，实用 85.0 分，三项均衡</span><span data-lang="en">DeepSeek-V4-Flash (284B MoE) scored 94.0, effective 85.0, well-balanced across all three</span></li>
       <li><strong><span data-lang="zh">BugFind BF-03 Trap 题全场最难</span><span data-lang="en">BugFind BF-03 Trap question was the hardest in the entire set</span></strong> — 多数<span data-lang="zh">模型</span><span data-lang="en">Models</span>在"代码没bug"场景翻车，无法判断代码是正确的</li>
     </ul></div>
     <div class="roast-section con"><h4>⚠️ <span data-lang="zh">已知局限</span><span data-lang="en">Known Limitations</span></h4><ul>
-      <li><strong>Trap 题普遍失分</strong> — BF-03（代码没bug）和 BF-10（红鲱鱼）是多数<span data-lang="zh">模型</span><span data-lang="en">Models</span>的软肋</li>
+      <li><span data-lang="zh">BF-03（代码没bug）和 BF-10（红鲱鱼）是多数模型的软肋</span><span data-lang="en">BF-03 (code has no bug) and BF-10 (red herring) are weak points for most models</span></li>
       <li><strong><span data-lang="zh">HA-07（代码批量处理）大部分失败</span><span data-lang="en">HA-07 (batch code processing) mostly failed.</span></strong> <span data-lang="zh">— execute_code 能力普遍薄弱</span><span data-lang="en">— execute_code capability is generally weak.</span></li>
       <li><strong><span data-lang="zh">HA-16（消息投递）全军覆没</span><span data-lang="en">HA-16 (message delivery) completely failed.</span></strong> — 所有<span data-lang="zh">模型</span><span data-lang="en">Models</span>都无法找到正确的消息通道</li>
-      <li><strong><span data-lang="zh">重试</span><span data-lang="en">Retry</span>成本差异巨大</strong> <span data-lang="zh">— 最少 3 次（27B 无思考）vs 最多 27 次（N2-Mini），稳定性差距明显</span><span data-lang="en">— Minimum 3 attempts (27B without thinking) vs. maximum 27 attempts (N2-Mini), significant stability gap.</span></li>
+      <li><span data-lang="zh">重试成本差异巨大</span><span data-lang="en">Retry costs vary dramatically</span></li>
     </ul></div>
     <div class="roast-section tip"><h4>💡 <span data-lang="zh">测试环境</span><span data-lang="en">Test Environment</span></h4><ul>
       <li><strong><span data-lang="zh">硬件</span><span data-lang="en">Hardware</span></strong> — RTX 5070 Ti 16GB + 128GB RAM，MoE<span data-lang="zh">模型</span><span data-lang="en">Models</span><span data-lang="zh">部分专家层offload到CPU</span><span data-lang="en">expert layers partially offloaded to CPU</span></li>
