@@ -100,6 +100,11 @@ footer .links div a{display:block;font-size:13px;padding:4px 0;color:#94A3B8}
 footer .links div a:hover{color:#fff}
 footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1px solid #1E293B;font-size:12px;text-align:center}
 @media(max-width:768px){.model-header{flex-direction:column;gap:20px}.score-row{flex-direction:column}.sub-scores{flex-direction:column}.error-grid{grid-template-columns:1fr}.section{padding:20px}.hero-detail{padding:40px 20px}}
+
+/* HuggingFace Detail Link */
+.hf-detail-link{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:12px;font-size:14px;font-weight:600;background:linear-gradient(135deg,#FFD21E,#FF9D00);color:#1A202C;text-decoration:none;transition:all .25s;margin-top:16px}
+.hf-detail-link:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(255,210,30,.35);background:linear-gradient(135deg,#FFE066,#FFB347)}
+.hf-detail-link svg{width:18px;height:18px;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -114,6 +119,7 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
       <div class="model-tags">🧠 MoE (11B active)<span class="card-tag">📦 67.9 GB</span><span class="card-tag">⚡ In 98 t/s · Out 13.9 t/s</span><span class="card-tag">🎮 RTX 5070 Ti 16GB + 128GB RAM</span><span class="card-tag">📅 2026-06-21</span></div>
     </div>
   </div>
+  
   <div class="score-row">
     <div class="big-score"><div class="label">加权总分</div><div class="num">88.8</div><div class="sub">加权原始分 = TC×0.3 + BF×0.3 + HA×0.4</div></div>
     <div class="adj-score"><div class="label">实用得分</div><div class="num">78.8</div><div class="sub">−10 重试扣分</div></div>
