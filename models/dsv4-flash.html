@@ -162,7 +162,7 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
       <li><strong><span data-lang="zh">模型下载</span><span data-lang="en">Model Download</span></strong> — <a href="https://huggingface.co/SC117" target="_blank" style="color:var(--red)">HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p><span data-lang="zh">DeepSeek-V4-Flash  94.0 分， 85.0 分（ 9 次）。作为 API 大，284B MoE（13B 激活）在参数量和训练数据上远超本地小。ToolCall 满分、BF 93.3、HA 90，三项均衡且都很强。本页成绩仅供参考。</span><span data-lang="en">DeepSeek-V4-Flash: 94.0, 85.0 (9 times). As a large API model, its 284B MoE (13B activated) parameters and training data far exceed local small models. Perfect ToolCall score, BF 93.3, HA 90; balanced and strong across all three. Scores on this page are for reference only.</span></p>
+      <p><span data-lang="zh">DeepSeek-V4-Flash  94.0 分， 85.0 分（ 9 次）。作为 API 大，284B MoE（13B 激活）在参数量和训练数据上远超本地小。ToolCall 满分、BF 93.3、HA 90，三项均衡且都很强。本页成绩仅供参考。</span><span data-lang="en">DeepSeek-V4-Flash: 94.0 points, 85.0 points (9 times). As an API model, its 284B MoE architecture (13B activated) far exceeds local small models in parameters and training data. Perfect ToolCall score, BF 93.3, HA 90 – balanced across all three metrics with strong performance. Scores on this page are for reference only.</span></p>
       <p class="final"><span data-lang="zh">一句话评价 TL;DR：API 大的正常水平——284B 参数量明显，本页成绩仅供参考。</span><span data-lang="en">TL;DR: Normal level for large API models — the 284B parameter count is significant. Scores on this page are for reference only.</span></p>
     </div>
   </div>
@@ -171,9 +171,9 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
 <footer><div class="inner"><div><div class="brand">⚡ BenchLocal</div><div style="font-size:13px"><span data-lang="zh">本地模型测试数据库</span><span data-lang="en">Local Model Benchmark Database</span></div></div><div class="links"><div><h5><span data-lang="zh">测试项目</span><span data-lang="en">Test Suites</span></h5><a href="../index.html">ToolCall-15</a><a href="../index.html">BugFind-15</a><a href="../index.html">HermesAgent-20</a></div><div><h5>BenchLocal</h5><a href="https://github.com/stevibe/BenchLocal" target="_blank">GitHub</a><a href="https://benchlocal.com" target="_blank"><span data-lang="zh">官网</span><span data-lang="en">Website</span></a></div></div></div><div class="bottom">© 2026 BenchLocal</div></footer>
 
 <script>
-function i18n(zh, en) { return '<span data-lang="zh">' + zh + '</span><span data-lang="en">' + en + '</span>'; }
+const i18nMap={"执行策略": "Execution strategy", "并行委派": "Parallel delegation", "还是被骗了": "Still deceived", "找不到通道": "Channel not found.", "还是没用批量处理": "Still not using batch processing", "trace 检查失败": "Trace check failed", "调度更新": "Scheduling update", "消息投递": "Message delivery", "cron 更新场景失败": "cron update scenario failed"};
+function i18n(zh, en) { return '' + zh + ''; }
 function i18nField(val, map) { return map[val] ? i18n(val, map[val]) : val; }
-const i18nMap={"cron 更新场景失败": "cron update scenario failure", "还是被骗了": "Still deceived", "消息投递": "Message delivery", "并行委派": "Parallel delegation", "还是没用批量处理": "Still not using batch processing", "执行策略": "Execution strategy", "找不到通道": "Channel not found.", "trace 检查失败": "trace check failure", "调度更新": "Scheduling update"};
 
 const results=[
 {n:"01",t:"Direct Specialist Match",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:"",rt:0},
