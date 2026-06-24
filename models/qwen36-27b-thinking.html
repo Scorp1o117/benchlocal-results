@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Qwen3.6-27B (思考) · BenchLocal</title>
+<title>Qwen3.6-27B <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span> · BenchLocal</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
@@ -105,32 +105,41 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
 .hf-detail-link{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:12px;font-size:14px;font-weight:600;background:linear-gradient(135deg,#FFD21E,#FF9D00);color:#1A202C;text-decoration:none;transition:all .25s;margin-top:16px}
 .hf-detail-link:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(255,210,30,.35);background:linear-gradient(135deg,#FFE066,#FFB347)}
 .hf-detail-link svg{width:18px;height:18px;flex-shrink:0}
+
+/* i18n */
+[data-lang]{display:none}
+html[lang="zh-CN"] [data-lang="zh"],html[lang="en"] [data-lang="en"]{display:revert}
+html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:none}
+.lang-toggle{display:flex;align-items:center;gap:2px;padding:3px;border-radius:8px;background:#F1F5F9;cursor:pointer;user-select:none;margin-left:auto}
+.lang-toggle span{padding:3px 10px;border-radius:6px;font-size:12px;font-weight:600;color:var(--text2);transition:all .2s;pointer-events:none}
+.lang-toggle span.active{background:#fff;color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.1)}
 </style>
 </head>
 <body>
-<nav><div class="inner"><div class="logo"><div class="logo-icon">⚡</div>BenchLocal</div><a href="../" class="back-link">← 返回排行榜</a></div></nav>
+<nav><div class="inner"><div class="logo"><div class="logo-icon">⚡</div>BenchLocal</div><a href="../" class="back-link"><span data-lang="zh">← 返回排行榜</span><span data-lang="en">← Back to Leaderboard</span></a>  <div class="lang-toggle" onclick="toggleLang(document.documentElement.lang==='zh-CN'?'en':'zh')"><span data-lb="zh" class="active">中</span><span data-lb="en">EN</span></div>
+</div></nav>
 
 <section class="hero-detail">
   <div class="model-header">
     <div class="model-avatar"><img src="../icons/qwen-color.png" alt="" style="width:100%;height:100%;object-fit:contain"></div>
     <div class="model-info">
-      <h1>Qwen3.6-27B (思考)</h1>
+      <h1>Qwen3.6-27B <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></h1>
       <div class="sub">Qwen3.6-27B-uncensored-heretic-v2-Native-MTP-Preserved.i1-IQ3_M.gguf · IQ3_M · 11.9 GB</div>
       <div class="model-tags">🧠 Dense 27B<span class="card-tag">📦 11.9 GB</span><span class="card-tag">⚡ In 725 t/s · Out 60.6 t/s</span><span class="card-tag">🎮 RTX 5070 Ti 16GB + 128GB RAM</span><span class="card-tag">📅 2026-06-19</span></div>
     </div>
   </div>
   <div class="score-row">
-    <div class="big-score"><div class="label">加权总分</div><div class="num">91.9</div><div class="sub">加权原始分 = TC×0.3 + BF×0.3 + HA×0.4</div></div>
-    <div class="adj-score"><div class="label">实用得分</div><div class="num">73.9</div><div class="sub">−18 重试扣分</div></div>
+    <div class="big-score"><div class="label"><span data-lang="zh">加权总分</span><span data-lang="en">Weighted Total</span></div><div class="num">91.9</div><div class="sub"><span data-lang="zh">加权原始分 = TC×0.3 + BF×0.3 + HA×0.4</span><span data-lang="en">Weighted raw score = TC×0.3 + BF×0.3 + HA×0.4</span></div></div>
+    <div class="adj-score"><div class="label"><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></div><div class="num">73.9</div><div class="sub">−18 <span data-lang="zh">重试</span><span data-lang="en">Retry</span>扣分</div></div>
     <div class="sub-scores">
-      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">100</div><div class="sub">15/15 通过 · 100% 🏆</div><div class="bar"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div></div>
-      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">93.3</div><div class="sub">14/15 通过 · 93% · 重试 -14</div><div class="bar"><div class="bar-fill" style="width:93%;background:#ED8936"></div></div></div>
-      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">84.8</div><div class="sub">16/20 通过 · 80% · 重试 -4</div><div class="bar"><div class="bar-fill" style="width:84%;background:#548235"></div></div></div>
+      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">100</div><div class="sub"><span data-lang="zh">15/15 通过 · 100% 🏆</span><span data-lang="en">15/15 passed · 100% 🏆</span></div><div class="bar"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div></div>
+      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">93.3</div><div class="sub">14/15 通过 · 93% · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -14</div><div class="bar"><div class="bar-fill" style="width:93%;background:#ED8936"></div></div></div>
+      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">84.8</div><div class="sub">16/20 通过 · 80% · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -4</div><div class="bar"><div class="bar-fill" style="width:84%;background:#548235"></div></div></div>
     </div>
   </div>
   <div style="max-width:1280px;margin:16px auto 0;padding:0 48px">
     <div style="background:#F1F5F9;border-radius:12px;padding:16px 20px;font-size:13px;color:#64748B;line-height:1.8">
-      <strong style="color:#1A202C">📊 计分规则</strong> — <strong>能力上限</strong> = 加权原始分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4<br><strong>实用得分</strong> = 能力上限 − 重试扣分（每题首次通过不扣分，重试后通过每重试1次扣1分，重试后仍失败不参与扣分）。
+      <strong style="color:#1A202C">📊 <span data-lang="zh">计分规则</span><span data-lang="en">Scoring Rules</span></strong> — <strong><span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span></strong> <span data-lang="zh">= 加权原始分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</span><span data-lang="en">= Weighted raw score = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</span><br><strong><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></strong> = <span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span> − <span data-lang="zh">重试</span><span data-lang="en">Retry</span>扣分（每题首次通过不扣分，<span data-lang="zh">重试</span><span data-lang="en">Retry</span>后通过每<span data-lang="zh">重试</span><span data-lang="en">Retry</span>1次扣1分，<span data-lang="zh">重试</span><span data-lang="en">Retry</span>后仍失败不参与扣分）。
       
     </div>
   </div>
@@ -138,51 +147,55 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
 </section>
 
 <section class="section">
-  <h2>📋 全部测试结果</h2>
+  <h2>📋 <span data-lang="zh">全部测试结果</span><span data-lang="en">All Test Results</span></h2>
   <div class="tabs">
-    <div class="tab active" onclick="filterTable('all',this)">全部 (50)</div>
+    <div class="tab active" onclick="filterTable('all',this)"><span data-lang="zh">全部 (50)</span><span data-lang="en">All (50)</span></div>
     <div class="tab" onclick="filterTable('tc',this)">ToolCall (15)</div>
     <div class="tab" onclick="filterTable('bf',this)">BugFind (15)</div>
     <div class="tab" onclick="filterTable('ha',this)">HermesAgent (20)</div>
-    <div class="tab" onclick="filterTable('fail',this)">❌ 失败 (12)</div>
+    <div class="tab" onclick="filterTable('fail',this)"><span data-lang="zh">❌ 失败 (12)</span><span data-lang="en">❌ Failed (12)</span></div>
   </div>
-  <div class="table-wrap"><table><thead><tr><th>#</th><th>题目</th><th>测试包</th><th>难度</th><th>结果</th><th>得分</th><th>重试</th><th>sandbox</th><th>耗时</th><th>失败类型</th><th>点评</th></tr></thead><tbody id="resultsBody"></tbody></table></div>
+  <div class="table-wrap"><table><thead><tr><th>#</th><th><span data-lang="zh">题目</span><span data-lang="en">Question</span></th><th><span data-lang="zh">测试包</span><span data-lang="en">Pack</span></th><th><span data-lang="zh">难度</span><span data-lang="en">Difficulty</span></th><th><span data-lang="zh">结果</span><span data-lang="en">Result</span></th><th><span data-lang="zh">得分</span><span data-lang="en">Score</span></th><th><span data-lang="zh">重试</span><span data-lang="en">Retry</span></th><th>sandbox</th><th><span data-lang="zh">耗时</span><span data-lang="en">Time</span></th><th><span data-lang="zh">失败类型</span><span data-lang="en">Failure Type</span></th><th><span data-lang="zh">点评</span><span data-lang="en">Comment</span></th></tr></thead><tbody id="resultsBody"></tbody></table></div>
 </section>
 
 <section class="section">
-  <h2>🔍 错题分析</h2>
+  <h2>🔍 <span data-lang="zh">错题分析</span><span data-lang="en">Error Analysis</span></h2>
   <div class="error-grid" id="errorGrid"></div>
 </section>
 
 <section class="section">
-  <h2>🌊 📊 模型评估总结</h2>
+  <h2>🌊 📊 <span data-lang="zh">模型评估总结</span><span data-lang="en">Model Evaluation Summary</span></h2>
   <div class="roast-box">
     <div class="roast-section pro"><h4>✅ 优势</h4><ul>
-      <li>加权总分 91.9 全场第一，BugFind 93.3 + HermesAgent 84.8 均为高水平</li>
-      <li>ToolCall 满分 100/100，BF-03 Trap 题通过——思考模式显著提升了批判性思维</li>
-      <li>IQ3_M 量化仅 11.9GB，体积在高分模型中最小，资源效率极高</li>
+      <li><span data-lang="zh">加权总分</span><span data-lang="en">Weighted Total</span> 91.9 全场第一，BugFind 93.3 + HermesAgent 84.8 均为高水平</li>
+      <li><span data-lang="zh">ToolCall 满分 100/100，BF-03 Trap 题通过——思考模式显著提升了批判性思维</span><span data-lang="en">ToolCall perfect score 100/100, passed BF-03 Trap question — Thinking mode significantly enhanced critical thinking.</span></li>
+      <li>IQ3_M 量化仅 11.9GB，体积在高分<span data-lang="zh">模型</span><span data-lang="en">Models</span>中最小，资源效率极高</li>
     </ul></div>
     <div class="roast-section con"><h4>⚠️ 不足</h4><ul>
-      <li>BF-10 Trap 题仍然失败——九个模型中仅 Gemma-4 思考版通过此题</li>
-      <li>HA-16 消息投递 0 分，HA-14 Cron 更新也失败（无思考版反而通过）</li>
-      <li>思考模式有副作用：HA-14 从无思考版的 100 分退步到 70 分</li>
+      <li><span data-lang="zh">BF-10 Trap 题仍然失败</span><span data-lang="en">Still failed BF-10 Trap question.</span>——九个<span data-lang="zh">模型</span><span data-lang="en">Models</span>中仅 Gemma-4 思考版通过此题</li>
+      <li><span data-lang="zh">HA-16 消息投递 0 分，HA-14 Cron 更新也失败（无思考版反而通过）</span><span data-lang="en">HA-16 Message Delivery scored 0; HA-14 Cron Update also failed (non-thinking version passed instead).</span></li>
+      <li><span data-lang="zh">思考模式有副作用：HA-14 从无思考版的 100 分退步到 70 分</span><span data-lang="en">Thinking mode has side effects: HA-14 regressed from 100 to 70 points compared to its non-thinking version.</span></li>
     </ul></div>
-    <div class="roast-section tip"><h4>📋 测试环境</h4><ul>
-      <li>硬件 — RTX 5070 Ti 16GB + 128GB RAM，MoE模型部分专家层offload到CPU</li>
-      <li>推理后端 — llama.cpp</li>
-      <li>测试包 — ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</li>
-      <li>模型下载 — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
+    <div class="roast-section tip"><h4>📋 <span data-lang="zh">测试环境</span><span data-lang="en">Test Environment</span></h4><ul>
+      <li><span data-lang="zh">硬件</span><span data-lang="en">Hardware</span> — RTX 5070 Ti 16GB + 128GB RAM，MoE<span data-lang="zh">模型</span><span data-lang="en">Models</span>部分专家层offload到CPU</li>
+      <li><span data-lang="zh">推理后端</span><span data-lang="en">Inference Backend</span> — llama.cpp</li>
+      <li><span data-lang="zh">测试包</span><span data-lang="en">Pack</span> <span data-lang="zh">— ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</span><span data-lang="en">— ToolCall-15 / BugFind-15 / HermesAgent-20 (total 50 questions)</span></li>
+      <li><span data-lang="zh">模型下载</span><span data-lang="en">Model Download</span> — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>Qwen3.6-27B 思考版 能力上限 91.9 分，实用得分 73.9 分（重试 18 次）。ToolCall 满分、HA 84.8，思考模式让部分能力提升。但 BugFind 重试了 14 次，严重拉低实用得分——原始分极高但稳定性不足。</p>
-      <p class="final">一句话评价：原始分最高但重试最多——思考模式提升了能力上限，但 BugFind 14 次重试让实用得分大打折扣。</p>
+      <p>Qwen3.6-27B 思考版 <span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span> 91.9 分，<span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span> 73.9 分（<span data-lang="zh">重试</span><span data-lang="en">Retry</span> 18 次）。ToolCall 满分、HA 84.8，思考模式让部分能力提升。但 BugFind <span data-lang="zh">重试</span><span data-lang="en">Retry</span>了 14 次，严重拉低<span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span>——原始分极高但稳定性不足。</p>
+      <p class="final"><span data-lang="zh">一句话评价</span><span data-lang="en">TL;DR</span>：原始分最高但<span data-lang="zh">重试</span><span data-lang="en">Retry</span>最多——思考模式提升了<span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span>，但 BugFind 14 次<span data-lang="zh">重试</span><span data-lang="en">Retry</span>让<span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span>大打折扣。</p>
     </div>
   </div>
 </section>
 
-<footer><div class="inner"><div><div class="brand">⚡ BenchLocal</div><div style="font-size:13px">本地模型测试数据库</div></div><div class="links"><div><h5>测试项目</h5><a href="#">ToolCall-15</a><a href="#">BugFind-15</a><a href="#">HermesAgent-20</a></div><div><h5>模型</h5><a href="#">Step-3.7-Flash</a><a href="#">Qwen3.5-35B</a></div><div><h5>BenchLocal</h5><a href="https://github.com/stevibe/BenchLocal" target="_blank">GitHub</a><a href="https://benchlocal.com" target="_blank">官网</a></div></div></div><div class="bottom">© 2026 BenchLocal</div></footer>
+<footer><div class="inner"><div><div class="brand">⚡ BenchLocal</div><div style="font-size:13px"><span data-lang="zh">本地模型测试数据库</span><span data-lang="en">Local Model Benchmark Database</span></div></div><div class="links"><div><h5><span data-lang="zh">测试项目</span><span data-lang="en">Test Suites</span></h5><a href="#">ToolCall-15</a><a href="#">BugFind-15</a><a href="#">HermesAgent-20</a></div><div><h5><span data-lang="zh">模型</span><span data-lang="en">Models</span></h5><a href="#">Step-3.7-Flash</a><a href="#">Qwen3.5-35B</a></div><div><h5>BenchLocal</h5><a href="https://github.com/stevibe/BenchLocal" target="_blank">GitHub</a><a href="https://benchlocal.com" target="_blank"><span data-lang="zh">官网</span><span data-lang="en">Website</span></a></div></div></div><div class="bottom">© 2026 BenchLocal</div></footer>
 
 <script>
+function i18n(zh, en) { return '<span data-lang="zh">' + zh + '</span><span data-lang="en">' + en + '</span>'; }
+function i18nField(val, map) { return map[val] ? i18n(val, map[val]) : val; }
+const i18nMap={"永恒的死穴，而且这次是0分。": "Eternal weakness, and this time it's 0 points.", "恢复追踪不完整": "Incomplete recovery tracking", "还是被骗了": "Still deceived", "更新了一部分但检查失败": "Updated partially but check failed.", "trace检查": "trace check", "澄清请求": "Clarification request", "比无思考版好但还没满分": "Better than without thinking but not yet full marks", "trace 检查失败": "trace check failure", "半成品。": "Half-finished product.", "问了但没等回答": "Asked but didn't wait for the answer", "🎯 无思考版 partial 但思考版满分": "🎯 Non-thinking version partial but thinking version full score", "调度": "Scheduling", "经典问题。": "Classic issue.", "更新逻辑有问题": "Update logic has issues.", "冲动行动": "Impulsive action.", "技能更新部分完成": "Skill update partially completed.", "并行委派": "Parallel delegation", "九个模型都失败": "All nine models failed.", "BF-10 是唯一一个思考版也过不了的 Trap。": "BF-10 is the only Trap that even thinking versions can't pass.", "调度更新": "Scheduling update", "找不到消息通道，0分": "Message channel not found, 0 points.", "找不到通道，0分": "Channel not found, 0 points.", "差一点。": "Almost there.", "cron 更新场景失败": "cron update scenario failure", "Trap 题依然翻车": "Still failing on Trap questions", "做了但追踪不完整": "Done but tracking was incomplete.", "部分完成": "Partial completion", "🎉 思考版终于通过了！": "🎉 Thinking version finally passed!", "消息投递": "Message delivery", "🎉 无思考版失败但思考版通过": "🎉 Non-thinking version failed but thinking version passed", "并行委派 trace 失败": "Parallel delegation trace failed", "没等确认就行动": "Acted without waiting for confirmation", "无思考版通过但思考版反而失败了。": "Passed without thinking, but failed with thinking.", "比无思考版好(70→85)": "Better than without thinking (70→85)"};
+
 const results=[
 {n:"01",t:"Direct Specialist Match",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:"",rt:0},
 
@@ -294,11 +307,23 @@ const errors=[
 {t:"HA-19",pkg:"ha",perf:"恢复追踪不完整",score:85,type:"部分完成",cause:"比无思考版好但还没满分",roast:"差一点。",cls:""},
 {t:"HA-20",pkg:"ha",perf:"没等确认就行动",score:20,type:"冲动行动",cause:"问了但没等回答",roast:"经典问题。",cls:""},
 ];
-function renderTable(f){const tb=document.getElementById('resultsBody');tb.innerHTML='';results.filter(r=>f==='all'||r.pkg===f||(f==='fail'&&r.r!=='pass')).forEach(r=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[r.pkg];const rb=r.r==='pass'?'pass':r.r==='partial'?'partial':'fail';const rt=r.r==='pass'?'PASS':r.r==='partial'?'PARTIAL':'FAIL';const dl={easy:'Easy',med:'Med',hard:'Hard',expert:'Expert','-':'-'}[r.diff];const dm={easy:'easy',med:'med',hard:'hard',expert:'expert','-':''}[r.diff];const rtc=r.rt>0?`<span style='color:#E53E3E;font-weight:600'>${r.rt}</span>`:'<span style="color:#94A3B8">0</span>';const sb=r.sb!=='-'?`<span class="badge ${r.sb==='pass'?'pass':'fail'}">${r.sb}</span>`:'-';tb.innerHTML+=`<tr><td><strong>${r.n}</strong></td><td>${r.t}</td><td><span class="badge ${r.pkg}">${pl}</span></td><td><span class="difficulty ${dm}">${dl}</span></td><td><span class="badge ${rb}">${rt}</span></td><td><strong>${r.s}</strong></td><td>${rtc}</td><td>${sb}</td><td>${r.time?r.time+'s':'-'}</td><td>${r.ft}</td><td class="comment">${r.c}</td></tr>`})}
+function renderTable(f){const tb=document.getElementById('resultsBody');tb.innerHTML='';results.filter(r=>f==='all'||r.pkg===f||(f==='fail'&&r.r!=='pass')).forEach(r=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[r.pkg];const rb=r.r==='pass'?'pass':r.r==='partial'?'partial':'fail';const rt=r.r==='pass'?'PASS':r.r==='partial'?'PARTIAL':'FAIL';const dl={easy:'Easy',med:'Med',hard:'Hard',expert:'Expert','-':'-'}[r.diff];const dm={easy:'easy',med:'med',hard:'hard',expert:'expert','-':''}[r.diff];const rtc=r.rt>0?`<span style='color:#E53E3E;font-weight:600'>${r.rt}</span>`:'<span style="color:#94A3B8">0</span>';const sb=r.sb!=='-'?`<span class="badge ${r.sb==='pass'?'pass':'fail'}">${r.sb}</span>`:'-';tb.innerHTML+=`<tr><td><strong>${r.n}</strong></td><td>${r.t}</td><td><span class="badge ${r.pkg}">${pl}</span></td><td><span class="difficulty ${dm}">${dl}</span></td><td><span class="badge ${rb}">${rt}</span></td><td><strong>${r.s}</strong></td><td>${rtc}</td><td>${sb}</td><td>${r.time?r.time+'s':'-'}</td><td>${i18nField(r.ft, i18nMap)}</td><td class="comment">${i18nField(r.c, i18nMap)}</td></tr>`})}
 function filterTable(f,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderTable(f)}
-function renderErrors(){const g=document.getElementById('errorGrid');errors.forEach(e=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[e.pkg];g.innerHTML+=`<div class="error-card ${e.cls}"><h4><span class="badge ${e.pkg}">${pl}</span> ${e.t}</h4><div class="meta"><span>得分: <strong>${e.score}</strong></span><span>类型: ${e.type}</span></div><div class="desc"><strong>表现:</strong> ${e.perf}<br><strong>根因:</strong> ${e.cause}</div><div class="roast">${e.roast}</div></div>`})}
+function renderErrors(){const g=document.getElementById('errorGrid');errors.forEach(e=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[e.pkg];g.innerHTML+=`<div class="error-card ${e.cls}"><h4><span class="badge ${e.pkg}">${pl}</span> ${e.t}</h4><div class="meta"><span>得分: <strong>${e.score}</strong></span><span>类型: ${i18nField(e.type, i18nMap)}</span></div><div class="desc"><strong>表现:</strong> ${i18nField(e.perf, i18nMap)}<br><strong>根因:</strong> ${i18nField(e.cause, i18nMap)}</div><div class="roast">${i18nField(e.roast, i18nMap)}</div></div>`})}
 renderTable('all');renderErrors();
 </script>
+<script>(function(){
+  var s=localStorage.getItem('bl-lang')||'zh';
+  document.documentElement.lang=s==='en'?'en':'zh-CN';
+  window.toggleLang=function(l){
+    document.documentElement.lang=l==='en'?'en':'zh-CN';
+    localStorage.setItem('bl-lang',l);
+    document.querySelectorAll('.lang-toggle span').forEach(function(e){
+      e.classList.toggle('active',e.dataset.lb===l);
+    });
+  };
+  document.addEventListener('DOMContentLoaded',function(){window.toggleLang(s)});
+})();</script>
 </body>
 </html>
 

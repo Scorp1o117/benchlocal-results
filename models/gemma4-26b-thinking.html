@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gemma-4-26B-A4B-it-qat (思考) · BenchLocal</title>
+<title>Gemma-4-26B-A4B-it-qat <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span> · BenchLocal</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
@@ -105,33 +105,42 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
 .hf-detail-link{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:12px;font-size:14px;font-weight:600;background:linear-gradient(135deg,#FFD21E,#FF9D00);color:#1A202C;text-decoration:none;transition:all .25s;margin-top:16px}
 .hf-detail-link:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(255,210,30,.35);background:linear-gradient(135deg,#FFE066,#FFB347)}
 .hf-detail-link svg{width:18px;height:18px;flex-shrink:0}
+
+/* i18n */
+[data-lang]{display:none}
+html[lang="zh-CN"] [data-lang="zh"],html[lang="en"] [data-lang="en"]{display:revert}
+html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:none}
+.lang-toggle{display:flex;align-items:center;gap:2px;padding:3px;border-radius:8px;background:#F1F5F9;cursor:pointer;user-select:none;margin-left:auto}
+.lang-toggle span{padding:3px 10px;border-radius:6px;font-size:12px;font-weight:600;color:var(--text2);transition:all .2s;pointer-events:none}
+.lang-toggle span.active{background:#fff;color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.1)}
 </style>
 </head>
 <body>
-<nav><div class="inner"><div class="logo"><div class="logo-icon">⚡</div>BenchLocal</div><a href="../" class="back-link">← 返回排行榜</a></div></nav>
+<nav><div class="inner"><div class="logo"><div class="logo-icon">⚡</div>BenchLocal</div><a href="../" class="back-link"><span data-lang="zh">← 返回排行榜</span><span data-lang="en">← Back to Leaderboard</span></a>  <div class="lang-toggle" onclick="toggleLang(document.documentElement.lang==='zh-CN'?'en':'zh')"><span data-lb="zh" class="active">中</span><span data-lb="en">EN</span></div>
+</div></nav>
 
 <section class="hero-detail">
   <div class="model-header">
     <div class="model-avatar"><img src="../icons/gemma-color.png" alt="" style="width:100%;height:100%;object-fit:contain"></div>
     <div class="model-info">
-      <h1>Gemma-4-26B-A4B-it-qat (思考)</h1>
+      <h1>Gemma-4-26B-A4B-it-qat <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></h1>
       <div class="sub">gemma-4-26B-A4B-it-qat-heretic-UD-Q4_K_XL.gguf · Q4_K_XL · 13.3 GB</div>
       <div class="model-tags">🧠 MoE (4B active)<span class="card-tag">📦 13.3 GB</span><span class="card-tag">⚡ In 832 t/s · Out 53.9 t/s</span><span class="card-tag">🎮 RTX 5070 Ti 16GB + 128GB RAM</span><span class="card-tag">📅 2026-06-19</span></div>
     </div>
   </div>
-  <a href="https://huggingface.co/SC117/gemma-4-26B-A4B-it-qat-heretic-GGUF" target="_blank" class="hf-detail-link"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 32.4 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10z" fill="#FFD21E"/><path d="M30 65c0-8 4-15 10-18l2-1c2 3 6 5 10 5s7-2 10-5l2 1c6 3 10 10 10 18v15c0 3-2 5-5 5H35c-3 0-5-2-5-5V65z" fill="#1A202C"/><circle cx="45" cy="62" r="5" fill="white"/><circle cx="75" cy="62" r="5" fill="white"/><path d="M48 78c0 0 5 8 12 8s12-8 12-8" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg> 在 HuggingFace 查看模型 →</a>
+  <a href="https://huggingface.co/SC117/gemma-4-26B-A4B-it-qat-heretic-GGUF" target="_blank" class="hf-detail-link"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 32.4 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10z" fill="#FFD21E"/><path d="M30 65c0-8 4-15 10-18l2-1c2 3 6 5 10 5s7-2 10-5l2 1c6 3 10 10 10 18v15c0 3-2 5-5 5H35c-3 0-5-2-5-5V65z" fill="#1A202C"/><circle cx="45" cy="62" r="5" fill="white"/><circle cx="75" cy="62" r="5" fill="white"/><path d="M48 78c0 0 5 8 12 8s12-8 12-8" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg> <span data-lang="zh">在 HuggingFace 查看模型 →</span><span data-lang="en">View on HuggingFace →</span></a>
   <div class="score-row">
-    <div class="big-score"><div class="label">加权总分</div><div class="num">91.6</div><div class="sub">加权原始分 = TC×0.3 + BF×0.3 + HA×0.4</div></div>
-    <div class="adj-score"><div class="label">实用得分</div><div class="num">83.6</div><div class="sub">−8 重试扣分</div></div>
+    <div class="big-score"><div class="label"><span data-lang="zh">加权总分</span><span data-lang="en">Weighted Total</span></div><div class="num">91.6</div><div class="sub"><span data-lang="zh">加权原始分 = TC×0.3 + BF×0.3 + HA×0.4</span><span data-lang="en">Weighted raw score = TC×0.3 + BF×0.3 + HA×0.4</span></div></div>
+    <div class="adj-score"><div class="label"><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></div><div class="num">83.6</div><div class="sub">−8 <span data-lang="zh">重试</span><span data-lang="en">Retry</span>扣分</div></div>
     <div class="sub-scores">
       <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">93.3</div><div class="sub">14/15 通过 · 93%</div><div class="bar"><div class="bar-fill" style="width:93%;background:var(--grad)"></div></div></div>
-      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">96</div><div class="sub">15/15 通过 · 100% 🏆 · 重试 -3</div><div class="bar"><div class="bar-fill" style="width:96%;background:#ED8936"></div></div></div>
-      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">87</div><div class="sub">16/20 通过 · 80% · 重试 -5</div><div class="bar"><div class="bar-fill" style="width:87%;background:#548235"></div></div></div>
+      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">96</div><div class="sub"><span data-lang="zh">15/15 通过 · 100% 🏆</span><span data-lang="en">15/15 passed · 100% 🏆</span> · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -3</div><div class="bar"><div class="bar-fill" style="width:96%;background:#ED8936"></div></div></div>
+      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">87</div><div class="sub">16/20 通过 · 80% · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -5</div><div class="bar"><div class="bar-fill" style="width:87%;background:#548235"></div></div></div>
     </div>
   </div>
   <div style="max-width:1280px;margin:16px auto 0;padding:0 48px">
     <div style="background:#F1F5F9;border-radius:12px;padding:16px 20px;font-size:13px;color:#64748B;line-height:1.8">
-      <strong style="color:#1A202C">📊 计分规则</strong> — <strong>能力上限</strong> = 加权原始分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4<br><strong>实用得分</strong> = 能力上限 − 重试扣分（每题首次通过不扣分，重试后通过每重试1次扣1分，重试后仍失败不参与扣分）。
+      <strong style="color:#1A202C">📊 <span data-lang="zh">计分规则</span><span data-lang="en">Scoring Rules</span></strong> — <strong><span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span></strong> <span data-lang="zh">= 加权原始分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</span><span data-lang="en">= Weighted raw score = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</span><br><strong><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></strong> = <span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span> − <span data-lang="zh">重试</span><span data-lang="en">Retry</span>扣分（每题首次通过不扣分，<span data-lang="zh">重试</span><span data-lang="en">Retry</span>后通过每<span data-lang="zh">重试</span><span data-lang="en">Retry</span>1次扣1分，<span data-lang="zh">重试</span><span data-lang="en">Retry</span>后仍失败不参与扣分）。
       
     </div>
   </div>
@@ -139,51 +148,55 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
 </section>
 
 <section class="section">
-  <h2>📋 全部测试结果</h2>
+  <h2>📋 <span data-lang="zh">全部测试结果</span><span data-lang="en">All Test Results</span></h2>
   <div class="tabs">
-    <div class="tab active" onclick="filterTable('all',this)">全部 (50)</div>
+    <div class="tab active" onclick="filterTable('all',this)"><span data-lang="zh">全部 (50)</span><span data-lang="en">All (50)</span></div>
     <div class="tab" onclick="filterTable('tc',this)">ToolCall (15)</div>
     <div class="tab" onclick="filterTable('bf',this)">BugFind (15)</div>
     <div class="tab" onclick="filterTable('ha',this)">HermesAgent (20)</div>
-    <div class="tab" onclick="filterTable('fail',this)">❌ 失败 (12)</div>
+    <div class="tab" onclick="filterTable('fail',this)"><span data-lang="zh">❌ 失败 (12)</span><span data-lang="en">❌ Failed (12)</span></div>
   </div>
-  <div class="table-wrap"><table><thead><tr><th>#</th><th>题目</th><th>测试包</th><th>难度</th><th>结果</th><th>得分</th><th>重试</th><th>sandbox</th><th>耗时</th><th>失败类型</th><th>点评</th></tr></thead><tbody id="resultsBody"></tbody></table></div>
+  <div class="table-wrap"><table><thead><tr><th>#</th><th><span data-lang="zh">题目</span><span data-lang="en">Question</span></th><th><span data-lang="zh">测试包</span><span data-lang="en">Pack</span></th><th><span data-lang="zh">难度</span><span data-lang="en">Difficulty</span></th><th><span data-lang="zh">结果</span><span data-lang="en">Result</span></th><th><span data-lang="zh">得分</span><span data-lang="en">Score</span></th><th><span data-lang="zh">重试</span><span data-lang="en">Retry</span></th><th>sandbox</th><th><span data-lang="zh">耗时</span><span data-lang="en">Time</span></th><th><span data-lang="zh">失败类型</span><span data-lang="en">Failure Type</span></th><th><span data-lang="zh">点评</span><span data-lang="en">Comment</span></th></tr></thead><tbody id="resultsBody"></tbody></table></div>
 </section>
 
 <section class="section">
-  <h2>🔍 错题分析</h2>
+  <h2>🔍 <span data-lang="zh">错题分析</span><span data-lang="en">Error Analysis</span></h2>
   <div class="error-grid" id="errorGrid"></div>
 </section>
 
 <section class="section">
-  <h2>🌊 📊 模型评估总结</h2>
+  <h2>🌊 📊 <span data-lang="zh">模型评估总结</span><span data-lang="en">Model Evaluation Summary</span></h2>
   <div class="roast-box">
     <div class="roast-section pro"><h4>✅ 优势</h4><ul>
-      <li>BugFind 96 分全场最高，思考模式让代码调试能力从 86 飙升到 96（+10分）</li>
-      <li>BF-10 Trap 题通过——这是九个模型中唯一一个通过此题的</li>
-      <li>HermesAgent 87 分全场最高，Agent 场景综合能力最强</li>
+      <li><span data-lang="zh">BugFind 96 分全场最高，思考模式让代码调试能力从 86 飙升到 96（+10分）</span><span data-lang="en">BugFind 96, highest score; thinking mode boosted code debugging capability from 86 to 96 (+10 points).</span></li>
+      <li>BF-10 Trap 题通过——这是九个<span data-lang="zh">模型</span><span data-lang="en">Models</span>中唯一一个通过此题的</li>
+      <li><span data-lang="zh">HermesAgent 87 分全场最高，Agent 场景综合能力最强</span><span data-lang="en">HermesAgent 87, highest score; strongest comprehensive Agent scenario capabilities.</span></li>
     </ul></div>
     <div class="roast-section con"><h4>⚠️ 不足</h4><ul>
-      <li>ToolCall 93.3 分，低于无思考版（96.7），思考模式在工具调用场景反而有负面影响</li>
-      <li>HA-07 代码批量处理仍然失败（30分），HA-16 消息投递仍然失败</li>
-      <li>思考模式增加推理延迟，实际吞吐量低于无思考版</li>
+      <li><span data-lang="zh">ToolCall 93.3 分，低于无思考版（96.7），思考模式在工具调用场景反而有负面影响</span><span data-lang="en">ToolCall 93.3, lower than non-thinking version (96.7); thinking mode had a negative impact on tool calling scenarios.</span></li>
+      <li><span data-lang="zh">HA-07 代码批量处理仍然失败（30分），HA-16 消息投递仍然失败</span><span data-lang="en">HA-07 code batch processing still failed (30 points); HA-16 message delivery still failed.</span></li>
+      <li><span data-lang="zh">思考模式增加推理延迟，实际吞吐量低于无思考版</span><span data-lang="en">Thinking mode increases inference latency; actual throughput is lower than the non-thinking version.</span></li>
     </ul></div>
-    <div class="roast-section tip"><h4>📋 测试环境</h4><ul>
-      <li>硬件 — RTX 5070 Ti 16GB + 128GB RAM，MoE模型部分专家层offload到CPU</li>
-      <li>推理后端 — llama.cpp</li>
-      <li>测试包 — ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</li>
-      <li>模型下载 — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
+    <div class="roast-section tip"><h4>📋 <span data-lang="zh">测试环境</span><span data-lang="en">Test Environment</span></h4><ul>
+      <li><span data-lang="zh">硬件</span><span data-lang="en">Hardware</span> — RTX 5070 Ti 16GB + 128GB RAM，MoE<span data-lang="zh">模型</span><span data-lang="en">Models</span>部分专家层offload到CPU</li>
+      <li><span data-lang="zh">推理后端</span><span data-lang="en">Inference Backend</span> — llama.cpp</li>
+      <li><span data-lang="zh">测试包</span><span data-lang="en">Pack</span> <span data-lang="zh">— ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</span><span data-lang="en">— ToolCall-15 / BugFind-15 / HermesAgent-20 (total 50 questions)</span></li>
+      <li><span data-lang="zh">模型下载</span><span data-lang="en">Model Download</span> — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>Gemma-4 思考版 能力上限 91.6 分，实用得分 83.6 分（重试 8 次）。BugFind 96 分全场最高，BF-10 Trap 题是唯一通过的模型；HermesAgent 87 分同样全场最高。QAT 量化技术让 26B MoE 在低精度下仍保持出色性能。思考模式让 debug 和 Agent 能力大幅提升。</p>
-      <p class="final">一句话评价：BugFind 全场最高、HA 全场最高——思考模式 + QAT 量化的双重加成。</p>
+      <p>Gemma-4 思考版 <span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span> 91.6 分，<span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span> 83.6 分（<span data-lang="zh">重试</span><span data-lang="en">Retry</span> 8 次）。BugFind 96 分全场最高，BF-10 Trap 题是唯一通过的<span data-lang="zh">模型</span><span data-lang="en">Models</span>；HermesAgent 87 分同样全场最高。QAT 量化技术让 26B MoE 在低精度下仍保持出色性能。思考模式让 debug 和 Agent 能力大幅提升。</p>
+      <p class="final"><span data-lang="zh">一句话评价</span><span data-lang="en">TL;DR</span>：BugFind 全场最高、HA 全场最高——思考模式 + QAT 量化的双重加成。</p>
     </div>
   </div>
 </section>
 
-<footer><div class="inner"><div><div class="brand">⚡ BenchLocal</div><div style="font-size:13px">本地模型测试数据库</div></div><div class="links"><div><h5>测试项目</h5><a href="#">ToolCall-15</a><a href="#">BugFind-15</a><a href="#">HermesAgent-20</a></div><div><h5>模型</h5><a href="#">Step-3.7-Flash</a><a href="#">Qwen3.5-35B</a></div><div><h5>BenchLocal</h5><a href="https://github.com/stevibe/BenchLocal" target="_blank">GitHub</a><a href="https://benchlocal.com" target="_blank">官网</a></div></div></div><div class="bottom">© 2026 BenchLocal</div></footer>
+<footer><div class="inner"><div><div class="brand">⚡ BenchLocal</div><div style="font-size:13px"><span data-lang="zh">本地模型测试数据库</span><span data-lang="en">Local Model Benchmark Database</span></div></div><div class="links"><div><h5><span data-lang="zh">测试项目</span><span data-lang="en">Test Suites</span></h5><a href="#">ToolCall-15</a><a href="#">BugFind-15</a><a href="#">HermesAgent-20</a></div><div><h5><span data-lang="zh">模型</span><span data-lang="en">Models</span></h5><a href="#">Step-3.7-Flash</a><a href="#">Qwen3.5-35B</a></div><div><h5>BenchLocal</h5><a href="https://github.com/stevibe/BenchLocal" target="_blank">GitHub</a><a href="https://benchlocal.com" target="_blank"><span data-lang="zh">官网</span><span data-lang="en">Website</span></a></div></div></div><div class="bottom">© 2026 BenchLocal</div></footer>
 
 <script>
+function i18n(zh, en) { return '<span data-lang="zh">' + zh + '</span><span data-lang="en">' + en + '</span>'; }
+function i18nField(val, map) { return map[val] ? i18n(val, map[val]) : val; }
+const i18nMap={"trace检查": "trace check", "更新了一部分但检查失败": "Updated partially but check failed.", "差一点满分。": "Close to full marks.", "没完全被骗但还是 partial": "Not completely fooled but still partial", "追踪不全": "Incomplete tracking", "执行策略": "Execution strategy", "trace 检查失败": "trace check failure", "半成品。": "Half-finished product.", "永恒的死穴。": "Eternal weakness.", "调度": "Scheduling", "🎉 再次通过": "🎉 Passed again", "🎉 思考版终于通过了 BF-10！无思考版 partial": "🎉 Thinking version finally passed BF-10! Non-thinking version partial", "更新逻辑有问题": "Update logic has issues.", "找不到消息通道": "Message channel not found.", "技能更新部分完成": "Skill update partially completed.", "没用批量处理": "Did not use batch processing", "并行委派": "Parallel delegation", "还是没用批量处理": "Still not using batch processing", "没尊重天气优先的条件流": "Did not respect the priority condition flow of weather", "六个模型都失败": "Six models failed.", "调度更新": "Scheduling update", "思考让模型更接近正确答案但还没完全通过。": "Thinking brought the model closer to the correct answer but didn't fully pass.", "sandbox pass 但追踪检查失败": "sandbox pass but trace check failed", "修了但验证追踪不完整": "Fixed it but verification tracking was incomplete.", "比无思考版好一点(15→30)": "Slightly better than without thinking (15→30)", "差一点。": "Almost there.", "cron 更新场景失败": "cron update scenario failure", "没按预期顺序调用工具": "Did not call tools in expected order", "HA-07 是所有模型的公敌。": "HA-07 is the common enemy of all models.", "做了但追踪不完整": "Done but tracking was incomplete.", "🎉 思考版终于通过了！": "🎉 Thinking version finally passed!", "部分完成": "Partial completion", "消息投递": "Message delivery", "并行委派 trace 失败": "Parallel delegation trace failed", "🎯 无思考版也通过了": "🎯 Non-thinking version also passed", "比无思考版好（0→40）": "Better than without thinking (0→40)", "条件流": "Conditional flow.", "六个模型都栽在这道题": "Six models failed on this question.", "修了但追踪不完整": "Fixed it but tracking was incomplete.", "thinking 让模型想多了反而走错流程。": "Thinking caused the model to overthink and take the wrong path."};
+
 const results=[
 {n:"01",t:"Direct Specialist Match",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:"",rt:0},
 
@@ -296,11 +309,23 @@ const errors=[
 {t:"HA-16",pkg:"ha",perf:"找不到消息通道",score:30,type:"消息投递",cause:"六个模型都失败",roast:"永恒的死穴。",cls:""},
 {t:"HA-17",pkg:"ha",perf:"并行委派 trace 失败",score:70,type:"trace检查",cause:"做了但追踪不完整",roast:"差一点。",cls:""},
 ];
-function renderTable(f){const tb=document.getElementById('resultsBody');tb.innerHTML='';results.filter(r=>f==='all'||r.pkg===f||(f==='fail'&&r.r!=='pass')).forEach(r=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[r.pkg];const rb=r.r==='pass'?'pass':r.r==='partial'?'partial':'fail';const rt=r.r==='pass'?'PASS':r.r==='partial'?'PARTIAL':'FAIL';const dl={easy:'Easy',med:'Med',hard:'Hard',expert:'Expert','-':'-'}[r.diff];const dm={easy:'easy',med:'med',hard:'hard',expert:'expert','-':''}[r.diff];const rtc=r.rt>0?`<span style='color:#E53E3E;font-weight:600'>${r.rt}</span>`:'<span style="color:#94A3B8">0</span>';const sb=r.sb!=='-'?`<span class="badge ${r.sb==='pass'?'pass':'fail'}">${r.sb}</span>`:'-';tb.innerHTML+=`<tr><td><strong>${r.n}</strong></td><td>${r.t}</td><td><span class="badge ${r.pkg}">${pl}</span></td><td><span class="difficulty ${dm}">${dl}</span></td><td><span class="badge ${rb}">${rt}</span></td><td><strong>${r.s}</strong></td><td>${rtc}</td><td>${sb}</td><td>${r.time?r.time+'s':'-'}</td><td>${r.ft}</td><td class="comment">${r.c}</td></tr>`})}
+function renderTable(f){const tb=document.getElementById('resultsBody');tb.innerHTML='';results.filter(r=>f==='all'||r.pkg===f||(f==='fail'&&r.r!=='pass')).forEach(r=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[r.pkg];const rb=r.r==='pass'?'pass':r.r==='partial'?'partial':'fail';const rt=r.r==='pass'?'PASS':r.r==='partial'?'PARTIAL':'FAIL';const dl={easy:'Easy',med:'Med',hard:'Hard',expert:'Expert','-':'-'}[r.diff];const dm={easy:'easy',med:'med',hard:'hard',expert:'expert','-':''}[r.diff];const rtc=r.rt>0?`<span style='color:#E53E3E;font-weight:600'>${r.rt}</span>`:'<span style="color:#94A3B8">0</span>';const sb=r.sb!=='-'?`<span class="badge ${r.sb==='pass'?'pass':'fail'}">${r.sb}</span>`:'-';tb.innerHTML+=`<tr><td><strong>${r.n}</strong></td><td>${r.t}</td><td><span class="badge ${r.pkg}">${pl}</span></td><td><span class="difficulty ${dm}">${dl}</span></td><td><span class="badge ${rb}">${rt}</span></td><td><strong>${r.s}</strong></td><td>${rtc}</td><td>${sb}</td><td>${r.time?r.time+'s':'-'}</td><td>${i18nField(r.ft, i18nMap)}</td><td class="comment">${i18nField(r.c, i18nMap)}</td></tr>`})}
 function filterTable(f,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderTable(f)}
-function renderErrors(){const g=document.getElementById('errorGrid');errors.forEach(e=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[e.pkg];g.innerHTML+=`<div class="error-card ${e.cls}"><h4><span class="badge ${e.pkg}">${pl}</span> ${e.t}</h4><div class="meta"><span>得分: <strong>${e.score}</strong></span><span>类型: ${e.type}</span></div><div class="desc"><strong>表现:</strong> ${e.perf}<br><strong>根因:</strong> ${e.cause}</div><div class="roast">${e.roast}</div></div>`})}
+function renderErrors(){const g=document.getElementById('errorGrid');errors.forEach(e=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[e.pkg];g.innerHTML+=`<div class="error-card ${e.cls}"><h4><span class="badge ${e.pkg}">${pl}</span> ${e.t}</h4><div class="meta"><span>得分: <strong>${e.score}</strong></span><span>类型: ${i18nField(e.type, i18nMap)}</span></div><div class="desc"><strong>表现:</strong> ${i18nField(e.perf, i18nMap)}<br><strong>根因:</strong> ${i18nField(e.cause, i18nMap)}</div><div class="roast">${i18nField(e.roast, i18nMap)}</div></div>`})}
 renderTable('all');renderErrors();
 </script>
+<script>(function(){
+  var s=localStorage.getItem('bl-lang')||'zh';
+  document.documentElement.lang=s==='en'?'en':'zh-CN';
+  window.toggleLang=function(l){
+    document.documentElement.lang=l==='en'?'en':'zh-CN';
+    localStorage.setItem('bl-lang',l);
+    document.querySelectorAll('.lang-toggle span').forEach(function(e){
+      e.classList.toggle('active',e.dataset.lb===l);
+    });
+  };
+  document.addEventListener('DOMContentLoaded',function(){window.toggleLang(s)});
+})();</script>
 </body>
 </html>
 

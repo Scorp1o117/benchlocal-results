@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Step-3.7-Flash (思考) · BenchLocal</title>
+<title>Step-3.7-Flash <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span> · BenchLocal</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
@@ -105,10 +105,19 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
 .hf-detail-link{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:12px;font-size:14px;font-weight:600;background:linear-gradient(135deg,#FFD21E,#FF9D00);color:#1A202C;text-decoration:none;transition:all .25s;margin-top:16px}
 .hf-detail-link:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(255,210,30,.35);background:linear-gradient(135deg,#FFE066,#FFB347)}
 .hf-detail-link svg{width:18px;height:18px;flex-shrink:0}
+
+/* i18n */
+[data-lang]{display:none}
+html[lang="zh-CN"] [data-lang="zh"],html[lang="en"] [data-lang="en"]{display:revert}
+html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:none}
+.lang-toggle{display:flex;align-items:center;gap:2px;padding:3px;border-radius:8px;background:#F1F5F9;cursor:pointer;user-select:none;margin-left:auto}
+.lang-toggle span{padding:3px 10px;border-radius:6px;font-size:12px;font-weight:600;color:var(--text2);transition:all .2s;pointer-events:none}
+.lang-toggle span.active{background:#fff;color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.1)}
 </style>
 </head>
 <body>
-<nav><div class="inner"><div class="logo"><div class="logo-icon">⚡</div>BenchLocal</div><a href="../" class="back-link">← 返回排行榜</a></div></nav>
+<nav><div class="inner"><div class="logo"><div class="logo-icon">⚡</div>BenchLocal</div><a href="../" class="back-link"><span data-lang="zh">← 返回排行榜</span><span data-lang="en">← Back to Leaderboard</span></a>  <div class="lang-toggle" onclick="toggleLang(document.documentElement.lang==='zh-CN'?'en':'zh')"><span data-lb="zh" class="active">中</span><span data-lb="en">EN</span></div>
+</div></nav>
 
 <section class="hero-detail">
   <div class="model-header">
@@ -121,70 +130,74 @@ footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1
   </div>
   
   <div class="score-row">
-    <div class="big-score"><div class="label">加权总分</div><div class="num">88.8</div><div class="sub">加权原始分 = TC×0.3 + BF×0.3 + HA×0.4</div></div>
-    <div class="adj-score"><div class="label">实用得分</div><div class="num">78.8</div><div class="sub">−10 重试扣分</div></div>
+    <div class="big-score"><div class="label"><span data-lang="zh">加权总分</span><span data-lang="en">Weighted Total</span></div><div class="num">88.8</div><div class="sub"><span data-lang="zh">加权原始分 = TC×0.3 + BF×0.3 + HA×0.4</span><span data-lang="en">Weighted raw score = TC×0.3 + BF×0.3 + HA×0.4</span></div></div>
+    <div class="adj-score"><div class="label"><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></div><div class="num">78.8</div><div class="sub">−10 <span data-lang="zh">重试</span><span data-lang="en">Retry</span>扣分</div></div>
     <div class="sub-scores">
-      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">100</div><div class="sub">15/15 通过 · 100% 🏆 · 重试 -4</div><div class="bar"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div></div>
-      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">87</div><div class="sub">12/15 通过 · 80% · 重试 -2</div><div class="bar"><div class="bar-fill" style="width:87%;background:#ED8936"></div></div></div>
-      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">81</div><div class="sub">15/20 通过 · 75% · 重试 -4</div><div class="bar"><div class="bar-fill" style="width:81%;background:#548235"></div></div></div>
+      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">100</div><div class="sub"><span data-lang="zh">15/15 通过 · 100% 🏆</span><span data-lang="en">15/15 passed · 100% 🏆</span> · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -4</div><div class="bar"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div></div>
+      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">87</div><div class="sub">12/15 通过 · 80% · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -2</div><div class="bar"><div class="bar-fill" style="width:87%;background:#ED8936"></div></div></div>
+      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">81</div><div class="sub">15/20 通过 · 75% · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -4</div><div class="bar"><div class="bar-fill" style="width:81%;background:#548235"></div></div></div>
     </div>
   </div>
   <div style="max-width:1280px;margin:16px auto 0;padding:0 48px">
     <div style="background:#F1F5F9;border-radius:12px;padding:16px 20px;font-size:13px;color:#64748B;line-height:1.8">
-      <strong style="color:#1A202C">📊 计分规则</strong> — <strong>能力上限</strong> = 加权原始分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4<br><strong>实用得分</strong> = 能力上限 − 重试扣分（每题首次通过不扣分，重试后通过每重试1次扣1分，重试后仍失败不参与扣分）。
+      <strong style="color:#1A202C">📊 <span data-lang="zh">计分规则</span><span data-lang="en">Scoring Rules</span></strong> — <strong><span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span></strong> <span data-lang="zh">= 加权原始分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</span><span data-lang="en">= Weighted raw score = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</span><br><strong><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></strong> = <span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span> − <span data-lang="zh">重试</span><span data-lang="en">Retry</span>扣分（每题首次通过不扣分，<span data-lang="zh">重试</span><span data-lang="en">Retry</span>后通过每<span data-lang="zh">重试</span><span data-lang="en">Retry</span>1次扣1分，<span data-lang="zh">重试</span><span data-lang="en">Retry</span>后仍失败不参与扣分）。
       
     </div>
   </div>
 </section>
 
 <section class="section">
-  <h2>📋 全部测试结果</h2>
+  <h2>📋 <span data-lang="zh">全部测试结果</span><span data-lang="en">All Test Results</span></h2>
   <div class="tabs">
-    <div class="tab active" onclick="filterTable('all',this)">全部 (50)</div>
+    <div class="tab active" onclick="filterTable('all',this)"><span data-lang="zh">全部 (50)</span><span data-lang="en">All (50)</span></div>
     <div class="tab" onclick="filterTable('tc',this)">ToolCall (15)</div>
     <div class="tab" onclick="filterTable('bf',this)">BugFind (15)</div>
     <div class="tab" onclick="filterTable('ha',this)">HermesAgent (20)</div>
-    <div class="tab" onclick="filterTable('fail',this)">❌ 失败 (8)</div>
+    <div class="tab" onclick="filterTable('fail',this)"><span data-lang="zh">❌ 失败 (8)</span><span data-lang="en">❌ Failed (8)</span></div>
   </div>
-  <div class="table-wrap"><table><thead><tr><th>#</th><th>题目</th><th>测试包</th><th>难度</th><th>结果</th><th>得分</th><th>重试</th><th>sandbox</th><th>耗时</th><th>失败类型</th><th>点评</th></tr></thead><tbody id="resultsBody"></tbody></table></div>
+  <div class="table-wrap"><table><thead><tr><th>#</th><th><span data-lang="zh">题目</span><span data-lang="en">Question</span></th><th><span data-lang="zh">测试包</span><span data-lang="en">Pack</span></th><th><span data-lang="zh">难度</span><span data-lang="en">Difficulty</span></th><th><span data-lang="zh">结果</span><span data-lang="en">Result</span></th><th><span data-lang="zh">得分</span><span data-lang="en">Score</span></th><th><span data-lang="zh">重试</span><span data-lang="en">Retry</span></th><th>sandbox</th><th><span data-lang="zh">耗时</span><span data-lang="en">Time</span></th><th><span data-lang="zh">失败类型</span><span data-lang="en">Failure Type</span></th><th><span data-lang="zh">点评</span><span data-lang="en">Comment</span></th></tr></thead><tbody id="resultsBody"></tbody></table></div>
 </section>
 
 <section class="section">
-  <h2>🔍 错题分析</h2>
+  <h2>🔍 <span data-lang="zh">错题分析</span><span data-lang="en">Error Analysis</span></h2>
   <div class="error-grid" id="errorGrid"></div>
 </section>
 
 <section class="section">
-  <h2>🌊 📊 模型评估总结</h2>
+  <h2>🌊 📊 <span data-lang="zh">模型评估总结</span><span data-lang="en">Model Evaluation Summary</span></h2>
   <div class="roast-box">
     <div class="roast-section pro"><h4>✅ 优势</h4><ul>
-      <li>ToolCall 满分 100 🏆 — 15/15 全通过，包括拒绝不支持操作（TC-12）也正确处理</li>
-      <li>BugFind 87 分 — 跨语言 debug 能力强劲（Python/JS/Rust/Go 全覆盖），BF-10 红鲱鱼陷阱通过</li>
-      <li>HermesAgent 81 分 — HA-06 后台进程管理、HA-10 技能发现、HA-11 技能修补、HA-17 并行委派均通过</li>
-      <li>重试成本低 — 仅 10 次重试即拿到 88.8 原始分，调整后 78.8</li>
+      <li><span data-lang="zh">ToolCall 满分 100 🏆 — 15/15 全通过，包括拒绝不支持操作（TC-12）也正确处理</span><span data-lang="en">ToolCall full marks 100 🏆 — 15/15 fully passed, including correct handling of rejecting unsupported operations (TC-12).</span></li>
+      <li><span data-lang="zh">BugFind 87 分 — 跨语言 debug 能力强劲（Python/JS/Rust/Go 全覆盖），BF-10 红鲱鱼陷阱通过</span><span data-lang="en">BugFind 87 — Strong cross-language debugging capability (full coverage of Python/JS/Rust/Go), passed BF-10 red herring trap.</span></li>
+      <li><span data-lang="zh">HermesAgent 81 分 — HA-06 后台进程管理、HA-10 技能发现、HA-11 技能修补、HA-17 并行委派均通过</span><span data-lang="en">HermesAgent 81 — Passed HA-06 background process management, HA-10 skill discovery, HA-11 skill patching, and HA-17 parallel delegation.</span></li>
+      <li><span data-lang="zh">重试</span><span data-lang="en">Retry</span>成本低 — 仅 10 次<span data-lang="zh">重试</span><span data-lang="en">Retry</span>即拿到 88.8 原始分，调整后 78.8</li>
     </ul></div>
     <div class="roast-section con"><h4>⚠️ 不足</h4><ul>
-      <li>BugFind BF-03 trap 题失败 — "代码没bug"场景仍会过度诊断，强行找bug</li>
-      <li>HA-04 verifier 环境超时（0分）— 测试环境问题非模型能力</li>
-      <li>HA-07 execute_code（30分）、HA-12 技能文件（20分）、HA-16 消息投递（30分）薄弱</li>
-      <li>速度 13.9 t/s，71.6GB 体量下合理但不适合实时交互场景</li>
+      <li><span data-lang="zh">BugFind BF-03 trap 题失败 — "代码没bug"场景仍会过度诊断，强行找bug</span><span data-lang="en">BugFind BF-03 trap failure — Over-diagnoses in "no bug" scenarios, forcing bug detection.</span></li>
+      <li>HA-04 verifier 环境超时（0分）— <span data-lang="zh">测试环境</span><span data-lang="en">Test Environment</span>问题非<span data-lang="zh">模型</span><span data-lang="en">Models</span>能力</li>
+      <li><span data-lang="zh">HA-07 execute_code（30分）、HA-12 技能文件（20分）、HA-16 消息投递（30分）薄弱</span><span data-lang="en">Weaknesses in HA-07 execute_code (30 points), HA-12 skill files (20 points), and HA-16 message delivery (30 points).</span></li>
+      <li><span data-lang="zh">速度 13.9 t/s，71.6GB 体量下合理但不适合实时交互场景</span><span data-lang="en">Speed 13.9 t/s; reasonable for 71.6GB size but unsuitable for real-time interaction scenarios.</span></li>
     </ul></div>
-    <div class="roast-section tip"><h4>📋 测试环境</h4><ul>
-      <li>硬件 — RTX 5070 Ti 16GB + 128GB RAM，MoE模型部分专家层offload到CPU</li>
-      <li>推理后端 — llama.cpp</li>
-      <li>测试包 — ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</li>
-      <li>模型下载 — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
+    <div class="roast-section tip"><h4>📋 <span data-lang="zh">测试环境</span><span data-lang="en">Test Environment</span></h4><ul>
+      <li><span data-lang="zh">硬件</span><span data-lang="en">Hardware</span> — RTX 5070 Ti 16GB + 128GB RAM，MoE<span data-lang="zh">模型</span><span data-lang="en">Models</span>部分专家层offload到CPU</li>
+      <li><span data-lang="zh">推理后端</span><span data-lang="en">Inference Backend</span> — llama.cpp</li>
+      <li><span data-lang="zh">测试包</span><span data-lang="en">Pack</span> <span data-lang="zh">— ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</span><span data-lang="en">— ToolCall-15 / BugFind-15 / HermesAgent-20 (total 50 questions)</span></li>
+      <li><span data-lang="zh">模型下载</span><span data-lang="en">Model Download</span> — <a href='https://huggingface.co/SC117' target='_blank' style='color:var(--red)'>HF: SC117</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p>Step-3.7-Flash 能力上限 88.8 分，实用得分 78.8 分（重试 10 次）。198B MoE 架构（11B 激活），67.9GB 体积。ToolCall 满分 100，工具调用和参数提取能力顶尖；BugFind 87 分，跨语言 debug 功底扎实（Python/JS/Rust/Go）；HermesAgent 81 分，技能管理和后台进程处理不错，但消息投递和 execute_code 是短板。速度 13.9 t/s，71.6GB 体量下合理。</p>
-      <p class="final">一句话评价：技术扎实的大块头——ToolCall 满分、跨语言 debug 全能，但 trap 题和消息投递是软肋。</p>
+      <p>Step-3.7-Flash <span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span> 88.8 分，<span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span> 78.8 分（<span data-lang="zh">重试</span><span data-lang="en">Retry</span> 10 次）。198B MoE 架构（11B 激活），67.9GB 体积。ToolCall 满分 100，工具调用和参数提取能力顶尖；BugFind 87 分，跨语言 debug 功底扎实（Python/JS/Rust/Go）；HermesAgent 81 分，技能管理和后台进程处理不错，但消息投递和 execute_code 是短板。速度 13.9 t/s，71.6GB 体量下合理。</p>
+      <p class="final"><span data-lang="zh">一句话评价</span><span data-lang="en">TL;DR</span>：技术扎实的大块头——ToolCall 满分、跨语言 debug 全能，但 trap 题和消息投递是软肋。</p>
     </div>
   </div>
 </section>
 
-<footer><div class="inner"><div><div class="brand">⚡ BenchLocal</div><div style="font-size:13px">本地模型测试数据库</div></div><div class="links"><div><h5>测试项目</h5><a href="#">ToolCall-15</a><a href="#">BugFind-15</a><a href="#">HermesAgent-20</a></div><div><h5>模型</h5><a href="#">Step-3.7-Flash</a><a href="#">Qwen3.5-35B</a></div><div><h5>BenchLocal</h5><a href="https://github.com/stevibe/BenchLocal" target="_blank">GitHub</a><a href="https://benchlocal.com" target="_blank">官网</a></div></div></div><div class="bottom">© 2026 BenchLocal</div></footer>
+<footer><div class="inner"><div><div class="brand">⚡ BenchLocal</div><div style="font-size:13px"><span data-lang="zh">本地模型测试数据库</span><span data-lang="en">Local Model Benchmark Database</span></div></div><div class="links"><div><h5><span data-lang="zh">测试项目</span><span data-lang="en">Test Suites</span></h5><a href="#">ToolCall-15</a><a href="#">BugFind-15</a><a href="#">HermesAgent-20</a></div><div><h5><span data-lang="zh">模型</span><span data-lang="en">Models</span></h5><a href="#">Step-3.7-Flash</a><a href="#">Qwen3.5-35B</a></div><div><h5>BenchLocal</h5><a href="https://github.com/stevibe/BenchLocal" target="_blank">GitHub</a><a href="https://benchlocal.com" target="_blank"><span data-lang="zh">官网</span><span data-lang="en">Website</span></a></div></div></div><div class="bottom">© 2026 BenchLocal</div></footer>
 
 <script>
+function i18n(zh, en) { return '<span data-lang="zh">' + zh + '</span><span data-lang="en">' + en + '</span>'; }
+function i18nField(val, map) { return map[val] ? i18n(val, map[val]) : val; }
+const i18nMap={"面对不明确的破坏性操作决策失误": "Decision error when facing ambiguous destructive operations", "添加支持技能文件失败": "Failed to add support for skill file", "差一点就满分了。": "Almost perfect score.", "未能正确使用execute_code": "Failed to correctly use execute_code.", "❌ 代码没bug，强行找bug": "❌ No code bugs, forced bug finding", "⚡ 直接心算": "⚡ Direct mental calculation", "执行策略": "Execution strategy", "trap题：format!不夺走所有权，代码正确": "Trap question: format! doesn't take ownership, code is correct", "race condition诊断正确但验证不完整": "race condition diagnosed correctly but verification incomplete", "经典trap题翻车——模型不会判断'代码没问题'。": "Classic trap failure—model cannot judge 'code is fine'.", "所有模型的通病。": "A common flaw across all models.", "诊断不足": "Underdiagnosis", "⚠️ 诊断正确但sandbox验证部分通过": "⚠️ Diagnosis correct but sandbox verification partially passed", "❌ 未能正确使用代码执行能力": "❌ Failed to correctly use code execution capability", "❌ 面对模糊破坏性请求判断不足": "❌ Insufficient judgment for ambiguous destructive requests", "部分通过": "Partial pass", "sandbox pass但诊断和规范得分低": "sandbox pass but low diagnostic and specification scores", "技能文件场景失败": "Skill file scenario failed.", "模糊破坏性请求判断不足": "Insufficient judgment of ambiguous destructive requests", "技能文件": "Skill file.", "代码没bug，强行找bug": "No bugs in the code, yet the model forces a bug search.", "⚠️ 修对了但诊断不全": "⚠️ Fixed correctly but diagnosis incomplete", "Python字段排序问题诊断不到位": "Inadequate diagnosis of Python field sorting problem", "排序问题": "Sorting issue.", "600s超时，verifier启动失败": "600s timeout, verifier startup failure", "✅ 这次没被骗！": "✅ Didn't get tricked this time!", "编程式摘要场景失败": "Programming-based summarization scenario failure", "❌ 未发送到正确命名目标": "❌ Not sent to correct named target", "诊断正确但sandbox部分通过": "Correct diagnosis but sandbox part passed", "verifier容器启动失败导致超时": "Timeout due to verifier container startup failure", "模糊场景判断力还需提升。": "Judgment in ambiguous scenarios needs improvement.", "消息投递": "Message delivery", "字符串排序问题未处理": "String sorting issue not resolved", "✅ 正确拒绝": "✅ Correctly rejected", "排序bug是新的失分点。": "Sorting bug is a new point deduction area.", "✅ 这次通过了！": "✅ Passed this time!", "不是模型的问题，是环境问题。": "Not a model issue, but an environment issue.", "模糊判断": "Ambiguous judgment", "技能生态仍需完善。": "Skill ecosystem still needs improvement.", "委派精准度不足": "Insufficient delegation accuracy", "❌ 600s超时，verifier启动失败": "❌ 600s timeout, verifier startup failed", "⚠️ 字符串排序问题未处理": "⚠️ String sorting issue not handled", "✅ 这次也通过了！": "✅ Passed this time too!", "execute_code一直是短板。": "execute_code has always been a weakness.", "❌ 技能文件场景失败": "❌ Failed in skill file scenario", "修对了但诊断不全": "Correct fix but incomplete diagnosis.", "未发送到正确命名目标": "Not sent to the correct named target.", "超时": "Timeout", "修了但说不出为什么。": "Fixed it but couldn't explain why."};
+
 const results=[
 {n:"01",t:"Direct Specialist Match",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:19,ft:"-",c:"",rt:0},
 {n:"02",t:"Distractor Resistance",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:"",rt:0},
@@ -248,11 +261,23 @@ const errors=[
 {t:"HA-16",pkg:"ha",perf:"未发送到正确命名目标",score:30,type:"消息投递",cause:"委派精准度不足",roast:"所有模型的通病。",cls:""},
 {t:"HA-20",pkg:"ha",perf:"模糊破坏性请求判断不足",score:35,type:"模糊判断",cause:"面对不明确的破坏性操作决策失误",roast:"模糊场景判断力还需提升。",cls:"score-issue"},
 ];
-function renderTable(f){const tb=document.getElementById('resultsBody');tb.innerHTML='';results.filter(r=>f==='all'||r.pkg===f||(f==='fail'&&r.r!=='pass')).forEach(r=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[r.pkg];const rb=r.r==='pass'?'pass':r.r==='partial'?'partial':'fail';const rt2=r.r==='pass'?'PASS':r.r==='partial'?'PARTIAL':'FAIL';const dl={easy:'Easy',med:'Med',hard:'Hard',expert:'Expert','-':'-'}[r.diff];const dm={easy:'easy',med:'med',hard:'hard',expert:'expert','-':''}[r.diff];const sb=r.sb!=='-'?`<span class="badge ${r.sb==='pass'?'pass':'fail'}">${r.sb}</span>`:'-';const rtc=r.rt>0?`<span style="color:#E53E3E;font-weight:600">${r.rt}</span>`:'<span style="color:#94A3B8">0</span>';tb.innerHTML+=`<tr><td><strong>${r.n}</strong></td><td>${r.t}</td><td><span class="badge ${r.pkg}">${pl}</span></td><td><span class="difficulty ${dm}">${dl}</span></td><td><span class="badge ${rb}">${rt2}</span></td><td><strong>${r.s}</strong></td><td>${rtc}</td><td>${sb}</td><td>${r.time?r.time+'s':'-'}</td><td>${r.ft}</td><td class="comment">${r.c}</td></tr>`})}
+function renderTable(f){const tb=document.getElementById('resultsBody');tb.innerHTML='';results.filter(r=>f==='all'||r.pkg===f||(f==='fail'&&r.r!=='pass')).forEach(r=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[r.pkg];const rb=r.r==='pass'?'pass':r.r==='partial'?'partial':'fail';const rt2=r.r==='pass'?'PASS':r.r==='partial'?'PARTIAL':'FAIL';const dl={easy:'Easy',med:'Med',hard:'Hard',expert:'Expert','-':'-'}[r.diff];const dm={easy:'easy',med:'med',hard:'hard',expert:'expert','-':''}[r.diff];const sb=r.sb!=='-'?`<span class="badge ${r.sb==='pass'?'pass':'fail'}">${r.sb}</span>`:'-';const rtc=r.rt>0?`<span style="color:#E53E3E;font-weight:600">${r.rt}</span>`:'<span style="color:#94A3B8">0</span>';tb.innerHTML+=`<tr><td><strong>${r.n}</strong></td><td>${r.t}</td><td><span class="badge ${r.pkg}">${pl}</span></td><td><span class="difficulty ${dm}">${dl}</span></td><td><span class="badge ${rb}">${rt2}</span></td><td><strong>${r.s}</strong></td><td>${rtc}</td><td>${sb}</td><td>${r.time?r.time+'s':'-'}</td><td>${i18nField(r.ft, i18nMap)}</td><td class="comment">${i18nField(r.c, i18nMap)}</td></tr>`})}
 function filterTable(f,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderTable(f)}
-function renderErrors(){const g=document.getElementById('errorGrid');errors.forEach(e=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[e.pkg];g.innerHTML+=`<div class="error-card ${e.cls}"><h4><span class="badge ${e.pkg}">${pl}</span> ${e.t}</h4><div class="meta"><span>得分: <strong>${e.score}</strong></span><span>类型: ${e.type}</span></div><div class="desc"><strong>表现:</strong> ${e.perf}<br><strong>根因:</strong> ${e.cause}</div><div class="roast">${e.roast}</div></div>`})}
+function renderErrors(){const g=document.getElementById('errorGrid');errors.forEach(e=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[e.pkg];g.innerHTML+=`<div class="error-card ${e.cls}"><h4><span class="badge ${e.pkg}">${pl}</span> ${e.t}</h4><div class="meta"><span>得分: <strong>${e.score}</strong></span><span>类型: ${i18nField(e.type, i18nMap)}</span></div><div class="desc"><strong>表现:</strong> ${i18nField(e.perf, i18nMap)}<br><strong>根因:</strong> ${i18nField(e.cause, i18nMap)}</div><div class="roast">${i18nField(e.roast, i18nMap)}</div></div>`})}
 renderTable('all');renderErrors();
 </script>
+<script>(function(){
+  var s=localStorage.getItem('bl-lang')||'zh';
+  document.documentElement.lang=s==='en'?'en':'zh-CN';
+  window.toggleLang=function(l){
+    document.documentElement.lang=l==='en'?'en':'zh-CN';
+    localStorage.setItem('bl-lang',l);
+    document.querySelectorAll('.lang-toggle span').forEach(function(e){
+      e.classList.toggle('active',e.dataset.lb===l);
+    });
+  };
+  document.addEventListener('DOMContentLoaded',function(){window.toggleLang(s)});
+})();</script>
 </body>
 </html>
 
