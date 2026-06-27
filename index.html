@@ -168,6 +168,7 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
   <h1><span data-lang="zh">本地模型</span><span data-lang="en">Local Models</span><br><span><span data-lang="zh">测试数据库</span><span data-lang="en">Benchmark Database</span></span></h1>
   <p><span data-lang="zh">基于 BenchLocal 桌面应用，在本地对真实任务进行基准测试，横向对比模型表现</span><span data-lang="en">Based on BenchLocal desktop app, benchmarking LLMs on real-world tasks locally</span></p><p style="font-size:13px;color:var(--text3);margin-top:8px"><span data-lang="zh">当前测试环境：RTX 5070 Ti 16GB + 128GB RAM · MoE模型部分专家层offload到CPU</span><span data-lang="en">Test environment: RTX 5070 Ti 16GB + 128GB RAM · MoE expert layers partially offloaded to CPU</span></p>
   <p style="font-size:13px;color:var(--text3);margin-top:8px"><span data-lang="zh">排名基于<strong style="color:var(--text2)">能力上限</strong>（加权原始分），<strong style="color:var(--text2)">实用得分</strong> = 能力上限 − 重试扣分（每题首次通过不扣分，重试后通过每重试1次扣1分）</span><span data-lang="en">Ranked by <strong style="color:var(--text2)">Max Score</strong> (weighted raw score), <strong style="color:var(--text2)">Effective Score</strong> = Max Score − retry penalty (first pass = no penalty, each retry = +1pt)</span></p>
+  <p style="font-size:12px;color:var(--text3);margin-top:6px;opacity:.8">&#9889; <span data-lang="zh">卡片中的速度数据（如 In 725 t/s · Out 60.6 t/s）仅供参考，非真实环境！</span><span data-lang="en">Speed data on cards (e.g. In 725 t/s · Out 60.6 t/s) is for reference only!</span></p>
   <div class="hero-stats">
     <div class="hero-stat"><div class="val">12</div><div class="lbl"><span data-lang="zh">已测试模型</span><span data-lang="en">Models Tested</span></div></div>
     <div class="hero-stat"><div class="val">50</div><div class="lbl"><span data-lang="zh">总测试题数</span><span data-lang="en">Total Questions</span></div></div>
@@ -549,6 +550,37 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
       </div>
     </div>
 
+    <!-- Model 12: Ornith-1.0-35B-MTP <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span> -->
+    <div class="model-card rank-1 thinking" onclick="location.href='models/ornith-35b-mtp-thinking.html'">
+      <div class="card-top">
+        <div class="card-rank">1</div>
+        <div class="card-scores">
+        <div class="card-score-box primary"><div class="lbl"><span data-lang="zh">上限</span><span data-lang="en">Max</span></div><div class="val">93.5</div></div>
+        <div class="card-score-box secondary"><div class="lbl"><span data-lang="zh">实用</span><span data-lang="en">Eff.</span></div><div class="val">75.5</div></div>
+      </div>
+      </div>
+      <div class="card-model">
+        <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Ornith-1.0-35B-MTP <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(思考 · MTP)</span><span data-lang="en">(Thinking · MTP)</span></span></h3>
+        <div class="desc">Ornith-1.0-35B-MTP-APEX-I-Compact.gguf · Q4_K_M · 15.85 GB</div>
+      </div>
+      <div class="card-meta">
+        <span class="card-tag">📦 Dense 35B</span>
+        <span class="card-tag">📦 15.85 GB</span>
+        <span class="card-tag">🎮 RTX 5070 Ti</span>
+      </div>
+      <div class="card-bars">
+        <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">100</span></div>
+        <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:93%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">93</span></div>
+        <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:89%;background:#548235"></div></div><span class="bar-val" style="color:#548235">89</span></div>
+      </div>
+      
+      <div class="card-retry"><span data-lang="zh">🔄 上限分 93.5 → 重试 -18 → 实用 <strong>75.5</strong></span><span data-lang="en">🔄 Max 93.5 → retries -18 → Eff. <strong>75.5</strong></span></div>
+      <div class="card-footer">
+        <span class="date">2026-06-26 <span data-lang="zh">测试</span><span data-lang="en">tested</span></span>
+        <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
+      </div>
+    </div>
+
   </div>
 
     
@@ -607,7 +639,7 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
     <div><div class="brand">⚡ BenchLocal</div><div style="font-size:13px"><span data-lang="zh">本地模型测试数据库</span><span data-lang="en">Local Model Benchmark Database</span></div></div>
     <div class="links">
       <div><h5><span data-lang="zh">测试项目</span><span data-lang="en">Test Suites</span></h5><a href="#">ToolCall-15</a><a href="#">BugFind-15</a><a href="#">HermesAgent-20</a><a href="#"><span data-lang="zh">更多 Bench Packs →</span><span data-lang="en">More Bench Packs →</span></a></div>
-      <div><h5><span data-lang="zh">模型</span><span data-lang="en">Models</span></h5><a href="models/step37-flash.html">Step-3.7-Flash</a><a href="models/n2mini.html">Nex-N2-Mini</a><a href="models/qwen36-35b-mtp.html">Qwen3.6-35B-A3B-uncensored-MTP <span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span></a><a href="models/qwen36-35b-mtp-thinking.html">Qwen3.6-35B-A3B-uncensored-MTP <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></a><a href="models/gemma4-26b.html">Gemma-4-26B-A4B-it-qat <span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span></a><a href="models/gemma4-26b-thinking.html">Gemma-4-26B-A4B-it-qat <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></a><a href="models/gemma4-12b.html">Gemma-4-12B (QAT)</a><a href="models/qwenpaw-flash-9b.html">QwenPaw-Flash-9B</a><a href="models/qwen36-27b.html">Qwen3.6-27B <span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span></a><a href="models/qwen36-27b-thinking.html">Qwen3.6-27B <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></a><a href="models/dsv4-flash.html">DeepSeek-V4-Flash</a></div>
+      <div><h5><span data-lang="zh">模型</span><span data-lang="en">Models</span></h5><a href="models/step37-flash.html">Step-3.7-Flash</a><a href="models/n2mini.html">Nex-N2-Mini</a><a href="models/qwen36-35b-mtp.html">Qwen3.6-35B-A3B-uncensored-MTP <span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span></a><a href="models/qwen36-35b-mtp-thinking.html">Qwen3.6-35B-A3B-uncensored-MTP <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></a><a href="models/gemma4-26b.html">Gemma-4-26B-A4B-it-qat <span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span></a><a href="models/gemma4-26b-thinking.html">Gemma-4-26B-A4B-it-qat <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></a><a href="models/gemma4-12b.html">Gemma-4-12B (QAT)</a><a href="models/qwenpaw-flash-9b.html">QwenPaw-Flash-9B</a><a href="models/qwen36-27b.html">Qwen3.6-27B <span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span></a><a href="models/qwen36-27b-thinking.html">Qwen3.6-27B <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></a><a href="models/dsv4-flash.html">DeepSeek-V4-Flash</a><a href="models/ornith-35b-mtp-thinking.html">Ornith-35B-MTP <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></a></div>
       <div><h5>BenchLocal</h5><a href="https://github.com/stevibe/BenchLocal" target="_blank"><span data-lang="zh">GitHub 仓库</span><span data-lang="en">GitHub Repo</span></a><a href="https://benchlocal.com" target="_blank"><span data-lang="zh">官网</span><span data-lang="en">Website</span></a><a href="https://github.com/stevibe/BenchLocal/releases/latest" target="_blank"><span data-lang="zh">下载最新版</span><span data-lang="en">Download Latest</span></a></div>
     </div>
   </div>
@@ -627,6 +659,7 @@ const models = [
   {el:null, total:87.4, adjusted:84.4, tc:96.7, bf:84.2, ha:82.8, name:'Qwen3.6-27B-uncensored-MTP (无思考)', retries:3},
   {el:null, total:91.9, adjusted:73.9, tc:100, bf:93.3, ha:84.8, name:'Qwen3.6-27B-uncensored-MTP (思考)', retries:18},
   {el:null, total:94.0, adjusted:85.0, tc:100, bf:93.3, ha:90, name:'DeepSeek-V4-Flash (API)', retries:9},
+  {el:null, total:93.5, adjusted:75.5, tc:100, bf:93, ha:89, name:'Ornith-1.0-35B-MTP (思考)', retries:18},
 ];
 const grid = document.querySelector('.models-grid');
 const cards = grid.querySelectorAll('.model-card');
