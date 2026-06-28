@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ornith-1.0-35B-MTP (思考) · BenchLocal</title>
+<title>Ornith-1.0-35B-MTP-APEX (思考) · BenchLocal</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
@@ -88,7 +88,7 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
   <div class="model-header">
     <div class="model-avatar"><img src="../icons/ornith-color.png" alt="" style="width:100%;height:100%;object-fit:contain"></div>
     <div class="model-info">
-      <h1>Ornith-1.0-35B-MTP <span style="font-size:16px;color:var(--text3);font-weight:400"><span data-lang="zh">(思考 · MTP)</span><span data-lang="en">(Thinking · MTP)</span></span></h1>
+      <h1>Ornith-1.0-35B-MTP-APEX <span style="font-size:16px;color:var(--text3);font-weight:400"><span data-lang="zh">(思考 · MTP)</span><span data-lang="en">(Thinking · MTP)</span></span></h1>
       <div class="sub">Ornith-1.0-35B-MTP-APEX-I-Compact.gguf · Q4_K_M · 15.85 GB</div>
       <div class="model-tags"><span>🧠 MoE (3B active)</span><span>📦 15.85 GB</span><span>🎮 RTX 5070 Ti 16GB + 128GB RAM</span><span>📅 2026-06-26</span><span style="background:#FFF5F5;color:#E53E3E">🌡️ temp=0.6 top_p=0.95 top_k=20</span></div>
     </div>
@@ -98,8 +98,8 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
     <div class="adj-score"><div class="label"><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></div><div class="num">75.5</div><div class="sub"><span data-lang="zh">−18 重试扣分</span><span data-lang="en">−18 retry penalty</span></div></div>
     <div class="sub-scores">
       <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">100</div><div class="detail">15/15 <span data-lang="zh">通过 · 100%</span><span data-lang="en">passed · 100%</span></div></div>
-      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">93</div><div class="detail">14/15 <span data-lang="zh">通过 · 93%</span><span data-lang="en">passed · 93%</span></div><div class="retry-info"><span data-lang="zh">🔄 重试 13 次</span><span data-lang="en">🔄 13 retries</span></div></div>
-      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">89</div><div class="detail">15/20 <span data-lang="zh">通过 · 75%</span><span data-lang="en">passed · 75%</span></div><div class="retry-info"><span data-lang="zh">🔄 重试 24 次</span><span data-lang="en">🔄 24 retries</span></div></div>
+      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">93</div><div class="detail">14/15 <span data-lang="zh">通过 · 93%</span><span data-lang="en">passed · 93%</span></div><div class="retry-info"><span data-lang="zh">🔄 重试 12 次</span><span data-lang="en">🔄 12 retries</span></div></div>
+      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">89</div><div class="detail">15/20 <span data-lang="zh">通过 · 75%</span><span data-lang="en">passed · 75%</span></div><div class="retry-info"><span data-lang="zh">🔄 重试 6 次</span><span data-lang="en">🔄 6 retries</span></div></div>
     </div>
   </div>
 </section>
@@ -154,8 +154,8 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
   <div class="about-box" style="margin-top:32px">
     <h3>📊 <span data-lang="zh">模型评估总结</span><span data-lang="en">Model Evaluation Summary</span></h3>
     <p><span data-lang="zh">Ornith-1.0-35B-MTP（思考模式）展现了扎实的基础能力——ToolCall-15 满分通过，BugFind-15 能力上限 93 分，HermesAgent-20 记忆和技能维度均满分。但"思考过多"导致它在红鲱鱼陷阱题（BF-10）上两次翻车，强行修了本来正确的代码。</span><span data-lang="en">Ornith-1.0-35B-MTP (Thinking) demonstrates solid foundational capabilities — perfect ToolCall-15 score, 93 on BugFind-15 ceiling, and full marks on Memory and Skills in HermesAgent-20. However, "overthinking" caused it to fail the red herring trap (BF-10) twice, "fixing" code that was already correct.</span></p>
-    <p style="margin-top:12px"><span data-lang="zh">稳定性是最大瓶颈：BugFind-13 花了 5 次重试才通过（连接重置问题），HermesAgent 的委派/恢复/边界维度仅 68 分（HA-16/17/20 均高重试仍失败）。总重试 37 次扣了 18 分，把 93.5 的能力天花板拉到了 75.5 的实用分。</span><span data-lang="en">Stability is the biggest bottleneck: BF-13 took 5 retries (connection resets), HermesAgent's Delegation/Recovery/Boundaries scored only 68 (HA-16/17/20 all failed despite high retries). Total 37 retries cost 18 points, dropping from 93.5 ceiling to 75.5 effective.</span></p>
-    <p class="final"><span data-lang="zh">能力天花板 93.5 全场第二，但 37 次重试让实用分只有 75.5——思考型模型的"想太多"双刃剑。</span><span data-lang="en">Ceiling of 93.5 ranks #2, but 37 retries drag effective score to 75.5 — the double-edged sword of overthinking.</span></p>
+    <p style="margin-top:12px"><span data-lang="zh">稳定性是最大瓶颈：BugFind-13 花了 5 次重试才通过（连接重置问题），HermesAgent 的委派/恢复/边界维度仅 68 分（HA-16/17/20 均高重试仍失败）。总重试 18 次扣了 18 分，把 93.5 的能力天花板拉到了 75.5 的实用分。</span><span data-lang="en">Stability is the biggest bottleneck: BF-13 took 5 retries (connection resets), HermesAgent's Delegation/Recovery/Boundaries scored only 68 (HA-16/17/20 all failed despite high retries). Total 18 retries cost 18 points, dropping from 93.5 ceiling to 75.5 effective.</span></p>
+    <p class="final"><span data-lang="zh">能力天花板 93.5 全场第二，但 18 次重试让实用分只有 75.5——思考型模型的"想太多"双刃剑。</span><span data-lang="en">Ceiling of 93.5 ranks #2, but 18 retries drag effective score to 75.5 — the double-edged sword of overthinking.</span></p>
   </div>
 </section>
 
