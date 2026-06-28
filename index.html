@@ -743,17 +743,26 @@ models.forEach((m) => {
   }
 });
 
+let currentSortKey = 'total';
+
 function sortModels(key, btn) {
   document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+  if (btn) btn.classList.add('active');
+  currentSortKey = key;
 
   models.sort((a,b) => b[key] - a[key]);
 
-  models.forEach((m,i) => {
-    m.el.style.order = i;
-    m.el.querySelector('.card-rank').textContent = i + 1;
+  let visibleIdx = 0;
+  models.forEach((m) => {
+    if (m.el.style.display === 'none') {
+      m.el.classList.add('rank-default');
+      return;
+    }
+    visibleIdx++;
+    m.el.style.order = visibleIdx - 1;
+    m.el.querySelector('.card-rank').textContent = visibleIdx;
     m.el.classList.remove('rank-1','rank-2','rank-3','rank-default');
-    m.el.classList.add(i < 3 ? 'rank-' + (i+1) : 'rank-default');
+    m.el.classList.add(visibleIdx <= 3 ? 'rank-' + visibleIdx : 'rank-default');
   });
 }
 
@@ -767,13 +776,8 @@ function filterMode(mode, btn) {
     else if (mode === 'no-thinking') show = !isThinking;
     el.style.display = show ? '' : 'none';
   });
-  // 隐藏的卡片不参与排名
-  let visibleRank = 0;
-  document.querySelectorAll('.model-card').forEach((el) => {
-    if (el.style.display === 'none') return;
-    visibleRank++;
-    el.querySelector('.card-rank').textContent = visibleRank;
-  });
+  // 切换 filter 后重新排可见卡片（数字、位置、颜色一致）
+  sortModels(currentSortKey, document.querySelector('.sort-btn.active'));
 }
 // Auto-sort by total on page load
 sortModels('total', document.querySelector('.sort-btn'));
