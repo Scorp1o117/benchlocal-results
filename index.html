@@ -441,7 +441,7 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
         <a href="https://huggingface.co/SC117/gemma-4-12B-it-heretic-QAT-GGUF" target="_blank" class="hf-link" onclick="event.stopPropagation()"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 32.4 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10z" fill="#FFD21E"/><path d="M30 65c0-8 4-15 10-18l2-1c2 3 6 5 10 5s7-2 10-5l2 1c6 3 10 10 10 18v15c0 3-2 5-5 5H35c-3 0-5-2-5-5V65z" fill="#1A202C"/><circle cx="45" cy="62" r="5" fill="white"/><circle cx="75" cy="62" r="5" fill="white"/><path d="M48 78c0 0 5 8 12 8s12-8 12-8" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>HF</a> 
         </div>
     </div>
-        <div class="model-card rank-default no-thinking" onclick="location.href='models/ornith-1-0-9b-heretic.html'">
+        <div class="model-card rank-default thinking" onclick="location.href='models/ornith-1-0-9b-heretic.html'">
       <div class="card-top">
         <div class="card-rank">-</div>
         <div class="card-scores">
@@ -450,13 +450,13 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
       </div>
       </div>
       <div class="card-model">
-        <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png" alt="" style="width:28px;height:auto;object-fit:contain;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Ornith-1.0-9B-heretic</h3>
+        <h3><img src="icons/ornith-color.png" alt="" style="width:28px;height:auto;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Ornith-1.0-9B-heretic <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></span></h3>
         <div class="desc">Ornith-1.0-9B-heretic-MTP-Q6_K.gguf · Q6_K · 7.6 GB</div>
       </div>
       <div class="card-meta">
         <span class="card-tag">🧠 Dense 9B</span>
         <span class="card-tag">📦 7.6 GB</span>
-        <span class="card-tag">⚡ In 1874 t/s · Out 78.8 t/s</span>
+        <span class="card-tag">⚡ In 1420 t/s · Out 109.4 t/s</span>
         <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=0.6 top_p=0.95 top_k=20</span>
       </div>
       <div class="card-bars">
@@ -739,7 +739,7 @@ const models = [
   {el:null, total:88.7, adjusted:82.7, tc:96.7, bf:86, ha:84.8, name:'Gemma-4 (无思考)', retries:6, pass:35, fail:13, partial:2, totalQs:50},
   {el:null, total:91.6, adjusted:83.6, tc:93.3, bf:96, ha:87, name:'Gemma-4 (思考)', retries:8, pass:42, fail:6, partial:2, totalQs:50},
   {el:null, total:90.3, adjusted:85.3, tc:97, bf:88, ha:87, name:'Gemma-4-12B (思考)', retries:5, pass:41, fail:7, partial:2, totalQs:50},
-  {el:null, total:89.8, adjusted:68.8, tc:100, bf:94, ha:79, name:'Ornith-1.0-9B-heretic (无思考)', retries:21, pass:42, fail:8, partial:0, totalQs:50},
+  {el:null, total:89.8, adjusted:68.8, tc:100, bf:94, ha:79, name:'Ornith-1.0-9B-heretic (思考)', retries:21, pass:42, fail:8, partial:0, totalQs:50},
   {el:null, total:88.4, adjusted:64.4, tc:100, bf:88, ha:80, name:'QwenPaw-Flash-9B (思考)', retries:24, pass:33, fail:13, partial:4, totalQs:50},
   {el:null, total:87.4, adjusted:84.4, tc:96.7, bf:84.2, ha:82.8, name:'Qwen3.6-27B-uncensored-MTP (无思考)', retries:3, pass:39, fail:7, partial:4, totalQs:50},
   {el:null, total:91.9, adjusted:73.9, tc:100, bf:93.3, ha:84.8, name:'Qwen3.6-27B-uncensored-MTP (思考)', retries:18, pass:43, fail:5, partial:2, totalQs:50},
