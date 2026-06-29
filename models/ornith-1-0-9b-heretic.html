@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ornith-1.0-9B-heretic (思考) · BenchLocal</title>
+<title>Ornith-1.0-9B-heretic-MTP (思考) · BenchLocal</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
@@ -104,7 +104,7 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
   <div class="model-header">
     <div class="model-avatar"><img src="../icons/ornith-color.png" alt="" style="width:100%;height:100%;object-fit:contain"></div>
     <div class="model-info">
-      <h1>Ornith-1.0-9B-heretic <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></h1>
+      <h1>Ornith-1.0-9B-heretic-MTP <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></h1>
       <div class="sub">Ornith-1.0-9B-heretic-MTP-Q6_K.gguf · Q6_K · 7.6 GB</div>
       <div class="model-tags"><span>🧠 Dense 9B</span><span>📦 7.6 GB</span><span>⚡ In 1420 t/s · Out 109.4 t/s</span><span>🌡️ temp=0.6 top_p=0.95 top_k=20</span><span>📅 2026-06-29</span></div>
     </div>
@@ -163,8 +163,8 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
       <li><span data-lang="zh">模型下载</span><span data-lang="en">Model Download</span> — <a href="https://huggingface.co/SC117/Ornith-1.0-9B-heretic-MTP-GGUF" target="_blank" style="color:#E53E3E;text-decoration:underline">HuggingFace: SC117/Ornith-1.0-9B-heretic-MTP-GGUF</a></li>
     </ul></div>
     <div class="roast-conclusion">
-      <p><span data-lang="zh">Ornith-1.0-9B-heretic 作为 9B 稠密模型，ToolCall 满分全场最优，BugFind 94 分也相当出色。但 HermesAgent 仅 79 分拉低了整体表现，6 题失败集中在 Agent 编排和边界判断上。加权总分 89.8 分，但 21 次重试将实用得分压至 68.8。对于 7.6 GB 的小模型来说，这个成绩已经非常亮眼。</span><span data-lang="en">Ornith-1.0-9B-heretic, as a 9B dense model, achieves a perfect ToolCall score of 100 — the best globally. BugFind 94 is also impressive. However, HermesAgent at only 79 drags down overall performance, with 6 failures concentrated in agent orchestration and boundary judgment. Weighted total 89.8, but 21 retries push effective score down to 68.8. For a 7.6 GB model, this is an outstanding result.</span></p>
-      <div class="final">💡 <span data-lang="zh">综合评价：9B 体量下的工具调用标杆，Agent 能力仍有提升空间。</span><span data-lang="en">Overall: A benchmark for tool calling at 9B scale, with room for improvement in agent capabilities.</span></div>
+      <p><span data-lang="zh">Ornith-1.0-9B-heretic-MTP 作为 9B 稠密模型，ToolCall 满分全场最优，BugFind 94 分也相当出色。MTP 层从 Qwen3.5-9B 注入，提升了生成连贯性。但 HermesAgent 仅 79 分拉低了整体表现，6 题失败集中在 Agent 编排和边界判断上。加权总分 89.8 分，但 21 次重试将实用得分压至 68.8。对于 7.6 GB 的小模型来说，这个成绩已经非常亮眼。</span><span data-lang="en">Ornith-1.0-9B-heretic-MTP, as a 9B dense model with MTP layers injected from Qwen3.5-9B, achieves a perfect ToolCall score of 100 — the best globally. BugFind 94 is also impressive. However, HermesAgent at only 79 drags down overall performance, with 6 failures concentrated in agent orchestration and boundary judgment. Weighted total 89.8, but 21 retries push effective score down to 68.8. For a 7.6 GB model, this is an outstanding result.</span></p>
+      <div class="final">💡 <span data-lang="zh">综合评价：9B+MTP 体量下的工具调用标杆，Agent 能力仍有提升空间。</span><span data-lang="en">Overall: A benchmark for tool calling at 9B+MTP scale, with room for improvement in agent capabilities.</span></div>
     </div>
   </div>
 </section>
@@ -176,7 +176,7 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
       <div><h5><span data-lang="zh">模型</span><span data-lang="en">Models</span></h5>
         <a href="ornith-35b-mtp-thinking.html">Ornith-1.0-35B-MTP-APEX <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></a>
         <a href="ornith-35b-mtp.html">Ornith-1.0-35B-MTP-APEX <span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span></a>
-        <a href="ornith-1-0-9b-heretic.html">Ornith-1.0-9B-heretic <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></a>
+        <a href="ornith-1-0-9b-heretic.html">Ornith-1.0-9B-heretic-MTP <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></a>
         <a href="qwen36-35b-mtp.html">Qwen3.6-35B-A3B-uncensored-MTP <span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span></a>
         <a href="qwen36-35b-mtp-thinking.html">Qwen3.6-35B-A3B-uncensored-MTP <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></a>
         <a href="gemma4-26b.html">Gemma-4-26B-A4B-it-qat <span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span></a>
