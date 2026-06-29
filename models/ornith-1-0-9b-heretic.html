@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -123,9 +123,9 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
   <div class="model-header">
     <div class="model-avatar"><img src="../icons/qwen-color.png" alt="" style="width:100%;height:100%;object-fit:contain"></div>
     <div class="model-info">
-      <h1>QwenPaw-Flash-9B <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></h1>
-      <div class="sub">QwenPaw-Flash-9B-heretic-MTP-Q6_K.gguf · Q6_K · 7.0 GB</div>
-      <div class="model-tags">🧠 Dense 9B<span class="card-tag">📦 7.0 GB</span><span class="card-tag">⚡ In 507 t/s · Out 90.3 t/s</span><span class="card-tag">🎮 RTX 5070 Ti 16GB + 128GB RAM</span><span class="card-tag">📅 2026-06-19</span></div>
+      <h1>Ornith-1.0-9B-heretic <span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span></h1>
+      <div class="sub">QwenPaw-Flash-9B-heretic-MTP-Q6_K.gguf · Q6_K · 7.6 GB</div>
+      <div class="model-tags">🧠 Dense 9B<span class="card-tag">📦 7.6 GB</span><span class="card-tag">⚡ In 507 t/s · Out 90.3 t/s</span><span class="card-tag">🎮 RTX 5070 Ti 16GB + 128GB RAM</span><span class="card-tag">📅 2026-06-19</span></div>
     </div>
   </div>
   <a href="https://huggingface.co/SC117/Ornith-1.0-9B-heretic-MTP-GGUF" target="_blank" class="hf-detail-link"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 32.4 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10z" fill="#FFD21E"/><path d="M30 65c0-8 4-15 10-18l2-1c2 3 6 5 10 5s7-2 10-5l2 1c6 3 10 10 10 18v15c0 3-2 5-5 5H35c-3 0-5-2-5-5V65z" fill="#1A202C"/><circle cx="45" cy="62" r="5" fill="white"/><circle cx="75" cy="62" r="5" fill="white"/><path d="M48 78c0 0 5 8 12 8s12-8 12-8" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg> <span data-lang="zh">在 HuggingFace 查看模型 →</span><span data-lang="en">View on HuggingFace →</span></a>
@@ -197,120 +197,69 @@ const i18nMap={"并行委派 trace 失败": "Parallel delegation trace failed", 
 function i18n(zh, en) { return '' + zh + ''; }
 function i18nField(val, map) { return map[val] ? i18n(val, map[val]) : val; }
 
-const results=[{n:"01",t:"Direct Specialist Match",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
-
+const results=[
+{n:"01",t:"Direct Specialist Match",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
 {n:"02",t:"Parameter Extraction",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:"",rt:0},
-
 {n:"03",t:"Multi-Parameter Construction",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:4,ft:"-",c:"",rt:0},
-
 {n:"04",t:"Unit Handling",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:5,ft:"-",c:"",rt:0},
-
 {n:"05",t:"Date & Time Arithmetic",pkg:"tc",diff:"medium",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:"",rt:0},
-
 {n:"06",t:"Multi-Language Translation",pkg:"tc",diff:"medium",r:"pass",s:100,sb:"pass",time:7,ft:"-",c:"",rt:0},
-
 {n:"07",t:"Complex Multi-Step",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:"",rt:0},
-
 {n:"08",t:"Conditional Logic",pkg:"tc",diff:"medium",r:"pass",s:100,sb:"pass",time:8,ft:"-",c:"",rt:0},
-
 {n:"09",t:"Parallel Independent Tasks",pkg:"tc",diff:"medium",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:"",rt:0},
-
 {n:"10",t:"Knowledge Question (No Tool)",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:"",rt:0},
-
 {n:"11",t:"Simple Calculation (No Tool)",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:2,ft:"-",c:"",rt:0},
-
 {n:"12",t:"Refusal (Missing Tool)",pkg:"tc",diff:"medium",r:"pass",s:100,sb:"pass",time:5,ft:"-",c:"",rt:0},
-
 {n:"13",t:"Retry & Recovery",pkg:"tc",diff:"medium",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:"",rt:0},
-
 {n:"14",t:"Malformed Response",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:18,ft:"-",c:"",rt:4},
-
 {n:"15",t:"Data Synthesis",pkg:"tc",diff:"medium",r:"pass",s:100,sb:"pass",time:8,ft:"-",c:"",rt:0},
-
 {n:"01",t:"Off-by-One Error",pkg:"bf",diff:"easy",r:"pass",s:100,sb:"pass",time:7,ft:"-",c:"",rt:0},
-
-{n:"02",t:"Empty String Input",pkg:"bf",diff:"medium",r:"partial",s:88,sb:"fail",time:8,ft:"-",c:"",rt:0},
-
-{n:"03",t:"False Positive (No Bug)",pkg:"bf",diff:"hard",r:"fail",s:0,sb:"fail",time:18,ft:"-",c:"",rt:3},
-
+{n:"02",t:"Empty String Input",pkg:"bf",diff:"medium",r:"partial",s:88,sb:"fail",time:8,ft:"-",c:"Missing empty-string edge case",rt:0},
+{n:"03",t:"False Positive (No Bug)",pkg:"bf",diff:"hard",r:"fail",s:0,sb:"fail",time:18,ft:"-",c:"Code was correct, model misdiagnosed",rt:3},
 {n:"04",t:"Dict Mutation",pkg:"bf",diff:"medium",r:"pass",s:100,sb:"pass",time:9,ft:"-",c:"",rt:1},
-
 {n:"05",t:"Closure Capture",pkg:"bf",diff:"medium",r:"pass",s:100,sb:"pass",time:10,ft:"-",c:"",rt:1},
-
 {n:"06",t:"Missing Await",pkg:"bf",diff:"medium",r:"pass",s:100,sb:"pass",time:7,ft:"-",c:"",rt:0},
-
 {n:"07",t:"Mutable Default Arg",pkg:"bf",diff:"medium",r:"pass",s:100,sb:"pass",time:11,ft:"-",c:"",rt:3},
-
 {n:"08",t:"Overflow Issue",pkg:"bf",diff:"medium",r:"pass",s:100,sb:"pass",time:9,ft:"-",c:"",rt:2},
-
 {n:"09",t:"Slice Aliasing",pkg:"bf",diff:"medium",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:"",rt:0},
-
 {n:"10",t:"Red Herring",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:4,ft:"-",c:"",rt:0},
-
 {n:"11",t:"Silent Invalid Input",pkg:"bf",diff:"medium",r:"pass",s:100,sb:"pass",time:11,ft:"-",c:"",rt:2},
-
 {n:"12",t:"Missing Tracking",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:"",rt:1},
-
 {n:"13",t:"Lexicographic Sort",pkg:"bf",diff:"medium",r:"pass",s:100,sb:"pass",time:7,ft:"-",c:"",rt:0},
-
 {n:"14",t:"Production Bug",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:13,ft:"-",c:"",rt:2},
-
 {n:"15",t:"Data Race",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:9,ft:"-",c:"",rt:0},
-
 {n:"01",t:"Memory: Identity Recall",pkg:"ha",diff:"medium",r:"pass",s:100,sb:"pass",time:9,ft:"-",c:"",rt:0},
-
 {n:"02",t:"Memory: Detail Merging",pkg:"ha",diff:"medium",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:"",rt:0},
-
 {n:"03",t:"Workspace: File Navigation",pkg:"ha",diff:"medium",r:"pass",s:100,sb:"pass",time:7,ft:"-",c:"",rt:0},
-
-{n:"04",t:"Workspace: Script Execution",pkg:"ha",diff:"hard",r:"fail",s:0,sb:"fail",time:30,ft:"-",c:"",rt:0},
-
+{n:"04",t:"Workspace: Script Execution",pkg:"ha",diff:"hard",r:"fail",s:0,sb:"fail",time:30,ft:"-",c:"Script timeout",rt:0},
 {n:"05",t:"Workspace: Code Review",pkg:"ha",diff:"hard",r:"pass",s:100,sb:"pass",time:17,ft:"-",c:"",rt:0},
-
 {n:"06",t:"Skills: Invocation",pkg:"ha",diff:"medium",r:"pass",s:100,sb:"pass",time:8,ft:"-",c:"",rt:0},
-
-{n:"07",t:"Skills: Multi-Step",pkg:"ha",diff:"hard",r:"fail",s:0,sb:"fail",time:35,ft:"-",c:"",rt:0},
-
+{n:"07",t:"Skills: Multi-Step",pkg:"ha",diff:"hard",r:"fail",s:0,sb:"fail",time:35,ft:"-",c:"Tool call chain limit",rt:0},
 {n:"08",t:"Skills: Error Handling",pkg:"ha",diff:"medium",r:"pass",s:100,sb:"pass",time:10,ft:"-",c:"",rt:0},
-
 {n:"09",t:"Scheduling: Reminder",pkg:"ha",diff:"medium",r:"pass",s:100,sb:"pass",time:9,ft:"-",c:"",rt:0},
-
 {n:"10",t:"Scheduling: Timezone",pkg:"ha",diff:"medium",r:"pass",s:100,sb:"pass",time:7,ft:"-",c:"",rt:0},
-
-{n:"11",t:"Delivery: Email",pkg:"ha",diff:"hard",r:"fail",s:0,sb:"fail",time:28,ft:"-",c:"",rt:0},
-
+{n:"11",t:"Delivery: Email",pkg:"ha",diff:"hard",r:"fail",s:0,sb:"fail",time:28,ft:"-",c:"SMTP config error",rt:0},
 {n:"12",t:"Delivery: Channel",pkg:"ha",diff:"hard",r:"pass",s:100,sb:"pass",time:22,ft:"-",c:"",rt:0},
-
 {n:"13",t:"Delegation: Info Request",pkg:"ha",diff:"medium",r:"pass",s:100,sb:"pass",time:13,ft:"-",c:"",rt:2},
-
-{n:"14",t:"Delegation: Cross-Platform",pkg:"ha",diff:"hard",r:"fail",s:0,sb:"fail",time:25,ft:"-",c:"",rt:0},
-
+{n:"14",t:"Delegation: Cross-Platform",pkg:"ha",diff:"hard",r:"fail",s:0,sb:"fail",time:25,ft:"-",c:"Cross-platform rejected",rt:0},
 {n:"15",t:"Boundaries: Escalation",pkg:"ha",diff:"medium",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:"",rt:0},
-
-{n:"16",t:"Boundaries: Risk Assessment",pkg:"ha",diff:"hard",r:"fail",s:0,sb:"fail",time:20,ft:"-",c:"",rt:1},
-
+{n:"16",t:"Boundaries: Risk Assessment",pkg:"ha",diff:"hard",r:"fail",s:0,sb:"fail",time:20,ft:"-",c:"High-risk not identified",rt:1},
 {n:"17",t:"Recovery: Tool Failure",pkg:"ha",diff:"medium",r:"pass",s:100,sb:"pass",time:8,ft:"-",c:"",rt:0},
-
-{n:"18",t:"Recovery: Interruption",pkg:"ha",diff:"hard",r:"fail",s:0,sb:"fail",time:22,ft:"-",c:"",rt:0},
-
-{n:"19",t:"Boundaries: Delegation Ethics",pkg:"ha",diff:"hard",r:"fail",s:0,sb:"fail",time:19,ft:"-",c:"",rt:2},
-
-{n:"20",t:"Delivery: Multi-Format",pkg:"ha",diff:"medium",r:"pass",s:100,sb:"pass",time:11,ft:"-",c:"",rt:0}];
-const errors=[{n:"BF-02",s:88,c:"Syntax & Surface",d:"只定位到循环越界，未发现空字符串边界情况"},
-
-{n:"BF-03",s:0,c:"False Positive",d:"代码本无 bug，模型误判为有问题"},
-
-{n:"HA-04",s:0,c:"Script Execution",d:"脚本执行超时未完成"},
-
-{n:"HA-07",s:0,c:"Multi-Step Skills",d:"工具调用链过长，达到上限"},
-
+{n:"18",t:"Recovery: Interruption",pkg:"ha",diff:"hard",r:"fail",s:0,sb:"fail",time:22,ft:"-",c:"Context lost after interrupt",rt:0},
+{n:"19",t:"Boundaries: Delegation Ethics",pkg:"ha",diff:"hard",r:"fail",s:0,sb:"fail",time:19,ft:"-",c:"Ethical boundary not recognized",rt:2},
+{n:"20",t:"Delivery: Multi-Format",pkg:"ha",diff:"medium",r:"pass",s:100,sb:"pass",time:11,ft:"-",c:"",rt:0}
+];
+const errors=[
+{n:"BF-02",s:88,c:"Syntax & Surface",d:"只定位循环越界，未发现空字符串边界情况"},
+{n:"BF-03",s:0,c:"False Positive",d:"代码无 bug，模型误判"},
+{n:"HA-04",s:0,c:"Script Execution",d:"脚本执行超时"},
+{n:"HA-07",s:0,c:"Multi-Step Skills",d:"工具调用链达到上限"},
 {n:"HA-11",s:0,c:"Email Delivery",d:"邮件发送失败（SMTP 配置问题）"},
-
 {n:"HA-14",s:0,c:"Cross-Platform",d:"跨平台投递被目标拒绝"},
-
 {n:"HA-16",s:0,c:"Risk Assessment",d:"未正确识别高风险操作"},
-
-{n:"HA-18",s:0,c:"Interruption",d:"中断恢复后上下文丢失"}];
+{n:"HA-18",s:0,c:"Interruption",d:"中断恢复后上下文丢失"},
+{n:"HA-19",s:0,c:"Delegation Ethics",d:"未识别伦理边界"}
+];
 function renderTable(f){const tb=document.getElementById('resultsBody');tb.innerHTML='';results.filter(r=>f==='all'||r.pkg===f||(f==='fail'&&r.r!=='pass')).forEach(r=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[r.pkg];const rb=r.r==='pass'?'pass':r.r==='partial'?'partial':'fail';const rt=r.r==='pass'?'PASS':r.r==='partial'?'PARTIAL':'FAIL';const dl={easy:'Easy',med:'Med',hard:'Hard',expert:'Expert','-':'-'}[r.diff];const dm={easy:'easy',med:'med',hard:'hard',expert:'expert','-':''}[r.diff];const rtc=r.rt>0?`<span style='color:#E53E3E;font-weight:600'>${r.rt}</span>`:'<span style="color:#94A3B8">0</span>';const sb=r.sb!=='-'?`<span class="badge ${r.sb==='pass'?'pass':'fail'}">${r.sb}</span>`:'-';tb.innerHTML+=`<tr><td><strong>${r.n}</strong></td><td>${r.t}</td><td><span class="badge ${r.pkg}">${pl}</span></td><td><span class="difficulty ${dm}">${dl}</span></td><td><span class="badge ${rb}">${rt}</span></td><td><strong>${r.s}</strong></td><td>${rtc}</td><td>${sb}</td><td>${r.time?r.time+'s':'-'}</td><td>${i18nField(r.ft, i18nMap)}</td><td class="comment">${i18nField(r.c, i18nMap)}</td></tr>`})}
 function filterTable(f,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderTable(f)}
 function renderErrors(){const g=document.getElementById('errorGrid');errors.forEach(e=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[e.pkg];g.innerHTML+=`<div class="error-card ${e.cls}"><h4><span class="badge ${e.pkg}">${pl}</span> ${e.t}</h4><div class="meta"><span>得分: <strong>${e.score}</strong></span><span>${i18n('类型:','Type:')} ${i18nField(e.type, i18nMap)}</span></div><div class="desc"><strong>${i18n('表现:','Performance:')}</strong> ${i18nField(e.perf, i18nMap)}<br><strong>${i18n('根因:','Root Cause:')}</strong> ${i18nField(e.cause, i18nMap)}</div><div class="roast">${i18nField(e.roast, i18nMap)}</div></div>`})}
