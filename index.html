@@ -182,7 +182,7 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
   <p style="font-size:13px;color:var(--text3);margin-top:8px"><span data-lang="zh">排名基于<strong style="color:var(--text2)">能力上限</strong>（加权原始分），<strong style="color:var(--text2)">实用得分</strong> = 能力上限 − 重试扣分（每题首次通过不扣分，重试后通过每重试1次扣1分）</span><span data-lang="en">Ranked by <strong style="color:var(--text2)">Max Score</strong> (weighted raw score), <strong style="color:var(--text2)">Effective Score</strong> = Max Score − retry penalty (first pass = no penalty, each retry = +1pt)</span></p>
   <p style="font-size:12px;color:var(--text3);margin-top:6px;opacity:.8">&#9889; <span data-lang="zh">卡片中的速度数据（如 In 725 t/s · Out 60.6 t/s）仅供参考，非真实环境！</span><span data-lang="en">Speed data on cards (e.g. In 725 t/s · Out 60.6 t/s) is for reference only!</span></p>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="val">14</div><div class="lbl"><span data-lang="zh">已测试模型</span><span data-lang="en">Models Tested</span></div></div>
+    <div class="hero-stat"><div class="val">15</div><div class="lbl"><span data-lang="zh">已测试模型</span><span data-lang="en">Models Tested</span></div></div>
     <div class="hero-stat"><div class="val">50</div><div class="lbl"><span data-lang="zh">总测试题数</span><span data-lang="en">Total Questions</span></div></div>
     <div class="hero-stat"><div class="val">3</div><div class="lbl"><span data-lang="zh">测试项目</span><span data-lang="en">Test Suites</span></div></div>
   </div>
@@ -537,7 +537,41 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
         </div>
     </div>
 
-    <!-- Model 9: Qwen3.6-27B <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span> -->
+    
+      <!-- Model: Agents-A1 (思考) -->
+      <div class="model-card rank-default thinking" onclick="location.href='models/agents-a1-thinking.html'">
+        <div class="card-top">
+          <div class="card-rank">-</div>
+          <div class="card-scores">
+          <div class="card-score-box primary"><div class="lbl">上限</div><div class="val">91.2</div></div>
+          <div class="card-score-box secondary"><div class="lbl">实用</div><div class="val">71.2</div></div>
+        </div>
+        </div>
+        <div class="card-model">
+          <h3><img src="icons/agents-a1.png" alt="" style="width:28px;height:auto;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Agents-A1 <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(思考 · MTP)</span><span data-lang="en">(Thinking · MTP)</span></span></h3>
+          <div class="desc">Agents-A1-APEX-I-Compact.gguf · Q4_K_M · 16.1 GB</div>
+        </div>
+        <div class="card-meta">
+          <span class="card-tag">🧠 MoE (3B active)</span>
+          <span class="card-tag">📦 16.1 GB</span>
+          <span class="card-tag">🎮 RTX 5070 Ti</span>
+          <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=0.85 top_p=0.95 top_k=20</span>
+        </div>
+        <div class="card-bars">
+          <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">100</span></div>
+          <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:88%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">88</span></div>
+          <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:87%;background:#548235"></div></div><span class="bar-val" style="color:#548235">87</span></div>
+        </div>
+        
+        <div class="card-retry"><span data-lang="zh">🔄 上限分 91.2 → 重试 -20 → 实用 <strong>71.2</strong></span><span data-lang="en">🔄 Max 91.2 → retries -20 → Eff. <strong>71.2</strong></span></div>
+        <div class="card-footer">
+          <span class="date">2026-07-03 <span data-lang="zh">测试</span><span data-lang="en">tested</span></span>
+          <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
+          <a href="https://huggingface.co/InternScience/Agents-A1" target="_blank" class="hf-link" onclick="event.stopPropagation()"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 32.4 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10zm4.7 75.3c-1.5 0-2.7-1.2-2.7-2.7v-4.7c0-6.2-2.8-11.3-8.2-15.2 2.8-1.3 5.4-3.1 7.8-5.4 3.4-3.4 5.1-7.5 5.1-12.3 0-3.6-1.1-6.6-3.2-9-1.9-2.1-4.4-3.6-7.5-4.5V30c0-1.5 1.2-2.7 2.7-2.7s2.7 1.2 2.7 2.7v2.7c5.6 1.6 9.7 5.2 12.3 10.8 1.1 2.3 1.7 4.8 1.7 7.5 0 4.7-1.5 8.6-4.5 11.6-1.8 1.8-3.9 3.2-6.3 4.1-3.6 1.3-6.1 3.4-7.4 6.3v3.5c0 1.5-1.2 2.7-2.7 2.7zM60 92c-5.5 0-10-4.5-10-10s4.5-10 10-10 10 4.5 10 10-4.5 10-10 10z" fill="#FF9D00"/></svg>HF</a>
+        </div>
+      </div>
+
+<!-- Model 9: Qwen3.6-27B <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span> -->
     <div class="model-card rank-1 thinking" onclick="location.href='models/qwen36-27b-thinking.html'">
       <div class="card-top">
         <div class="card-rank">1</div>

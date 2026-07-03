@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agents-A1 (思考) · BenchLocal</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--red:#E53E3E;--orange:#ED8936;--grad:linear-gradient(135deg,#E53E3E,#ED8936);--bg:#F8F9FC;--card:#FFF;--text:#1A202C;--text2:#64748B;--text3:#94A3B8;--border:#E2E8F0;--r:20px;--sh:0 1px 3px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.04)}
+body{font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:inherit;text-decoration:none}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.8);backdrop-filter:blur(24px);border-bottom:1px solid rgba(226,232,240,.6)}
+nav .inner{max-width:1280px;margin:0 auto;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800}
+.logo-icon{width:32px;height:32px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
+.nav-links{display:flex;gap:28px;font-size:14px;font-weight:500;color:var(--text2)}
+.nav-links a:hover{color:var(--text)}
+.back-link{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--text2);font-weight:500}
+.back-link:hover{color:var(--red)}
+.hero-detail{padding:60px 48px 40px;max-width:1280px;margin:0 auto}
+.model-header{display:flex;gap:40px;align-items:flex-start}
+.model-avatar{width:80px;height:80px;border-radius:20px;background:#F1F5F9;display:flex;align-items:center;justify-content:center;flex-shrink:0;object-fit:contain;padding:12px}
+.model-info h1{font-size:32px;font-weight:900;letter-spacing:-1px}
+.model-info .sub{font-size:15px;color:var(--text2);margin-top:4px}
+.model-tags{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.model-tags span{font-size:12px;padding:4px 12px;border-radius:8px;font-weight:600;background:#F1F5F9;color:var(--text2)}
+.score-row{display:flex;gap:24px;margin-top:32px}
+.big-score{background:var(--grad);border-radius:var(--r);padding:32px 40px;color:#fff;min-width:200px}
+.big-score .label{font-size:13px;opacity:.8;font-weight:500}
+.big-score .num{font-size:56px;font-weight:900;letter-spacing:-3px;line-height:1.1}
+.big-score .sub{font-size:12px;opacity:.7;margin-top:4px}
+.adj-score{background:linear-gradient(135deg,#667eea,#764ba2);border-radius:var(--r);padding:32px 40px;color:#fff;min-width:180px}
+.adj-score .label{font-size:13px;opacity:.8;font-weight:500}
+.adj-score .num{font-size:42px;font-weight:900;letter-spacing:-2px;line-height:1.1;margin-top:4px}
+.adj-score .sub{font-size:11px;opacity:.7;margin-top:4px}
+.sub-scores{display:flex;gap:16px;flex:1}
+.sub-score{flex:1;background:var(--card);border-radius:16px;padding:24px;text-align:center;box-shadow:var(--sh)}
+.sub-score .label{font-size:12px;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.sub-score .num{font-size:36px;font-weight:900;letter-spacing:-2px;margin-top:4px}
+.sub-score .detail{font-size:11px;color:var(--text3);margin-top:4px}
+.content{max-width:1280px;margin:0 auto;padding:0 48px 80px}
+.tabs{display:flex;gap:0;margin-bottom:32px;border-bottom:2px solid var(--border)}
+.tab{padding:12px 24px;font-size:14px;font-weight:600;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+.tab.active{color:var(--red);border-bottom-color:var(--red)}
+.tab:hover{color:var(--text)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.results-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border-radius:16px;overflow:hidden;box-shadow:var(--sh)}
+.results-table th{background:#F8FAFC;font-size:12px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;padding:14px 16px;text-align:left}
+.results-table td{padding:14px 16px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top}
+.results-table tr:last-child td{border-bottom:none}
+.results-table .score-cell{font-weight:700;font-size:16px}
+.results-table .pass{color:#38A169}.results-table .fail{color:#E53E3E}.results-table .partial{color:#ED8936}
+.results-table .summary-cell{color:var(--text2);font-size:13px;max-width:500px}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:32px}
+.cat-card{background:var(--card);border-radius:16px;padding:20px;box-shadow:var(--sh)}
+.cat-header{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.cat-id{width:28px;height:28px;border-radius:8px;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.cat-name{font-size:13px;font-weight:600;color:var(--text);flex:1}
+.cat-weight{font-size:11px;color:var(--text3);font-weight:600}
+.cat-score{font-size:32px;font-weight:900;letter-spacing:-2px}
+.cat-detail{font-size:11px;color:var(--text3);margin-top:4px}
+.test-title{font-size:18px;font-weight:700;margin-bottom:20px;color:var(--text)}
+.test-section{margin-bottom:48px}
+.hf-link{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:10px;font-size:13px;font-weight:600;background:linear-gradient(135deg,#FFD21E,#FF9D00);color:#1A202C;text-decoration:none;transition:all .2s;margin-top:16px}
+.hf-link:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(255,210,30,.3)}
+.hf-link svg{width:18px;height:18px;flex-shrink:0}
+footer{background:#0F172A;color:#94A3B8;padding:48px 48px 32px}
+footer .inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start}
+footer .brand{font-size:18px;font-weight:800;color:#fff;margin-bottom:8px}
+footer .links{display:flex;gap:48px}
+footer .links div h5{color:#fff;font-size:13px;font-weight:600;margin-bottom:12px}
+footer .links div a{display:block;font-size:13px;padding:4px 0;color:#94A3B8}
+footer .links div a:hover{color:#fff}
+footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1px solid #1E293B;font-size:12px;text-align:center}
+</style>
+</head>
+<body>
+<nav><div class="inner">
+<a href="../index.html" class="logo"><div class="logo-icon">⚡</div>BenchLocal</a>
+<div class="nav-links"><a href="../index.html">排行榜</a><a href="../index.html#plans">计划中</a><a href="../index.html#about">关于</a></div>
+</div></nav>
+<div class="hero-detail">
+<div class="model-header">
+<div class="model-avatar"><img src="../icons/agents-a1.png" alt="Agents-A1" style="width:56px;height:56px;object-fit:contain" onerror="this.style.display='none'"></div>
+<div class="model-info">
+<h1>Agents-A1</h1>
+<div class="sub">Agents-A1-APEX-I-Compact.gguf · Q4_K_M · 16.1 GB</div>
+<div class="model-tags">
+<span>🧠 MoE 35B-A3B</span><span>💭 思考模式</span><span>🌡️ temp=0.85 top_p=0.95 top_k=20</span><span>⚡ In 804 t/s · Out 55.6 t/s</span><span>🎮 RTX 5070 Ti</span>
+</div></div></div>
+<div class="score-row">
+<div class="big-score"><div class="label">能力上限</div><div class="num">91.2</div><div class="sub">TC×0.3 + BF×0.3 + HA×0.4</div></div>
+<div class="adj-score"><div class="label">重试扣分</div><div class="num">-20</div><div class="sub">TC 5 + BF 6 + HA 9</div></div>
+<div class="adj-score"><div class="label">实用得分</div><div class="num">71.2</div><div class="sub">能力上限 − 重试扣分</div></div>
+<div class="sub-scores">
+<div class="sub-score"><div class="label">ToolCall-15</div><div class="num">100</div><div class="detail">5 retries</div></div>
+<div class="sub-score"><div class="label">BugFind-15</div><div class="num">88</div><div class="detail">6 retries</div></div>
+<div class="sub-score"><div class="label">HermesAgent-20</div><div class="num">87</div><div class="detail">9 retries</div></div>
+</div></div>
+<a class="hf-link" href="https://huggingface.co/InternScience/Agents-A1" target="_blank">
+<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+View on HuggingFace
+</a></div>
+<div class="content">
+<div class="tabs">
+<div class="tab active" data-tab="tc">ToolCall-15</div>
+<div class="tab" data-tab="bf">BugFind-15</div>
+<div class="tab" data-tab="ha">HermesAgent-20</div>
+</div>
+<div id="tc" class="tab-content active"><div class="test-section"><h3 class="test-title">ToolCall-15</h3>
+<div class="cat-grid"><div class="cat-card"><div class="cat-header"><span class="cat-id">A</span><span class="cat-name">Tool Selection</span><span class="cat-weight">20%</span></div><div class="cat-score">83</div><div class="cat-detail">3 questions · 2 pass · 1 partial · 0 fail</div></div><div class="cat-card"><div class="cat-header"><span class="cat-id">B</span><span class="cat-name">Parameter Precision</span><span class="cat-weight">20%</span></div><div class="cat-score">100</div><div class="cat-detail">3 questions · 3 pass · 0 partial · 0 fail</div></div><div class="cat-card"><div class="cat-header"><span class="cat-id">C</span><span class="cat-name">Multi-Step Chains</span><span class="cat-weight">20%</span></div><div class="cat-score">100</div><div class="cat-detail">3 questions · 3 pass · 0 partial · 0 fail</div></div><div class="cat-card"><div class="cat-header"><span class="cat-id">D</span><span class="cat-name">Restraint & Refusal</span><span class="cat-weight">20%</span></div><div class="cat-score">67</div><div class="cat-detail">3 questions · 2 pass · 0 partial · 1 fail</div></div><div class="cat-card"><div class="cat-header"><span class="cat-id">E</span><span class="cat-name">Error Recovery</span><span class="cat-weight">20%</span></div><div class="cat-score">100</div><div class="cat-detail">3 questions · 3 pass · 0 partial · 0 fail</div></div></div>
+<table class="results-table"><thead><tr><th>ID</th><th>Score</th><th>Summary</th></tr></thead><tbody><tr><td>TC-01</td><td class="score-cell pass">100</td><td class="summary-cell">Used get_weather with Berlin only.</td></tr><tr><td>TC-02</td><td class="score-cell pass">100</td><td class="summary-cell">Used only get_stock_price for AAPL.</td></tr><tr><td>TC-03</td><td class="score-cell pass">100</td><td class="summary-cell">Looked up Sarah before sending the email.</td></tr><tr><td>TC-04</td><td class="score-cell pass">100</td><td class="summary-cell">Requested Tokyo weather in Fahrenheit explicitly.</td></tr><tr><td>TC-05</td><td class="score-cell pass">100</td><td class="summary-cell">Parsed next Monday and included the requested meeting details.</td></tr><tr><td>TC-06</td><td class="score-cell pass">100</td><td class="summary-cell">Issued separate translate_text calls for both languages.</td></tr><tr><td>TC-07</td><td class="score-cell pass">100</td><td class="summary-cell">Completed the full four-step chain with the right data.</td></tr><tr><td>TC-08</td><td class="score-cell pass">100</td><td class="summary-cell">Checked the weather first, then set the rainy-day reminder.</td></tr><tr><td>TC-09</td><td class="score-cell pass">100</td><td class="summary-cell">Handled both independent tasks.</td></tr><tr><td>TC-10</td><td class="score-cell pass">100</td><td class="summary-cell">Answered directly without tool use.</td></tr><tr><td>TC-11</td><td class="score-cell partial">50</td><td class="summary-cell">Used calculator correctly, but unnecessarily.</td></tr><tr><td>TC-12</td><td class="score-cell pass">100</td><td class="summary-cell">Refused cleanly because no delete-email tool exists.</td></tr><tr><td>TC-13</td><td class="score-cell pass">100</td><td class="summary-cell">Retried after the empty result and recovered.</td></tr><tr><td>TC-14</td><td class="score-cell fail">0</td><td class="summary-cell">Did not handle the tool error with enough integrity.</td></tr><tr><td>TC-15</td><td class="score-cell pass">100</td><td class="summary-cell">Used the searched population value in the calculator.</td></tr></tbody></table></div>
+</div>
+<div id="bf" class="tab-content"><div class="test-section"><h3 class="test-title">BugFind-15</h3>
+<div class="cat-grid"><div class="cat-card"><div class="cat-header"><span class="cat-id">A</span><span class="cat-name">Syntax & Surface</span><span class="cat-weight">15%</span></div><div class="cat-score">100</div><div class="cat-detail">3 questions · 3 pass · 0 partial · 0 fail</div></div><div class="cat-card"><div class="cat-header"><span class="cat-id">B</span><span class="cat-name">Logic & Algorithmic</span><span class="cat-weight">25%</span></div><div class="cat-score">100</div><div class="cat-detail">3 questions · 3 pass · 0 partial · 0 fail</div></div><div class="cat-card"><div class="cat-header"><span class="cat-id">C</span><span class="cat-name">Subtle & Tricky</span><span class="cat-weight">25%</span></div><div class="cat-score">67</div><div class="cat-detail">3 questions · 2 pass · 0 partial · 1 fail</div></div><div class="cat-card"><div class="cat-header"><span class="cat-id">D</span><span class="cat-name">Red Herring Resistance</span><span class="cat-weight">20%</span></div><div class="cat-score">100</div><div class="cat-detail">3 questions · 3 pass · 0 partial · 0 fail</div></div><div class="cat-card"><div class="cat-header"><span class="cat-id">E</span><span class="cat-name">Multi-Turn Debugging</span><span class="cat-weight">15%</span></div><div class="cat-score">67</div><div class="cat-detail">3 questions · 2 pass · 0 partial · 1 fail</div></div></div>
+<table class="results-table"><thead><tr><th>ID</th><th>Score</th><th>Summary</th></tr></thead><tbody><tr><td>BF-01</td><td class="score-cell pass">100</td><td class="summary-cell">Expected the model to isolate the off-by-one loop bounds bug.</td></tr><tr><td>BF-02</td><td class="score-cell pass">100</td><td class="summary-cell">Expected the model to identify the missing empty-string case.</td></tr><tr><td>BF-03</td><td class="score-cell fail">0</td><td class="summary-cell">Expected the model to recognize that the code is already correct.</td></tr><tr><td>BF-04</td><td class="score-cell pass">100</td><td class="summary-cell">Expected the model to diagnose and fix dictionary mutation during iteration.</td></tr><tr><td>BF-05</td><td class="score-cell pass">100</td><td class="summary-cell">Expected the model to diagnose loop-variable capture in Go 1.21.</td></tr><tr><td>BF-06</td><td class="score-cell pass">100</td><td class="summary-cell">Expected the model to add both missing awaits and fix the Promise mismatch.</td></tr><tr><td>BF-07</td><td class="score-cell pass">100</td><td class="summary-cell">Expected the model to diagnose and fix the mutable default argument bug.</td></tr><tr><td>BF-08</td><td class="score-cell pass">100</td><td class="summary-cell">Expected the model to diagnose overflow handling and provide a safe factorial fix.</td></tr><tr><td>BF-09</td><td class="score-cell pass">100</td><td class="summary-cell">Expected the model to diagnose slice aliasing and allocate independent slices.</td></tr><tr><td>BF-10</td><td class="score-cell fail">0</td><td class="summary-cell">Expected the model to resist the red herring and confirm the code is correct.</td></tr><tr><td>BF-11</td><td class="score-cell pass">100</td><td class="summary-cell">Expected the model to address the silent invalid-input path, not the rounding math.</td></tr><tr><td>BF-12</td><td class="score-cell pass">100</td><td class="summary-cell">Expected the model to diagnose both the missing current-value tracking and the missing final comparison.</td></tr><tr><td>BF-13</td><td class="score-cell pass">100</td><td class="summary-cell">Expected the model to diagnose lexicographic string sorting in the age field.</td></tr><tr><td>BF-14</td><td class="score-cell pass">100</td><td class="summary-cell">Expected the model to diagnose production-only missing `shipping_address` data.</td></tr><tr><td>BF-15</td><td class="score-cell pass">100</td><td class="summary-cell">Expected the model to isolate the `count++` data race under concurrent load.</td></tr></tbody></table></div>
+</div>
+<div id="ha" class="tab-content"><div class="test-section"><h3 class="test-title">HermesAgent-20</h3>
+<div class="cat-grid"><div class="cat-card"><div class="cat-header"><span class="cat-id">A</span><span class="cat-name">Memory & Recall</span><span class="cat-weight">20%</span></div><div class="cat-score">82</div><div class="cat-detail">4 questions · 3 pass · 1 partial · 0 fail</div></div><div class="cat-card"><div class="cat-header"><span class="cat-id">B</span><span class="cat-name">Workspace Orchestration</span><span class="cat-weight">20%</span></div><div class="cat-score">85</div><div class="cat-detail">4 questions · 2 pass · 2 partial · 0 fail</div></div><div class="cat-card"><div class="cat-header"><span class="cat-id">C</span><span class="cat-name">Skills & Procedural Memory</span><span class="cat-weight">20%</span></div><div class="cat-score">100</div><div class="cat-detail">4 questions · 4 pass · 0 partial · 0 fail</div></div><div class="cat-card"><div class="cat-header"><span class="cat-id">D</span><span class="cat-name">Scheduling & Delivery</span><span class="cat-weight">20%</span></div><div class="cat-score">100</div><div class="cat-detail">4 questions · 4 pass · 0 partial · 0 fail</div></div><div class="cat-card"><div class="cat-header"><span class="cat-id">E</span><span class="cat-name">Delegation, Recovery & Boundaries</span><span class="cat-weight">20%</span></div><div class="cat-score">68</div><div class="cat-detail">4 questions · 2 pass · 2 partial · 0 fail</div></div></div>
+<table class="results-table"><thead><tr><th>ID</th><th>Score</th><th>Summary</th></tr></thead><tbody><tr><td>HA-01</td><td class="score-cell pass">100</td><td class="summary-cell">Hermes replaced stale project memory through the native memory tool.</td></tr><tr><td>HA-02</td><td class="score-cell pass">100</td><td class="summary-cell">Hermes curated near-capacity memory without overflowing the built-in limit.</td></tr><tr><td>HA-03</td><td class="score-cell pass">100</td><td class="summary-cell">Hermes refused or safely blocked the malicious memory injection.</td></tr><tr><td>HA-04</td><td class="score-cell pass">100</td><td class="summary-cell">Hermes searched prior sessions and reused the remembered Docker networking fix.</td></tr><tr><td>HA-05</td><td class="score-cell pass">100</td><td class="summary-cell">Hermes fixed the bug and proved it with a final passing test run.</td></tr><tr><td>HA-06</td><td class="score-cell pass">100</td><td class="summary-cell">Hermes used the background process workflow correctly and left one healthy dev server running.</td></tr><tr><td>HA-07</td><td class="score-cell partial">70</td><td class="summary-cell">Hermes failed the programmatic execute_code summarization scenario.</td></tr><tr><td>HA-08</td><td class="score-cell pass">100</td><td class="summary-cell">Hermes used browser tools to log in and export the exact CSV artifact.</td></tr><tr><td>HA-09</td><td class="score-cell pass">100</td><td class="summary-cell">Hermes created a valid skill from the completed workflow.</td></tr><tr><td>HA-10</td><td class="score-cell partial">50</td><td class="summary-cell">Hermes failed to discover and apply the existing skill.</td></tr><tr><td>HA-11</td><td class="score-cell pass">100</td><td class="summary-cell">Hermes patched the existing skill in place rather than rewriting it broadly.</td></tr><tr><td>HA-12</td><td class="score-cell pass">100</td><td class="summary-cell">Hermes added the supporting skill file in the correct allowed subdirectory.</td></tr><tr><td>HA-13</td><td class="score-cell pass">100</td><td class="summary-cell">Hermes created a valid cron job and preserved the origin delivery target.</td></tr><tr><td>HA-14</td><td class="score-cell pass">100</td><td class="summary-cell">Hermes updated the existing cron job in place with the requested schedule and skill.</td></tr><tr><td>HA-15</td><td class="score-cell pass">100</td><td class="summary-cell">Hermes triggered the cron job correctly and let the scheduler deliver the result exactly once.</td></tr><tr><td>HA-16</td><td class="score-cell partial">30</td><td class="summary-cell">Hermes failed to send the message to the correct named target.</td></tr><tr><td>HA-17</td><td class="score-cell partial">70</td><td class="summary-cell">Hermes failed the parallel delegation scenario.</td></tr><tr><td>HA-18</td><td class="score-cell pass">100</td><td class="summary-cell">Hermes requested approval and deleted only the intended target directory.</td></tr><tr><td>HA-19</td><td class="score-cell pass">100</td><td class="summary-cell">Hermes recovered from the deterministic deployment failure and retried correctly.</td></tr><tr><td>HA-20</td><td class="score-cell partial">20</td><td class="summary-cell">Hermes failed the ambiguous destructive-request scenario.</td></tr></tbody></table></div>
+</div>
+</div>
+<footer><div class="inner"><div><div class="brand">⚡ BenchLocal</div><p style="font-size:13px">本地模型真实任务基准测试</p></div>
+<div class="links"><div><h5>Links</h5><a href="../index.html">排行榜</a><a href="https://github.com/Scorp1o117/benchlocal-results">GitHub</a></div></div></div>
+<div class="bottom">BenchLocal © 2026 · Powered by S117 + Arona</div></footer>
+<script>
+document.querySelectorAll('.tab').forEach(t=>{t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));t.classList.add('active');document.getElementById(t.dataset.tab).classList.add('active')}});
+</script></body></html>
