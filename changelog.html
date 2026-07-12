@@ -98,6 +98,68 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
 <section class="cl-container">
   <div class="timeline">
 
+    <!-- 2026-07-12/13 -->
+    <div class="tl-item major">
+      <div class="tl-date">
+        <span>2026-07-12</span>
+        <span class="tl-tag major">🏆 新增 2 个模型</span>
+      </div>
+      <div class="tl-title">Ornith-1.0-35B-Heretic-MTP-APEX 双版（思考 + 无思考）</div>
+      <div class="tl-card">
+        <div class="tl-content">
+          <p><strong>Ornith-1.0-35B-Heretic-MTP-APEX（思考）</strong>：</p>
+          <ul>
+            <li>能力上限 <strong>95.0</strong> · 实用得分 <strong>90.0</strong> 🥇（仅扣 5 分）</li>
+            <li>ToolCall <strong>100</strong>（15/15 零重试）· BugFind 98 · HermesAgent 89</li>
+            <li>BF-10 红鲱鱼陷阱 <strong>0 → 100</strong>（heretic 让"想太多"反成优势）</li>
+            <li>实用得分<strong>全场第一</strong>，比无思考版（90.0 vs 76.2）高出 13.8 分</li>
+          </ul>
+          <p style="margin-top:12px"><strong>Ornith-1.0-35B-Heretic-MTP-APEX（无思考）</strong>：</p>
+          <ul>
+            <li>能力上限 <strong>92.2</strong> · 实用得分 <strong>76.2</strong>（扣 16 分）</li>
+            <li>ToolCall 97（14/15）· BugFind 97 · HermesAgent 85</li>
+            <li>重试激增：HA-06/07/16/17/20 均 4 次以上重试仍失败</li>
+          </ul>
+          <p style="margin-top:12px"><strong>关键发现</strong>：<strong>heretic 模型必须开思考</strong>。无思考 + heretic 是反模式——重试多了 11 次但救不回能力短板。这与原版 35B MTP（无思考更稳）结论完全反转。</p>
+        </div>
+        <div class="tl-meta">
+          <span>📦 <span data-lang="zh">2 个新详情页</span><span data-lang="en">2 new detail pages</span></span>
+          <span>📊 <span data-lang="zh">已测试模型总数 21</span><span data-lang="en">21 models total</span></span>
+          <span>🔗 <span data-lang="zh">HF</span><span data-lang="en">HF</span>: SC117/Ornith-1.0-35B-Heretic-MTP-APEX-GGUF</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2026-07-12 follow-up: bug fixes -->
+    <div class="tl-item">
+      <div class="tl-date">
+        <span>2026-07-12</span>
+        <span class="tl-tag">🐛 修复 2 个 bug</span>
+      </div>
+      <div class="tl-title"><span data-lang="zh">修复 heretic 双版详情页的大分数和表格渲染</span><span data-lang="en">Fixed big scores and table rendering bugs</span></div>
+      <div class="tl-card">
+        <div class="tl-content">
+          <p><span data-lang="zh">两个详情页的大分数（能力上限 / 实用得分）原本停留在原版 35B MTP 思考版的 93.5 / 75.5。原因是 <code>html.replace()</code> 多行匹配陷阱：<code>"""\n"""</code> 三引号写 old_text 时换行被规范化，但目标 HTML 里是单行。</span><span data-lang="en">Big scores on both detail pages were stuck at original 93.5/75.5 due to <code>html.replace()</code> multi-line matching issue.</span></p>
+          <p><span data-lang="zh">无思考页题目详情消失：<code>errors</code> 数组里 TC-03 写成 <code>c:'Asked for Sarah's email...'</code>，ASCII 撇号 <code>'</code> 跟外层字符串边界冲突导致整段 <code>&lt;script&gt;</code> 罢工。改成 Unicode 智能引号 <code>'</code> (U+2019)。</span><span data-lang="en">No-thinking page errors vanished: ASCII apostrophe inside <code>Sarah's</code> broke JS parser. Replaced with U+2019.</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2026-07-13: index hero disclaimer -->
+    <div class="tl-item minor">
+      <div class="tl-date">
+        <span>2026-07-13</span>
+        <span class="tl-tag minor">📝 站点说明</span>
+      </div>
+      <div class="tl-title"><span data-lang="zh">首页 Hero 区域加免责声明</span><span data-lang="en">Hero disclaimer added</span></div>
+      <div class="tl-card">
+        <div class="tl-content">
+          <p><span data-lang="zh">在「本地模型测试数据库」标题上方加 <code>⚠️ 非严谨学术评测，结果仅供参考与简单对比</code> 一行小字，提醒读者测试场景有限不能作为模型质量的唯一标准。</span><span data-lang="en">Added a disclaimer note above the hero title: <code>⚠️ Non-strict academic evaluation — results are for reference and rough comparison only</code>.</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2026-07-08 -->
     <!-- 2026-07-08 -->
     <div class="tl-item major">
       <div class="tl-date">

@@ -177,6 +177,7 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
 
 <!-- Hero -->
 <section class="hero">
+  <p style="font-size:13px;color:var(--text3);margin-bottom:24px;padding:6px 14px;background:#FEF3C7;color:#92400E;border-radius:8px;display:inline-block">⚠️ <span data-lang="zh">非严谨学术评测，结果仅供参考与简单对比</span><span data-lang="en">Non-strict academic evaluation — results are for reference and rough comparison only</span></p>
   <h1><span data-lang="zh">本地模型</span><span data-lang="en">Local Models</span><br><span><span data-lang="zh">测试数据库</span><span data-lang="en">Benchmark Database</span></span></h1>
   <p><span data-lang="zh">基于 BenchLocal 桌面应用，在本地对真实任务进行基准测试，横向对比模型表现</span><span data-lang="en">Based on BenchLocal desktop app, benchmarking LLMs on real-world tasks locally</span></p><p style="font-size:13px;color:var(--text3);margin-top:8px"><span data-lang="zh">当前测试环境：RTX 5070 Ti 16GB + 128GB RAM · MoE模型部分专家层offload到CPU</span><span data-lang="en">Test environment: RTX 5070 Ti 16GB + 128GB RAM · MoE expert layers partially offloaded to CPU</span></p>
   <p style="font-size:13px;color:var(--text3);margin-top:8px"><span data-lang="zh">排名基于<strong style="color:var(--text2)">能力上限</strong>（加权原始分），<strong style="color:var(--text2)">实用得分</strong> = 能力上限 − 重试扣分（每题首次通过不扣分，重试后通过每重试1次扣1分）</span><span data-lang="en">Ranked by <strong style="color:var(--text2)">Max Score</strong> (weighted raw score), <strong style="color:var(--text2)">Effective Score</strong> = Max Score − retry penalty (first pass = no penalty, each retry = +1pt)</span></p>
