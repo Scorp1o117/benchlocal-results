@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ornith-1.0-35B-Heretic-MTP-APEX (思考) · BenchLocal</title>
+<title>Ornith-1.0-35B-Heretic-MTP-APEX (无思考) · BenchLocal</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
@@ -88,7 +88,7 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
   <div class="model-header">
     <div class="model-avatar"><img src="../icons/ornith-color.png" alt="" style="width:100%;height:100%;object-fit:contain"></div>
     <div class="model-info">
-      <h1>Ornith-1.0-35B-Heretic-MTP-APEX <span style="font-size:16px;color:var(--text3);font-weight:400"><span data-lang="zh">(思考 · Heretic · MTP)</span><span data-lang="en">(Thinking · Heretic · MTP)</span></span></h1>
+      <h1>Ornith-1.0-35B-Heretic-MTP-APEX <span style="font-size:16px;color:var(--text3);font-weight:400"><span data-lang="zh">(无思考 · Heretic · MTP)</span><span data-lang="en">(No Thinking · Heretic · MTP)</span></span></h1>
       <div class="sub">Ornith-1.0-35B-MTP-APEX-I-Compact.gguf · Q4_K_M · 15.85 GB</div>
       <div class="model-tags"><span>🧠 MoE (3B active)</span><span>📦 15.85 GB</span><span>🎮 RTX 5070 Ti 16GB + 128GB RAM</span><span>📅 2026-06-26</span><span style="background:#FFF5F5;color:#E53E3E">🌡️ temp=0.6 top_p=0.95 top_k=20</span></div>
     </div>
@@ -97,9 +97,9 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
     <div class="big-score"><div class="label"><span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span></div><div class="num">93.5</div><div class="sub"><span data-lang="zh">加权原始分 = TC×0.3 + BF×0.3 + HA×0.4</span><span data-lang="en">Weighted raw score = TC×0.3 + BF×0.3 + HA×0.4</span></div></div>
     <div class="adj-score"><div class="label"><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></div><div class="num">75.5</div><div class="sub"><span data-lang="zh">−18 重试扣分</span><span data-lang="en">−18 retry penalty</span></div></div>
     <div class="sub-scores">
-      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">100</div><div class="detail">15/15 <span data-lang="zh">通过 · 100%</span><span data-lang="en">passed · 100%</span></div></div>
-      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">98</div><div class="detail">14/15 <span data-lang="zh">通过 · 93%</span><span data-lang="en">passed · 93%</span></div><div class="retry-info"><span data-lang="zh">🔄 重试 2 次</span><span data-lang="en">🔄 2 retries</span></div></div>
-      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">89</div><div class="detail">16/20 <span data-lang="zh">通过 · 80%</span><span data-lang="en">passed · 80%</span></div><div class="retry-info"><span data-lang="zh">🔄 重试 3 次</span><span data-lang="en">🔄 3 retries</span></div></div>
+      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">97</div><div class="detail">14/15 <span data-lang="zh">通过 · 93%</span><span data-lang="en">passed · 93%</span></div></div>
+      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">97</div><div class="detail">14/15 <span data-lang="zh">通过 · 93%</span><span data-lang="en">passed · 93%</span></div><div class="retry-info"><span data-lang="zh">🔄 重试 8 次</span><span data-lang="en">🔄 8 retries</span></div></div>
+      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">85</div><div class="detail">14/20 <span data-lang="zh">通过 · 70%</span><span data-lang="en">passed · 70%</span></div><div class="retry-info"><span data-lang="zh">🔄 重试 7 次</span><span data-lang="en">🔄 7 retries</span></div></div>
     </div>
   </div>
 </section>
@@ -109,14 +109,14 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
     <h3>📐 <span data-lang="zh">计分规则</span><span data-lang="en">Scoring Rules</span></h3>
     <p><span data-lang="zh"><strong>能力上限</strong> = 加权原始分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4。反映模型的最高能力水平。</span><span data-lang="en"><strong>Max Score</strong> = Weighted raw score = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4. Reflects the model's highest capability level.</span></p>
     <p style="margin-top:8px"><span data-lang="zh"><strong>实用得分</strong> = 能力上限 − 重试扣分。每题首次通过不扣分；重试后才通过的题目每重试1次扣1分；重试后仍失败的不参与扣分。</span><span data-lang="en"><strong>Effective Score</strong> = Max Score − retry penalty. First pass = no penalty; each retry before passing = −1pt; failed retries excluded.</span></p>
-    <p style="margin-top:8px"><span data-lang="zh">本模型能力上限 <strong>95.0</strong>（全场第 1），实用得分 <strong>90.0</strong>（仅扣 5 分）。相比原版 <strong>Ornith-1.0-35B-MTP-APEX</strong>（思考），能力天花板提升 <strong>+1.5</strong>，实用得分提升 <strong>+14.5</strong>。heretic abliteration 让 BF-10 红鲱鱼陷阱（0 → 100）和稳定性都显著改善。</span><span data-lang="en">This model: Max Score <strong>95.0</strong> (Rank #1 overall), Effective Score <strong>90.0</strong> (−5 penalty). Compared to the original <strong>Ornith-1.0-35B-MTP-APEX</strong> (Thinking), the ceiling rises <strong>+1.5</strong> and the effective score jumps <strong>+14.5</strong>. heretic abliteration dramatically improves the BF-10 red-herring trap (0 → 100) and overall stability.</span></p>
+    <p style="margin-top:8px"><span data-lang="zh">本模型能力上限 <strong>92.2</strong>，实用得分 <strong>76.2</strong>（扣 16 分）。相比 <strong>Ornith-1.0-35B-Heretic-MTP-APEX 思考版</strong>（95.0 / 90.0）差距明显：天差地别的不是能力，是稳定性。heretic 在思考模式下是"助力"，但关闭思考后变成"裸奔"——重试多了 11 次却救不回原本就达不到的能力短板。</span><span data-lang="en">This model: Max Score <strong>92.2</strong>, Effective Score <strong>76.2</strong> (−16 penalty). Compared to <strong>Ornith-1.0-35B-Heretic-MTP-APEX Thinking</strong> (95.0 / 90.0) the gap is huge — capability barely drops (−2.8), but stability worsens by +11 retries. heretic ablation is an asset with thinking, but disabling thinking leaves the model "naked": more retries can't compensate for absent deliberation.</span></p>
   </div>
 
   <div class="tabs" style="margin-top:32px">
-    <div class="tab active" onclick="switchTab(0)"><span data-lang="zh">ToolCall-15 (15/15)</span><span data-lang="en">ToolCall-15 (15/15)</span></div>
-    <div class="tab" onclick="switchTab(1)"><span data-lang="zh">BugFind-15 (15/15)</span><span data-lang="en">BugFind-15 (15/15)</span></div>
-    <div class="tab" onclick="switchTab(2)"><span data-lang="zh">HermesAgent-20 (16/20)</span><span data-lang="en">HermesAgent-20 (16/20)</span></div>
-    <div class="tab" onclick="switchTab(3)"><span data-lang="zh">❌ 失败 (5)</span><span data-lang="en">❌ Failed (5)</span></div>
+    <div class="tab active" onclick="switchTab(0)"><span data-lang="zh">ToolCall-15 (14/15)</span><span data-lang="en">ToolCall-15 (14/15)</span></div>
+    <div class="tab" onclick="switchTab(1)"><span data-lang="zh">BugFind-15 (14/15)</span><span data-lang="en">BugFind-15 (14/15)</span></div>
+    <div class="tab" onclick="switchTab(2)"><span data-lang="zh">HermesAgent-20 (14/20)</span><span data-lang="en">HermesAgent-20 (14/20)</span></div>
+    <div class="tab" onclick="switchTab(3)"><span data-lang="zh">❌ 失败 (8)</span><span data-lang="en">❌ Failed (8)</span></div>
   </div>
 
   <!-- ToolCall-15 Tab -->
@@ -153,9 +153,9 @@ html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:non
 
   <div class="about-box" style="margin-top:32px">
     <h3>📊 <span data-lang="zh">模型评估总结</span><span data-lang="en">Model Evaluation Summary</span></h3>
-    <p><span data-lang="zh">Ornith-1.0-35B-<strong>Heretic</strong>-MTP（思考模式）展现了与原版不同的稳定性：ToolCall-15 满分零重试，BugFind-15 能力上限 98 分（仅 BF-03 陷阱题掉到 60），HermesAgent-20 在记忆/工作区/技能三个维度仍然满分。heretic abliteration 让模型在 BF-10 红鲱鱼陷阱题上从原版的 0 分跃升到 100 分——这是核心改进：模型不再"过度分析"，对正确代码不再强行重写。</span><span data-lang="en">Ornith-1.0-35B-<strong>Heretic</strong>-MTP (Thinking) shows a different stability profile: TC perfect with zero retries, BF ceiling 98 (only the BF-03 trap question drops to 60), HA still perfect on Memory/Workspace/Skills. The heretic ablation is the key improvement — model no longer "overthinks" the BF-10 red herring (0 → 100), leaving correct code untouched.</span></p>
-    <p style="margin-top:12px"><span data-lang="zh">稳定性大幅改善：BF-13 从原来的 5 次重试降到 0 次重试一次通过；总重试从 18 次降到 <strong>5 次</strong>，是全场思考型模型中最低的。仍存在的弱点是 HermesAgent 的委派/恢复/边界维度 60 分（HA-16/17/20 均 4 次重试仍失败），与 BF-03 Rust trap 是 4 个唯一未攻克的难题。</span><span data-lang="en">Stability improved dramatically: BF-13 dropped from 5 retries to 0 retries (clean first pass). Total retries dropped from 18 to <strong>5</strong> — the lowest among all Thinking-mode models. The remaining weakness is HermesAgent Delegation/Recovery/Boundaries at 60 (HA-16/17/20 all failed despite 4 attempts), plus BF-03 Rust trap — these 4 unsolved problems mark the frontier.</span></p>
-    <p class="final"><span data-lang="zh">能力天花板 <strong>95.0</strong> 全场第一，实用得分 <strong>90.0</strong> 仅扣 5 分——heretic 把"想太多"的双刃剑变成了稳定战斗力。</span><span data-lang="en">Ceiling of <strong>95.0</strong> ranks #1 overall, effective <strong>90.0</strong> with only −5 penalty — heretic turned the "overthinking" double-edged sword into reliable combat power.</span></p>
+    <p><span data-lang="zh">Ornith-1.0-35B-<strong>Heretic</strong>-MTP（无思考模式）展现了与思考版截然不同的画像：能力上限 -2.8（95.0 → 92.2），但实用得分暴跌 -13.8（90.0 → 76.2）。<strong>重试从 5 次激增到 16 次</strong>，每个失败的 HA 题都跑满 6 次尝试仍未通过。这与原版（无 heretic）的"无思考更稳"结论完全相反。</span><span data-lang="en">Ornith-1.0-35B-<strong>Heretic</strong>-MTP (No Thinking) shows a very different profile vs Thinking: ceiling drops −2.8 (95.0 → 92.2), but effective score collapses −13.8 (90.0 → 76.2). <strong>Retries jump from 5 to 16</strong>, with every failed HA scenario running all 6 attempts. This fully reverses the original (non-heretic) conclusion that "no-thinking is more reliable".</span></p>
+    <p style="margin-top:12px"><span data-lang="zh">失败项目集中在 HermesAgent：HA-06/07/16/17/20 共 5 道大题，每次都是 6 次重试全军覆没。同时 BF-09 重试 4 次、BF-10 重试 2 次、B>>>F-04/15 各重试 1 次——重试代价大幅增加。heretic 在思考型模型里是"去除过度分析的助力"，但关闭思考后模型"裸奔"，最终被卡在需要谨慎推理的场景上（多步骤流程、并行委派、跨平台消息路由）。</span><span data-lang="en">Failures cluster in HermesAgent: HA-06/07/16/17/20 (5 scenarios × 6 attempts each, all failed). Plus BF-09 (4 retries), BF-10 (2), BF-04/15 (1 each) — retry cost skyrockets. With thinking, heretic ablation removes "over-analysis". Without thinking the model is "running naked" and gets stuck on scenarios that demand deliberation: multi-step flows, parallel delegation, cross-platform message routing.</span></p>
+    <p class="final"><span data-lang="zh">能力天花板 92.2，实用 <strong>76.2</strong> 扣 16 分——<strong>heretic 模型请开思考</strong>。无思考 + heretic 是反模式。</span><span data-lang="en">Ceiling 92.2, effective <strong>76.2</strong> with −16 penalty — <strong>always enable thinking on heretic models</strong>. No-thinking + heretic is an anti-pattern.</span></p>
   </div>
 </section>
 
@@ -193,19 +193,19 @@ const tcResults = [
 const bfResults = [
   {id:'BF-01',score:100,result:'通过',rt:0,c:'Off-by-one loop bounds bug in Python.'},
   {id:'BF-02',score:100,result:'通过',rt:0,c:'Missing empty-string case identification.'},
-  {id:'BF-03',score:60,result:'部分通过',rt:0,c:'Fell for Rust "use after move" trap — tried to borrow when no_bug was expected (partial).'},
-  {id:'BF-04',score:100,result:'通过',rt:0,c:'Diagnosed dictionary mutation during iteration.'},
+  {id:'BF-03',score:40,result:'失败',rt:0,c:'Rust "use after move" trap — fell for it (4 attempts, all fail).'},
+  {id:'BF-04',score:100,result:'通过',rt:1,c:'Diagnosed dictionary mutation during iteration.'},
   {id:'BF-05',score:100,result:'通过',rt:0,c:'Diagnosed loop-variable capture in Go 1.21.'},
   {id:'BF-06',score:100,result:'通过',rt:0,c:'Added missing awaits and fixed Promise mismatch.'},
   {id:'BF-07',score:100,result:'通过',rt:0,c:'Diagnosed and fixed mutable default argument bug.'},
   {id:'BF-08',score:100,result:'通过',rt:0,c:'Diagnosed overflow handling, provided safe factorial fix.'},
-  {id:'BF-09',score:100,result:'通过',rt:0,c:'Diagnosed slice aliasing and allocated independent slices.'},
-  {id:'BF-10',score:100,result:'通过',rt:1,c:'Recognized red herring trap and left correct code untouched (key heretic win).'},
+  {id:'BF-09',score:100,result:'通过',rt:4,c:'Diagnosed slice aliasing and allocated independent slices (5 attempts).'},
+  {id:'BF-10',score:100,result:'通过',rt:2,c:'Resisted red-herring trap and left correct code untouched.'},
   {id:'BF-11',score:100,result:'通过',rt:0,c:'Addressed silent invalid-input path.'},
-  {id:'BF-12',score:100,result:'通过',rt:1,c:'Diagnosed missing current-value tracking and comparison.'},
+  {id:'BF-12',score:100,result:'通过',rt:0,c:'Diagnosed missing current-value tracking and comparison.'},
   {id:'BF-13',score:100,result:'通过',rt:0,c:'Diagnosed lexicographic string sorting cleanly on first pass.'},
   {id:'BF-14',score:100,result:'通过',rt:0,c:'Diagnosed production-only missing shipping_address data.'},
-  {id:'BF-15',score:100,result:'通过',rt:0,c:'Isolated count++ data race under concurrent load.'},
+  {id:'BF-15',score:100,result:'通过',rt:1,c:'Isolated count++ data race under concurrent load.'},
 ];
 
 const haResults = [
@@ -232,11 +232,14 @@ const haResults = [
 ];
 
 const errors = [
-  {id:'BF-03',score:60,result:'部分通过',rt:0,c:'Fell for Rust "use after move" trap — tried to borrow when no_bug was expected. Sandbox requires verdict="no_bug".'},
-  {id:'HA-16',score:30,result:'失败',rt:0,c:'Failed to send message to the correct named target. 4 attempts total, none passed.'},
-  {id:'HA-17',score:20,result:'失败',rt:0,c:'Failed the parallel delegation scenario. 4 attempts total, none passed.'},
-  {id:'HA-19',score:70,result:'部分通过',rt:0,c:'Tool failure recovery partial, corrective trace incomplete after 3 attempts.'},
-  {id:'HA-20',score:50,result:'失败',rt:0,c:'Failed ambiguous destructive-request scenario. 4 attempts total, none passed.'},
+  {id:'TC-03',score:50,result:'部分通过',rt:0,c:'Asked for Sarah's email instead of inferring the full contact+send chain (13 attempts, partial).'},
+  {id:'BF-03',score:40,result:'失败',rt:0,c:'Fell for Rust "use after move" trap — tried to borrow when no_bug was expected. Sandbox requires verdict="no_bug". 4 attempts all failed.'},
+  {id:'HA-06',score:30,result:'失败',rt:0,c:'Failed background process management. 6 attempts all failed.'},
+  {id:'HA-07',score:70,result:'失败',rt:0,c:'Failed programmatic execute_code summarization. 6 attempts all failed.'},
+  {id:'HA-16',score:30,result:'失败',rt:0,c:'Failed to send message to the correct named target. 6 attempts all failed.'},
+  {id:'HA-17',score:70,result:'失败',rt:0,c:'Failed the parallel delegation scenario. 6 attempts all failed.'},
+  {id:'HA-19',score:80,result:'部分通过',rt:0,c:'Tool failure recovery partial, corrective-action trace incomplete.'},
+  {id:'HA-20',score:20,result:'失败',rt:0,c:'Failed the ambiguous destructive-request scenario. 6 attempts all failed.'},
 ];
 
 function renderTable(data, bodyId) {
