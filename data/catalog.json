@@ -1,0 +1,2197 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-17T13:04:49.663Z",
+  "models": [
+    {
+      "slug": "ornith-35b-heretic-mtp-apex",
+      "variant": "thinking",
+      "label": "Ornith-1.0-35B-Heretic-MTP-APEX-GGUF",
+      "generatedAt": "2026-07-12T11:35:03.407Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 95,
+        "retryPenalty": 5,
+        "effectiveScore": 90,
+        "counts": {
+          "pass": 45,
+          "partial": 2,
+          "fail": 3
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-07-12T10-36-22.555Z-84599f3d",
+          "completedAt": "2026-07-12T10:37:42.032Z",
+          "totalScore": 100,
+          "initialTotalScore": 100,
+          "retryPenalty": 0,
+          "counts": {
+            "pass": 15,
+            "partial": 0,
+            "fail": 0
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-07-12T10-52-48.296Z-f5506d2e",
+          "completedAt": "2026-07-12T11:09:53.891Z",
+          "totalScore": 98,
+          "initialTotalScore": 86,
+          "retryPenalty": 2,
+          "counts": {
+            "pass": 14,
+            "partial": 1,
+            "fail": 0
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-07-12T11-10-20.673Z-31c728d4",
+          "completedAt": "2026-07-12T11:35:03.407Z",
+          "totalScore": 89,
+          "initialTotalScore": 76,
+          "retryPenalty": 3,
+          "counts": {
+            "pass": 16,
+            "partial": 1,
+            "fail": 3
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "pageMode": "generated",
+          "legacyPage": "models/ornith-35b-heretic-mtp-apex-thinking.html",
+          "homepageName": "Ornith-1.0-35B-Heretic-MTP-APEX (思考 · Heretic)",
+          "displayName": "Ornith-1.0-35B-Heretic-MTP-APEX",
+          "modelFile": "Ornith-1.0-35B-Heretic-MTP-APEX-I-Compact.gguf",
+          "displayTags": [
+            "🧠 MoE (3B active)",
+            "📦 15.85 GB",
+            "🎮 RTX 5070 Ti",
+            "🔥 Heretic Abliterated",
+            "🌡️ temp=0.6 top_p=0.95 top_k=20"
+          ],
+          "logoUrl": "icons/ornith-color.png",
+          "hfUrl": "https://huggingface.co/SC117/Ornith-1.0-35B-Heretic-MTP-APEX-GGUF",
+          "summarySource": "generated-from-scores",
+          "verdictSource": "generated-from-scores",
+          "artifactKind": "gguf",
+          "artifactUrl": "https://huggingface.co/SC117/Ornith-1.0-35B-Heretic-MTP-APEX-GGUF",
+          "upstreamUrl": "https://huggingface.co/deepreinforce-ai/Ornith-1.0-35B",
+          "publisherUrl": "https://huggingface.co/SC117",
+          "sourceVerifiedAt": "2026-07-17"
+        },
+        "summary": {
+          "zh": "Ornith-1.0-35B-Heretic-MTP-APEX 在思考模式下的能力上限为 95，实用得分为 90。ToolCall、BugFind、HermesAgent 分别为 100、98、89；50 题中最终通过 45 题，成功题累计重试 5 次。",
+          "en": "Ornith-1.0-35B-Heretic-MTP-APEX reaches a 95 max score and a 90 effective score in thinking mode. ToolCall, BugFind, and HermesAgent score 100, 98, and 89; it ultimately passes 45 of 50 scenarios with 5 successful-case retries."
+        },
+        "verdict": {
+          "zh": "相较无思考版，能力上限高 2.8 分，实用得分高 13.8 分，重试数少 11。优势项为 ToolCall（100），HermesAgent（89）是主要提升空间。需要少量重试才能达到最终成绩，稳定性尚可。",
+          "en": "Compared with the no-thinking variant, its max score is 2.8 points higher, its effective score is 13.8 points higher, and it uses 11 fewer retries. Its strongest suite is ToolCall (100), while HermesAgent (89) offers the clearest room for improvement. Overall, it needs a small number of retries to reach the final score and remains reasonably stable."
+        }
+      }
+    },
+    {
+      "slug": "dsv4-flash",
+      "variant": "default",
+      "label": "deepseek-v4-flash-free via opencode",
+      "generatedAt": "2026-06-20T05:44:37.337Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 93.9,
+        "retryPenalty": 9,
+        "effectiveScore": 84.9,
+        "counts": {
+          "pass": 45,
+          "partial": 0,
+          "fail": 5
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-06-20T01-45-21.081Z-86232df0",
+          "completedAt": "2026-06-20T01:47:03.820Z",
+          "totalScore": 100,
+          "initialTotalScore": 90,
+          "retryPenalty": 2,
+          "counts": {
+            "pass": 15,
+            "partial": 0,
+            "fail": 0
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-06-20T01-47-19.148Z-5092b985",
+          "completedAt": "2026-06-20T05:38:07.443Z",
+          "totalScore": 93,
+          "initialTotalScore": 87,
+          "retryPenalty": 5,
+          "counts": {
+            "pass": 14,
+            "partial": 0,
+            "fail": 1
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-06-20T01-56-51.706Z-d71b3e28",
+          "completedAt": "2026-06-20T05:44:37.337Z",
+          "totalScore": 90,
+          "initialTotalScore": 82,
+          "retryPenalty": 2,
+          "counts": {
+            "pass": 16,
+            "partial": 0,
+            "fail": 4
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "pageMode": "generated",
+          "legacyPage": "models/dsv4-flash.html",
+          "homepageName": "DeepSeek-V4-Flash (API)",
+          "matchedFromRuns": true,
+          "displayName": "DeepSeek-V4-Flash",
+          "modelFile": "deepseek-v4-flash-free via opencode",
+          "displayTags": [
+            "🧠 MoE · 284B (13B active)",
+            "☁️ OpenCode API",
+            "📅 2026-06-19"
+          ],
+          "logoUrl": "icons/deepseek-color.png",
+          "hfUrl": "https://pi.dev/models/opencode/deepseek-v4-flash-free?provider=fireworks",
+          "summarySource": "generated-from-scores",
+          "verdictSource": "generated-from-scores",
+          "artifactKind": "api",
+          "artifactUrl": "https://pi.dev/models/opencode/deepseek-v4-flash-free?provider=fireworks",
+          "upstreamUrl": null,
+          "publisherUrl": "https://opencode.ai/zen",
+          "sourceVerifiedAt": "2026-07-17"
+        },
+        "summary": {
+          "zh": "DeepSeek-V4-Flash 在默认模式下的能力上限为 93.9，实用得分为 84.9。ToolCall、BugFind、HermesAgent 分别为 100、93、90；50 题中最终通过 45 题，成功题累计重试 9 次。",
+          "en": "DeepSeek-V4-Flash reaches a 93.9 max score and a 84.9 effective score in default mode. ToolCall, BugFind, and HermesAgent score 100, 93, and 90; it ultimately passes 45 of 50 scenarios with 9 successful-case retries."
+        },
+        "verdict": {
+          "zh": "优势项为 ToolCall（100），HermesAgent（90）是主要提升空间。最终成绩依赖多次重试，实际使用时应关注稳定性。",
+          "en": "Its strongest suite is ToolCall (100), while HermesAgent (90) offers the clearest room for improvement. Overall, the final score depends on repeated attempts, so practical stability deserves attention."
+        }
+      }
+    },
+    {
+      "slug": "ternary-bonsai-27b-q2-0",
+      "variant": "thinking",
+      "label": "Ternary-Bonsai-27B-Q2_0",
+      "generatedAt": "2026-07-17T12:22:18.780Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 93.7,
+        "retryPenalty": 6,
+        "effectiveScore": 87.7,
+        "counts": {
+          "pass": 44,
+          "partial": 1,
+          "fail": 5
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-07-17T10-57-28.036Z-f8f5aa55",
+          "completedAt": "2026-07-17T10:58:57.422Z",
+          "totalScore": 100,
+          "initialTotalScore": 90,
+          "retryPenalty": 3,
+          "counts": {
+            "pass": 15,
+            "partial": 0,
+            "fail": 0
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-07-17T11-11-18.186Z-65322b29",
+          "completedAt": "2026-07-17T11:23:52.252Z",
+          "totalScore": 95,
+          "initialTotalScore": 93,
+          "retryPenalty": 1,
+          "counts": {
+            "pass": 14,
+            "partial": 0,
+            "fail": 1
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-07-17T11-24-52.984Z-e311f046",
+          "completedAt": "2026-07-17T12:22:18.780Z",
+          "totalScore": 88,
+          "initialTotalScore": 80,
+          "retryPenalty": 2,
+          "counts": {
+            "pass": 15,
+            "partial": 1,
+            "fail": 4
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "displayName": "Ternary-Bonsai-27B",
+          "modelFile": "Ternary-Bonsai-27B-Q2_0.gguf",
+          "fileSizeGb": 6.67,
+          "sampling": {
+            "temperature": 0.7,
+            "topP": 0.95,
+            "topK": 20
+          },
+          "speed": {
+            "inputTokensPerSecond": 876,
+            "outputTokensPerSecond": 61.3
+          },
+          "testedAt": "2026-07-17",
+          "displayTags": [],
+          "pageMode": "generated",
+          "logoUrl": "icons/bonsai-logo.svg",
+          "artifactKind": "gguf",
+          "artifactUrl": "https://huggingface.co/prism-ml/Ternary-Bonsai-27B-gguf",
+          "upstreamUrl": "https://huggingface.co/Qwen/Qwen3.6-27B",
+          "publisherUrl": "https://huggingface.co/prism-ml",
+          "sourceVerifiedAt": "2026-07-17",
+          "hfUrl": "https://huggingface.co/prism-ml/Ternary-Bonsai-27B-gguf"
+        },
+        "summary": {
+          "zh": "思考版能力上限 93.7，三项分数均高于无思考版；6 次成功题重试将实用得分降至 87.7。",
+          "en": "The thinking variant reaches a 93.7 max score and leads the no-thinking variant in all three suites; 6 successful retries reduce its effective score to 87.7."
+        },
+        "verdict": {
+          "zh": "能力上限更高，但额外重试抵消了思考带来的分数优势。",
+          "en": "Its higher ceiling is offset by the additional retries required to reach it."
+        }
+      }
+    },
+    {
+      "slug": "ornith-35b-mtp",
+      "variant": "thinking",
+      "label": "Ornith-1.0-35B-MTP-GGUF",
+      "generatedAt": "2026-06-27T12:04:45.517Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 93.5,
+        "retryPenalty": 18,
+        "effectiveScore": 75.5,
+        "counts": {
+          "pass": 44,
+          "partial": 2,
+          "fail": 4
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-06-26T13-47-18.651Z-d674d940",
+          "completedAt": "2026-06-26T13:48:26.734Z",
+          "totalScore": 100,
+          "initialTotalScore": 100,
+          "retryPenalty": 0,
+          "counts": {
+            "pass": 15,
+            "partial": 0,
+            "fail": 0
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-06-26T13-48-34.762Z-905f76cd",
+          "completedAt": "2026-06-26T23:11:09.463Z",
+          "totalScore": 93,
+          "initialTotalScore": 71,
+          "retryPenalty": 12,
+          "counts": {
+            "pass": 14,
+            "partial": 0,
+            "fail": 1
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-06-26T23-17-53.159Z-88270301",
+          "completedAt": "2026-06-27T12:04:45.517Z",
+          "totalScore": 89,
+          "initialTotalScore": 84,
+          "retryPenalty": 6,
+          "counts": {
+            "pass": 15,
+            "partial": 2,
+            "fail": 3
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "pageMode": "generated",
+          "legacyPage": "models/ornith-35b-mtp-thinking.html",
+          "homepageName": "Ornith-1.0-35B-MTP-APEX (思考)",
+          "matchedFromRuns": true,
+          "displayName": "Ornith-1.0-35B-MTP-APEX",
+          "modelFile": "Ornith-1.0-35B-MTP-APEX-I-Compact.gguf",
+          "displayTags": [
+            "🧠 MoE (3B active)",
+            "📦 15.85 GB",
+            "🎮 RTX 5070 Ti",
+            "🌡️ temp=0.6 top_p=0.95 top_k=20"
+          ],
+          "logoUrl": "icons/ornith-color.png",
+          "hfUrl": "https://huggingface.co/SC117/Ornith-1.0-35B-MTP-APEX-GGUF",
+          "summarySource": "generated-from-scores",
+          "verdictSource": "generated-from-scores",
+          "artifactKind": "gguf",
+          "artifactUrl": "https://huggingface.co/SC117/Ornith-1.0-35B-MTP-APEX-GGUF",
+          "upstreamUrl": "https://huggingface.co/deepreinforce-ai/Ornith-1.0-35B",
+          "publisherUrl": "https://huggingface.co/SC117",
+          "sourceVerifiedAt": "2026-07-17"
+        },
+        "summary": {
+          "zh": "Ornith-1.0-35B-MTP-APEX 在思考模式下的能力上限为 93.5，实用得分为 75.5。ToolCall、BugFind、HermesAgent 分别为 100、93、89；50 题中最终通过 44 题，成功题累计重试 18 次。",
+          "en": "Ornith-1.0-35B-MTP-APEX reaches a 93.5 max score and a 75.5 effective score in thinking mode. ToolCall, BugFind, and HermesAgent score 100, 93, and 89; it ultimately passes 44 of 50 scenarios with 18 successful-case retries."
+        },
+        "verdict": {
+          "zh": "相较无思考版，能力上限高 0.3 分，实用得分低 9.7 分，重试数多 10。优势项为 ToolCall（100），HermesAgent（89）是主要提升空间。重试成本较高，能力上限与一次运行体验之间存在明显差距。",
+          "en": "Compared with the no-thinking variant, its max score is 0.3 points higher, its effective score is 9.7 points lower, and it uses 10 more retries. Its strongest suite is ToolCall (100), while HermesAgent (89) offers the clearest room for improvement. Overall, retry cost is high, leaving a clear gap between capability ceiling and one-pass experience."
+        }
+      }
+    },
+    {
+      "slug": "ornith-35b-mtp",
+      "variant": "no-thinking",
+      "label": "Ornith-1.0-35B-MTP-GGUF",
+      "generatedAt": "2026-06-27T14:49:45.346Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 93.2,
+        "retryPenalty": 8,
+        "effectiveScore": 85.2,
+        "counts": {
+          "pass": 45,
+          "partial": 1,
+          "fail": 4
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-06-27T14-26-26.036Z-e57e3733",
+          "completedAt": "2026-06-27T14:29:56.287Z",
+          "totalScore": 100,
+          "initialTotalScore": 97,
+          "retryPenalty": 1,
+          "counts": {
+            "pass": 15,
+            "partial": 0,
+            "fail": 0
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-06-27T14-30-03.113Z-e295f6eb",
+          "completedAt": "2026-06-27T14:34:40.883Z",
+          "totalScore": 92,
+          "initialTotalScore": 90,
+          "retryPenalty": 2,
+          "counts": {
+            "pass": 13,
+            "partial": 1,
+            "fail": 1
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-06-27T14-34-45.040Z-94ff3305",
+          "completedAt": "2026-06-27T14:49:45.346Z",
+          "totalScore": 89,
+          "initialTotalScore": 78,
+          "retryPenalty": 5,
+          "counts": {
+            "pass": 17,
+            "partial": 0,
+            "fail": 3
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "pageMode": "generated",
+          "legacyPage": "models/ornith-35b-mtp.html",
+          "homepageName": "Ornith-1.0-35B-MTP-APEX (无思考)",
+          "displayName": "Ornith-1.0-35B-MTP-APEX",
+          "modelFile": "Ornith-1.0-35B-MTP-APEX-I-Compact.gguf",
+          "displayTags": [
+            "🧠 MoE (3B active)",
+            "📦 15.85 GB",
+            "🎮 RTX 5070 Ti",
+            "🌡️ temp=0.6 top_p=0.95 top_k=20"
+          ],
+          "logoUrl": "icons/ornith-color.png",
+          "hfUrl": "https://huggingface.co/SC117/Ornith-1.0-35B-MTP-APEX-GGUF",
+          "summarySource": "generated-from-scores",
+          "verdictSource": "generated-from-scores",
+          "artifactKind": "gguf",
+          "artifactUrl": "https://huggingface.co/SC117/Ornith-1.0-35B-MTP-APEX-GGUF",
+          "upstreamUrl": "https://huggingface.co/deepreinforce-ai/Ornith-1.0-35B",
+          "publisherUrl": "https://huggingface.co/SC117",
+          "sourceVerifiedAt": "2026-07-17"
+        },
+        "summary": {
+          "zh": "Ornith-1.0-35B-MTP-APEX 在无思考模式下的能力上限为 93.2，实用得分为 85.2。ToolCall、BugFind、HermesAgent 分别为 100、92、89；50 题中最终通过 45 题，成功题累计重试 8 次。",
+          "en": "Ornith-1.0-35B-MTP-APEX reaches a 93.2 max score and a 85.2 effective score in no-thinking mode. ToolCall, BugFind, and HermesAgent score 100, 92, and 89; it ultimately passes 45 of 50 scenarios with 8 successful-case retries."
+        },
+        "verdict": {
+          "zh": "相较思考版，能力上限低 0.3 分，实用得分高 9.7 分，重试数少 10。优势项为 ToolCall（100），HermesAgent（89）是主要提升空间。最终成绩依赖多次重试，实际使用时应关注稳定性。",
+          "en": "Compared with the thinking variant, its max score is 0.3 points lower, its effective score is 9.7 points higher, and it uses 10 fewer retries. Its strongest suite is ToolCall (100), while HermesAgent (89) offers the clearest room for improvement. Overall, the final score depends on repeated attempts, so practical stability deserves attention."
+        }
+      }
+    },
+    {
+      "slug": "agents-a1",
+      "variant": "no-thinking",
+      "label": "Agents-A1-MTP-GGUF",
+      "generatedAt": "2026-07-03T12:33:04.512Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 93.1,
+        "retryPenalty": 32,
+        "effectiveScore": 61.1,
+        "counts": {
+          "pass": 44,
+          "partial": 1,
+          "fail": 5
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-07-03T07-16-31.908Z-54f4d5c7",
+          "completedAt": "2026-07-03T08:04:32.586Z",
+          "totalScore": 97,
+          "initialTotalScore": 90,
+          "retryPenalty": 1,
+          "counts": {
+            "pass": 14,
+            "partial": 1,
+            "fail": 0
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-07-03T08-04-37.686Z-f7fdde09",
+          "completedAt": "2026-07-03T08:08:30.970Z",
+          "totalScore": 100,
+          "initialTotalScore": 75,
+          "retryPenalty": 7,
+          "counts": {
+            "pass": 15,
+            "partial": 0,
+            "fail": 0
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-07-03T08-08-40.809Z-ea30eedf",
+          "completedAt": "2026-07-03T12:33:04.512Z",
+          "totalScore": 85,
+          "initialTotalScore": 63,
+          "retryPenalty": 24,
+          "counts": {
+            "pass": 15,
+            "partial": 0,
+            "fail": 5
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "pageMode": "generated",
+          "legacyPage": "models/agents-a1.html",
+          "homepageName": "Agents-A1 (无思考)",
+          "matchedFromRuns": true,
+          "displayName": "Agents-A1",
+          "modelFile": "Agents-A1-APEX-I-Compact.gguf",
+          "displayTags": [
+            "🧠 MoE (3B active)",
+            "📦 16.1 GB",
+            "🎮 RTX 5070 Ti 16GB + 128GB RAM",
+            "⚡ In 804 t/s · Out 55.6 t/s",
+            "🌡️ temp=0.85 top_p=0.95 top_k=20 min_p=0.0 presence=1.1 rep=1.0"
+          ],
+          "logoUrl": "icons/qwen-color.png",
+          "hfUrl": "https://huggingface.co/SC117/Agents-A1-MTP-APEX-GGUF",
+          "summarySource": "generated-from-scores",
+          "verdictSource": "generated-from-scores",
+          "artifactKind": "gguf",
+          "artifactUrl": "https://huggingface.co/SC117/Agents-A1-MTP-APEX-GGUF",
+          "upstreamUrl": "https://huggingface.co/InternScience/Agents-A1",
+          "publisherUrl": "https://huggingface.co/SC117",
+          "sourceVerifiedAt": "2026-07-17"
+        },
+        "summary": {
+          "zh": "Agents-A1 在无思考模式下的能力上限为 93.1，实用得分为 61.1。ToolCall、BugFind、HermesAgent 分别为 97、100、85；50 题中最终通过 44 题，成功题累计重试 32 次。",
+          "en": "Agents-A1 reaches a 93.1 max score and a 61.1 effective score in no-thinking mode. ToolCall, BugFind, and HermesAgent score 97, 100, and 85; it ultimately passes 44 of 50 scenarios with 32 successful-case retries."
+        },
+        "verdict": {
+          "zh": "相较思考版，能力上限高 1.9 分，实用得分低 10.1 分，重试数多 12。优势项为 BugFind（100），HermesAgent（85）是主要提升空间。重试成本较高，能力上限与一次运行体验之间存在明显差距。",
+          "en": "Compared with the thinking variant, its max score is 1.9 points higher, its effective score is 10.1 points lower, and it uses 12 more retries. Its strongest suite is BugFind (100), while HermesAgent (85) offers the clearest room for improvement. Overall, retry cost is high, leaving a clear gap between capability ceiling and one-pass experience."
+        }
+      }
+    },
+    {
+      "slug": "ornith-35b-heretic-mtp-apex",
+      "variant": "no-thinking",
+      "label": "Ornith-1.0-35B-Heretic-MTP-APEX-GGUF",
+      "generatedAt": "2026-07-12T12:54:05.493Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 92.2,
+        "retryPenalty": 16,
+        "effectiveScore": 76.2,
+        "counts": {
+          "pass": 42,
+          "partial": 2,
+          "fail": 6
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-07-12T11-59-08.682Z-e0b7938a",
+          "completedAt": "2026-07-12T12:02:56.796Z",
+          "totalScore": 97,
+          "initialTotalScore": 93,
+          "retryPenalty": 1,
+          "counts": {
+            "pass": 14,
+            "partial": 1,
+            "fail": 0
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-07-12T12-03-04.600Z-df77a548",
+          "completedAt": "2026-07-12T12:12:07.519Z",
+          "totalScore": 97,
+          "initialTotalScore": 79,
+          "retryPenalty": 8,
+          "counts": {
+            "pass": 14,
+            "partial": 0,
+            "fail": 1
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-07-12T12-12-34.480Z-63d31604",
+          "completedAt": "2026-07-12T12:54:05.493Z",
+          "totalScore": 85,
+          "initialTotalScore": 83,
+          "retryPenalty": 7,
+          "counts": {
+            "pass": 14,
+            "partial": 1,
+            "fail": 5
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "pageMode": "generated",
+          "legacyPage": "models/ornith-35b-heretic-mtp-apex.html",
+          "homepageName": "Ornith-1.0-35B-Heretic-MTP-APEX (无思考 · Heretic)",
+          "displayName": "Ornith-1.0-35B-Heretic-MTP-APEX",
+          "modelFile": "Ornith-1.0-35B-Heretic-MTP-APEX-I-Compact.gguf",
+          "displayTags": [
+            "🧠 MoE (3B active)",
+            "📦 15.85 GB",
+            "🎮 RTX 5070 Ti",
+            "🔥 Heretic Abliterated",
+            "🌡️ temp=0.6 top_p=0.95 top_k=20"
+          ],
+          "logoUrl": "icons/ornith-color.png",
+          "hfUrl": "https://huggingface.co/SC117/Ornith-1.0-35B-Heretic-MTP-APEX-GGUF",
+          "summarySource": "generated-from-scores",
+          "verdictSource": "generated-from-scores",
+          "artifactKind": "gguf",
+          "artifactUrl": "https://huggingface.co/SC117/Ornith-1.0-35B-Heretic-MTP-APEX-GGUF",
+          "upstreamUrl": "https://huggingface.co/deepreinforce-ai/Ornith-1.0-35B",
+          "publisherUrl": "https://huggingface.co/SC117",
+          "sourceVerifiedAt": "2026-07-17"
+        },
+        "summary": {
+          "zh": "Ornith-1.0-35B-Heretic-MTP-APEX 在无思考模式下的能力上限为 92.2，实用得分为 76.2。ToolCall、BugFind、HermesAgent 分别为 97、97、85；50 题中最终通过 42 题，成功题累计重试 16 次。",
+          "en": "Ornith-1.0-35B-Heretic-MTP-APEX reaches a 92.2 max score and a 76.2 effective score in no-thinking mode. ToolCall, BugFind, and HermesAgent score 97, 97, and 85; it ultimately passes 42 of 50 scenarios with 16 successful-case retries."
+        },
+        "verdict": {
+          "zh": "相较思考版，能力上限低 2.8 分，实用得分低 13.8 分，重试数多 11。优势项为 ToolCall（97），HermesAgent（85）是主要提升空间。重试成本较高，能力上限与一次运行体验之间存在明显差距。",
+          "en": "Compared with the thinking variant, its max score is 2.8 points lower, its effective score is 13.8 points lower, and it uses 11 more retries. Its strongest suite is ToolCall (97), while HermesAgent (85) offers the clearest room for improvement. Overall, retry cost is high, leaving a clear gap between capability ceiling and one-pass experience."
+        }
+      }
+    },
+    {
+      "slug": "qwen36-27b",
+      "variant": "thinking",
+      "label": "Qwen3.6-27B",
+      "generatedAt": "2026-06-20T01:36:56.145Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 91.9,
+        "retryPenalty": 18,
+        "effectiveScore": 73.9,
+        "counts": {
+          "pass": 43,
+          "partial": 2,
+          "fail": 5
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-06-19T14-48-57.332Z-d39ffbd9",
+          "completedAt": "2026-06-19T14:50:17.323Z",
+          "totalScore": 100,
+          "initialTotalScore": 100,
+          "retryPenalty": 0,
+          "counts": {
+            "pass": 15,
+            "partial": 0,
+            "fail": 0
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-06-19T14-50-23.730Z-1e49fc13",
+          "completedAt": "2026-06-20T01:09:03.477Z",
+          "totalScore": 93,
+          "initialTotalScore": null,
+          "retryPenalty": 14,
+          "counts": {
+            "pass": 14,
+            "partial": 0,
+            "fail": 1
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-06-20T00-29-08.173Z-a1bf5dbc",
+          "completedAt": "2026-06-20T01:36:56.145Z",
+          "totalScore": 85,
+          "initialTotalScore": 79,
+          "retryPenalty": 4,
+          "counts": {
+            "pass": 14,
+            "partial": 2,
+            "fail": 4
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "pageMode": "generated",
+          "legacyPage": "models/qwen36-27b-thinking.html",
+          "homepageName": "Qwen3.6-27B-uncensored-MTP (思考)",
+          "matchedFromRuns": true,
+          "displayName": "Qwen3.6-27B",
+          "modelFile": "Qwen3.6-27B-uncensored-heretic-v2-Native-MTP-Preserved.i1-IQ3_M.gguf",
+          "displayTags": [
+            "🧠 Dense 27B",
+            "📦 11.9 GB",
+            "⚡ In 725 t/s · Out 60.6 t/s",
+            "🌡️ temp=1.0 top_p=0.95 top_k=20 rep=1.5"
+          ],
+          "logoUrl": "icons/qwen-color.png",
+          "hfUrl": "https://huggingface.co/mradermacher/Qwen3.6-27B-uncensored-heretic-v2-Native-MTP-Preserved-i1-GGUF",
+          "summarySource": "generated-from-scores",
+          "verdictSource": "generated-from-scores",
+          "artifactKind": "gguf",
+          "artifactUrl": "https://huggingface.co/mradermacher/Qwen3.6-27B-uncensored-heretic-v2-Native-MTP-Preserved-i1-GGUF",
+          "upstreamUrl": "https://huggingface.co/llmfan46/Qwen3.6-27B-uncensored-heretic-v2-Native-MTP-Preserved",
+          "publisherUrl": "https://huggingface.co/mradermacher",
+          "sourceVerifiedAt": "2026-07-17"
+        },
+        "summary": {
+          "zh": "Qwen3.6-27B 在思考模式下的能力上限为 91.9，实用得分为 73.9。ToolCall、BugFind、HermesAgent 分别为 100、93、85；50 题中最终通过 43 题，成功题累计重试 18 次。",
+          "en": "Qwen3.6-27B reaches a 91.9 max score and a 73.9 effective score in thinking mode. ToolCall, BugFind, and HermesAgent score 100, 93, and 85; it ultimately passes 43 of 50 scenarios with 18 successful-case retries."
+        },
+        "verdict": {
+          "zh": "相较无思考版，能力上限高 4.1 分，实用得分低 10.9 分，重试数多 15。优势项为 ToolCall（100），HermesAgent（85）是主要提升空间。重试成本较高，能力上限与一次运行体验之间存在明显差距。",
+          "en": "Compared with the no-thinking variant, its max score is 4.1 points higher, its effective score is 10.9 points lower, and it uses 15 more retries. Its strongest suite is ToolCall (100), while HermesAgent (85) offers the clearest room for improvement. Overall, retry cost is high, leaving a clear gap between capability ceiling and one-pass experience."
+        }
+      }
+    },
+    {
+      "slug": "gemma4-26b",
+      "variant": "thinking",
+      "label": "gemma-4-26B-A4B-it-qat-heretic",
+      "generatedAt": "2026-06-19T12:51:24.094Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 91.8,
+        "retryPenalty": 8,
+        "effectiveScore": 83.8,
+        "counts": {
+          "pass": 42,
+          "partial": 2,
+          "fail": 6
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-06-19T11-02-14.078Z-e10d3e9a",
+          "completedAt": "2026-06-19T11:03:57.540Z",
+          "totalScore": 93,
+          "initialTotalScore": 93,
+          "retryPenalty": 0,
+          "counts": {
+            "pass": 14,
+            "partial": 0,
+            "fail": 1
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-06-19T11-04-07.471Z-04ad8a94",
+          "completedAt": "2026-06-19T11:40:34.707Z",
+          "totalScore": 97,
+          "initialTotalScore": 85,
+          "retryPenalty": 3,
+          "counts": {
+            "pass": 14,
+            "partial": 0,
+            "fail": 1
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-06-19T11-40-57.817Z-47e3c8eb",
+          "completedAt": "2026-06-19T12:51:24.094Z",
+          "totalScore": 87,
+          "initialTotalScore": 79,
+          "retryPenalty": 5,
+          "counts": {
+            "pass": 14,
+            "partial": 2,
+            "fail": 4
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "pageMode": "generated",
+          "legacyPage": "models/gemma4-26b-thinking.html",
+          "homepageName": "Gemma-4 (思考)",
+          "matchedFromRuns": true,
+          "displayName": "Gemma-4-26B-A4B-it-qat",
+          "modelFile": "gemma-4-26B-A4B-it-qat-heretic-UD-Q4_K_XL.gguf",
+          "displayTags": [
+            "🧠 MoE 4B active",
+            "📦 13.3 GB",
+            "⚡ In 832 t/s · Out 53.9 t/s",
+            "🌡️ temp=1.0 top_p=0.95 top_k=64"
+          ],
+          "logoUrl": "icons/gemma-color.png",
+          "hfUrl": "https://huggingface.co/SC117/gemma-4-26B-A4B-it-qat-heretic-GGUF",
+          "summarySource": "generated-from-scores",
+          "verdictSource": "generated-from-scores",
+          "artifactKind": "gguf",
+          "artifactUrl": "https://huggingface.co/SC117/gemma-4-26B-A4B-it-qat-heretic-GGUF",
+          "upstreamUrl": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+          "publisherUrl": "https://huggingface.co/SC117",
+          "sourceVerifiedAt": "2026-07-17"
+        },
+        "summary": {
+          "zh": "Gemma-4-26B-A4B-it-qat 在思考模式下的能力上限为 91.8，实用得分为 83.8。ToolCall、BugFind、HermesAgent 分别为 93、97、87；50 题中最终通过 42 题，成功题累计重试 8 次。",
+          "en": "Gemma-4-26B-A4B-it-qat reaches a 91.8 max score and a 83.8 effective score in thinking mode. ToolCall, BugFind, and HermesAgent score 93, 97, and 87; it ultimately passes 42 of 50 scenarios with 8 successful-case retries."
+        },
+        "verdict": {
+          "zh": "相较无思考版，能力上限高 2 分，实用得分高 3 分，重试数少 1。优势项为 BugFind（97），HermesAgent（87）是主要提升空间。最终成绩依赖多次重试，实际使用时应关注稳定性。",
+          "en": "Compared with the no-thinking variant, its max score is 2 points higher, its effective score is 3 points higher, and it uses 1 fewer retries. Its strongest suite is BugFind (97), while HermesAgent (87) offers the clearest room for improvement. Overall, the final score depends on repeated attempts, so practical stability deserves attention."
+        }
+      }
+    },
+    {
+      "slug": "qwen36-35b-mtp",
+      "variant": "no-thinking",
+      "label": "Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX",
+      "generatedAt": "2026-06-23T08:08:54.146Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 91.5,
+        "retryPenalty": 11,
+        "effectiveScore": 80.5,
+        "counts": {
+          "pass": 43,
+          "partial": 1,
+          "fail": 6
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-06-23T07-39-30.723Z-6b623580",
+          "completedAt": "2026-06-23T08:06:08.800Z",
+          "totalScore": 97,
+          "initialTotalScore": 83,
+          "retryPenalty": 5,
+          "counts": {
+            "pass": 14,
+            "partial": 1,
+            "fail": 0
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-06-23T07-41-01.608Z-df8c6a85",
+          "completedAt": "2026-06-23T07:49:01.396Z",
+          "totalScore": 96,
+          "initialTotalScore": 85,
+          "retryPenalty": 5,
+          "counts": {
+            "pass": 14,
+            "partial": 0,
+            "fail": 1
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-06-23T07-49-20.342Z-4842315f",
+          "completedAt": "2026-06-23T08:08:54.146Z",
+          "totalScore": 84,
+          "initialTotalScore": 80,
+          "retryPenalty": 1,
+          "counts": {
+            "pass": 15,
+            "partial": 0,
+            "fail": 5
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "pageMode": "generated",
+          "legacyPage": "models/qwen36-35b-mtp.html",
+          "homepageName": "Qwen3.6-35B-A3B-uncensored-MTP (无思考)",
+          "matchedFromRuns": true,
+          "displayName": "Qwen3.6-35B-A3B-uncensored-MTP",
+          "modelFile": "Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX-I-Compact.gguf",
+          "displayTags": [
+            "🧠 MoE",
+            "📦 16.6 GB",
+            "⚡ In 766 t/s · Out 62.6 t/s",
+            "🎮 RTX 5070 Ti",
+            "🌡️ temp=0.7 top_p=0.8 top_k=20 rep=1.5"
+          ],
+          "logoUrl": "icons/qwen-color.png",
+          "hfUrl": "https://huggingface.co/SC117/Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX-GGUF",
+          "summarySource": "generated-from-scores",
+          "verdictSource": "generated-from-scores",
+          "artifactKind": "gguf",
+          "artifactUrl": "https://huggingface.co/SC117/Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX-GGUF",
+          "upstreamUrl": "https://huggingface.co/llmfan46/Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved",
+          "publisherUrl": "https://huggingface.co/SC117",
+          "sourceVerifiedAt": "2026-07-17"
+        },
+        "summary": {
+          "zh": "Qwen3.6-35B-A3B-uncensored-MTP 在无思考模式下的能力上限为 91.5，实用得分为 80.5。ToolCall、BugFind、HermesAgent 分别为 97、96、84；50 题中最终通过 43 题，成功题累计重试 11 次。",
+          "en": "Qwen3.6-35B-A3B-uncensored-MTP reaches a 91.5 max score and a 80.5 effective score in no-thinking mode. ToolCall, BugFind, and HermesAgent score 97, 96, and 84; it ultimately passes 43 of 50 scenarios with 11 successful-case retries."
+        },
+        "verdict": {
+          "zh": "相较思考版，能力上限高 2 分，实用得分低 1 分，重试数多 3。优势项为 ToolCall（97），HermesAgent（84）是主要提升空间。最终成绩依赖多次重试，实际使用时应关注稳定性。",
+          "en": "Compared with the thinking variant, its max score is 2 points higher, its effective score is 1 points lower, and it uses 3 more retries. Its strongest suite is ToolCall (97), while HermesAgent (84) offers the clearest room for improvement. Overall, the final score depends on repeated attempts, so practical stability deserves attention."
+        }
+      }
+    },
+    {
+      "slug": "agents-a1",
+      "variant": "thinking",
+      "label": "Agents-A1-MTP-GGUF",
+      "generatedAt": "2026-07-03T05:20:25.226Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 91.2,
+        "retryPenalty": 20,
+        "effectiveScore": 71.2,
+        "counts": {
+          "pass": 43,
+          "partial": 0,
+          "fail": 7
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-07-03T01-53-08.054Z-7946257c",
+          "completedAt": "2026-07-03T01:56:23.266Z",
+          "totalScore": 100,
+          "initialTotalScore": 93,
+          "retryPenalty": 5,
+          "counts": {
+            "pass": 15,
+            "partial": 0,
+            "fail": 0
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-07-03T01-57-13.030Z-7ff551ae",
+          "completedAt": "2026-07-03T02:32:56.290Z",
+          "totalScore": 88,
+          "initialTotalScore": 81,
+          "retryPenalty": 6,
+          "counts": {
+            "pass": 13,
+            "partial": 0,
+            "fail": 2
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-07-03T02-33-50.696Z-c6208cac",
+          "completedAt": "2026-07-03T05:20:25.226Z",
+          "totalScore": 87,
+          "initialTotalScore": 67,
+          "retryPenalty": 9,
+          "counts": {
+            "pass": 15,
+            "partial": 0,
+            "fail": 5
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "pageMode": "generated",
+          "legacyPage": "models/agents-a1-thinking.html",
+          "homepageName": "Agents-A1 (思考)",
+          "matchedFromRuns": true,
+          "displayName": "Agents-A1",
+          "modelFile": "Agents-A1-APEX-I-Compact.gguf",
+          "displayTags": [
+            "🧠 MoE (3B active)",
+            "📦 16.1 GB",
+            "🎮 RTX 5070 Ti 16GB + 128GB RAM",
+            "⚡ In 804 t/s · Out 55.6 t/s",
+            "🌡️ temp=0.85 top_p=0.95 top_k=20 min_p=0.0 presence=1.1 rep=1.0"
+          ],
+          "logoUrl": "icons/qwen-color.png",
+          "hfUrl": "https://huggingface.co/SC117/Agents-A1-MTP-APEX-GGUF",
+          "summarySource": "generated-from-scores",
+          "verdictSource": "generated-from-scores",
+          "artifactKind": "gguf",
+          "artifactUrl": "https://huggingface.co/SC117/Agents-A1-MTP-APEX-GGUF",
+          "upstreamUrl": "https://huggingface.co/InternScience/Agents-A1",
+          "publisherUrl": "https://huggingface.co/SC117",
+          "sourceVerifiedAt": "2026-07-17"
+        },
+        "summary": {
+          "zh": "Agents-A1 在思考模式下的能力上限为 91.2，实用得分为 71.2。ToolCall、BugFind、HermesAgent 分别为 100、88、87；50 题中最终通过 43 题，成功题累计重试 20 次。",
+          "en": "Agents-A1 reaches a 91.2 max score and a 71.2 effective score in thinking mode. ToolCall, BugFind, and HermesAgent score 100, 88, and 87; it ultimately passes 43 of 50 scenarios with 20 successful-case retries."
+        },
+        "verdict": {
+          "zh": "相较无思考版，能力上限低 1.9 分，实用得分高 10.1 分，重试数少 12。优势项为 ToolCall（100），HermesAgent（87）是主要提升空间。重试成本较高，能力上限与一次运行体验之间存在明显差距。",
+          "en": "Compared with the no-thinking variant, its max score is 1.9 points lower, its effective score is 10.1 points higher, and it uses 12 fewer retries. Its strongest suite is ToolCall (100), while HermesAgent (87) offers the clearest room for improvement. Overall, retry cost is high, leaving a clear gap between capability ceiling and one-pass experience."
+        }
+      }
+    },
+    {
+      "slug": "ternary-bonsai-27b-q2-0",
+      "variant": "no-thinking",
+      "label": "Ternary-Bonsai-27B-Q2_0",
+      "generatedAt": "2026-07-17T13:04:49.663Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 91,
+        "retryPenalty": 3,
+        "effectiveScore": 88,
+        "counts": {
+          "pass": 43,
+          "partial": 1,
+          "fail": 6
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-07-17T12-39-56.369Z-91f09127",
+          "completedAt": "2026-07-17T12:40:29.206Z",
+          "totalScore": 100,
+          "initialTotalScore": 100,
+          "retryPenalty": 0,
+          "counts": {
+            "pass": 15,
+            "partial": 0,
+            "fail": 0
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-07-17T12-41-49.455Z-e7edd327",
+          "completedAt": "2026-07-17T12:45:38.489Z",
+          "totalScore": 90,
+          "initialTotalScore": 85,
+          "retryPenalty": 3,
+          "counts": {
+            "pass": 13,
+            "partial": 0,
+            "fail": 2
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-07-17T12-45-47.252Z-a07c0419",
+          "completedAt": "2026-07-17T13:04:49.663Z",
+          "totalScore": 85,
+          "initialTotalScore": 87,
+          "retryPenalty": 0,
+          "counts": {
+            "pass": 15,
+            "partial": 1,
+            "fail": 4
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "displayName": "Ternary-Bonsai-27B",
+          "modelFile": "Ternary-Bonsai-27B-Q2_0.gguf",
+          "fileSizeGb": 6.67,
+          "sampling": {
+            "temperature": 0.7,
+            "topP": 0.95,
+            "topK": 20
+          },
+          "speed": {
+            "inputTokensPerSecond": 876,
+            "outputTokensPerSecond": 61.3
+          },
+          "testedAt": "2026-07-17",
+          "displayTags": [],
+          "pageMode": "generated",
+          "logoUrl": "icons/bonsai-logo.svg",
+          "artifactKind": "gguf",
+          "artifactUrl": "https://huggingface.co/prism-ml/Ternary-Bonsai-27B-gguf",
+          "upstreamUrl": "https://huggingface.co/Qwen/Qwen3.6-27B",
+          "publisherUrl": "https://huggingface.co/prism-ml",
+          "sourceVerifiedAt": "2026-07-17",
+          "hfUrl": "https://huggingface.co/prism-ml/Ternary-Bonsai-27B-gguf"
+        },
+        "summary": {
+          "zh": "无思考版能力上限 91.0，实用得分 88.0；仅 3 次成功题重试，稳定性略优于思考版。",
+          "en": "The no-thinking variant reaches a 91.0 max score and an 88.0 effective score, with only 3 successful retries and slightly better stability than the thinking variant."
+        },
+        "verdict": {
+          "zh": "更低的能力上限换来了更少重试，实际使用得分略高。",
+          "en": "A lower ceiling is offset by fewer retries, producing a slightly higher effective score."
+        }
+      }
+    },
+    {
+      "slug": "gemma4-12b",
+      "variant": "thinking",
+      "label": "gemma-4-12B-it-heretic-QAT",
+      "generatedAt": "2026-06-21T12:13:54.847Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 90.3,
+        "retryPenalty": 5,
+        "effectiveScore": 85.3,
+        "counts": {
+          "pass": 41,
+          "partial": 2,
+          "fail": 7
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-06-21T11-38-59.847Z-4007fa60",
+          "completedAt": "2026-06-21T11:39:50.957Z",
+          "totalScore": 97,
+          "initialTotalScore": 77,
+          "retryPenalty": 4,
+          "counts": {
+            "pass": 14,
+            "partial": 1,
+            "fail": 0
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-06-21T11-40-03.487Z-525b6c7c",
+          "completedAt": "2026-06-21T11:55:46.390Z",
+          "totalScore": 88,
+          "initialTotalScore": 85,
+          "retryPenalty": 1,
+          "counts": {
+            "pass": 13,
+            "partial": 0,
+            "fail": 2
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-06-21T11-56-14.779Z-9fd75b67",
+          "completedAt": "2026-06-21T12:13:54.847Z",
+          "totalScore": 87,
+          "initialTotalScore": 87,
+          "retryPenalty": 0,
+          "counts": {
+            "pass": 14,
+            "partial": 1,
+            "fail": 5
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "pageMode": "generated",
+          "legacyPage": "models/gemma4-12b.html",
+          "homepageName": "Gemma-4-12B (思考)",
+          "displayName": "Gemma-4-12B-it-heretic-QAT",
+          "modelFile": "gemma-4-12B-it-heretic-QAT-Q4_0.gguf",
+          "displayTags": [
+            "🧠 Dense 12B",
+            "📦 6.4 GB",
+            "⚡ In 1522 t/s · Out 126.3 t/s",
+            "🌡️ QAT量化"
+          ],
+          "logoUrl": "icons/gemma-color.png",
+          "hfUrl": "https://huggingface.co/SC117/gemma-4-12B-it-heretic-QAT-GGUF",
+          "summarySource": "generated-from-scores",
+          "verdictSource": "generated-from-scores",
+          "artifactKind": "gguf",
+          "artifactUrl": "https://huggingface.co/SC117/gemma-4-12B-it-heretic-QAT-GGUF",
+          "upstreamUrl": "https://huggingface.co/google/gemma-4-12B-it",
+          "publisherUrl": "https://huggingface.co/SC117",
+          "sourceVerifiedAt": "2026-07-17"
+        },
+        "summary": {
+          "zh": "Gemma-4-12B-it-heretic-QAT 在思考模式下的能力上限为 90.3，实用得分为 85.3。ToolCall、BugFind、HermesAgent 分别为 97、88、87；50 题中最终通过 41 题，成功题累计重试 5 次。",
+          "en": "Gemma-4-12B-it-heretic-QAT reaches a 90.3 max score and a 85.3 effective score in thinking mode. ToolCall, BugFind, and HermesAgent score 97, 88, and 87; it ultimately passes 41 of 50 scenarios with 5 successful-case retries."
+        },
+        "verdict": {
+          "zh": "优势项为 ToolCall（97），HermesAgent（87）是主要提升空间。需要少量重试才能达到最终成绩，稳定性尚可。",
+          "en": "Its strongest suite is ToolCall (97), while HermesAgent (87) offers the clearest room for improvement. Overall, it needs a small number of retries to reach the final score and remains reasonably stable."
+        }
+      }
+    },
+    {
+      "slug": "gemma4-26b",
+      "variant": "no-thinking",
+      "label": "gemma-4-26B-A4B-it-qat-heretic",
+      "generatedAt": "2026-06-19T10:57:24.115Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 89.8,
+        "retryPenalty": 9,
+        "effectiveScore": 80.8,
+        "counts": {
+          "pass": 39,
+          "partial": 4,
+          "fail": 7
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-06-19T10-23-30.884Z-df10e76e",
+          "completedAt": "2026-06-19T10:25:19.425Z",
+          "totalScore": 97,
+          "initialTotalScore": 80,
+          "retryPenalty": 3,
+          "counts": {
+            "pass": 14,
+            "partial": 1,
+            "fail": 0
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-06-19T10-25-39.977Z-ba8e3914",
+          "completedAt": "2026-06-19T10:30:40.769Z",
+          "totalScore": 89,
+          "initialTotalScore": 79,
+          "retryPenalty": 3,
+          "counts": {
+            "pass": 11,
+            "partial": 3,
+            "fail": 1
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-06-19T10-31-15.738Z-8061ddf3",
+          "completedAt": "2026-06-19T10:57:24.115Z",
+          "totalScore": 85,
+          "initialTotalScore": 73,
+          "retryPenalty": 3,
+          "counts": {
+            "pass": 14,
+            "partial": 0,
+            "fail": 6
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "pageMode": "generated",
+          "legacyPage": "models/gemma4-26b.html",
+          "homepageName": "Gemma-4 (无思考)",
+          "matchedFromRuns": true,
+          "displayName": "Gemma-4-26B-A4B-it-qat",
+          "modelFile": "gemma-4-26B-A4B-it-qat-heretic-UD-Q4_K_XL.gguf",
+          "displayTags": [
+            "🧠 MoE 4B active",
+            "📦 13.3 GB",
+            "⚡ In 832 t/s · Out 53.9 t/s",
+            "🌡️ temp=1.0 top_p=0.95 top_k=64"
+          ],
+          "logoUrl": "icons/gemma-color.png",
+          "hfUrl": "https://huggingface.co/SC117/gemma-4-26B-A4B-it-qat-heretic-GGUF",
+          "summarySource": "generated-from-scores",
+          "verdictSource": "generated-from-scores",
+          "artifactKind": "gguf",
+          "artifactUrl": "https://huggingface.co/SC117/gemma-4-26B-A4B-it-qat-heretic-GGUF",
+          "upstreamUrl": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+          "publisherUrl": "https://huggingface.co/SC117",
+          "sourceVerifiedAt": "2026-07-17"
+        },
+        "summary": {
+          "zh": "Gemma-4-26B-A4B-it-qat 在无思考模式下的能力上限为 89.8，实用得分为 80.8。ToolCall、BugFind、HermesAgent 分别为 97、89、85；50 题中最终通过 39 题，成功题累计重试 9 次。",
+          "en": "Gemma-4-26B-A4B-it-qat reaches a 89.8 max score and a 80.8 effective score in no-thinking mode. ToolCall, BugFind, and HermesAgent score 97, 89, and 85; it ultimately passes 39 of 50 scenarios with 9 successful-case retries."
+        },
+        "verdict": {
+          "zh": "相较思考版，能力上限低 2 分，实用得分低 3 分，重试数多 1。优势项为 ToolCall（97），HermesAgent（85）是主要提升空间。最终成绩依赖多次重试，实际使用时应关注稳定性。",
+          "en": "Compared with the thinking variant, its max score is 2 points lower, its effective score is 3 points lower, and it uses 1 more retries. Its strongest suite is ToolCall (97), while HermesAgent (85) offers the clearest room for improvement. Overall, the final score depends on repeated attempts, so practical stability deserves attention."
+        }
+      }
+    },
+    {
+      "slug": "ornith-1-0-9b-heretic",
+      "variant": "thinking",
+      "label": "Ornith-1.0-9B-heretic-MTP",
+      "generatedAt": "2026-06-29T12:45:49.187Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 89.8,
+        "retryPenalty": 21,
+        "effectiveScore": 68.8,
+        "counts": {
+          "pass": 43,
+          "partial": 0,
+          "fail": 7
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-06-29T12-32-26.465Z-480dbca5",
+          "completedAt": "2026-06-29T12:33:35.250Z",
+          "totalScore": 100,
+          "initialTotalScore": 93,
+          "retryPenalty": 4,
+          "counts": {
+            "pass": 15,
+            "partial": 0,
+            "fail": 0
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-06-29T12-24-45.550Z-69aa79d8",
+          "completedAt": "2026-06-29T12:32:13.147Z",
+          "totalScore": 94,
+          "initialTotalScore": 59,
+          "retryPenalty": 12,
+          "counts": {
+            "pass": 14,
+            "partial": 0,
+            "fail": 1
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-06-29T12-33-55.158Z-c4fd312a",
+          "completedAt": "2026-06-29T12:45:49.187Z",
+          "totalScore": 79,
+          "initialTotalScore": 69,
+          "retryPenalty": 5,
+          "counts": {
+            "pass": 14,
+            "partial": 0,
+            "fail": 6
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "pageMode": "generated",
+          "legacyPage": "models/ornith-1-0-9b-heretic.html",
+          "homepageName": "Ornith-1.0-9B-heretic-MTP (思考)",
+          "displayName": "Ornith-1.0-9B-heretic-MTP",
+          "modelFile": "Ornith-1.0-9B-heretic-MTP-Q6_K.gguf",
+          "displayTags": [
+            "🧠 Dense 9B",
+            "📦 7.6 GB",
+            "⚡ In 1420 t/s · Out 109.4 t/s",
+            "🌡️ temp=0.6 top_p=0.95 top_k=20"
+          ],
+          "logoUrl": "icons/ornith-color.png",
+          "hfUrl": "https://huggingface.co/SC117/Ornith-1.0-9B-heretic-MTP-GGUF",
+          "summarySource": "generated-from-scores",
+          "verdictSource": "generated-from-scores",
+          "artifactKind": "gguf",
+          "artifactUrl": "https://huggingface.co/SC117/Ornith-1.0-9B-heretic-MTP-GGUF",
+          "upstreamUrl": "https://huggingface.co/deepreinforce-ai/Ornith-1.0-9B",
+          "publisherUrl": "https://huggingface.co/SC117",
+          "sourceVerifiedAt": "2026-07-17"
+        },
+        "summary": {
+          "zh": "Ornith-1.0-9B-heretic-MTP 在思考模式下的能力上限为 89.8，实用得分为 68.8。ToolCall、BugFind、HermesAgent 分别为 100、94、79；50 题中最终通过 43 题，成功题累计重试 21 次。",
+          "en": "Ornith-1.0-9B-heretic-MTP reaches a 89.8 max score and a 68.8 effective score in thinking mode. ToolCall, BugFind, and HermesAgent score 100, 94, and 79; it ultimately passes 43 of 50 scenarios with 21 successful-case retries."
+        },
+        "verdict": {
+          "zh": "优势项为 ToolCall（100），HermesAgent（79）是主要提升空间。重试成本较高，能力上限与一次运行体验之间存在明显差距。",
+          "en": "Its strongest suite is ToolCall (100), while HermesAgent (79) offers the clearest room for improvement. Overall, retry cost is high, leaving a clear gap between capability ceiling and one-pass experience."
+        }
+      }
+    },
+    {
+      "slug": "qwen36-35b-mtp",
+      "variant": "thinking",
+      "label": "Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX",
+      "generatedAt": "2026-06-23T13:23:09.445Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 89.5,
+        "retryPenalty": 8,
+        "effectiveScore": 81.5,
+        "counts": {
+          "pass": 41,
+          "partial": 3,
+          "fail": 6
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-06-23T11-54-25.600Z-578f9bc7",
+          "completedAt": "2026-06-23T11:56:57.666Z",
+          "totalScore": 97,
+          "initialTotalScore": 93,
+          "retryPenalty": 2,
+          "counts": {
+            "pass": 14,
+            "partial": 1,
+            "fail": 0
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-06-23T11-57-04.807Z-d7375e29",
+          "completedAt": "2026-06-23T12:27:36.711Z",
+          "totalScore": 88,
+          "initialTotalScore": 88,
+          "retryPenalty": 0,
+          "counts": {
+            "pass": 13,
+            "partial": 0,
+            "fail": 2
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-06-23T12-30-38.011Z-ace941d8",
+          "completedAt": "2026-06-23T13:23:09.445Z",
+          "totalScore": 85,
+          "initialTotalScore": 73,
+          "retryPenalty": 6,
+          "counts": {
+            "pass": 14,
+            "partial": 2,
+            "fail": 4
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "pageMode": "generated",
+          "legacyPage": "models/qwen36-35b-mtp-thinking.html",
+          "homepageName": "Qwen3.6-35B-A3B-uncensored-MTP (思考)",
+          "matchedFromRuns": true,
+          "displayName": "Qwen3.6-35B-A3B-uncensored-MTP",
+          "modelFile": "Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX-I-Compact.gguf",
+          "displayTags": [
+            "🧠 MoE",
+            "📦 16.6 GB",
+            "⚡ In 766 t/s · Out 62.6 t/s",
+            "🎮 RTX 5070 Ti",
+            "🌡️ temp=1.0 top_p=0.95 top_k=20 rep=1.5"
+          ],
+          "logoUrl": "icons/qwen-color.png",
+          "hfUrl": "https://huggingface.co/SC117/Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX-GGUF",
+          "summarySource": "generated-from-scores",
+          "verdictSource": "generated-from-scores",
+          "artifactKind": "gguf",
+          "artifactUrl": "https://huggingface.co/SC117/Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX-GGUF",
+          "upstreamUrl": "https://huggingface.co/llmfan46/Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved",
+          "publisherUrl": "https://huggingface.co/SC117",
+          "sourceVerifiedAt": "2026-07-17"
+        },
+        "summary": {
+          "zh": "Qwen3.6-35B-A3B-uncensored-MTP 在思考模式下的能力上限为 89.5，实用得分为 81.5。ToolCall、BugFind、HermesAgent 分别为 97、88、85；50 题中最终通过 41 题，成功题累计重试 8 次。",
+          "en": "Qwen3.6-35B-A3B-uncensored-MTP reaches a 89.5 max score and a 81.5 effective score in thinking mode. ToolCall, BugFind, and HermesAgent score 97, 88, and 85; it ultimately passes 41 of 50 scenarios with 8 successful-case retries."
+        },
+        "verdict": {
+          "zh": "相较无思考版，能力上限低 2 分，实用得分高 1 分，重试数少 3。优势项为 ToolCall（97），HermesAgent（85）是主要提升空间。最终成绩依赖多次重试，实际使用时应关注稳定性。",
+          "en": "Compared with the no-thinking variant, its max score is 2 points lower, its effective score is 1 points higher, and it uses 3 fewer retries. Its strongest suite is ToolCall (97), while HermesAgent (85) offers the clearest room for improvement. Overall, the final score depends on repeated attempts, so practical stability deserves attention."
+        }
+      }
+    },
+    {
+      "slug": "qwen-agentworld-35b-original",
+      "variant": "thinking",
+      "label": "Qwen-AgentWorld-35B-A3B-APEX",
+      "generatedAt": "2026-07-08T06:27:51.891Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 88.5,
+        "retryPenalty": 1,
+        "effectiveScore": 87.5,
+        "counts": {
+          "pass": 41,
+          "partial": 1,
+          "fail": 8
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-07-08T05-30-36.755Z-91486c3f",
+          "completedAt": "2026-07-08T05:32:30.317Z",
+          "totalScore": 100,
+          "initialTotalScore": 100,
+          "retryPenalty": 0,
+          "counts": {
+            "pass": 15,
+            "partial": 0,
+            "fail": 0
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-07-08T05-33-12.663Z-37f66669",
+          "completedAt": "2026-07-08T05:51:29.750Z",
+          "totalScore": 87,
+          "initialTotalScore": 87,
+          "retryPenalty": 0,
+          "counts": {
+            "pass": 13,
+            "partial": 0,
+            "fail": 2
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-07-08T05-52-18.183Z-f506ad71",
+          "completedAt": "2026-07-08T06:27:51.891Z",
+          "totalScore": 81,
+          "initialTotalScore": 79,
+          "retryPenalty": 1,
+          "counts": {
+            "pass": 13,
+            "partial": 1,
+            "fail": 6
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "pageMode": "generated",
+          "legacyPage": "models/qwen-agentworld-35b-original.html",
+          "homepageName": "Qwen-AgentWorld-35B-A3B-APEX-I-Compact (原版·思考)",
+          "matchedFromRuns": true,
+          "displayName": "Qwen-AgentWorld-35B-A3B-APEX-I-Compact",
+          "modelFile": "Qwen-AgentWorld-35B-A3B-APEX-I-Compact.gguf",
+          "displayTags": [
+            "🧠 MoE (3B active)",
+            "📦 16.6 GB",
+            "⚡ In 766 t/s · Out 62.6 t/s",
+            "🎮 RTX 5070 Ti 16GB + 128GB RAM",
+            "🌡️ temp=1.0 top_p=0.95 top_k=20 rep=1.5"
+          ],
+          "logoUrl": "icons/qwen-color.png",
+          "hfUrl": "https://huggingface.co/SC117/Qwen-AgentWorld-35B-A3B-MTP-APEX-GGUF",
+          "summarySource": "generated-from-scores",
+          "verdictSource": "generated-from-scores",
+          "artifactKind": "gguf",
+          "artifactUrl": "https://huggingface.co/SC117/Qwen-AgentWorld-35B-A3B-MTP-APEX-GGUF",
+          "upstreamUrl": "https://huggingface.co/Qwen/Qwen-AgentWorld-35B-A3B",
+          "publisherUrl": "https://huggingface.co/SC117",
+          "sourceVerifiedAt": "2026-07-17"
+        },
+        "summary": {
+          "zh": "Qwen-AgentWorld-35B-A3B-APEX-I-Compact 在思考模式下的能力上限为 88.5，实用得分为 87.5。ToolCall、BugFind、HermesAgent 分别为 100、87、81；50 题中最终通过 41 题，成功题累计重试 1 次。",
+          "en": "Qwen-AgentWorld-35B-A3B-APEX-I-Compact reaches a 88.5 max score and a 87.5 effective score in thinking mode. ToolCall, BugFind, and HermesAgent score 100, 87, and 81; it ultimately passes 41 of 50 scenarios with 1 successful-case retries."
+        },
+        "verdict": {
+          "zh": "优势项为 ToolCall（100），HermesAgent（81）是主要提升空间。达到最终成绩所需重试很少，稳定性较好。",
+          "en": "Its strongest suite is ToolCall (100), while HermesAgent (81) offers the clearest room for improvement. Overall, it reaches the final score with very few retries and good stability."
+        }
+      }
+    },
+    {
+      "slug": "step37-flash",
+      "variant": "thinking",
+      "label": "Step-3.7-Flash-APEX-I-Mini",
+      "generatedAt": "2026-06-21T06:12:37.394Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 88.5,
+        "retryPenalty": 10,
+        "effectiveScore": 78.5,
+        "counts": {
+          "pass": 41,
+          "partial": 1,
+          "fail": 8
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-06-20T23-58-11.819Z-026b91b5",
+          "completedAt": "2026-06-21T00:13:31.788Z",
+          "totalScore": 100,
+          "initialTotalScore": 90,
+          "retryPenalty": 4,
+          "counts": {
+            "pass": 15,
+            "partial": 0,
+            "fail": 0
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-06-21T00-14-13.978Z-9303c773",
+          "completedAt": "2026-06-21T03:03:38.152Z",
+          "totalScore": 87,
+          "initialTotalScore": 76,
+          "retryPenalty": 2,
+          "counts": {
+            "pass": 11,
+            "partial": 1,
+            "fail": 3
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-06-21T03-05-31.852Z-594b3c0e",
+          "completedAt": "2026-06-21T06:12:37.394Z",
+          "totalScore": 81,
+          "initialTotalScore": 69,
+          "retryPenalty": 4,
+          "counts": {
+            "pass": 15,
+            "partial": 0,
+            "fail": 5
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "pageMode": "generated",
+          "legacyPage": "models/step37-flash.html",
+          "homepageName": "Step-3.7-Flash (思考)",
+          "matchedFromRuns": true,
+          "displayName": "Step-3.7-Flash-APEX-I-Mini",
+          "modelFile": "Step-3.7-Flash-APEX-I-Mini.gguf",
+          "displayTags": [
+            "🧠 MoE",
+            "📦 67.0 GB",
+            "⚡ In 98 t/s · Out 13.9 t/s",
+            "🎮 RTX 5070 Ti",
+            "🌡️ temp=1.0"
+          ],
+          "logoUrl": "icons/stepfun-color.png",
+          "hfUrl": "https://huggingface.co/stepfun-ai/Step-3.7-Flash",
+          "summarySource": "generated-from-scores",
+          "verdictSource": "generated-from-scores",
+          "artifactKind": null,
+          "artifactUrl": null,
+          "upstreamUrl": "https://huggingface.co/stepfun-ai/Step-3.7-Flash",
+          "publisherUrl": "https://huggingface.co/stepfun-ai",
+          "sourceVerifiedAt": "2026-07-17"
+        },
+        "summary": {
+          "zh": "Step-3.7-Flash-APEX-I-Mini 在思考模式下的能力上限为 88.5，实用得分为 78.5。ToolCall、BugFind、HermesAgent 分别为 100、87、81；50 题中最终通过 41 题，成功题累计重试 10 次。",
+          "en": "Step-3.7-Flash-APEX-I-Mini reaches a 88.5 max score and a 78.5 effective score in thinking mode. ToolCall, BugFind, and HermesAgent score 100, 87, and 81; it ultimately passes 41 of 50 scenarios with 10 successful-case retries."
+        },
+        "verdict": {
+          "zh": "优势项为 ToolCall（100），HermesAgent（81）是主要提升空间。最终成绩依赖多次重试，实际使用时应关注稳定性。",
+          "en": "Its strongest suite is ToolCall (100), while HermesAgent (81) offers the clearest room for improvement. Overall, the final score depends on repeated attempts, so practical stability deserves attention."
+        }
+      }
+    },
+    {
+      "slug": "qwenpaw-flash-9b",
+      "variant": "thinking",
+      "label": "QwenPaw-Flash-9B-MTP-heretic",
+      "generatedAt": "2026-06-19T14:03:16.558Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 88.4,
+        "retryPenalty": 24,
+        "effectiveScore": 64.4,
+        "counts": {
+          "pass": 37,
+          "partial": 7,
+          "fail": 6
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-06-19T13-01-38.119Z-d1949271",
+          "completedAt": "2026-06-19T13:02:52.880Z",
+          "totalScore": 100,
+          "initialTotalScore": 90,
+          "retryPenalty": 4,
+          "counts": {
+            "pass": 15,
+            "partial": 0,
+            "fail": 0
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-06-19T13-03-09.399Z-9db31271",
+          "completedAt": "2026-06-19T13:25:07.272Z",
+          "totalScore": 88,
+          "initialTotalScore": 73,
+          "retryPenalty": 6,
+          "counts": {
+            "pass": 10,
+            "partial": 4,
+            "fail": 1
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-06-19T13-25-22.273Z-db7d1795",
+          "completedAt": "2026-06-19T14:03:16.558Z",
+          "totalScore": 80,
+          "initialTotalScore": 35,
+          "retryPenalty": 14,
+          "counts": {
+            "pass": 12,
+            "partial": 3,
+            "fail": 5
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "pageMode": "generated",
+          "legacyPage": "models/qwenpaw-flash-9b.html",
+          "homepageName": "QwenPaw-Flash-9B (思考)",
+          "displayName": "QwenPaw-Flash-9B",
+          "modelFile": "QwenPaw-Flash-9B-heretic-MTP-Q6_K.gguf",
+          "displayTags": [
+            "🧠 Dense 9B",
+            "📦 7.0 GB",
+            "⚡ In 507 t/s · Out 90.3 t/s",
+            "🌡️ temp=1.0 top_p=0.95 top_k=20 rep=1.5"
+          ],
+          "logoUrl": "icons/qwen-color.png",
+          "hfUrl": "https://huggingface.co/SC117/QwenPaw-Flash-9B-heretic-MTP-GGUF",
+          "summarySource": "generated-from-scores",
+          "verdictSource": "generated-from-scores",
+          "artifactKind": "gguf",
+          "artifactUrl": "https://huggingface.co/SC117/QwenPaw-Flash-9B-heretic-MTP-GGUF",
+          "upstreamUrl": "https://huggingface.co/agentscope-ai/QwenPaw-Flash-9B",
+          "publisherUrl": "https://huggingface.co/SC117",
+          "sourceVerifiedAt": "2026-07-17"
+        },
+        "summary": {
+          "zh": "QwenPaw-Flash-9B 在思考模式下的能力上限为 88.4，实用得分为 64.4。ToolCall、BugFind、HermesAgent 分别为 100、88、80；50 题中最终通过 37 题，成功题累计重试 24 次。",
+          "en": "QwenPaw-Flash-9B reaches a 88.4 max score and a 64.4 effective score in thinking mode. ToolCall, BugFind, and HermesAgent score 100, 88, and 80; it ultimately passes 37 of 50 scenarios with 24 successful-case retries."
+        },
+        "verdict": {
+          "zh": "优势项为 ToolCall（100），HermesAgent（80）是主要提升空间。重试成本较高，能力上限与一次运行体验之间存在明显差距。",
+          "en": "Its strongest suite is ToolCall (100), while HermesAgent (80) offers the clearest room for improvement. Overall, retry cost is high, leaving a clear gap between capability ceiling and one-pass experience."
+        }
+      }
+    },
+    {
+      "slug": "qwen36-27b",
+      "variant": "no-thinking",
+      "label": "Qwen3.6-27B",
+      "generatedAt": "2026-06-19T14:47:38.223Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 87.8,
+        "retryPenalty": 3,
+        "effectiveScore": 84.8,
+        "counts": {
+          "pass": 40,
+          "partial": 4,
+          "fail": 6
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-06-19T14-12-52.467Z-c44a3245",
+          "completedAt": "2026-06-19T14:42:31.989Z",
+          "totalScore": 97,
+          "initialTotalScore": 90,
+          "retryPenalty": 1,
+          "counts": {
+            "pass": 14,
+            "partial": 1,
+            "fail": 0
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-06-19T14-14-33.861Z-a6e92369",
+          "completedAt": "2026-06-19T14:43:01.925Z",
+          "totalScore": 85,
+          "initialTotalScore": 85,
+          "retryPenalty": 0,
+          "counts": {
+            "pass": 12,
+            "partial": 1,
+            "fail": 2
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-06-19T14-22-34.087Z-741f711c",
+          "completedAt": "2026-06-19T14:47:38.223Z",
+          "totalScore": 83,
+          "initialTotalScore": 82,
+          "retryPenalty": 2,
+          "counts": {
+            "pass": 14,
+            "partial": 2,
+            "fail": 4
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "pageMode": "generated",
+          "legacyPage": "models/qwen36-27b.html",
+          "homepageName": "Qwen3.6-27B-uncensored-MTP (无思考)",
+          "matchedFromRuns": true,
+          "displayName": "Qwen3.6-27B",
+          "modelFile": "Qwen3.6-27B-uncensored-heretic-v2-Native-MTP-Preserved.i1-IQ3_M.gguf",
+          "displayTags": [
+            "🧠 Dense 27B",
+            "📦 11.9 GB",
+            "⚡ In 725 t/s · Out 60.6 t/s",
+            "🌡️ temp=0.7 top_p=0.8 top_k=20 rep=1.5"
+          ],
+          "logoUrl": "icons/qwen-color.png",
+          "hfUrl": "https://huggingface.co/mradermacher/Qwen3.6-27B-uncensored-heretic-v2-Native-MTP-Preserved-i1-GGUF",
+          "summarySource": "generated-from-scores",
+          "verdictSource": "generated-from-scores",
+          "artifactKind": "gguf",
+          "artifactUrl": "https://huggingface.co/mradermacher/Qwen3.6-27B-uncensored-heretic-v2-Native-MTP-Preserved-i1-GGUF",
+          "upstreamUrl": "https://huggingface.co/llmfan46/Qwen3.6-27B-uncensored-heretic-v2-Native-MTP-Preserved",
+          "publisherUrl": "https://huggingface.co/mradermacher",
+          "sourceVerifiedAt": "2026-07-17"
+        },
+        "summary": {
+          "zh": "Qwen3.6-27B 在无思考模式下的能力上限为 87.8，实用得分为 84.8。ToolCall、BugFind、HermesAgent 分别为 97、85、83；50 题中最终通过 40 题，成功题累计重试 3 次。",
+          "en": "Qwen3.6-27B reaches a 87.8 max score and a 84.8 effective score in no-thinking mode. ToolCall, BugFind, and HermesAgent score 97, 85, and 83; it ultimately passes 40 of 50 scenarios with 3 successful-case retries."
+        },
+        "verdict": {
+          "zh": "相较思考版，能力上限低 4.1 分，实用得分高 10.9 分，重试数少 15。优势项为 ToolCall（97），HermesAgent（83）是主要提升空间。需要少量重试才能达到最终成绩，稳定性尚可。",
+          "en": "Compared with the thinking variant, its max score is 4.1 points lower, its effective score is 10.9 points higher, and it uses 15 fewer retries. Its strongest suite is ToolCall (97), while HermesAgent (83) offers the clearest room for improvement. Overall, it needs a small number of retries to reach the final score and remains reasonably stable."
+        }
+      }
+    },
+    {
+      "slug": "n2mini",
+      "variant": "thinking",
+      "label": "Nex-N2-mini-abliterated-APEX",
+      "generatedAt": "2026-06-20T13:41:02.985Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 86.7,
+        "retryPenalty": 27,
+        "effectiveScore": 59.7,
+        "counts": {
+          "pass": 40,
+          "partial": 2,
+          "fail": 8
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-06-20T12-50-01.385Z-78e199fd",
+          "completedAt": "2026-06-20T12:51:34.235Z",
+          "totalScore": 93,
+          "initialTotalScore": 77,
+          "retryPenalty": 6,
+          "counts": {
+            "pass": 14,
+            "partial": 0,
+            "fail": 1
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-06-20T12-52-28.587Z-b0252a24",
+          "completedAt": "2026-06-20T13:15:23.134Z",
+          "totalScore": 88,
+          "initialTotalScore": 70,
+          "retryPenalty": 11,
+          "counts": {
+            "pass": 13,
+            "partial": 0,
+            "fail": 2
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-06-20T13-15-48.498Z-04b329e0",
+          "completedAt": "2026-06-20T13:41:02.985Z",
+          "totalScore": 81,
+          "initialTotalScore": 61,
+          "retryPenalty": 10,
+          "counts": {
+            "pass": 13,
+            "partial": 2,
+            "fail": 5
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "pageMode": "generated",
+          "legacyPage": "models/n2mini.html",
+          "homepageName": "Nex-N2-Mini (思考)",
+          "matchedFromRuns": true,
+          "displayName": "Nex-N2-Mini",
+          "modelFile": "Huihui-Nex-N2-mini-abliterated-APEX-I-Compact.gguf",
+          "displayTags": [
+            "🧠 MoE",
+            "📦 15.4 GB",
+            "⚡ In 321 t/s · Out 62.5 t/s",
+            "🎮 RTX 5070 Ti",
+            "🌡️ temp=0.7 top_p=0.95 top_k=40"
+          ],
+          "logoUrl": "icons/nex.svg",
+          "hfUrl": "https://huggingface.co/SC117/Huihui-Nex-N2-mini-abliterated-APEX-GGUF",
+          "summarySource": "generated-from-scores",
+          "verdictSource": "generated-from-scores",
+          "artifactKind": "gguf",
+          "artifactUrl": "https://huggingface.co/SC117/Huihui-Nex-N2-mini-abliterated-APEX-GGUF",
+          "upstreamUrl": "https://huggingface.co/nex-agi/Nex-N2-mini",
+          "publisherUrl": "https://huggingface.co/SC117",
+          "sourceVerifiedAt": "2026-07-17"
+        },
+        "summary": {
+          "zh": "Nex-N2-Mini 在思考模式下的能力上限为 86.7，实用得分为 59.7。ToolCall、BugFind、HermesAgent 分别为 93、88、81；50 题中最终通过 40 题，成功题累计重试 27 次。",
+          "en": "Nex-N2-Mini reaches a 86.7 max score and a 59.7 effective score in thinking mode. ToolCall, BugFind, and HermesAgent score 93, 88, and 81; it ultimately passes 40 of 50 scenarios with 27 successful-case retries."
+        },
+        "verdict": {
+          "zh": "优势项为 ToolCall（93），HermesAgent（81）是主要提升空间。重试成本较高，能力上限与一次运行体验之间存在明显差距。",
+          "en": "Its strongest suite is ToolCall (93), while HermesAgent (81) offers the clearest room for improvement. Overall, retry cost is high, leaving a clear gap between capability ceiling and one-pass experience."
+        }
+      }
+    },
+    {
+      "slug": "qwen-agentworld-35b",
+      "variant": "thinking",
+      "label": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored",
+      "generatedAt": "2026-07-08T01:02:41.975Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 85.6,
+        "retryPenalty": 4,
+        "effectiveScore": 81.6,
+        "counts": {
+          "pass": 40,
+          "partial": 2,
+          "fail": 8
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-07-07T22-02-33.720Z-d457b1cb",
+          "completedAt": "2026-07-07T22:06:57.089Z",
+          "totalScore": 93,
+          "initialTotalScore": 93,
+          "retryPenalty": 0,
+          "counts": {
+            "pass": 14,
+            "partial": 0,
+            "fail": 1
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-07-07T22-07-13.603Z-613cf02f",
+          "completedAt": "2026-07-07T23:34:50.809Z",
+          "totalScore": 87,
+          "initialTotalScore": 83,
+          "retryPenalty": 1,
+          "counts": {
+            "pass": 13,
+            "partial": 0,
+            "fail": 2
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-07-07T23-40-15.965Z-ad7b7bad",
+          "completedAt": "2026-07-08T01:02:41.975Z",
+          "totalScore": 79,
+          "initialTotalScore": 72,
+          "retryPenalty": 3,
+          "counts": {
+            "pass": 13,
+            "partial": 2,
+            "fail": 5
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "pageMode": "generated",
+          "legacyPage": "models/qwen-agentworld-35b-thinking.html",
+          "homepageName": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored (思考)",
+          "matchedFromRuns": true,
+          "displayName": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored",
+          "modelFile": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored-APEX-I-Compact.gguf",
+          "displayTags": [
+            "🧠 MoE (3B active)",
+            "📦 16.6 GB",
+            "⚡ In 766 t/s · Out 62.6 t/s",
+            "🎮 RTX 5070 Ti 16GB + 128GB RAM",
+            "🌡️ temp=1.0 top_p=0.95 top_k=20 rep=1.5"
+          ],
+          "logoUrl": "icons/qwen-color.png",
+          "hfUrl": "https://huggingface.co/SC117/Qwen-AgentWorld-35B-A3B-MTP-Uncensored-APEX-GGUF",
+          "summarySource": "generated-from-scores",
+          "verdictSource": "generated-from-scores",
+          "artifactKind": "gguf",
+          "artifactUrl": "https://huggingface.co/SC117/Qwen-AgentWorld-35B-A3B-MTP-Uncensored-APEX-GGUF",
+          "upstreamUrl": "https://huggingface.co/Qwen/Qwen-AgentWorld-35B-A3B",
+          "publisherUrl": "https://huggingface.co/SC117",
+          "sourceVerifiedAt": "2026-07-17"
+        },
+        "summary": {
+          "zh": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored 在思考模式下的能力上限为 85.6，实用得分为 81.6。ToolCall、BugFind、HermesAgent 分别为 93、87、79；50 题中最终通过 40 题，成功题累计重试 4 次。",
+          "en": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored reaches a 85.6 max score and a 81.6 effective score in thinking mode. ToolCall, BugFind, and HermesAgent score 93, 87, and 79; it ultimately passes 40 of 50 scenarios with 4 successful-case retries."
+        },
+        "verdict": {
+          "zh": "相较无思考版，能力上限高 10.6 分，实用得分高 6.6 分，重试数多 4。优势项为 ToolCall（93），HermesAgent（79）是主要提升空间。需要少量重试才能达到最终成绩，稳定性尚可。",
+          "en": "Compared with the no-thinking variant, its max score is 10.6 points higher, its effective score is 6.6 points higher, and it uses 4 more retries. Its strongest suite is ToolCall (93), while HermesAgent (79) offers the clearest room for improvement. Overall, it needs a small number of retries to reach the final score and remains reasonably stable."
+        }
+      }
+    },
+    {
+      "slug": "qwen-agentworld-35b",
+      "variant": "no-thinking",
+      "label": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored",
+      "generatedAt": "2026-07-08T05:16:37.431Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 75,
+        "retryPenalty": 0,
+        "effectiveScore": 75,
+        "counts": {
+          "pass": 33,
+          "partial": 4,
+          "fail": 13
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-07-08T02-46-34.305Z-b8b5675c",
+          "completedAt": "2026-07-08T03:00:56.404Z",
+          "totalScore": 83,
+          "initialTotalScore": 83,
+          "retryPenalty": 0,
+          "counts": {
+            "pass": 12,
+            "partial": 1,
+            "fail": 2
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-07-08T03-01-27.636Z-afa6284e",
+          "completedAt": "2026-07-08T03:46:29.119Z",
+          "totalScore": 83,
+          "initialTotalScore": 83,
+          "retryPenalty": 0,
+          "counts": {
+            "pass": 12,
+            "partial": 0,
+            "fail": 3
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-07-08T03-53-23.106Z-ad31396f",
+          "completedAt": "2026-07-08T05:16:37.431Z",
+          "totalScore": 63,
+          "initialTotalScore": 64,
+          "retryPenalty": 0,
+          "counts": {
+            "pass": 9,
+            "partial": 3,
+            "fail": 8
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "pageMode": "generated",
+          "legacyPage": "models/qwen-agentworld-35b.html",
+          "homepageName": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored (无思考)",
+          "matchedFromRuns": true,
+          "displayName": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored",
+          "modelFile": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored-APEX-I-Compact.gguf",
+          "displayTags": [
+            "🧠 MoE (3B active)",
+            "📦 16.6 GB",
+            "⚡ In 766 t/s · Out 62.6 t/s",
+            "🎮 RTX 5070 Ti 16GB + 128GB RAM",
+            "🌡️ temp=0.7 top_p=0.8 top_k=20 rep=1.5"
+          ],
+          "logoUrl": "icons/qwen-color.png",
+          "hfUrl": "https://huggingface.co/SC117/Qwen-AgentWorld-35B-A3B-MTP-Uncensored-APEX-GGUF",
+          "summarySource": "generated-from-scores",
+          "verdictSource": "generated-from-scores",
+          "artifactKind": "gguf",
+          "artifactUrl": "https://huggingface.co/SC117/Qwen-AgentWorld-35B-A3B-MTP-Uncensored-APEX-GGUF",
+          "upstreamUrl": "https://huggingface.co/Qwen/Qwen-AgentWorld-35B-A3B",
+          "publisherUrl": "https://huggingface.co/SC117",
+          "sourceVerifiedAt": "2026-07-17"
+        },
+        "summary": {
+          "zh": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored 在无思考模式下的能力上限为 75，实用得分为 75。ToolCall、BugFind、HermesAgent 分别为 83、83、63；50 题中最终通过 33 题，成功题累计重试 0 次。",
+          "en": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored reaches a 75 max score and a 75 effective score in no-thinking mode. ToolCall, BugFind, and HermesAgent score 83, 83, and 63; it ultimately passes 33 of 50 scenarios with 0 successful-case retries."
+        },
+        "verdict": {
+          "zh": "相较思考版，能力上限低 10.6 分，实用得分低 6.6 分，重试数少 4。优势项为 ToolCall（83），HermesAgent（63）是主要提升空间。达到最终成绩所需重试很少，稳定性较好。",
+          "en": "Compared with the thinking variant, its max score is 10.6 points lower, its effective score is 6.6 points lower, and it uses 4 fewer retries. Its strongest suite is ToolCall (83), while HermesAgent (63) offers the clearest room for improvement. Overall, it reaches the final score with very few retries and good stability."
+        }
+      }
+    }
+  ]
+}

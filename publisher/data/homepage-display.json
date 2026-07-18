@@ -1,0 +1,255 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-17T13:57:19.297Z",
+  "models": [
+    {
+      "slug": "agents-a1",
+      "displayName": "Agents-A1",
+      "modelFile": "Agents-A1-APEX-I-Compact.gguf",
+      "displayTags": [
+        "🧠 MoE (3B active)",
+        "📦 16.1 GB",
+        "🎮 RTX 5070 Ti 16GB + 128GB RAM",
+        "⚡ In 804 t/s · Out 55.6 t/s",
+        "🌡️ temp=0.85 top_p=0.95 top_k=20 min_p=0.0 presence=1.1 rep=1.0"
+      ],
+      "logoUrl": "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png",
+      "hfUrl": "https://huggingface.co/InternScience/Agents-A1",
+      "variants": [
+        "no-thinking",
+        "thinking"
+      ]
+    },
+    {
+      "slug": "dsv4-flash",
+      "displayName": "DeepSeek-V4-Flash",
+      "modelFile": "deepseek-v4-flash-free via opencode",
+      "displayTags": [
+        "🧠 MoE · 284B (13B active)",
+        "☁️ OpenCode API",
+        "📅 2026-06-19"
+      ],
+      "logoUrl": null,
+      "hfUrl": null,
+      "variants": [
+        "default"
+      ]
+    },
+    {
+      "slug": "gemma4-12b",
+      "displayName": "Gemma-4-12B-it-heretic-QAT",
+      "modelFile": "gemma-4-12B-it-heretic-QAT-Q4_0.gguf",
+      "displayTags": [
+        "🧠 Dense 12B",
+        "📦 6.4 GB",
+        "⚡ In 1522 t/s · Out 126.3 t/s",
+        "🌡️ QAT量化"
+      ],
+      "logoUrl": "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/gemma-color.png",
+      "hfUrl": "https://huggingface.co/SC117/gemma-4-12B-it-heretic-QAT-GGUF",
+      "variants": [
+        "thinking"
+      ]
+    },
+    {
+      "slug": "gemma4-26b",
+      "displayName": "Gemma-4-26B-A4B-it-qat",
+      "modelFile": "gemma-4-26B-A4B-it-qat-heretic-UD-Q4_K_XL.gguf",
+      "displayTags": [
+        "🧠 MoE 4B active",
+        "📦 13.3 GB",
+        "⚡ In 832 t/s · Out 53.9 t/s",
+        "🌡️ temp=1.0 top_p=0.95 top_k=64"
+      ],
+      "logoUrl": "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/gemma-color.png",
+      "hfUrl": "https://huggingface.co/SC117/gemma-4-26B-A4B-it-qat-heretic-GGUF",
+      "variants": [
+        "no-thinking",
+        "thinking"
+      ]
+    },
+    {
+      "slug": "n2mini",
+      "displayName": "Nex-N2-Mini",
+      "modelFile": "Huihui-Nex-N2-mini-abliterated-APEX-I-Compact.gguf",
+      "displayTags": [
+        "🧠 MoE",
+        "📦 15.4 GB",
+        "⚡ In 321 t/s · Out 62.5 t/s",
+        "🎮 RTX 5070 Ti",
+        "🌡️ temp=0.7 top_p=0.95 top_k=40"
+      ],
+      "logoUrl": "icons/nex.svg",
+      "hfUrl": "https://huggingface.co/SC117/Huihui-Nex-N2-mini-abliterated-APEX-GGUF",
+      "variants": [
+        "thinking"
+      ]
+    },
+    {
+      "slug": "ornith-35b-heretic-mtp-apex",
+      "displayName": "Ornith-1.0-35B-Heretic-MTP-APEX",
+      "modelFile": "Ornith-1.0-35B-Heretic-MTP-APEX-I-Compact.gguf",
+      "displayTags": [
+        "🧠 MoE (3B active)",
+        "📦 15.85 GB",
+        "🎮 RTX 5070 Ti",
+        "🔥 Heretic Abliterated",
+        "🌡️ temp=0.6 top_p=0.95 top_k=20"
+      ],
+      "logoUrl": "icons/ornith-color.png",
+      "hfUrl": "https://huggingface.co/SC117/Ornith-1.0-35B-Heretic-MTP-APEX-GGUF",
+      "variants": [
+        "no-thinking",
+        "thinking"
+      ]
+    },
+    {
+      "slug": "ornith-35b-mtp",
+      "displayName": "Ornith-1.0-35B-MTP-APEX",
+      "modelFile": "Ornith-1.0-35B-MTP-APEX-I-Compact.gguf",
+      "displayTags": [
+        "🧠 MoE (3B active)",
+        "📦 15.85 GB",
+        "🎮 RTX 5070 Ti",
+        "🌡️ temp=0.6 top_p=0.95 top_k=20"
+      ],
+      "logoUrl": "icons/ornith-color.png",
+      "hfUrl": "https://huggingface.co/SC117/Ornith-1.0-35B-MTP-APEX-GGUF",
+      "variants": [
+        "no-thinking",
+        "thinking"
+      ]
+    },
+    {
+      "slug": "ornith-1-0-9b-heretic",
+      "displayName": "Ornith-1.0-9B-heretic-MTP",
+      "modelFile": "Ornith-1.0-9B-heretic-MTP-Q6_K.gguf",
+      "displayTags": [
+        "🧠 Dense 9B",
+        "📦 7.6 GB",
+        "⚡ In 1420 t/s · Out 109.4 t/s",
+        "🌡️ temp=0.6 top_p=0.95 top_k=20"
+      ],
+      "logoUrl": "icons/ornith-color.png",
+      "hfUrl": "https://huggingface.co/SC117/Ornith-1.0-9B-heretic-MTP-GGUF",
+      "variants": [
+        "thinking"
+      ]
+    },
+    {
+      "slug": "qwen-agentworld-35b-original",
+      "displayName": "Qwen-AgentWorld-35B-A3B-APEX-I-Compact",
+      "modelFile": "Qwen-AgentWorld-35B-A3B-APEX-I-Compact.gguf",
+      "displayTags": [
+        "🧠 MoE (3B active)",
+        "📦 16.6 GB",
+        "⚡ In 766 t/s · Out 62.6 t/s",
+        "🎮 RTX 5070 Ti 16GB + 128GB RAM",
+        "🌡️ temp=1.0 top_p=0.95 top_k=20 rep=1.5"
+      ],
+      "logoUrl": "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png",
+      "hfUrl": "https://huggingface.co/SC117",
+      "variants": [
+        "thinking"
+      ]
+    },
+    {
+      "slug": "qwen-agentworld-35b",
+      "displayName": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored",
+      "modelFile": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored-APEX-I-Compact.gguf",
+      "displayTags": [
+        "🧠 MoE (3B active)",
+        "📦 16.6 GB",
+        "⚡ In 766 t/s · Out 62.6 t/s",
+        "🎮 RTX 5070 Ti 16GB + 128GB RAM",
+        "🌡️ temp=1.0 top_p=0.95 top_k=20 rep=1.5"
+      ],
+      "logoUrl": "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png",
+      "hfUrl": "https://huggingface.co/SC117",
+      "variants": [
+        "no-thinking",
+        "thinking"
+      ]
+    },
+    {
+      "slug": "qwen36-27b",
+      "displayName": "Qwen3.6-27B",
+      "modelFile": "Qwen3.6-27B-uncensored-heretic-v2-Native-MTP-Preserved.i1-IQ3_M.gguf",
+      "displayTags": [
+        "🧠 Dense 27B",
+        "📦 11.9 GB",
+        "⚡ In 725 t/s · Out 60.6 t/s",
+        "🌡️ temp=1.0 top_p=0.95 top_k=20 rep=1.5"
+      ],
+      "logoUrl": "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png",
+      "hfUrl": null,
+      "variants": [
+        "no-thinking",
+        "thinking"
+      ]
+    },
+    {
+      "slug": "qwen36-35b-mtp",
+      "displayName": "Qwen3.6-35B-A3B-uncensored-MTP",
+      "modelFile": "Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX-I-Compact.gguf",
+      "displayTags": [
+        "🧠 MoE",
+        "📦 16.6 GB",
+        "⚡ In 766 t/s · Out 62.6 t/s",
+        "🎮 RTX 5070 Ti",
+        "🌡️ temp=1.0 top_p=0.95 top_k=20 rep=1.5"
+      ],
+      "logoUrl": "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png",
+      "hfUrl": "https://huggingface.co/SC117/Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX-GGUF",
+      "variants": [
+        "no-thinking",
+        "thinking"
+      ]
+    },
+    {
+      "slug": "qwenpaw-flash-9b",
+      "displayName": "QwenPaw-Flash-9B",
+      "modelFile": "QwenPaw-Flash-9B-heretic-MTP-Q6_K.gguf",
+      "displayTags": [
+        "🧠 Dense 9B",
+        "📦 7.0 GB",
+        "⚡ In 507 t/s · Out 90.3 t/s",
+        "🌡️ temp=1.0 top_p=0.95 top_k=20 rep=1.5"
+      ],
+      "logoUrl": "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png",
+      "hfUrl": "https://huggingface.co/SC117/QwenPaw-Flash-9B-heretic-MTP-GGUF",
+      "variants": [
+        "thinking"
+      ]
+    },
+    {
+      "slug": "step37-flash",
+      "displayName": "Step-3.7-Flash-APEX-I-Mini",
+      "modelFile": "Step-3.7-Flash-APEX-I-Mini.gguf",
+      "displayTags": [
+        "🧠 MoE",
+        "📦 67.0 GB",
+        "⚡ In 98 t/s · Out 13.9 t/s",
+        "🎮 RTX 5070 Ti",
+        "🌡️ temp=1.0"
+      ],
+      "logoUrl": "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/stepfun-color.png",
+      "hfUrl": null,
+      "variants": [
+        "thinking"
+      ]
+    },
+    {
+      "slug": "ternary-bonsai-27b-q2-0",
+      "displayName": "Ternary-Bonsai-27B",
+      "modelFile": "Ternary-Bonsai-27B-Q2_0.gguf",
+      "displayTags": [],
+      "logoUrl": null,
+      "hfUrl": null,
+      "variants": [
+        "no-thinking",
+        "thinking"
+      ]
+    }
+  ]
+}

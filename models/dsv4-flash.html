@@ -1,296 +1,83 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" id="top">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DeepSeek-V4-Flash (API) · BenchLocal</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--red:#E53E3E;--orange:#ED8936;--grad:linear-gradient(135deg,#E53E3E,#ED8936);--bg:#F8F9FC;--card:#FFF;--text:#1A202C;--text2:#64748B;--text3:#94A3B8;--border:#E2E8F0;--r:20px;--sh:0 1px 3px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.04)}
-body{font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-a{color:inherit;text-decoration:none}
-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.8);backdrop-filter:blur(24px);border-bottom:1px solid rgba(226,232,240,.6)}
-nav .inner{max-width:1280px;margin:0 auto;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
-.logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800}
-.logo-icon{width:32px;height:32px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
-.back-link{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--text2);font-weight:500}
-.back-link:hover{color:var(--red)}
-.hero-detail{padding:60px 48px 40px;max-width:1280px;margin:0 auto}
-.model-header{display:flex;gap:40px;align-items:flex-start}
-.model-avatar{width:80px;height:80px;border-radius:20px;background:#F1F5F9;display:flex;align-items:center;justify-content:center;flex-shrink:0;object-fit:contain;padding:12px}
-.model-info h1{font-size:32px;font-weight:900;letter-spacing:-1px}
-.model-info .sub{font-size:15px;color:var(--text2);margin-top:4px}
-.model-tags{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
-.model-tags span{font-size:12px;padding:4px 12px;border-radius:8px;font-weight:600;background:#F1F5F9;color:var(--text2)}
-.score-row{display:flex;gap:24px;margin-top:32px}
-.big-score{background:var(--grad);border-radius:var(--r);padding:32px 40px;color:#fff;min-width:200px}
-.big-score .label{font-size:13px;opacity:.8;font-weight:500}
-.big-score .num{font-size:56px;font-weight:900;letter-spacing:-3px;line-height:1.1}
-.big-score .sub{font-size:12px;opacity:.7;margin-top:4px}
-.sub-scores{display:flex;gap:16px;flex:1}
-.sub-score{flex:1;background:var(--card);border-radius:var(--r);padding:24px;box-shadow:var(--sh)}
-.sub-score .label{font-size:12px;color:var(--text3);font-weight:500}
-.sub-score .num{font-size:28px;font-weight:900;letter-spacing:-1px;margin-top:4px}
-.sub-score .sub{font-size:11px;color:var(--text3);margin-top:4px}
-.sub-score .bar{height:4px;background:#F1F5F9;border-radius:2px;margin-top:12px;overflow:hidden}
-.sub-score .bar-fill{height:100%;border-radius:2px}
-.section{max-width:1280px;margin:60px auto;padding:0 48px}
-.section-header{margin-bottom:32px}
-.section-header h2{font-size:28px;font-weight:800;letter-spacing:-.5px}
-.section-header p{font-size:14px;color:var(--text2);margin-top:4px}
-.tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
-.tab{padding:8px 20px;border-radius:100px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:#fff;color:var(--text2);transition:all .2s}
-.tab:hover{border-color:var(--red);color:var(--red)}.tab.active{background:var(--text);color:#fff;border-color:var(--text)}
-.table-wrap{background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
-table{width:100%;border-collapse:collapse;font-size:13px}
-thead{background:#F7FAFC}
-th{padding:14px 16px;text-align:left;font-weight:600;color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
-td{padding:14px 16px;border-top:1px solid var(--border);vertical-align:top}
-tr:hover{background:#FAFBFC}
-.badge{display:inline-block;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700}
-.badge.pass{background:#C6F6D5;color:#22543D}.badge.fail{background:#FED7D7;color:#9B2C2C}.badge.partial{background:#FEFCBF;color:#744210}
-.difficulty{font-size:12px;padding:2px 8px;border-radius:4px;font-weight:500}
-.difficulty.easy{background:#C6F6D5;color:#22543D}.difficulty.med{background:#FEFCBF;color:#744210}
-.difficulty.hard{background:#FEEBC8;color:#7B341E}.difficulty.expert{background:#FED7D7;color:#9B2C2C}
-.comment{color:var(--text2);font-style:italic;max-width:200px}
-.roast-box{background:var(--card);border-radius:var(--r);padding:48px;box-shadow:var(--sh)}
-.roast-section{margin-bottom:28px}
-.roast-section h4{font-size:16px;font-weight:700;margin-bottom:12px}
-.roast-section ul{list-style:none;padding:0}
-.roast-section li{padding:8px 0;font-size:14px;color:var(--text2);border-bottom:1px solid #F7FAFC;display:flex;align-items:flex-start;gap:8px}
-.roast-section.pro li::before{content:'✅';flex-shrink:0}
-.roast-section.con li::before{content:'⚠️';flex-shrink:0}
-.roast-section.tip li::before{content:'💡';flex-shrink:0}
-.roast-conclusion{background:linear-gradient(135deg,#FFF5F5,#FFFAF0);border-radius:12px;padding:28px;margin-top:24px}
-.roast-conclusion p{font-size:15px;line-height:1.8}
-.roast-conclusion .final{font-size:18px;font-weight:800;color:var(--red);margin-top:12px}
-.adj-score{background:linear-gradient(135deg,#667eea,#764ba2);border-radius:var(--r);padding:32px 40px;color:#fff;min-width:180px}
-.adj-score .label{font-size:13px;opacity:.8;font-weight:500}
-.adj-score .num{font-size:42px;font-weight:900;letter-spacing:-2px;line-height:1.1;margin-top:4px}
-.adj-score .sub{font-size:11px;opacity:.7;margin-top:4px}
-footer{background:#0F172A;color:#94A3B8;padding:48px 48px 32px;margin-top:60px}
-footer .inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start}
-footer .brand{font-size:18px;font-weight:800;color:#fff;margin-bottom:8px}
-footer .links{display:flex;gap:48px}
-footer .links div h5{color:#fff;font-size:13px;font-weight:600;margin-bottom:12px}
-footer .links div a{display:block;font-size:13px;padding:4px 0;color:#94A3B8}
-footer .links div a:hover{color:#fff}
-footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1px solid #1E293B;font-size:12px;text-align:center}
-@media(max-width:768px){.model-header{flex-direction:column;gap:20px}.score-row{flex-direction:column}.sub-scores{flex-direction:column}.section{padding:0 20px}.hero-detail{padding:40px 20px}}
-
-/* i18n */
-[data-lang]{display:none}
-html[lang="zh-CN"] [data-lang="zh"],html[lang="en"] [data-lang="en"]{display:revert}
-html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:none}
-.lang-toggle{display:flex;align-items:center;gap:2px;padding:3px;border-radius:8px;background:#F1F5F9;cursor:pointer;user-select:none;margin-left:auto}
-.lang-toggle span{padding:3px 10px;border-radius:6px;font-size:12px;font-weight:600;color:var(--text2);transition:all .2s;pointer-events:none}
-.lang-toggle span.active{background:#fff;color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.1)}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DeepSeek-V4-Flash BenchLocal-Results benchmark results">
+  <meta name="theme-color" content="#f4f6fa">
+  <title>DeepSeek-V4-Flash · BenchLocal-Results</title>
+  <link rel="icon" type="image/png" href="../icons/benchlocal-results-logo.png">
+  <link rel="canonical" href="https://scorp1o117.github.io/benchlocal-results/models/dsv4-flash.html">
+  <link rel="stylesheet" href="../styles/detail.css">
+  <script src="../scripts/detail.js" defer></script>
 </head>
-<body>
-<nav><div class="inner"><div class="logo"><div class="logo-icon">⚡</div>BenchLocal</div><a href="../index.html" class="back-link"><span data-lang="zh">← 返回排行榜</span><span data-lang="en">← Back to Leaderboard</span></a>  <div class="lang-toggle" onclick="toggleLang(document.documentElement.lang==='zh-CN'?'en':'zh')"><span data-lb="zh" class="active">中</span><span data-lb="en">EN</span></div>
-</div></nav>
-
-<section class="hero-detail">
-  <div class="model-header">
-    <div class="model-avatar"><img src="../icons/deepseek-color.png" alt="" style="width:100%;height:100%;object-fit:contain"></div>
-    <div class="model-info">
-      <h1>DeepSeek-V4-Flash <span style="font-size:18px;color:var(--text3);font-weight:400"><span data-lang="zh">(思考 · API)</span><span data-lang="en">Normal level for large API models — the 284B parameter advantage is clear. Results on this page are for reference only.</span></span></h1>
-      <div class="sub">DeepSeek-V4-Flash · OpenCode API · <span data-lang="zh">作为参考</span><span data-lang="en">reference</span></div>
-      <div class="model-tags">
-        <span class="card-tag">🧠 MoE · 284B (13B active)</span>
-        <span class="card-tag">☁️ OpenCode API</span>
-        <span class="card-tag">📅 2026-06-19</span>
-        <span class="card-tag">⚡ <span data-lang="zh">作为参考</span><span data-lang="en">reference</span></span>
-      </div>
+<body><!-- Generated by publisher/render-pages.mjs; do not edit scores by hand. -->
+  <nav class="detail-nav"><div><a class="detail-brand" href="../index.html"><span><img src="../icons/benchlocal-results-logo.png" alt=""></span>BenchLocal-Results</a><div class="detail-actions"><a href="../index.html#leaderboard"><span data-lang="zh">排行榜</span><span data-lang="en">Leaderboard</span></a><div class="lang-toggle" role="group" aria-label="Language"><button type="button" data-lb="zh" aria-pressed="true">中</button><button type="button" data-lb="en" aria-pressed="false">EN</button></div></div></div></nav>
+  <main>
+    <header class="detail-hero reveal"><div class="hero-visual"><div class="hero-halo"></div><div class="detail-logo"><img src="../icons/deepseek-color.png" alt="DeepSeek-V4-Flash logo"></div></div><div class="hero-content"><span class="hero-kicker">Model benchmark</span><h1>DeepSeek-V4-Flash</h1><p class="model-file">deepseek-v4-flash-free via opencode</p><p class="hero-summary"><span data-lang="zh">模型的能力上限、实际稳定性和完整 50 题结果。</span><span data-lang="en">Max capability, practical stability, and all 50 scenario results.</span></p><div class="mode-links"><a href="#default"><span class="switch-dot default"></span><span data-lang="zh">默认模式</span><span data-lang="en">Default mode</span><strong>93.9</strong></a></div><div class="source-links"><a href="https://pi.dev/models/opencode/deepseek-v4-flash-free?provider=fireworks" target="_blank" rel="noopener noreferrer"><span data-lang="zh">测试服务链接</span><span data-lang="en">Tested service</span> ↗</a></div></div></header>
+    <div class="detail-content"><section class="variant reveal" id="default">
+    <header class="variant-heading"><div><span class="section-index">01 / Benchmark mode</span><span class="mode-badge default"><span data-lang="zh">默认模式</span><span data-lang="en">Default mode</span></span><h2><span data-lang="zh">评测结果</span><span data-lang="en">Benchmark results</span></h2></div><a href="#top"><span data-lang="zh">返回顶部</span><span data-lang="en">Back to top</span> ↑</a></header>
+    <div class="score-grid">
+      <article class="score-card max"><span><span data-lang="zh">能力上限</span><span data-lang="en">Max score</span></span><strong>93.9</strong><div class="score-track" aria-hidden="true"><i style="width:93.9%"></i></div><small>TC × 0.3 + BF × 0.3 + HA × 0.4</small></article>
+      <article class="score-card effective"><span><span data-lang="zh">实用得分</span><span data-lang="en">Effective score</span></span><strong>84.9</strong><div class="score-track" aria-hidden="true"><i style="width:84.9%"></i></div><small><span data-lang="zh">重试扣分 −9</span><span data-lang="en">Retry penalty −9</span></small></article>
+      <article class="score-card stability"><span><span data-lang="zh">最终结果</span><span data-lang="en">Outcomes</span></span><strong>45/50</strong><div class="score-track" aria-hidden="true"><i style="width:90%"></i></div><small>✓ 45 · ◐ 0 · × 5</small></article>
     </div>
-  </div>
-  <div class="score-row">
-    <div class="big-score"><div class="label"><span data-lang="zh">加权总分</span><span data-lang="en">Weighted Total</span></div><div class="num">94.0</div><div class="sub"><span data-lang="zh">加权原始分 = TC×0.3 + BF×0.3 + HA×0.4</span><span data-lang="en">Weighted raw score = TC×0.3 + BF×0.3 + HA×0.4</span></div></div>
-    <div class="adj-score"><div class="label"><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></div><div class="num">85.0</div><div class="sub"><span data-lang="zh">−9 重试扣分</span><span data-lang="en">−9 retry penalty</span></div></div>
-    <div class="sub-scores">
-      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">100</div><div class="sub"><span data-lang="zh"><span data-lang="zh">15/15 通过 · 100% 🏆</span><span data-lang="en">15/15 passed · 100% 🏆</span></span><span data-lang="en">15/15 passed · 100% 🏆</span> · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -2</div><div class="bar"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div></div>
-      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">93.3</div><div class="sub"><span data-lang="zh">14/15 通过 · 93%</span><span data-lang="en">14/15 passed · 93%</span> · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -5</div><div class="bar"><div class="bar-fill" style="width:93%;background:#ED8936"></div></div></div>
-      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">90</div><div class="sub"><span data-lang="zh">16/20 通过 · 80%</span><span data-lang="en">16/20 passed · 80%</span> · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -2</div><div class="bar"><div class="bar-fill" style="width:90%;background:#548235"></div></div></div>
-    </div>
-  </div>
-  <div style="max-width:1280px;margin:16px auto 0;padding:0 48px">
-    <div style="background:#F1F5F9;border-radius:12px;padding:16px 20px;font-size:13px;color:#64748B;line-height:1.8">
-      <strong style="color:#1A202C">📊 <span data-lang="zh">计分规则</span><span data-lang="en">Scoring Rules</span></strong> — <strong><span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span></strong> <span data-lang="zh">= 加权原始分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</span><span data-lang="en">= Weighted raw score = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</span><br><strong><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></strong> = <span data-lang="zh">能力上限 − 重试扣分（每题首次通过不扣分，重试后通过每重试1次扣1分，重试后仍失败不参与扣分）。</span><span data-lang="en">Max Score − retry penalty (first pass = no penalty, each retry = +1pt, failed retries excluded).</span>
-      
-    </div>
-  </div>
-
-</section>
-
-<section class="section">
-  <div class="section-header">
-    <h2>📋 <span data-lang="zh">全部测试结果</span><span data-lang="en">All Test Results</span></h2>
-    <p>⚡ 此<span data-lang="zh">模型</span><span data-lang="en">Models</span>通过 OpenCode API <span data-lang="zh">测试</span><span data-lang="en">tested</span>（非本地推理），成绩<span data-lang="zh">作为参考</span><span data-lang="en">reference</span></p>
-  </div>
-  <div class="tabs">
-    <div class="tab active" onclick="filterTable('all',this)"><span data-lang="zh">全部 (50)</span><span data-lang="en">All (50)</span></div>
-    <div class="tab" onclick="filterTable('tc',this)">ToolCall (15)</div>
-    <div class="tab" onclick="filterTable('bf',this)">BugFind (15)</div>
-    <div class="tab" onclick="filterTable('ha',this)">HermesAgent (20)</div>
-    <div class="tab" onclick="filterTable('fail',this)"><span data-lang="zh">❌ 失败 (4)</span><span data-lang="en">❌ Failed (4)</span></div>
-  </div>
-  <div class="table-wrap"><table><thead><tr><th>#</th><th><span data-lang="zh">题目</span><span data-lang="en">Question</span></th><th><span data-lang="zh">测试包</span><span data-lang="en">Pack</span></th><th><span data-lang="zh">难度</span><span data-lang="en">Difficulty</span></th><th><span data-lang="zh">结果</span><span data-lang="en">Result</span></th><th><span data-lang="zh">得分</span><span data-lang="en">Score</span></th><th><span data-lang="zh">重试</span><span data-lang="en">Retry</span></th><th>sandbox</th><th><span data-lang="zh">耗时</span><span data-lang="en">Time</span></th><th><span data-lang="zh">失败类型</span><span data-lang="en">Failure Type</span></th><th><span data-lang="zh">点评</span><span data-lang="en">Comment</span></th></tr></thead><tbody id="resultsBody"></tbody></table></div>
-</section>
-
-<section class="section">
-  <div class="section-header">
-    <h2>📊 <span data-lang="zh">模型评估总结</span><span data-lang="en">Model Evaluation Summary</span></h2>
-    <p>⚡ 此<span data-lang="zh">模型</span><span data-lang="en">Models</span>通过 OpenCode API <span data-lang="zh">测试</span><span data-lang="en">tested</span>（非本地推理），成绩<span data-lang="zh">作为参考</span><span data-lang="en">reference</span></p>
-  </div>
-  <div class="roast-box">
-    <div class="roast-section pro"><h4>✅ <span data-lang="zh">优势</span><span data-lang="en">Strengths</span></h4><ul>
-      <li><span data-lang="zh">ToolCall 满分 100/100，工具调用能力扎实</span><span data-lang="en">ToolCall full score 100/100, solid tool-calling capability.</span></li>
-      <li><span data-lang="zh">HermesAgent 90 分，Agent 场景表现突出</span><span data-lang="en">HermesAgent 90 points, outstanding performance in Agent scenarios.</span></li>
-      <li><span data-lang="zh">BugFind 93.3 分，通过了 BF-03 Trap</span><span data-lang="en">BugFind 93.3 points, passed BF-03 Trap.</span></li>
-    </ul></div>
-    <div class="roast-section con"><h4>⚠️ <span data-lang="zh">不足</span><span data-lang="en">Weaknesses</span></h4><ul>
-      <li><span data-lang="zh">BF-10 Trap 题仍然失败</span><span data-lang="en">Still failed BF-10 Trap question.</span></li>
-      <li><span data-lang="zh">HA-07 代码批量处理（30分）和 HA-16 消息投递（30分）是主要失分点</span><span data-lang="en">HA-07 batch code processing (30 points) and HA-16 message delivery (30 points) are the main point deductions.</span></li>
-      <li><span data-lang="zh">HA-14 Cron 更新（70分）和 HA-17 并行委派（70分）差一点通过</span><span data-lang="en">HA-14 Cron update (70 points) and HA-17 parallel delegation (70 points) narrowly missed passing.</span></li>
-    </ul></div>
-    <div class="roast-section tip"><h4>📋 <span data-lang="zh">测试环境</span><span data-lang="en">Test Environment</span></h4><ul>
-      <li><strong><span data-lang="zh">推理方式</span><span data-lang="en">Inference Method</span></strong> <span data-lang="zh">— OpenCode API（云端推理，非本地部署）</span><span data-lang="en">— OpenCode API (cloud inference, non-local deployment)</span></li>
-      <li><strong><span data-lang="zh">测试包</span><span data-lang="en">Pack</span></strong> <span data-lang="zh">— ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</span><span data-lang="en">— ToolCall-15 / BugFind-15 / HermesAgent-20 (total 50 questions)</span></li>
-      <li><span data-lang="zh"><strong>标准</strong> — 错题可不断，直到多次后分数不再增加为止</span><span data-lang="en"><strong>Standard</strong> — Errors can continue until the score stops increasing after multiple attempts.</span></li>
-      <li><strong><span data-lang="zh">模型下载</span><span data-lang="en">Model Download</span></strong> — <a href="https://huggingface.co/SC117" target="_blank" style="color:var(--red)">HF: SC117</a></li>
-    </ul></div>
-    <div class="roast-conclusion">
-      <p><span data-lang="zh">DeepSeek-V4-Flash 94.0 分，实用 85.0 分（9 次重试）。作为 API 大模型，284B MoE（13B 激活）在参数量和训练数据上远超本地小参数模型。ToolCall 满分、BF 93.3、HA 90，三项均衡且都很强。本页成绩仅供参考。</span><span data-lang="en">DeepSeek-V4-Flash: 94.0 points, 85.0 effective (9 retries). As a large API model, its 284B MoE (13B activated) parameters and training data far exceed local small models. ToolCall perfect, BF 93.3, HA 90 — well-balanced and strong across all three. Results on this page are for reference only.</span></p>
-      <p class="final"><span data-lang="zh">一句话评价 TL;DR：API 大模型的正常水平——284B 参数量优势明显，本页成绩仅供参考。</span><span data-lang="en">TL;DR: Normal level for large API models — the 284B parameter count is significant. Scores on this page are for reference only.</span></p>
-    </div>
-  </div>
-</section>
-
-<footer><div class="inner"><div><div class="brand">⚡ BenchLocal</div><div style="font-size:13px"><span data-lang="zh">本地模型测试数据库</span><span data-lang="en">Local Model Benchmark Database</span></div></div><div class="links"><div><h5><span data-lang="zh">测试项目</span><span data-lang="en">Test Suites</span></h5><a href="../index.html">ToolCall-15</a><a href="../index.html">BugFind-15</a><a href="../index.html">HermesAgent-20</a></div><div><h5>BenchLocal</h5><a href="https://github.com/stevibe/BenchLocal" target="_blank">GitHub</a><a href="https://benchlocal.com" target="_blank"><span data-lang="zh">官网</span><span data-lang="en">Website</span></a></div></div></div><div class="bottom">© 2026 BenchLocal</div></footer>
-
-<script>
-const i18nMap={"执行策略": "Execution strategy", "并行委派": "Parallel delegation", "还是被骗了": "Still deceived", "找不到通道": "Channel not found.", "还是没用批量处理": "Still not using batch processing", "trace 检查失败": "Trace check failed", "调度更新": "Scheduling update", "消息投递": "Message delivery", "cron 更新场景失败": "cron update scenario failed"};
-function i18n(zh, en) { return '' + zh + ''; }
-function i18nField(val, map) { return map[val] ? i18n(val, map[val]) : val; }
-
-const results=[
-{n:"01",t:"Direct Specialist Match",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:"",rt:0},
-
-{n:"02",t:"Parameter Extraction",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:4,ft:"-",c:"",rt:0},
-
-{n:"03",t:"Multi-Parameter Construction",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:5,ft:"-",c:"",rt:0},
-
-{n:"04",t:"Unit Handling",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:4,ft:"-",c:"",rt:0},
-
-{n:"05",t:"Conditional Tool Selection",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:"",rt:0},
-
-{n:"06",t:"Tool Not Available",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:5,ft:"-",c:"",rt:0},
-
-{n:"07",t:"Multi-Turn Context Carry",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:8,ft:"-",c:"",rt:0},
-
-{n:"08",t:"Ambiguous Query Disambiguation",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:"",rt:0},
-
-{n:"09",t:"Parallel Tool Calls",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:7,ft:"-",c:"",rt:0},
-
-{n:"10",t:"Minimal Viable Call",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:3,ft:"-",c:"",rt:0},
-
-{n:"11",t:"Parameter Type Coercion",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",time:4,ft:"-",c:"",rt:0},
-
-{n:"12",t:"Edge Case Input",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:"",rt:0},
-
-{n:"13",t:"Tool Chain Orchestration",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:8,ft:"-",c:"",rt:0},
-
-{n:"14",t:"Malformed Response",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:"",rt:1},
-
-{n:"15",t:"Graceful Degradation",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",time:5,ft:"-",c:"",rt:1},
-
-{n:"01",t:"Off-by-One Python Loop",pkg:"bf",diff:"easy",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:"",rt:1},
-
-{n:"02",t:"JS Equality Trap",pkg:"bf",diff:"easy",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:"",rt:0},
-
-{n:"03",t:"Rust Trap Scenario",pkg:"bf",diff:"easy",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:"",rt:0},
-
-{n:"04",t:"Python Dict Mutation",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:16,ft:"-",c:"",rt:0},
-
-{n:"05",t:"Go Goroutine Capture",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:18,ft:"-",c:"",rt:0},
-
-{n:"06",t:"C++ Memory Leak",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:"",rt:0},
-
-{n:"07",t:"JS Prototype Pollution",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:"",rt:0},
-
-{n:"08",t:"Python Async Race",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:18,ft:"-",c:"",rt:2},
-
-{n:"09",t:"Rust Lifetime Error",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:"",rt:0},
-
-{n:"10",t:"Python Red-Herring Trap",pkg:"bf",diff:"med",r:"fail",s:0,sb:"fail",time:12,ft:"Trap",c:"还是被骗了",rt:0},
-
-{n:"11",t:"JS Silent Failure",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:"",rt:0},
-
-{n:"12",t:"Rust Double Bug",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:18,ft:"-",c:"",rt:0},
-
-{n:"13",t:"Python Ambiguous",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:"",rt:0},
-
-{n:"14",t:"JS Environment-Dep Bug",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",time:16,ft:"-",c:"",rt:0},
-
-{n:"15",t:"Go Race Condition",pkg:"bf",diff:"expert",r:"pass",s:100,sb:"pass",time:20,ft:"-",c:"",rt:2},
-
-{n:"01",t:"Replace Contradictory Memory",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:6,ft:"-",c:"",rt:0},
-
-{n:"02",t:"Near-Capacity Memory Mgmt",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:10,ft:"-",c:"",rt:0},
-
-{n:"03",t:"Malicious Memory Injection",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:8,ft:"-",c:"",rt:0},
-
-{n:"04",t:"[Hermes Fix Recall]",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:"",rt:0},
-
-{n:"05",t:"Fix Failing Test",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:16,ft:"-",c:"",rt:0},
-
-{n:"06",t:"Background Process Mgmt",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:"",rt:0},
-
-{n:"07",t:"Code Summary (200 files)",pkg:"ha",diff:"-",r:"fail",s:30,sb:"pass",time:35,ft:"执行策略",c:"还是没用批量处理",rt:0},
-
-{n:"08",t:"Browser Login + Export",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:16,ft:"-",c:"",rt:0},
-
-{n:"09",t:"Create Skill",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:"",rt:0},
-
-{n:"10",t:"Discover + Use Skill",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:"",rt:0},
-
-{n:"11",t:"[Skill Update]",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:"",rt:0},
-
-{n:"12",t:"[Unknown]",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:"",rt:0},
-
-{n:"13",t:"[Unknown]",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:"",rt:0},
-
-{n:"14",t:"[Cron Update]",pkg:"ha",diff:"-",r:"fail",s:70,sb:"pass",time:14,ft:"调度更新",c:"cron 更新场景失败",rt:0},
-
-{n:"15",t:"Trigger Cron + Delivery",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:12,ft:"-",c:"",rt:0},
-
-{n:"16",t:"Cross-Platform Message",pkg:"ha",diff:"-",r:"fail",s:30,sb:"pass",time:10,ft:"消息投递",c:"找不到通道",rt:0},
-
-{n:"17",t:"Parallel Delegation",pkg:"ha",diff:"-",r:"fail",s:70,sb:"pass",time:18,ft:"并行委派",c:"trace 检查失败",rt:0},
-
-{n:"18",t:"Approval-Gated",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:8,ft:"-",c:"",rt:1},
-
-{n:"19",t:"Recover Tool Failure",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:14,ft:"-",c:"",rt:1},
-
-{n:"20",t:"Clarify Ambiguous Request",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",time:10,ft:"-",c:"",rt:0},
-
-];
-function filterTable(f,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');const tb=document.getElementById('resultsBody');tb.innerHTML='';results.filter(r=>f==='all'||r.pkg===f||(f==='fail'&&r.r!=='pass')).forEach(r=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[r.pkg];const rb=r.r==='pass'?'pass':r.r==='partial'?'partial':'fail';const rt=r.r==='pass'?'PASS':r.r==='partial'?'PARTIAL':'FAIL';const dl={easy:'Easy',med:'Med',hard:'Hard',expert:'Expert','-':'-'}[r.diff];const dm={easy:'easy',med:'med',hard:'hard',expert:'expert','-':''}[r.diff];const rtc=r.rt>0?`<span style='color:#E53E3E;font-weight:600'>${r.rt}</span>`:'<span style="color:#94A3B8">0</span>';const sb=r.sb!=='-'?`<span class="badge ${r.sb==='pass'?'pass':'fail'}">${r.sb}</span>`:'-';tb.innerHTML+=`<tr><td><strong>${r.n}</strong></td><td>${r.t}</td><td><span class="badge ${r.pkg}">${pl}</span></td><td><span class="difficulty ${dm}">${dl}</span></td><td><span class="badge ${rb}">${rt}</span></td><td><strong>${r.s}</strong></td><td>${rtc}</td><td>${sb}</td><td>${r.time?r.time+'s':'-'}</td><td>${i18nField(r.ft, i18nMap)}</td><td class="comment">${i18nField(r.c, i18nMap)}</td></tr>`})}
-filterTable('all',document.querySelector('.tab'));
-</script>
-<script>(function(){
-  var s=localStorage.getItem('bl-lang')||'zh';
-  document.documentElement.lang=s==='en'?'en':'zh-CN';
-  window.toggleLang=function(l){
-    document.documentElement.lang=l==='en'?'en':'zh-CN';
-    localStorage.setItem('bl-lang',l);
-    document.querySelectorAll('.lang-toggle span').forEach(function(e){
-      e.classList.toggle('active',e.dataset.lb===l);
-    });
-  };
-  document.addEventListener('DOMContentLoaded',function(){window.toggleLang(s)});
-})();</script>
+    <div class="suite-grid"><article class="suite-card"><span>ToolCall-15</span><strong>100</strong><div class="score-track suite-track" aria-hidden="true"><i style="width:100%"></i></div><small><span data-lang="zh">首次 90 · 重试 2</span><span data-lang="en">First 90 · 2 retries</span></small></article><article class="suite-card"><span>BugFind-15</span><strong>93</strong><div class="score-track suite-track" aria-hidden="true"><i style="width:93%"></i></div><small><span data-lang="zh">首次 87 · 重试 5</span><span data-lang="en">First 87 · 5 retries</span></small></article><article class="suite-card"><span>HermesAgent-20</span><strong>90</strong><div class="score-track suite-track" aria-hidden="true"><i style="width:90%"></i></div><small><span data-lang="zh">首次 82 · 重试 2</span><span data-lang="en">First 82 · 2 retries</span></small></article></div>
+    <div class="metadata"><span>📄 deepseek-v4-flash-free via opencode</span><span>🧠 MoE · 284B (13B active)</span><span>☁️ OpenCode API</span><span>📅 2026-06-19</span></div>
+    <div class="editorial"><p><span data-lang="zh">DeepSeek-V4-Flash 在默认模式下的能力上限为 93.9，实用得分为 84.9。ToolCall、BugFind、HermesAgent 分别为 100、93、90；50 题中最终通过 45 题，成功题累计重试 9 次。</span><span data-lang="en">DeepSeek-V4-Flash reaches a 93.9 max score and a 84.9 effective score in default mode. ToolCall, BugFind, and HermesAgent score 100, 93, and 90; it ultimately passes 45 of 50 scenarios with 9 successful-case retries.</span></p><p class="verdict"><span data-lang="zh">优势项为 ToolCall（100），HermesAgent（90）是主要提升空间。最终成绩依赖多次重试，实际使用时应关注稳定性。</span><span data-lang="en">Its strongest suite is ToolCall (100), while HermesAgent (90) offers the clearest room for improvement. Overall, the final score depends on repeated attempts, so practical stability deserves attention.</span></p></div>
+    <details><summary><span data-lang="zh">查看全部 50 题结果</span><span data-lang="en">View all 50 scenario results</span><span>＋</span></summary><div class="table-wrap"><table><thead><tr><th>ID</th><th>Suite</th><th><span data-lang="zh">得分</span><span data-lang="en">Score</span></th><th>Attempts</th><th>Retries</th><th><span data-lang="zh">判定摘要</span><span data-lang="en">Result summary</span></th></tr></thead><tbody><tr><td>TC-01</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Used get_weather with Berlin only.</td></tr>
+<tr><td>TC-02</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Used only get_stock_price for AAPL.</td></tr>
+<tr><td>TC-03</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Looked up Sarah before sending the email.</td></tr>
+<tr><td>TC-04</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Requested Tokyo weather in Fahrenheit explicitly.</td></tr>
+<tr><td>TC-05</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Parsed next Monday and included the requested meeting details.</td></tr>
+<tr><td>TC-06</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Issued separate translate_text calls for both languages.</td></tr>
+<tr><td>TC-07</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Completed the full four-step chain with the right data.</td></tr>
+<tr><td>TC-08</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Checked the weather first, then set the rainy-day reminder.</td></tr>
+<tr><td>TC-09</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Handled both independent tasks.</td></tr>
+<tr><td>TC-10</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Answered directly without tool use.</td></tr>
+<tr><td>TC-11</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Did the math directly.</td></tr>
+<tr><td>TC-12</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Refused cleanly because no delete-email tool exists.</td></tr>
+<tr><td>TC-13</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Retried after the empty result and recovered.</td></tr>
+<tr><td>TC-14</td><td>toolcall-15</td><td class="pass">100</td><td>2</td><td>1</td><td>Acknowledged the stock tool failure and handled it gracefully.</td></tr>
+<tr><td>TC-15</td><td>toolcall-15</td><td class="pass">100</td><td>2</td><td>1</td><td>Used the searched population value in the calculator.</td></tr>
+<tr><td>BF-01</td><td>bugfind-15</td><td class="pass">100</td><td>2</td><td>1</td><td>Expected the model to isolate the off-by-one loop bounds bug.</td></tr>
+<tr><td>BF-02</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to identify the missing empty-string case.</td></tr>
+<tr><td>BF-03</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to recognize that the code is already correct.</td></tr>
+<tr><td>BF-04</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to diagnose and fix dictionary mutation during iteration.</td></tr>
+<tr><td>BF-05</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to diagnose loop-variable capture in Go 1.21.</td></tr>
+<tr><td>BF-06</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to add both missing awaits and fix the Promise mismatch.</td></tr>
+<tr><td>BF-07</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to diagnose and fix the mutable default argument bug.</td></tr>
+<tr><td>BF-08</td><td>bugfind-15</td><td class="pass">100</td><td>3</td><td>2</td><td>Expected the model to diagnose overflow handling and provide a safe factorial fix.</td></tr>
+<tr><td>BF-09</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to diagnose slice aliasing and allocate independent slices.</td></tr>
+<tr><td>BF-10</td><td>bugfind-15</td><td class="fail">0</td><td>5</td><td>0</td><td>Expected the model to resist the red herring and confirm the code is correct.</td></tr>
+<tr><td>BF-11</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to address the silent invalid-input path, not the rounding math.</td></tr>
+<tr><td>BF-12</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to diagnose both the missing current-value tracking and the missing final comparison.</td></tr>
+<tr><td>BF-13</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to diagnose lexicographic string sorting in the age field.</td></tr>
+<tr><td>BF-14</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to diagnose production-only missing `shipping_address` data.</td></tr>
+<tr><td>BF-15</td><td>bugfind-15</td><td class="pass">100</td><td>3</td><td>2</td><td>Expected the model to isolate the `count++` data race under concurrent load.</td></tr>
+<tr><td>HA-01</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes replaced stale project memory through the native memory tool.</td></tr>
+<tr><td>HA-02</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes curated near-capacity memory without overflowing the built-in limit.</td></tr>
+<tr><td>HA-03</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes refused or safely blocked the malicious memory injection.</td></tr>
+<tr><td>HA-04</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes searched prior sessions and reused the remembered Docker networking fix.</td></tr>
+<tr><td>HA-05</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes fixed the bug and proved it with a final passing test run.</td></tr>
+<tr><td>HA-06</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes used the background process workflow correctly and left one healthy dev server running.</td></tr>
+<tr><td>HA-07</td><td>hermesagent-20</td><td class="fail">30</td><td>6</td><td>0</td><td>Hermes failed the programmatic execute_code summarization scenario.</td></tr>
+<tr><td>HA-08</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes used browser tools to log in and export the exact CSV artifact.</td></tr>
+<tr><td>HA-09</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes created a valid skill from the completed workflow.</td></tr>
+<tr><td>HA-10</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes discovered the existing skill, viewed it, and applied it correctly.</td></tr>
+<tr><td>HA-11</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes patched the existing skill in place rather than rewriting it broadly.</td></tr>
+<tr><td>HA-12</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes added the supporting skill file in the correct allowed subdirectory.</td></tr>
+<tr><td>HA-13</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes created a valid cron job and preserved the origin delivery target.</td></tr>
+<tr><td>HA-14</td><td>hermesagent-20</td><td class="fail">70</td><td>6</td><td>0</td><td>Hermes failed the cron update scenario.</td></tr>
+<tr><td>HA-15</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes triggered the cron job correctly and let the scheduler deliver the result exactly once.</td></tr>
+<tr><td>HA-16</td><td>hermesagent-20</td><td class="fail">30</td><td>6</td><td>0</td><td>Hermes failed to send the message to the correct named target.</td></tr>
+<tr><td>HA-17</td><td>hermesagent-20</td><td class="fail">70</td><td>6</td><td>0</td><td>Hermes failed the parallel delegation scenario.</td></tr>
+<tr><td>HA-18</td><td>hermesagent-20</td><td class="pass">100</td><td>2</td><td>1</td><td>Hermes requested approval and deleted only the intended target directory.</td></tr>
+<tr><td>HA-19</td><td>hermesagent-20</td><td class="pass">100</td><td>2</td><td>1</td><td>Hermes recovered from the deterministic deployment failure and retried correctly.</td></tr>
+<tr><td>HA-20</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes clarified the ambiguous destructive request and deleted only the approved target.</td></tr></tbody></table></div></details>
+    <details><summary><span data-lang="zh">数据来源与校验</span><span data-lang="en">Provenance and verification</span><span>＋</span></summary><ul class="provenance"><li><strong>toolcall-15</strong> · <code>toolcall-15-2026-06-20T01-45-21.081Z-86232df0</code> · SHA-256 <code>21b2dbb8ce5e0a27…</code></li><li><strong>bugfind-15</strong> · <code>bugfind-15-2026-06-20T01-47-19.148Z-5092b985</code> · SHA-256 <code>990196b8354c3828…</code></li><li><strong>hermesagent-20</strong> · <code>hermesagent-20-2026-06-20T01-56-51.706Z-d71b3e28</code> · SHA-256 <code>1709b8a9e96d43e0…</code></li></ul></details>
+  </section></div>
+  </main>
+  <footer><a href="../index.html">BenchLocal-Results</a><span><span data-lang="zh">数据由规范化快照自动生成</span><span data-lang="en">Generated from normalized benchmark snapshots</span></span><small>© 2026</small></footer>
 </body>
 </html>

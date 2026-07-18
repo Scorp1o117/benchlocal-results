@@ -1,0 +1,2550 @@
+{
+  "generatedAt": "2026-07-17T13:50:26.617Z",
+  "rules": {
+    "maxRunSpanHours": 48,
+    "extendedDiagnosticSpanHours": 336,
+    "suiteDisplayTolerance": 0.6,
+    "aggregateTolerance": 0.11,
+    "requireExactRetriesAndOutcomes": true,
+    "nearestRunResolution": "same model and best span less than half the next candidate span",
+    "identityResolution": "at least two identity tokens and 60 percent target token coverage, then unique or distinctly nearest run cluster",
+    "legacyDisplayResolution": "same model within 48 hours, max score within 1.5 and each displayed suite within 3.1; prefer TC then BF then HA order"
+  },
+  "counts": {
+    "summaries": 202,
+    "validRuns": 180,
+    "rejectedRuns": 22,
+    "homepage": 23,
+    "unique": 18,
+    "resolvedNearest": 2,
+    "resolvedIdentityNearest": 0,
+    "resolvedLegacyDisplay": 3,
+    "ambiguous": 0,
+    "unmatched": 0,
+    "migrated": 3,
+    "existing": 20
+  },
+  "results": [
+    {
+      "target": {
+        "index": 1,
+        "name": "Step-3.7-Flash (思考)",
+        "link": "models/step37-flash.html",
+        "slug": "step37-flash",
+        "variant": "thinking",
+        "maxScore": 88.5,
+        "effectiveScore": 78.5,
+        "retryPenalty": 10,
+        "toolcall": 100,
+        "bugfind": 87,
+        "hermes": 81,
+        "counts": {
+          "pass": 41,
+          "partial": 1,
+          "fail": 8
+        }
+      },
+      "status": "unique",
+      "selected": {
+        "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Step-3.7-Flash-APEX-I-Mini",
+        "modelLabel": "Step-3.7-Flash-APEX-I-Mini",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-06-20T23-58-11.819Z-026b91b5",
+          "bugfind": "bugfind-15-2026-06-21T00-14-13.978Z-9303c773",
+          "hermes": "hermesagent-20-2026-06-21T03-05-31.852Z-594b3c0e"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-06-20T23-58-11.819Z-026b91b5/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-06-21T00-14-13.978Z-9303c773/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-06-21T03-05-31.852Z-594b3c0e/summary.json"
+        },
+        "spanHours": 3.1,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 88.5,
+          "retryPenalty": 10,
+          "effectiveScore": 78.5,
+          "counts": {
+            "pass": 41,
+            "partial": 1,
+            "fail": 8
+          }
+        },
+        "suites": {
+          "toolcall": 100,
+          "bugfind": 87,
+          "hermes": 81
+        }
+      },
+      "candidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Step-3.7-Flash-APEX-I-Mini",
+          "modelLabel": "Step-3.7-Flash-APEX-I-Mini",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-06-20T23-58-11.819Z-026b91b5",
+            "bugfind": "bugfind-15-2026-06-21T00-14-13.978Z-9303c773",
+            "hermes": "hermesagent-20-2026-06-21T03-05-31.852Z-594b3c0e"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-06-20T23-58-11.819Z-026b91b5/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-06-21T00-14-13.978Z-9303c773/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-06-21T03-05-31.852Z-594b3c0e/summary.json"
+          },
+          "spanHours": 3.1,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 88.5,
+            "retryPenalty": 10,
+            "effectiveScore": 78.5,
+            "counts": {
+              "pass": 41,
+              "partial": 1,
+              "fail": 8
+            }
+          },
+          "suites": {
+            "toolcall": 100,
+            "bugfind": 87,
+            "hermes": 81
+          }
+        }
+      ],
+      "nearCandidates": [],
+      "legacyCandidates": []
+    },
+    {
+      "target": {
+        "index": 2,
+        "name": "Nex-N2-Mini (思考)",
+        "link": "models/n2mini.html",
+        "slug": "n2mini",
+        "variant": "thinking",
+        "maxScore": 86.7,
+        "effectiveScore": 59.7,
+        "retryPenalty": 27,
+        "toolcall": 93,
+        "bugfind": 88,
+        "hermes": 81,
+        "counts": {
+          "pass": 40,
+          "partial": 2,
+          "fail": 8
+        }
+      },
+      "status": "unique",
+      "selected": {
+        "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Nex-N2-mini-abliterated-APEX",
+        "modelLabel": "Nex-N2-mini-abliterated-APEX",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-06-20T12-50-01.385Z-78e199fd",
+          "bugfind": "bugfind-15-2026-06-20T12-52-28.587Z-b0252a24",
+          "hermes": "hermesagent-20-2026-06-20T13-15-48.498Z-04b329e0"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-06-20T12-50-01.385Z-78e199fd/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-06-20T12-52-28.587Z-b0252a24/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-06-20T13-15-48.498Z-04b329e0/summary.json"
+        },
+        "spanHours": 0.4,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 86.7,
+          "retryPenalty": 27,
+          "effectiveScore": 59.7,
+          "counts": {
+            "pass": 40,
+            "partial": 2,
+            "fail": 8
+          }
+        },
+        "suites": {
+          "toolcall": 93,
+          "bugfind": 88,
+          "hermes": 81
+        }
+      },
+      "candidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Nex-N2-mini-abliterated-APEX",
+          "modelLabel": "Nex-N2-mini-abliterated-APEX",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-06-20T12-50-01.385Z-78e199fd",
+            "bugfind": "bugfind-15-2026-06-20T12-52-28.587Z-b0252a24",
+            "hermes": "hermesagent-20-2026-06-20T13-15-48.498Z-04b329e0"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-06-20T12-50-01.385Z-78e199fd/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-06-20T12-52-28.587Z-b0252a24/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-06-20T13-15-48.498Z-04b329e0/summary.json"
+          },
+          "spanHours": 0.4,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 86.7,
+            "retryPenalty": 27,
+            "effectiveScore": 59.7,
+            "counts": {
+              "pass": 40,
+              "partial": 2,
+              "fail": 8
+            }
+          },
+          "suites": {
+            "toolcall": 93,
+            "bugfind": 88,
+            "hermes": 81
+          }
+        }
+      ],
+      "nearCandidates": [],
+      "legacyCandidates": []
+    },
+    {
+      "target": {
+        "index": 3,
+        "name": "Qwen3.6-35B-A3B-uncensored-MTP (无思考)",
+        "link": "models/qwen36-35b-mtp.html",
+        "slug": "qwen36-35b-mtp",
+        "variant": "no-thinking",
+        "maxScore": 91.5,
+        "effectiveScore": 80.5,
+        "retryPenalty": 11,
+        "toolcall": 97,
+        "bugfind": 96,
+        "hermes": 84,
+        "counts": {
+          "pass": 43,
+          "partial": 1,
+          "fail": 6
+        }
+      },
+      "status": "unique",
+      "selected": {
+        "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX",
+        "modelLabel": "Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-06-23T07-39-30.723Z-6b623580",
+          "bugfind": "bugfind-15-2026-06-23T07-41-01.608Z-df8c6a85",
+          "hermes": "hermesagent-20-2026-06-23T07-49-20.342Z-4842315f"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-06-23T07-39-30.723Z-6b623580/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-06-23T07-41-01.608Z-df8c6a85/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-06-23T07-49-20.342Z-4842315f/summary.json"
+        },
+        "spanHours": 0.2,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 91.5,
+          "retryPenalty": 11,
+          "effectiveScore": 80.5,
+          "counts": {
+            "pass": 43,
+            "partial": 1,
+            "fail": 6
+          }
+        },
+        "suites": {
+          "toolcall": 97,
+          "bugfind": 96,
+          "hermes": 84
+        }
+      },
+      "candidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX",
+          "modelLabel": "Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-06-23T07-39-30.723Z-6b623580",
+            "bugfind": "bugfind-15-2026-06-23T07-41-01.608Z-df8c6a85",
+            "hermes": "hermesagent-20-2026-06-23T07-49-20.342Z-4842315f"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-06-23T07-39-30.723Z-6b623580/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-06-23T07-41-01.608Z-df8c6a85/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-06-23T07-49-20.342Z-4842315f/summary.json"
+          },
+          "spanHours": 0.2,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 91.5,
+            "retryPenalty": 11,
+            "effectiveScore": 80.5,
+            "counts": {
+              "pass": 43,
+              "partial": 1,
+              "fail": 6
+            }
+          },
+          "suites": {
+            "toolcall": 97,
+            "bugfind": 96,
+            "hermes": 84
+          }
+        }
+      ],
+      "nearCandidates": [],
+      "legacyCandidates": []
+    },
+    {
+      "target": {
+        "index": 4,
+        "name": "Qwen3.6-35B-A3B-uncensored-MTP (思考)",
+        "link": "models/qwen36-35b-mtp-thinking.html",
+        "slug": "qwen36-35b-mtp",
+        "variant": "thinking",
+        "maxScore": 89.5,
+        "effectiveScore": 81.5,
+        "retryPenalty": 8,
+        "toolcall": 97,
+        "bugfind": 88,
+        "hermes": 85,
+        "counts": {
+          "pass": 41,
+          "partial": 3,
+          "fail": 6
+        }
+      },
+      "status": "resolved-nearest",
+      "selected": {
+        "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX",
+        "modelLabel": "Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-06-23T11-54-25.600Z-578f9bc7",
+          "bugfind": "bugfind-15-2026-06-23T11-57-04.807Z-d7375e29",
+          "hermes": "hermesagent-20-2026-06-23T12-30-38.011Z-ace941d8"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-06-23T11-54-25.600Z-578f9bc7/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-06-23T11-57-04.807Z-d7375e29/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-06-23T12-30-38.011Z-ace941d8/summary.json"
+        },
+        "spanHours": 0.6,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 89.5,
+          "retryPenalty": 8,
+          "effectiveScore": 81.5,
+          "counts": {
+            "pass": 41,
+            "partial": 3,
+            "fail": 6
+          }
+        },
+        "suites": {
+          "toolcall": 97,
+          "bugfind": 88,
+          "hermes": 85
+        }
+      },
+      "candidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX",
+          "modelLabel": "Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-06-23T11-54-25.600Z-578f9bc7",
+            "bugfind": "bugfind-15-2026-06-23T11-57-04.807Z-d7375e29",
+            "hermes": "hermesagent-20-2026-06-23T12-30-38.011Z-ace941d8"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-06-23T11-54-25.600Z-578f9bc7/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-06-23T11-57-04.807Z-d7375e29/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-06-23T12-30-38.011Z-ace941d8/summary.json"
+          },
+          "spanHours": 0.6,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 89.5,
+            "retryPenalty": 8,
+            "effectiveScore": 81.5,
+            "counts": {
+              "pass": 41,
+              "partial": 3,
+              "fail": 6
+            }
+          },
+          "suites": {
+            "toolcall": 97,
+            "bugfind": 88,
+            "hermes": 85
+          }
+        },
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX",
+          "modelLabel": "Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-06-23T13-48-45.619Z-72c19e29",
+            "bugfind": "bugfind-15-2026-06-23T13-50-28.234Z-89a6c816",
+            "hermes": "hermesagent-20-2026-06-23T12-30-38.011Z-ace941d8"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-06-23T13-48-45.619Z-72c19e29/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-06-23T13-50-28.234Z-89a6c816/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-06-23T12-30-38.011Z-ace941d8/summary.json"
+          },
+          "spanHours": 1.3,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 89.5,
+            "retryPenalty": 8,
+            "effectiveScore": 81.5,
+            "counts": {
+              "pass": 41,
+              "partial": 3,
+              "fail": 6
+            }
+          },
+          "suites": {
+            "toolcall": 97,
+            "bugfind": 88,
+            "hermes": 85
+          }
+        }
+      ],
+      "nearCandidates": [],
+      "legacyCandidates": []
+    },
+    {
+      "target": {
+        "index": 5,
+        "name": "Gemma-4 (无思考)",
+        "link": "models/gemma4-26b.html",
+        "slug": "gemma4-26b",
+        "variant": "no-thinking",
+        "maxScore": 88.7,
+        "effectiveScore": 82.7,
+        "retryPenalty": 6,
+        "toolcall": 96.7,
+        "bugfind": 86,
+        "hermes": 84.8,
+        "counts": {
+          "pass": 35,
+          "partial": 2,
+          "fail": 13
+        }
+      },
+      "status": "resolved-legacy-display",
+      "selected": {
+        "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f: gemma-4-26B-A4B-it-qat-heretic-GGUF",
+        "modelLabel": "gemma-4-26B-A4B-it-qat-heretic",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-06-19T10-23-30.884Z-df10e76e",
+          "bugfind": "bugfind-15-2026-06-19T10-25-39.977Z-ba8e3914",
+          "hermes": "hermesagent-20-2026-06-19T10-31-15.738Z-8061ddf3"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-06-19T10-23-30.884Z-df10e76e/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-06-19T10-25-39.977Z-ba8e3914/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-06-19T10-31-15.738Z-8061ddf3/summary.json"
+        },
+        "spanHours": 0.1,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 89.8,
+          "retryPenalty": 9,
+          "effectiveScore": 80.8,
+          "counts": {
+            "pass": 39,
+            "partial": 4,
+            "fail": 7
+          }
+        },
+        "suites": {
+          "toolcall": 97,
+          "bugfind": 89,
+          "hermes": 85
+        }
+      },
+      "candidates": [],
+      "nearCandidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f: gemma-4-26B-A4B-it-qat-heretic-GGUF",
+          "modelLabel": "gemma-4-26B-A4B-it-qat-heretic",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-06-19T10-23-30.884Z-df10e76e",
+            "bugfind": "bugfind-15-2026-06-08T07-14-41.621Z-d8d1cf9a",
+            "hermes": "hermesagent-20-2026-06-19T10-31-15.738Z-8061ddf3"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-06-19T10-23-30.884Z-df10e76e/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-06-08T07-14-41.621Z-d8d1cf9a/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-06-19T10-31-15.738Z-8061ddf3/summary.json"
+          },
+          "spanHours": 267.3,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 88.9,
+            "retryPenalty": 6,
+            "effectiveScore": 82.9,
+            "counts": {
+              "pass": 40,
+              "partial": 2,
+              "fail": 8
+            }
+          },
+          "suites": {
+            "toolcall": 97,
+            "bugfind": 86,
+            "hermes": 85
+          }
+        }
+      ],
+      "legacyCandidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f: gemma-4-26B-A4B-it-qat-heretic-GGUF",
+          "modelLabel": "gemma-4-26B-A4B-it-qat-heretic",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-06-19T10-23-30.884Z-df10e76e",
+            "bugfind": "bugfind-15-2026-06-19T10-25-39.977Z-ba8e3914",
+            "hermes": "hermesagent-20-2026-06-19T10-31-15.738Z-8061ddf3"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-06-19T10-23-30.884Z-df10e76e/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-06-19T10-25-39.977Z-ba8e3914/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-06-19T10-31-15.738Z-8061ddf3/summary.json"
+          },
+          "spanHours": 0.1,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 89.8,
+            "retryPenalty": 9,
+            "effectiveScore": 80.8,
+            "counts": {
+              "pass": 39,
+              "partial": 4,
+              "fail": 7
+            }
+          },
+          "suites": {
+            "toolcall": 97,
+            "bugfind": 89,
+            "hermes": 85
+          }
+        },
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f: gemma-4-26B-A4B-it-qat-heretic-GGUF",
+          "modelLabel": "gemma-4-26B-A4B-it-qat-heretic",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-06-19T10-23-30.884Z-df10e76e",
+            "bugfind": "bugfind-15-2026-06-19T10-25-39.977Z-ba8e3914",
+            "hermes": "hermesagent-20-2026-06-17T11-44-55.164Z-5ef89950"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-06-19T10-23-30.884Z-df10e76e/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-06-19T10-25-39.977Z-ba8e3914/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-06-17T11-44-55.164Z-5ef89950/summary.json"
+          },
+          "spanHours": 46.7,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 90.2,
+            "retryPenalty": 6,
+            "effectiveScore": 84.2,
+            "counts": {
+              "pass": 39,
+              "partial": 6,
+              "fail": 5
+            }
+          },
+          "suites": {
+            "toolcall": 97,
+            "bugfind": 89,
+            "hermes": 86
+          }
+        }
+      ]
+    },
+    {
+      "target": {
+        "index": 6,
+        "name": "Gemma-4 (思考)",
+        "link": "models/gemma4-26b-thinking.html",
+        "slug": "gemma4-26b",
+        "variant": "thinking",
+        "maxScore": 91.6,
+        "effectiveScore": 83.6,
+        "retryPenalty": 8,
+        "toolcall": 93.3,
+        "bugfind": 96,
+        "hermes": 87,
+        "counts": {
+          "pass": 42,
+          "partial": 2,
+          "fail": 6
+        }
+      },
+      "status": "resolved-legacy-display",
+      "selected": {
+        "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f: gemma-4-26B-A4B-it-qat-heretic-GGUF",
+        "modelLabel": "gemma-4-26B-A4B-it-qat-heretic",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-06-19T11-02-14.078Z-e10d3e9a",
+          "bugfind": "bugfind-15-2026-06-19T11-04-07.471Z-04ad8a94",
+          "hermes": "hermesagent-20-2026-06-19T11-40-57.817Z-47e3c8eb"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-06-19T11-02-14.078Z-e10d3e9a/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-06-19T11-04-07.471Z-04ad8a94/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-06-19T11-40-57.817Z-47e3c8eb/summary.json"
+        },
+        "spanHours": 0.6,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 91.8,
+          "retryPenalty": 8,
+          "effectiveScore": 83.8,
+          "counts": {
+            "pass": 42,
+            "partial": 2,
+            "fail": 6
+          }
+        },
+        "suites": {
+          "toolcall": 93,
+          "bugfind": 97,
+          "hermes": 87
+        }
+      },
+      "candidates": [],
+      "nearCandidates": [],
+      "legacyCandidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f: gemma-4-26B-A4B-it-qat-heretic-GGUF",
+          "modelLabel": "gemma-4-26B-A4B-it-qat-heretic",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-06-19T11-02-14.078Z-e10d3e9a",
+            "bugfind": "bugfind-15-2026-06-19T11-04-07.471Z-04ad8a94",
+            "hermes": "hermesagent-20-2026-06-19T10-31-15.738Z-8061ddf3"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-06-19T11-02-14.078Z-e10d3e9a/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-06-19T11-04-07.471Z-04ad8a94/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-06-19T10-31-15.738Z-8061ddf3/summary.json"
+          },
+          "spanHours": 0.5,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 91,
+            "retryPenalty": 6,
+            "effectiveScore": 85,
+            "counts": {
+              "pass": 42,
+              "partial": 0,
+              "fail": 8
+            }
+          },
+          "suites": {
+            "toolcall": 93,
+            "bugfind": 97,
+            "hermes": 85
+          }
+        },
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f: gemma-4-26B-A4B-it-qat-heretic-GGUF",
+          "modelLabel": "gemma-4-26B-A4B-it-qat-heretic",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-06-19T11-02-14.078Z-e10d3e9a",
+            "bugfind": "bugfind-15-2026-06-19T11-04-07.471Z-04ad8a94",
+            "hermes": "hermesagent-20-2026-06-19T11-40-57.817Z-47e3c8eb"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-06-19T11-02-14.078Z-e10d3e9a/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-06-19T11-04-07.471Z-04ad8a94/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-06-19T11-40-57.817Z-47e3c8eb/summary.json"
+          },
+          "spanHours": 0.6,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 91.8,
+            "retryPenalty": 8,
+            "effectiveScore": 83.8,
+            "counts": {
+              "pass": 42,
+              "partial": 2,
+              "fail": 6
+            }
+          },
+          "suites": {
+            "toolcall": 93,
+            "bugfind": 97,
+            "hermes": 87
+          }
+        },
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f: gemma-4-26B-A4B-it-qat-heretic-GGUF",
+          "modelLabel": "gemma-4-26B-A4B-it-qat-heretic",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-06-19T11-02-14.078Z-e10d3e9a",
+            "bugfind": "bugfind-15-2026-06-19T11-04-07.471Z-04ad8a94",
+            "hermes": "hermesagent-20-2026-06-17T11-44-55.164Z-5ef89950"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-06-19T11-02-14.078Z-e10d3e9a/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-06-19T11-04-07.471Z-04ad8a94/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-06-17T11-44-55.164Z-5ef89950/summary.json"
+          },
+          "spanHours": 47.3,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 91.4,
+            "retryPenalty": 3,
+            "effectiveScore": 88.4,
+            "counts": {
+              "pass": 42,
+              "partial": 2,
+              "fail": 6
+            }
+          },
+          "suites": {
+            "toolcall": 93,
+            "bugfind": 97,
+            "hermes": 86
+          }
+        }
+      ]
+    },
+    {
+      "target": {
+        "index": 7,
+        "name": "Gemma-4-12B (思考)",
+        "link": "models/gemma4-12b.html",
+        "slug": "gemma4-12b",
+        "variant": "thinking",
+        "maxScore": 90.3,
+        "effectiveScore": 85.3,
+        "retryPenalty": 5,
+        "toolcall": 97,
+        "bugfind": 88,
+        "hermes": 87,
+        "counts": {
+          "pass": 41,
+          "partial": 2,
+          "fail": 7
+        }
+      },
+      "status": "unique",
+      "selected": {
+        "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:gemma-4-12B-it-heretic-QAT-GGUF",
+        "modelLabel": "gemma-4-12B-it-heretic-QAT",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-06-21T11-38-59.847Z-4007fa60",
+          "bugfind": "bugfind-15-2026-06-21T11-40-03.487Z-525b6c7c",
+          "hermes": "hermesagent-20-2026-06-21T11-56-14.779Z-9fd75b67"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-06-21T11-38-59.847Z-4007fa60/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-06-21T11-40-03.487Z-525b6c7c/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-06-21T11-56-14.779Z-9fd75b67/summary.json"
+        },
+        "spanHours": 0.3,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 90.3,
+          "retryPenalty": 5,
+          "effectiveScore": 85.3,
+          "counts": {
+            "pass": 41,
+            "partial": 2,
+            "fail": 7
+          }
+        },
+        "suites": {
+          "toolcall": 97,
+          "bugfind": 88,
+          "hermes": 87
+        }
+      },
+      "candidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:gemma-4-12B-it-heretic-QAT-GGUF",
+          "modelLabel": "gemma-4-12B-it-heretic-QAT",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-06-21T11-38-59.847Z-4007fa60",
+            "bugfind": "bugfind-15-2026-06-21T11-40-03.487Z-525b6c7c",
+            "hermes": "hermesagent-20-2026-06-21T11-56-14.779Z-9fd75b67"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-06-21T11-38-59.847Z-4007fa60/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-06-21T11-40-03.487Z-525b6c7c/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-06-21T11-56-14.779Z-9fd75b67/summary.json"
+          },
+          "spanHours": 0.3,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 90.3,
+            "retryPenalty": 5,
+            "effectiveScore": 85.3,
+            "counts": {
+              "pass": 41,
+              "partial": 2,
+              "fail": 7
+            }
+          },
+          "suites": {
+            "toolcall": 97,
+            "bugfind": 88,
+            "hermes": 87
+          }
+        }
+      ],
+      "nearCandidates": [],
+      "legacyCandidates": []
+    },
+    {
+      "target": {
+        "index": 8,
+        "name": "Ornith-1.0-9B-heretic-MTP (思考)",
+        "link": "models/ornith-1-0-9b-heretic.html",
+        "slug": "ornith-1-0-9b-heretic",
+        "variant": "thinking",
+        "maxScore": 89.8,
+        "effectiveScore": 68.8,
+        "retryPenalty": 21,
+        "toolcall": 100,
+        "bugfind": 94,
+        "hermes": 79,
+        "counts": {
+          "pass": 43,
+          "partial": 0,
+          "fail": 7
+        }
+      },
+      "status": "unique",
+      "selected": {
+        "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Ornith-1.0-9B-heretic-MTP-GGUF",
+        "modelLabel": "Ornith-1.0-9B-heretic-MTP",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-06-29T12-32-26.465Z-480dbca5",
+          "bugfind": "bugfind-15-2026-06-29T12-24-45.550Z-69aa79d8",
+          "hermes": "hermesagent-20-2026-06-29T12-33-55.158Z-c4fd312a"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-06-29T12-32-26.465Z-480dbca5/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-06-29T12-24-45.550Z-69aa79d8/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-06-29T12-33-55.158Z-c4fd312a/summary.json"
+        },
+        "spanHours": 0.2,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 89.8,
+          "retryPenalty": 21,
+          "effectiveScore": 68.8,
+          "counts": {
+            "pass": 43,
+            "partial": 0,
+            "fail": 7
+          }
+        },
+        "suites": {
+          "toolcall": 100,
+          "bugfind": 94,
+          "hermes": 79
+        }
+      },
+      "candidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Ornith-1.0-9B-heretic-MTP-GGUF",
+          "modelLabel": "Ornith-1.0-9B-heretic-MTP",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-06-29T12-32-26.465Z-480dbca5",
+            "bugfind": "bugfind-15-2026-06-29T12-24-45.550Z-69aa79d8",
+            "hermes": "hermesagent-20-2026-06-29T12-33-55.158Z-c4fd312a"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-06-29T12-32-26.465Z-480dbca5/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-06-29T12-24-45.550Z-69aa79d8/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-06-29T12-33-55.158Z-c4fd312a/summary.json"
+          },
+          "spanHours": 0.2,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 89.8,
+            "retryPenalty": 21,
+            "effectiveScore": 68.8,
+            "counts": {
+              "pass": 43,
+              "partial": 0,
+              "fail": 7
+            }
+          },
+          "suites": {
+            "toolcall": 100,
+            "bugfind": 94,
+            "hermes": 79
+          }
+        }
+      ],
+      "nearCandidates": [],
+      "legacyCandidates": []
+    },
+    {
+      "target": {
+        "index": 9,
+        "name": "QwenPaw-Flash-9B (思考)",
+        "link": "models/qwenpaw-flash-9b.html",
+        "slug": "qwenpaw-flash-9b",
+        "variant": "thinking",
+        "maxScore": 88.4,
+        "effectiveScore": 64.4,
+        "retryPenalty": 24,
+        "toolcall": 100,
+        "bugfind": 88,
+        "hermes": 80,
+        "counts": {
+          "pass": 37,
+          "partial": 7,
+          "fail": 6
+        }
+      },
+      "status": "unique",
+      "selected": {
+        "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:QwenPaw-heretic-MTP-Q6_K.gguf",
+        "modelLabel": "QwenPaw-Flash-9B-MTP-heretic",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-06-19T13-01-38.119Z-d1949271",
+          "bugfind": "bugfind-15-2026-06-19T13-03-09.399Z-9db31271",
+          "hermes": "hermesagent-20-2026-06-19T13-25-22.273Z-db7d1795"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-06-19T13-01-38.119Z-d1949271/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-06-19T13-03-09.399Z-9db31271/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-06-19T13-25-22.273Z-db7d1795/summary.json"
+        },
+        "spanHours": 0.4,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 88.4,
+          "retryPenalty": 24,
+          "effectiveScore": 64.4,
+          "counts": {
+            "pass": 37,
+            "partial": 7,
+            "fail": 6
+          }
+        },
+        "suites": {
+          "toolcall": 100,
+          "bugfind": 88,
+          "hermes": 80
+        }
+      },
+      "candidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:QwenPaw-heretic-MTP-Q6_K.gguf",
+          "modelLabel": "QwenPaw-Flash-9B-MTP-heretic",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-06-19T13-01-38.119Z-d1949271",
+            "bugfind": "bugfind-15-2026-06-19T13-03-09.399Z-9db31271",
+            "hermes": "hermesagent-20-2026-06-19T13-25-22.273Z-db7d1795"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-06-19T13-01-38.119Z-d1949271/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-06-19T13-03-09.399Z-9db31271/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-06-19T13-25-22.273Z-db7d1795/summary.json"
+          },
+          "spanHours": 0.4,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 88.4,
+            "retryPenalty": 24,
+            "effectiveScore": 64.4,
+            "counts": {
+              "pass": 37,
+              "partial": 7,
+              "fail": 6
+            }
+          },
+          "suites": {
+            "toolcall": 100,
+            "bugfind": 88,
+            "hermes": 80
+          }
+        }
+      ],
+      "nearCandidates": [],
+      "legacyCandidates": []
+    },
+    {
+      "target": {
+        "index": 10,
+        "name": "Qwen3.6-27B-uncensored-MTP (无思考)",
+        "link": "models/qwen36-27b.html",
+        "slug": "qwen36-27b",
+        "variant": "no-thinking",
+        "maxScore": 87.4,
+        "effectiveScore": 84.4,
+        "retryPenalty": 3,
+        "toolcall": 96.7,
+        "bugfind": 84.2,
+        "hermes": 82.8,
+        "counts": {
+          "pass": 39,
+          "partial": 4,
+          "fail": 7
+        }
+      },
+      "status": "resolved-legacy-display",
+      "selected": {
+        "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Qwen3.6-27B-uncensored-heretic-v2-Native-MTP-Preserved.i1-IQ3_M.gguf",
+        "modelLabel": "Qwen3.6-27B",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-06-19T14-12-52.467Z-c44a3245",
+          "bugfind": "bugfind-15-2026-06-19T14-14-33.861Z-a6e92369",
+          "hermes": "hermesagent-20-2026-06-19T14-22-34.087Z-741f711c"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-06-19T14-12-52.467Z-c44a3245/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-06-19T14-14-33.861Z-a6e92369/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-06-19T14-22-34.087Z-741f711c/summary.json"
+        },
+        "spanHours": 0.2,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 87.8,
+          "retryPenalty": 3,
+          "effectiveScore": 84.8,
+          "counts": {
+            "pass": 40,
+            "partial": 4,
+            "fail": 6
+          }
+        },
+        "suites": {
+          "toolcall": 97,
+          "bugfind": 85,
+          "hermes": 83
+        }
+      },
+      "candidates": [],
+      "nearCandidates": [],
+      "legacyCandidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Qwen3.6-27B-uncensored-heretic-v2-Native-MTP-Preserved.i1-IQ3_M.gguf",
+          "modelLabel": "Qwen3.6-27B",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-06-19T14-12-52.467Z-c44a3245",
+            "bugfind": "bugfind-15-2026-06-19T14-14-33.861Z-a6e92369",
+            "hermes": "hermesagent-20-2026-06-19T14-22-34.087Z-741f711c"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-06-19T14-12-52.467Z-c44a3245/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-06-19T14-14-33.861Z-a6e92369/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-06-19T14-22-34.087Z-741f711c/summary.json"
+          },
+          "spanHours": 0.2,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 87.8,
+            "retryPenalty": 3,
+            "effectiveScore": 84.8,
+            "counts": {
+              "pass": 40,
+              "partial": 4,
+              "fail": 6
+            }
+          },
+          "suites": {
+            "toolcall": 97,
+            "bugfind": 85,
+            "hermes": 83
+          }
+        },
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Qwen3.6-27B-uncensored-heretic-v2-Native-MTP-Preserved.i1-IQ3_M.gguf",
+          "modelLabel": "Qwen3.6-27B",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-06-19T14-12-52.467Z-c44a3245",
+            "bugfind": "bugfind-15-2026-06-19T14-14-33.861Z-a6e92369",
+            "hermes": "hermesagent-20-2026-06-20T00-29-08.173Z-a1bf5dbc"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-06-19T14-12-52.467Z-c44a3245/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-06-19T14-14-33.861Z-a6e92369/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-06-20T00-29-08.173Z-a1bf5dbc/summary.json"
+          },
+          "spanHours": 10.3,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 88.6,
+            "retryPenalty": 5,
+            "effectiveScore": 83.6,
+            "counts": {
+              "pass": 40,
+              "partial": 4,
+              "fail": 6
+            }
+          },
+          "suites": {
+            "toolcall": 97,
+            "bugfind": 85,
+            "hermes": 85
+          }
+        }
+      ]
+    },
+    {
+      "target": {
+        "index": 11,
+        "name": "Qwen3.6-27B-uncensored-MTP (思考)",
+        "link": "models/qwen36-27b-thinking.html",
+        "slug": "qwen36-27b",
+        "variant": "thinking",
+        "maxScore": 91.9,
+        "effectiveScore": 73.9,
+        "retryPenalty": 18,
+        "toolcall": 100,
+        "bugfind": 93,
+        "hermes": 85,
+        "counts": {
+          "pass": 43,
+          "partial": 2,
+          "fail": 5
+        }
+      },
+      "status": "unique",
+      "selected": {
+        "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Qwen3.6-27B-uncensored-heretic-v2-Native-MTP-Preserved.i1-IQ3_M.gguf",
+        "modelLabel": "Qwen3.6-27B",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-06-19T14-48-57.332Z-d39ffbd9",
+          "bugfind": "bugfind-15-2026-06-19T14-50-23.730Z-1e49fc13",
+          "hermes": "hermesagent-20-2026-06-20T00-29-08.173Z-a1bf5dbc"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-06-19T14-48-57.332Z-d39ffbd9/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-06-19T14-50-23.730Z-1e49fc13/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-06-20T00-29-08.173Z-a1bf5dbc/summary.json"
+        },
+        "spanHours": 9.7,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 91.9,
+          "retryPenalty": 18,
+          "effectiveScore": 73.9,
+          "counts": {
+            "pass": 43,
+            "partial": 2,
+            "fail": 5
+          }
+        },
+        "suites": {
+          "toolcall": 100,
+          "bugfind": 93,
+          "hermes": 85
+        }
+      },
+      "candidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Qwen3.6-27B-uncensored-heretic-v2-Native-MTP-Preserved.i1-IQ3_M.gguf",
+          "modelLabel": "Qwen3.6-27B",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-06-19T14-48-57.332Z-d39ffbd9",
+            "bugfind": "bugfind-15-2026-06-19T14-50-23.730Z-1e49fc13",
+            "hermes": "hermesagent-20-2026-06-20T00-29-08.173Z-a1bf5dbc"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-06-19T14-48-57.332Z-d39ffbd9/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-06-19T14-50-23.730Z-1e49fc13/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-06-20T00-29-08.173Z-a1bf5dbc/summary.json"
+          },
+          "spanHours": 9.7,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 91.9,
+            "retryPenalty": 18,
+            "effectiveScore": 73.9,
+            "counts": {
+              "pass": 43,
+              "partial": 2,
+              "fail": 5
+            }
+          },
+          "suites": {
+            "toolcall": 100,
+            "bugfind": 93,
+            "hermes": 85
+          }
+        }
+      ],
+      "nearCandidates": [],
+      "legacyCandidates": []
+    },
+    {
+      "target": {
+        "index": 12,
+        "name": "DeepSeek-V4-Flash (API)",
+        "link": "models/dsv4-flash.html",
+        "slug": "dsv4-flash",
+        "variant": "default",
+        "maxScore": 93.9,
+        "effectiveScore": 84.9,
+        "retryPenalty": 9,
+        "toolcall": 100,
+        "bugfind": 93,
+        "hermes": 90,
+        "counts": {
+          "pass": 45,
+          "partial": 0,
+          "fail": 5
+        }
+      },
+      "status": "unique",
+      "selected": {
+        "modelId": "openai_compatible-1530754d-0b21-4554-a815-5e235ffa7b8f:deepseek-v4-flash-free",
+        "modelLabel": "deepseek-v4-flash-free via opencode",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-06-20T01-45-21.081Z-86232df0",
+          "bugfind": "bugfind-15-2026-06-20T01-47-19.148Z-5092b985",
+          "hermes": "hermesagent-20-2026-06-20T01-56-51.706Z-d71b3e28"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-06-20T01-45-21.081Z-86232df0/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-06-20T01-47-19.148Z-5092b985/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-06-20T01-56-51.706Z-d71b3e28/summary.json"
+        },
+        "spanHours": 0.2,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 93.9,
+          "retryPenalty": 9,
+          "effectiveScore": 84.9,
+          "counts": {
+            "pass": 45,
+            "partial": 0,
+            "fail": 5
+          }
+        },
+        "suites": {
+          "toolcall": 100,
+          "bugfind": 93,
+          "hermes": 90
+        }
+      },
+      "candidates": [
+        {
+          "modelId": "openai_compatible-1530754d-0b21-4554-a815-5e235ffa7b8f:deepseek-v4-flash-free",
+          "modelLabel": "deepseek-v4-flash-free via opencode",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-06-20T01-45-21.081Z-86232df0",
+            "bugfind": "bugfind-15-2026-06-20T01-47-19.148Z-5092b985",
+            "hermes": "hermesagent-20-2026-06-20T01-56-51.706Z-d71b3e28"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-06-20T01-45-21.081Z-86232df0/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-06-20T01-47-19.148Z-5092b985/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-06-20T01-56-51.706Z-d71b3e28/summary.json"
+          },
+          "spanHours": 0.2,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 93.9,
+            "retryPenalty": 9,
+            "effectiveScore": 84.9,
+            "counts": {
+              "pass": 45,
+              "partial": 0,
+              "fail": 5
+            }
+          },
+          "suites": {
+            "toolcall": 100,
+            "bugfind": 93,
+            "hermes": 90
+          }
+        }
+      ],
+      "nearCandidates": [],
+      "legacyCandidates": []
+    },
+    {
+      "target": {
+        "index": 13,
+        "name": "Ornith-1.0-35B-MTP-APEX (思考)",
+        "link": "models/ornith-35b-mtp-thinking.html",
+        "slug": "ornith-35b-mtp",
+        "variant": "thinking",
+        "maxScore": 93.5,
+        "effectiveScore": 75.5,
+        "retryPenalty": 18,
+        "toolcall": 100,
+        "bugfind": 93,
+        "hermes": 89,
+        "counts": {
+          "pass": 44,
+          "partial": 2,
+          "fail": 4
+        }
+      },
+      "status": "unique",
+      "selected": {
+        "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Ornith-1.0-35B-MTP-GGUF",
+        "modelLabel": "Ornith-1.0-35B-MTP-GGUF",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-06-26T13-47-18.651Z-d674d940",
+          "bugfind": "bugfind-15-2026-06-26T13-48-34.762Z-905f76cd",
+          "hermes": "hermesagent-20-2026-06-26T23-17-53.159Z-88270301"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-06-26T13-47-18.651Z-d674d940/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-06-26T13-48-34.762Z-905f76cd/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-06-26T23-17-53.159Z-88270301/summary.json"
+        },
+        "spanHours": 9.5,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 93.5,
+          "retryPenalty": 18,
+          "effectiveScore": 75.5,
+          "counts": {
+            "pass": 44,
+            "partial": 2,
+            "fail": 4
+          }
+        },
+        "suites": {
+          "toolcall": 100,
+          "bugfind": 93,
+          "hermes": 89
+        }
+      },
+      "candidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Ornith-1.0-35B-MTP-GGUF",
+          "modelLabel": "Ornith-1.0-35B-MTP-GGUF",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-06-26T13-47-18.651Z-d674d940",
+            "bugfind": "bugfind-15-2026-06-26T13-48-34.762Z-905f76cd",
+            "hermes": "hermesagent-20-2026-06-26T23-17-53.159Z-88270301"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-06-26T13-47-18.651Z-d674d940/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-06-26T13-48-34.762Z-905f76cd/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-06-26T23-17-53.159Z-88270301/summary.json"
+          },
+          "spanHours": 9.5,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 93.5,
+            "retryPenalty": 18,
+            "effectiveScore": 75.5,
+            "counts": {
+              "pass": 44,
+              "partial": 2,
+              "fail": 4
+            }
+          },
+          "suites": {
+            "toolcall": 100,
+            "bugfind": 93,
+            "hermes": 89
+          }
+        }
+      ],
+      "nearCandidates": [],
+      "legacyCandidates": []
+    },
+    {
+      "target": {
+        "index": 14,
+        "name": "Ornith-1.0-35B-Heretic-MTP-APEX (思考 · Heretic)",
+        "link": "models/ornith-35b-heretic-mtp-apex-thinking.html",
+        "slug": "ornith-35b-heretic-mtp-apex",
+        "variant": "thinking",
+        "maxScore": 95,
+        "effectiveScore": 90,
+        "retryPenalty": 5,
+        "toolcall": 100,
+        "bugfind": 98,
+        "hermes": 89,
+        "counts": {
+          "pass": 45,
+          "partial": 2,
+          "fail": 3
+        }
+      },
+      "status": "unique",
+      "selected": {
+        "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Agents-A1-Uncensored-MTP-GGUF",
+        "modelLabel": "Ornith-1.0-35B-Heretic-MTP-APEX-GGUF",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-07-12T10-36-22.555Z-84599f3d",
+          "bugfind": "bugfind-15-2026-07-12T10-52-48.296Z-f5506d2e",
+          "hermes": "hermesagent-20-2026-07-12T11-10-20.673Z-31c728d4"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-07-12T10-36-22.555Z-84599f3d/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-07-12T10-52-48.296Z-f5506d2e/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-07-12T11-10-20.673Z-31c728d4/summary.json"
+        },
+        "spanHours": 0.6,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 95,
+          "retryPenalty": 5,
+          "effectiveScore": 90,
+          "counts": {
+            "pass": 45,
+            "partial": 2,
+            "fail": 3
+          }
+        },
+        "suites": {
+          "toolcall": 100,
+          "bugfind": 98,
+          "hermes": 89
+        }
+      },
+      "candidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Agents-A1-Uncensored-MTP-GGUF",
+          "modelLabel": "Ornith-1.0-35B-Heretic-MTP-APEX-GGUF",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-07-12T10-36-22.555Z-84599f3d",
+            "bugfind": "bugfind-15-2026-07-12T10-52-48.296Z-f5506d2e",
+            "hermes": "hermesagent-20-2026-07-12T11-10-20.673Z-31c728d4"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-07-12T10-36-22.555Z-84599f3d/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-07-12T10-52-48.296Z-f5506d2e/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-07-12T11-10-20.673Z-31c728d4/summary.json"
+          },
+          "spanHours": 0.6,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 95,
+            "retryPenalty": 5,
+            "effectiveScore": 90,
+            "counts": {
+              "pass": 45,
+              "partial": 2,
+              "fail": 3
+            }
+          },
+          "suites": {
+            "toolcall": 100,
+            "bugfind": 98,
+            "hermes": 89
+          }
+        }
+      ],
+      "nearCandidates": [],
+      "legacyCandidates": []
+    },
+    {
+      "target": {
+        "index": 15,
+        "name": "Ornith-1.0-35B-Heretic-MTP-APEX (无思考 · Heretic)",
+        "link": "models/ornith-35b-heretic-mtp-apex.html",
+        "slug": "ornith-35b-heretic-mtp-apex",
+        "variant": "no-thinking",
+        "maxScore": 92.2,
+        "effectiveScore": 76.2,
+        "retryPenalty": 16,
+        "toolcall": 97,
+        "bugfind": 97,
+        "hermes": 85,
+        "counts": {
+          "pass": 42,
+          "partial": 2,
+          "fail": 6
+        }
+      },
+      "status": "unique",
+      "selected": {
+        "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Agents-A1-Uncensored-MTP-GGUF",
+        "modelLabel": "Ornith-1.0-35B-Heretic-MTP-APEX-GGUF",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-07-12T11-59-08.682Z-e0b7938a",
+          "bugfind": "bugfind-15-2026-07-12T12-03-04.600Z-df77a548",
+          "hermes": "hermesagent-20-2026-07-12T12-12-34.480Z-63d31604"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-07-12T11-59-08.682Z-e0b7938a/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-07-12T12-03-04.600Z-df77a548/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-07-12T12-12-34.480Z-63d31604/summary.json"
+        },
+        "spanHours": 0.2,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 92.2,
+          "retryPenalty": 16,
+          "effectiveScore": 76.2,
+          "counts": {
+            "pass": 42,
+            "partial": 2,
+            "fail": 6
+          }
+        },
+        "suites": {
+          "toolcall": 97,
+          "bugfind": 97,
+          "hermes": 85
+        }
+      },
+      "candidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Agents-A1-Uncensored-MTP-GGUF",
+          "modelLabel": "Ornith-1.0-35B-Heretic-MTP-APEX-GGUF",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-07-12T11-59-08.682Z-e0b7938a",
+            "bugfind": "bugfind-15-2026-07-12T12-03-04.600Z-df77a548",
+            "hermes": "hermesagent-20-2026-07-12T12-12-34.480Z-63d31604"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-07-12T11-59-08.682Z-e0b7938a/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-07-12T12-03-04.600Z-df77a548/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-07-12T12-12-34.480Z-63d31604/summary.json"
+          },
+          "spanHours": 0.2,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 92.2,
+            "retryPenalty": 16,
+            "effectiveScore": 76.2,
+            "counts": {
+              "pass": 42,
+              "partial": 2,
+              "fail": 6
+            }
+          },
+          "suites": {
+            "toolcall": 97,
+            "bugfind": 97,
+            "hermes": 85
+          }
+        }
+      ],
+      "nearCandidates": [],
+      "legacyCandidates": []
+    },
+    {
+      "target": {
+        "index": 16,
+        "name": "Ornith-1.0-35B-MTP-APEX (无思考)",
+        "link": "models/ornith-35b-mtp.html",
+        "slug": "ornith-35b-mtp",
+        "variant": "no-thinking",
+        "maxScore": 93.2,
+        "effectiveScore": 85.2,
+        "retryPenalty": 8,
+        "toolcall": 100,
+        "bugfind": 92,
+        "hermes": 89,
+        "counts": {
+          "pass": 45,
+          "partial": 1,
+          "fail": 4
+        }
+      },
+      "status": "unique",
+      "selected": {
+        "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Ornith-1.0-35B-MTP-GGUF",
+        "modelLabel": "Ornith-1.0-35B-MTP-GGUF",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-06-27T14-26-26.036Z-e57e3733",
+          "bugfind": "bugfind-15-2026-06-27T14-30-03.113Z-e295f6eb",
+          "hermes": "hermesagent-20-2026-06-27T14-34-45.040Z-94ff3305"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-06-27T14-26-26.036Z-e57e3733/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-06-27T14-30-03.113Z-e295f6eb/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-06-27T14-34-45.040Z-94ff3305/summary.json"
+        },
+        "spanHours": 0.1,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 93.2,
+          "retryPenalty": 8,
+          "effectiveScore": 85.2,
+          "counts": {
+            "pass": 45,
+            "partial": 1,
+            "fail": 4
+          }
+        },
+        "suites": {
+          "toolcall": 100,
+          "bugfind": 92,
+          "hermes": 89
+        }
+      },
+      "candidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Ornith-1.0-35B-MTP-GGUF",
+          "modelLabel": "Ornith-1.0-35B-MTP-GGUF",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-06-27T14-26-26.036Z-e57e3733",
+            "bugfind": "bugfind-15-2026-06-27T14-30-03.113Z-e295f6eb",
+            "hermes": "hermesagent-20-2026-06-27T14-34-45.040Z-94ff3305"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-06-27T14-26-26.036Z-e57e3733/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-06-27T14-30-03.113Z-e295f6eb/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-06-27T14-34-45.040Z-94ff3305/summary.json"
+          },
+          "spanHours": 0.1,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 93.2,
+            "retryPenalty": 8,
+            "effectiveScore": 85.2,
+            "counts": {
+              "pass": 45,
+              "partial": 1,
+              "fail": 4
+            }
+          },
+          "suites": {
+            "toolcall": 100,
+            "bugfind": 92,
+            "hermes": 89
+          }
+        }
+      ],
+      "nearCandidates": [],
+      "legacyCandidates": []
+    },
+    {
+      "target": {
+        "index": 17,
+        "name": "Agents-A1 (思考)",
+        "link": "models/agents-a1-thinking.html",
+        "slug": "agents-a1",
+        "variant": "thinking",
+        "maxScore": 91.2,
+        "effectiveScore": 71.2,
+        "retryPenalty": 20,
+        "toolcall": 100,
+        "bugfind": 88,
+        "hermes": 87,
+        "counts": {
+          "pass": 43,
+          "partial": 0,
+          "fail": 7
+        }
+      },
+      "status": "unique",
+      "selected": {
+        "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Agents-A1-MTP-GGUF",
+        "modelLabel": "Agents-A1-MTP-GGUF",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-07-03T01-53-08.054Z-7946257c",
+          "bugfind": "bugfind-15-2026-07-03T01-57-13.030Z-7ff551ae",
+          "hermes": "hermesagent-20-2026-07-03T02-33-50.696Z-c6208cac"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-07-03T01-53-08.054Z-7946257c/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-07-03T01-57-13.030Z-7ff551ae/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-07-03T02-33-50.696Z-c6208cac/summary.json"
+        },
+        "spanHours": 0.7,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 91.2,
+          "retryPenalty": 20,
+          "effectiveScore": 71.2,
+          "counts": {
+            "pass": 43,
+            "partial": 0,
+            "fail": 7
+          }
+        },
+        "suites": {
+          "toolcall": 100,
+          "bugfind": 88,
+          "hermes": 87
+        }
+      },
+      "candidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Agents-A1-MTP-GGUF",
+          "modelLabel": "Agents-A1-MTP-GGUF",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-07-03T01-53-08.054Z-7946257c",
+            "bugfind": "bugfind-15-2026-07-03T01-57-13.030Z-7ff551ae",
+            "hermes": "hermesagent-20-2026-07-03T02-33-50.696Z-c6208cac"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-07-03T01-53-08.054Z-7946257c/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-07-03T01-57-13.030Z-7ff551ae/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-07-03T02-33-50.696Z-c6208cac/summary.json"
+          },
+          "spanHours": 0.7,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 91.2,
+            "retryPenalty": 20,
+            "effectiveScore": 71.2,
+            "counts": {
+              "pass": 43,
+              "partial": 0,
+              "fail": 7
+            }
+          },
+          "suites": {
+            "toolcall": 100,
+            "bugfind": 88,
+            "hermes": 87
+          }
+        }
+      ],
+      "nearCandidates": [],
+      "legacyCandidates": []
+    },
+    {
+      "target": {
+        "index": 18,
+        "name": "Agents-A1 (无思考)",
+        "link": "models/agents-a1.html",
+        "slug": "agents-a1",
+        "variant": "no-thinking",
+        "maxScore": 93.1,
+        "effectiveScore": 61.1,
+        "retryPenalty": 32,
+        "toolcall": 97,
+        "bugfind": 100,
+        "hermes": 85,
+        "counts": {
+          "pass": 44,
+          "partial": 1,
+          "fail": 5
+        }
+      },
+      "status": "unique",
+      "selected": {
+        "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Agents-A1-MTP-GGUF",
+        "modelLabel": "Agents-A1-MTP-GGUF",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-07-03T07-16-31.908Z-54f4d5c7",
+          "bugfind": "bugfind-15-2026-07-03T08-04-37.686Z-f7fdde09",
+          "hermes": "hermesagent-20-2026-07-03T08-08-40.809Z-ea30eedf"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-07-03T07-16-31.908Z-54f4d5c7/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-07-03T08-04-37.686Z-f7fdde09/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-07-03T08-08-40.809Z-ea30eedf/summary.json"
+        },
+        "spanHours": 0.9,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 93.1,
+          "retryPenalty": 32,
+          "effectiveScore": 61.1,
+          "counts": {
+            "pass": 44,
+            "partial": 1,
+            "fail": 5
+          }
+        },
+        "suites": {
+          "toolcall": 97,
+          "bugfind": 100,
+          "hermes": 85
+        }
+      },
+      "candidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Agents-A1-MTP-GGUF",
+          "modelLabel": "Agents-A1-MTP-GGUF",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-07-03T07-16-31.908Z-54f4d5c7",
+            "bugfind": "bugfind-15-2026-07-03T08-04-37.686Z-f7fdde09",
+            "hermes": "hermesagent-20-2026-07-03T08-08-40.809Z-ea30eedf"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-07-03T07-16-31.908Z-54f4d5c7/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-07-03T08-04-37.686Z-f7fdde09/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-07-03T08-08-40.809Z-ea30eedf/summary.json"
+          },
+          "spanHours": 0.9,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 93.1,
+            "retryPenalty": 32,
+            "effectiveScore": 61.1,
+            "counts": {
+              "pass": 44,
+              "partial": 1,
+              "fail": 5
+            }
+          },
+          "suites": {
+            "toolcall": 97,
+            "bugfind": 100,
+            "hermes": 85
+          }
+        }
+      ],
+      "nearCandidates": [],
+      "legacyCandidates": []
+    },
+    {
+      "target": {
+        "index": 19,
+        "name": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored (思考)",
+        "link": "models/qwen-agentworld-35b-thinking.html",
+        "slug": "qwen-agentworld-35b",
+        "variant": "thinking",
+        "maxScore": 85.6,
+        "effectiveScore": 81.6,
+        "retryPenalty": 4,
+        "toolcall": 93,
+        "bugfind": 87,
+        "hermes": 79,
+        "counts": {
+          "pass": 40,
+          "partial": 2,
+          "fail": 8
+        }
+      },
+      "status": "unique",
+      "selected": {
+        "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Agents-A1-Uncensored-MTP-GGUF",
+        "modelLabel": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-07-07T22-02-33.720Z-d457b1cb",
+          "bugfind": "bugfind-15-2026-07-07T22-07-13.603Z-613cf02f",
+          "hermes": "hermesagent-20-2026-07-07T23-40-15.965Z-ad7b7bad"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-07-07T22-02-33.720Z-d457b1cb/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-07-07T22-07-13.603Z-613cf02f/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-07-07T23-40-15.965Z-ad7b7bad/summary.json"
+        },
+        "spanHours": 1.6,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 85.6,
+          "retryPenalty": 4,
+          "effectiveScore": 81.6,
+          "counts": {
+            "pass": 40,
+            "partial": 2,
+            "fail": 8
+          }
+        },
+        "suites": {
+          "toolcall": 93,
+          "bugfind": 87,
+          "hermes": 79
+        }
+      },
+      "candidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Agents-A1-Uncensored-MTP-GGUF",
+          "modelLabel": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-07-07T22-02-33.720Z-d457b1cb",
+            "bugfind": "bugfind-15-2026-07-07T22-07-13.603Z-613cf02f",
+            "hermes": "hermesagent-20-2026-07-07T23-40-15.965Z-ad7b7bad"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-07-07T22-02-33.720Z-d457b1cb/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-07-07T22-07-13.603Z-613cf02f/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-07-07T23-40-15.965Z-ad7b7bad/summary.json"
+          },
+          "spanHours": 1.6,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 85.6,
+            "retryPenalty": 4,
+            "effectiveScore": 81.6,
+            "counts": {
+              "pass": 40,
+              "partial": 2,
+              "fail": 8
+            }
+          },
+          "suites": {
+            "toolcall": 93,
+            "bugfind": 87,
+            "hermes": 79
+          }
+        }
+      ],
+      "nearCandidates": [],
+      "legacyCandidates": []
+    },
+    {
+      "target": {
+        "index": 20,
+        "name": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored (无思考)",
+        "link": "models/qwen-agentworld-35b.html",
+        "slug": "qwen-agentworld-35b",
+        "variant": "no-thinking",
+        "maxScore": 75,
+        "effectiveScore": 75,
+        "retryPenalty": 0,
+        "toolcall": 83,
+        "bugfind": 83,
+        "hermes": 63,
+        "counts": {
+          "pass": 33,
+          "partial": 4,
+          "fail": 13
+        }
+      },
+      "status": "resolved-nearest",
+      "selected": {
+        "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Agents-A1-Uncensored-MTP-GGUF",
+        "modelLabel": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-07-08T02-46-34.305Z-b8b5675c",
+          "bugfind": "bugfind-15-2026-07-08T03-01-27.636Z-afa6284e",
+          "hermes": "hermesagent-20-2026-07-08T03-53-23.106Z-ad31396f"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-07-08T02-46-34.305Z-b8b5675c/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-07-08T03-01-27.636Z-afa6284e/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-07-08T03-53-23.106Z-ad31396f/summary.json"
+        },
+        "spanHours": 1.1,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 75,
+          "retryPenalty": 0,
+          "effectiveScore": 75,
+          "counts": {
+            "pass": 33,
+            "partial": 4,
+            "fail": 13
+          }
+        },
+        "suites": {
+          "toolcall": 83,
+          "bugfind": 83,
+          "hermes": 63
+        }
+      },
+      "candidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Agents-A1-Uncensored-MTP-GGUF",
+          "modelLabel": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-07-08T02-46-34.305Z-b8b5675c",
+            "bugfind": "bugfind-15-2026-07-08T03-01-27.636Z-afa6284e",
+            "hermes": "hermesagent-20-2026-07-08T03-53-23.106Z-ad31396f"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-07-08T02-46-34.305Z-b8b5675c/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-07-08T03-01-27.636Z-afa6284e/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-07-08T03-53-23.106Z-ad31396f/summary.json"
+          },
+          "spanHours": 1.1,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 75,
+            "retryPenalty": 0,
+            "effectiveScore": 75,
+            "counts": {
+              "pass": 33,
+              "partial": 4,
+              "fail": 13
+            }
+          },
+          "suites": {
+            "toolcall": 83,
+            "bugfind": 83,
+            "hermes": 63
+          }
+        },
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Agents-A1-Uncensored-MTP-GGUF",
+          "modelLabel": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-07-07T21-55-54.368Z-8488765a",
+            "bugfind": "bugfind-15-2026-07-08T03-01-27.636Z-afa6284e",
+            "hermes": "hermesagent-20-2026-07-08T03-53-23.106Z-ad31396f"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-07-07T21-55-54.368Z-8488765a/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-07-08T03-01-27.636Z-afa6284e/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-07-08T03-53-23.106Z-ad31396f/summary.json"
+          },
+          "spanHours": 6,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 75,
+            "retryPenalty": 0,
+            "effectiveScore": 75,
+            "counts": {
+              "pass": 33,
+              "partial": 4,
+              "fail": 13
+            }
+          },
+          "suites": {
+            "toolcall": 83,
+            "bugfind": 83,
+            "hermes": 63
+          }
+        }
+      ],
+      "nearCandidates": [],
+      "legacyCandidates": []
+    },
+    {
+      "target": {
+        "index": 21,
+        "name": "Qwen-AgentWorld-35B-A3B-APEX-I-Compact (原版·思考)",
+        "link": "models/qwen-agentworld-35b-original.html",
+        "slug": "qwen-agentworld-35b-original",
+        "variant": "thinking",
+        "maxScore": 88.5,
+        "effectiveScore": 87.5,
+        "retryPenalty": 1,
+        "toolcall": 100,
+        "bugfind": 87,
+        "hermes": 81,
+        "counts": {
+          "pass": 41,
+          "partial": 1,
+          "fail": 8
+        }
+      },
+      "status": "unique",
+      "selected": {
+        "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Qwen-AgentWorld-35B-A3B-APEX-I-Compact",
+        "modelLabel": "Qwen-AgentWorld-35B-A3B-APEX",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-07-08T05-30-36.755Z-91486c3f",
+          "bugfind": "bugfind-15-2026-07-08T05-33-12.663Z-37f66669",
+          "hermes": "hermesagent-20-2026-07-08T05-52-18.183Z-f506ad71"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-07-08T05-30-36.755Z-91486c3f/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-07-08T05-33-12.663Z-37f66669/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-07-08T05-52-18.183Z-f506ad71/summary.json"
+        },
+        "spanHours": 0.4,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 88.5,
+          "retryPenalty": 1,
+          "effectiveScore": 87.5,
+          "counts": {
+            "pass": 41,
+            "partial": 1,
+            "fail": 8
+          }
+        },
+        "suites": {
+          "toolcall": 100,
+          "bugfind": 87,
+          "hermes": 81
+        }
+      },
+      "candidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Qwen-AgentWorld-35B-A3B-APEX-I-Compact",
+          "modelLabel": "Qwen-AgentWorld-35B-A3B-APEX",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-07-08T05-30-36.755Z-91486c3f",
+            "bugfind": "bugfind-15-2026-07-08T05-33-12.663Z-37f66669",
+            "hermes": "hermesagent-20-2026-07-08T05-52-18.183Z-f506ad71"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-07-08T05-30-36.755Z-91486c3f/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-07-08T05-33-12.663Z-37f66669/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-07-08T05-52-18.183Z-f506ad71/summary.json"
+          },
+          "spanHours": 0.4,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 88.5,
+            "retryPenalty": 1,
+            "effectiveScore": 87.5,
+            "counts": {
+              "pass": 41,
+              "partial": 1,
+              "fail": 8
+            }
+          },
+          "suites": {
+            "toolcall": 100,
+            "bugfind": 87,
+            "hermes": 81
+          }
+        }
+      ],
+      "nearCandidates": [],
+      "legacyCandidates": []
+    },
+    {
+      "target": {
+        "index": 22,
+        "name": "Ternary-Bonsai-27B-Q2_0 (思考)",
+        "link": "models/ternary-bonsai-27b-q2-0.html#thinking",
+        "slug": "ternary-bonsai-27b-q2-0",
+        "variant": "thinking",
+        "maxScore": 93.7,
+        "effectiveScore": 87.7,
+        "retryPenalty": 6,
+        "toolcall": 100,
+        "bugfind": 95,
+        "hermes": 88,
+        "counts": {
+          "pass": 44,
+          "partial": 1,
+          "fail": 5
+        }
+      },
+      "status": "unique",
+      "selected": {
+        "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Ternary-Bonsai-27B-Q2_0",
+        "modelLabel": "Ternary-Bonsai-27B-Q2_0",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-07-17T10-57-28.036Z-f8f5aa55",
+          "bugfind": "bugfind-15-2026-07-17T11-11-18.186Z-65322b29",
+          "hermes": "hermesagent-20-2026-07-17T11-24-52.984Z-e311f046"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-07-17T10-57-28.036Z-f8f5aa55/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-07-17T11-11-18.186Z-65322b29/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-07-17T11-24-52.984Z-e311f046/summary.json"
+        },
+        "spanHours": 0.5,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 93.7,
+          "retryPenalty": 6,
+          "effectiveScore": 87.7,
+          "counts": {
+            "pass": 44,
+            "partial": 1,
+            "fail": 5
+          }
+        },
+        "suites": {
+          "toolcall": 100,
+          "bugfind": 95,
+          "hermes": 88
+        }
+      },
+      "candidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Ternary-Bonsai-27B-Q2_0",
+          "modelLabel": "Ternary-Bonsai-27B-Q2_0",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-07-17T10-57-28.036Z-f8f5aa55",
+            "bugfind": "bugfind-15-2026-07-17T11-11-18.186Z-65322b29",
+            "hermes": "hermesagent-20-2026-07-17T11-24-52.984Z-e311f046"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-07-17T10-57-28.036Z-f8f5aa55/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-07-17T11-11-18.186Z-65322b29/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-07-17T11-24-52.984Z-e311f046/summary.json"
+          },
+          "spanHours": 0.5,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 93.7,
+            "retryPenalty": 6,
+            "effectiveScore": 87.7,
+            "counts": {
+              "pass": 44,
+              "partial": 1,
+              "fail": 5
+            }
+          },
+          "suites": {
+            "toolcall": 100,
+            "bugfind": 95,
+            "hermes": 88
+          }
+        }
+      ],
+      "nearCandidates": [],
+      "legacyCandidates": []
+    },
+    {
+      "target": {
+        "index": 23,
+        "name": "Ternary-Bonsai-27B-Q2_0 (无思考)",
+        "link": "models/ternary-bonsai-27b-q2-0.html#no-thinking",
+        "slug": "ternary-bonsai-27b-q2-0",
+        "variant": "no-thinking",
+        "maxScore": 91,
+        "effectiveScore": 88,
+        "retryPenalty": 3,
+        "toolcall": 100,
+        "bugfind": 90,
+        "hermes": 85,
+        "counts": {
+          "pass": 43,
+          "partial": 1,
+          "fail": 6
+        }
+      },
+      "status": "unique",
+      "selected": {
+        "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Ternary-Bonsai-27B-Q2_0",
+        "modelLabel": "Ternary-Bonsai-27B-Q2_0",
+        "runIds": {
+          "toolcall": "toolcall-15-2026-07-17T12-39-56.369Z-91f09127",
+          "bugfind": "bugfind-15-2026-07-17T12-41-49.455Z-e7edd327",
+          "hermes": "hermesagent-20-2026-07-17T12-45-47.252Z-a07c0419"
+        },
+        "sources": {
+          "toolcall": "toolcall-15/toolcall-15-2026-07-17T12-39-56.369Z-91f09127/summary.json",
+          "bugfind": "bugfind-15/bugfind-15-2026-07-17T12-41-49.455Z-e7edd327/summary.json",
+          "hermes": "hermesagent-20/hermesagent-20-2026-07-17T12-45-47.252Z-a07c0419/summary.json"
+        },
+        "spanHours": 0.1,
+        "scoring": {
+          "weights": {
+            "toolcall": 0.3,
+            "bugfind": 0.3,
+            "hermes": 0.4
+          },
+          "maxScore": 91,
+          "retryPenalty": 3,
+          "effectiveScore": 88,
+          "counts": {
+            "pass": 43,
+            "partial": 1,
+            "fail": 6
+          }
+        },
+        "suites": {
+          "toolcall": 100,
+          "bugfind": 90,
+          "hermes": 85
+        }
+      },
+      "candidates": [
+        {
+          "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Ternary-Bonsai-27B-Q2_0",
+          "modelLabel": "Ternary-Bonsai-27B-Q2_0",
+          "runIds": {
+            "toolcall": "toolcall-15-2026-07-17T12-39-56.369Z-91f09127",
+            "bugfind": "bugfind-15-2026-07-17T12-41-49.455Z-e7edd327",
+            "hermes": "hermesagent-20-2026-07-17T12-45-47.252Z-a07c0419"
+          },
+          "sources": {
+            "toolcall": "toolcall-15/toolcall-15-2026-07-17T12-39-56.369Z-91f09127/summary.json",
+            "bugfind": "bugfind-15/bugfind-15-2026-07-17T12-41-49.455Z-e7edd327/summary.json",
+            "hermes": "hermesagent-20/hermesagent-20-2026-07-17T12-45-47.252Z-a07c0419/summary.json"
+          },
+          "spanHours": 0.1,
+          "scoring": {
+            "weights": {
+              "toolcall": 0.3,
+              "bugfind": 0.3,
+              "hermes": 0.4
+            },
+            "maxScore": 91,
+            "retryPenalty": 3,
+            "effectiveScore": 88,
+            "counts": {
+              "pass": 43,
+              "partial": 1,
+              "fail": 6
+            }
+          },
+          "suites": {
+            "toolcall": 100,
+            "bugfind": 90,
+            "hermes": 85
+          }
+        }
+      ],
+      "nearCandidates": [],
+      "legacyCandidates": []
+    }
+  ],
+  "rejected": [
+    {
+      "file": "bugfind-15/bugfind-15-2026-06-07T23-57-45.647Z-a705f94f/summary.json",
+      "reason": "cancelled"
+    },
+    {
+      "file": "bugfind-15/bugfind-15-2026-06-14T07-36-23.257Z-5489c860/summary.json",
+      "reason": "cancelled"
+    },
+    {
+      "file": "bugfind-15/bugfind-15-2026-06-14T08-18-51.263Z-fb234519/summary.json",
+      "reason": "cancelled"
+    },
+    {
+      "file": "bugfind-15/bugfind-15-2026-06-14T08-23-35.179Z-d1c9c3e1/summary.json",
+      "reason": "cancelled"
+    },
+    {
+      "file": "bugfind-15/bugfind-15-2026-06-17T10-14-24.221Z-2bbfda83/summary.json",
+      "reason": "cancelled"
+    },
+    {
+      "file": "bugfind-15/bugfind-15-2026-06-23T04-20-02.991Z-12917b9b/summary.json",
+      "reason": "cancelled"
+    },
+    {
+      "file": "hermesagent-20/hermesagent-20-2026-05-20T13-24-12.057Z-9b2644f7/summary.json",
+      "reason": "cancelled"
+    },
+    {
+      "file": "hermesagent-20/hermesagent-20-2026-06-08T00-24-50.066Z-ac2ace91/summary.json",
+      "reason": "cancelled"
+    },
+    {
+      "file": "hermesagent-20/hermesagent-20-2026-06-08T00-30-16.425Z-70807b5a/summary.json",
+      "reason": "cancelled"
+    },
+    {
+      "file": "hermesagent-20/hermesagent-20-2026-06-10T10-23-47.511Z-6bfa3ae2/summary.json",
+      "reason": "cancelled"
+    },
+    {
+      "file": "hermesagent-20/hermesagent-20-2026-06-14T07-42-45.104Z-0cd47f9a/summary.json",
+      "reason": "cancelled"
+    },
+    {
+      "file": "hermesagent-20/hermesagent-20-2026-06-17T11-24-39.923Z-e8c98cc6/summary.json",
+      "reason": "cancelled"
+    },
+    {
+      "file": "hermesagent-20/hermesagent-20-2026-06-19T06-58-59.895Z-94d9ac9e/summary.json",
+      "reason": "cancelled"
+    },
+    {
+      "file": "hermesagent-20/hermesagent-20-2026-06-21T09-01-58.243Z-e683f457/summary.json",
+      "reason": "cancelled"
+    },
+    {
+      "file": "hermesagent-20/hermesagent-20-2026-06-23T04-53-11.149Z-0dcf91d7/summary.json",
+      "reason": "cancelled"
+    },
+    {
+      "file": "hermesagent-20/hermesagent-20-2026-06-23T14-03-15.285Z-da2e9814/summary.json",
+      "reason": "cancelled"
+    },
+    {
+      "file": "toolcall-15/toolcall-15-2026-05-22T07-17-22.290Z-0cbd29d3/summary.json",
+      "reason": "cancelled"
+    },
+    {
+      "file": "toolcall-15/toolcall-15-2026-06-07T23-48-53.057Z-c84081e6/summary.json",
+      "reason": "cancelled"
+    },
+    {
+      "file": "toolcall-15/toolcall-15-2026-06-07T23-53-20.566Z-237aeccb/summary.json",
+      "reason": "cancelled"
+    },
+    {
+      "file": "toolcall-15/toolcall-15-2026-06-08T00-28-35.194Z-3b5b2991/summary.json",
+      "reason": "cancelled"
+    },
+    {
+      "file": "toolcall-15/toolcall-15-2026-06-23T03-42-02.446Z-da73a6f8/summary.json",
+      "reason": "cancelled"
+    },
+    {
+      "file": "toolcall-15/toolcall-15-2026-06-23T07-37-02.901Z-453291e8/summary.json",
+      "reason": "cancelled"
+    }
+  ]
+}

@@ -1,0 +1,830 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-19T14:03:16.558Z",
+  "model": {
+    "id": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:QwenPaw-heretic-MTP-Q6_K.gguf",
+    "label": "QwenPaw-Flash-9B-MTP-heretic",
+    "slug": "qwenpaw-flash-9b",
+    "variant": "thinking"
+  },
+  "scoring": {
+    "weights": {
+      "toolcall": 0.3,
+      "bugfind": 0.3,
+      "hermes": 0.4
+    },
+    "maxScore": 88.4,
+    "retryPenalty": 24,
+    "effectiveScore": 64.4,
+    "counts": {
+      "pass": 37,
+      "partial": 7,
+      "fail": 6
+    }
+  },
+  "suites": {
+    "toolcall": {
+      "packId": "toolcall-15",
+      "packVersion": "1.0.1",
+      "runId": "toolcall-15-2026-06-19T13-01-38.119Z-d1949271",
+      "startedAt": "2026-06-19T13:01:38.250Z",
+      "completedAt": "2026-06-19T13:02:52.880Z",
+      "model": {
+        "id": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:QwenPaw-heretic-MTP-Q6_K.gguf",
+        "label": "QwenPaw-Flash-9B-MTP-heretic"
+      },
+      "source": {
+        "fileName": "toolcall-15_toolcall-15-2026-06-19T13-01-38.119Z-d1949271.json",
+        "sha256": "1b33695d4a5a4a8e74d38d3ab36408216578b2d0d6bd0637d63ed790846f6097"
+      },
+      "initialTotalScore": 90,
+      "totalScore": 100,
+      "categories": [
+        {
+          "id": "A",
+          "label": "Tool Selection",
+          "score": 100,
+          "weight": 20
+        },
+        {
+          "id": "B",
+          "label": "Parameter Precision",
+          "score": 100,
+          "weight": 20
+        },
+        {
+          "id": "C",
+          "label": "Multi-Step Chains",
+          "score": 100,
+          "weight": 20
+        },
+        {
+          "id": "D",
+          "label": "Restraint & Refusal",
+          "score": 100,
+          "weight": 20
+        },
+        {
+          "id": "E",
+          "label": "Error Recovery",
+          "score": 100,
+          "weight": 20
+        }
+      ],
+      "retryPenalty": 4,
+      "counts": {
+        "pass": 15,
+        "partial": 0,
+        "fail": 0
+      },
+      "results": [
+        {
+          "id": "TC-01",
+          "status": "pass",
+          "score": 100,
+          "summary": "Used get_weather with Berlin only.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "TC-02",
+          "status": "pass",
+          "score": 100,
+          "summary": "Used only get_stock_price for AAPL.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "TC-03",
+          "status": "pass",
+          "score": 100,
+          "summary": "Looked up Sarah before sending the email.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "TC-04",
+          "status": "pass",
+          "score": 100,
+          "summary": "Requested Tokyo weather in Fahrenheit explicitly.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "TC-05",
+          "status": "pass",
+          "score": 100,
+          "summary": "Parsed next Monday and included the requested meeting details.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "TC-06",
+          "status": "pass",
+          "score": 100,
+          "summary": "Issued separate translate_text calls for both languages.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "TC-07",
+          "status": "pass",
+          "score": 100,
+          "summary": "Completed the full four-step chain with the right data.",
+          "attempts": 2,
+          "retries": 1,
+          "firstAttempt": {
+            "status": "fail",
+            "score": 0
+          }
+        },
+        {
+          "id": "TC-08",
+          "status": "pass",
+          "score": 100,
+          "summary": "Checked the weather first, then set the rainy-day reminder.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "TC-09",
+          "status": "pass",
+          "score": 100,
+          "summary": "Handled both independent tasks.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "TC-10",
+          "status": "pass",
+          "score": 100,
+          "summary": "Answered directly without tool use.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "TC-11",
+          "status": "pass",
+          "score": 100,
+          "summary": "Did the math directly.",
+          "attempts": 4,
+          "retries": 3,
+          "firstAttempt": {
+            "status": "partial",
+            "score": 50
+          }
+        },
+        {
+          "id": "TC-12",
+          "status": "pass",
+          "score": 100,
+          "summary": "Refused cleanly because no delete-email tool exists.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "TC-13",
+          "status": "pass",
+          "score": 100,
+          "summary": "Retried after the empty result and recovered.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "TC-14",
+          "status": "pass",
+          "score": 100,
+          "summary": "Acknowledged the stock tool failure and handled it gracefully.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "TC-15",
+          "status": "pass",
+          "score": 100,
+          "summary": "Used the searched population value in the calculator.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        }
+      ]
+    },
+    "bugfind": {
+      "packId": "bugfind-15",
+      "packVersion": "1.0.1",
+      "runId": "bugfind-15-2026-06-19T13-03-09.399Z-9db31271",
+      "startedAt": "2026-06-19T13:03:10.146Z",
+      "completedAt": "2026-06-19T13:25:07.272Z",
+      "model": {
+        "id": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:QwenPaw-heretic-MTP-Q6_K.gguf",
+        "label": "QwenPaw-Flash-9B-MTP-heretic"
+      },
+      "source": {
+        "fileName": "bugfind-15_bugfind-15-2026-06-19T13-03-09.399Z-9db31271.json",
+        "sha256": "9953985a91d5e20bbb7799ea9e8baa32e1eed4c730c7549995f68b4fb32cf1bd"
+      },
+      "initialTotalScore": 73,
+      "totalScore": 88,
+      "categories": [
+        {
+          "id": "A",
+          "label": "Syntax & Surface",
+          "score": 67,
+          "weight": 15
+        },
+        {
+          "id": "B",
+          "label": "Logic & Algorithmic",
+          "score": 100,
+          "weight": 25
+        },
+        {
+          "id": "C",
+          "label": "Subtle & Tricky",
+          "score": 100,
+          "weight": 25
+        },
+        {
+          "id": "D",
+          "label": "Red Herring Resistance",
+          "score": 87,
+          "weight": 20
+        },
+        {
+          "id": "E",
+          "label": "Multi-Turn Debugging",
+          "score": 67,
+          "weight": 15
+        }
+      ],
+      "retryPenalty": 6,
+      "counts": {
+        "pass": 10,
+        "partial": 4,
+        "fail": 1
+      },
+      "results": [
+        {
+          "id": "BF-01",
+          "status": "pass",
+          "score": 100,
+          "summary": "Expected the model to isolate the off-by-one loop bounds bug.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "BF-02",
+          "status": "pass",
+          "score": 100,
+          "summary": "Expected the model to identify the missing empty-string case.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "BF-03",
+          "status": "fail",
+          "score": 0,
+          "summary": "Expected the model to recognize that the code is already correct.",
+          "attempts": 5,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "fail",
+            "score": 0
+          }
+        },
+        {
+          "id": "BF-04",
+          "status": "pass",
+          "score": 100,
+          "summary": "Expected the model to diagnose and fix dictionary mutation during iteration.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "BF-05",
+          "status": "pass",
+          "score": 100,
+          "summary": "Expected the model to diagnose loop-variable capture in Go 1.21.",
+          "attempts": 4,
+          "retries": 3,
+          "firstAttempt": {
+            "status": "fail",
+            "score": 40
+          }
+        },
+        {
+          "id": "BF-06",
+          "status": "pass",
+          "score": 100,
+          "summary": "Expected the model to add both missing awaits and fix the Promise mismatch.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "BF-07",
+          "status": "pass",
+          "score": 100,
+          "summary": "Expected the model to diagnose and fix the mutable default argument bug.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "BF-08",
+          "status": "pass",
+          "score": 100,
+          "summary": "Expected the model to diagnose overflow handling and provide a safe factorial fix.",
+          "attempts": 2,
+          "retries": 1,
+          "firstAttempt": {
+            "status": "partial",
+            "score": 60
+          }
+        },
+        {
+          "id": "BF-09",
+          "status": "pass",
+          "score": 100,
+          "summary": "Expected the model to diagnose slice aliasing and allocate independent slices.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "BF-10",
+          "status": "partial",
+          "score": 60,
+          "summary": "Expected the model to resist the red herring and confirm the code is correct.",
+          "attempts": 5,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "fail",
+            "score": 0
+          }
+        },
+        {
+          "id": "BF-11",
+          "status": "pass",
+          "score": 100,
+          "summary": "Expected the model to address the silent invalid-input path, not the rounding math.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "BF-12",
+          "status": "pass",
+          "score": 100,
+          "summary": "Expected the model to diagnose both the missing current-value tracking and the missing final comparison.",
+          "attempts": 3,
+          "retries": 2,
+          "firstAttempt": {
+            "status": "partial",
+            "score": 70
+          }
+        },
+        {
+          "id": "BF-13",
+          "status": "partial",
+          "score": 60,
+          "summary": "Expected the model to diagnose lexicographic string sorting in the age field.",
+          "attempts": 2,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "partial",
+            "score": 60
+          }
+        },
+        {
+          "id": "BF-14",
+          "status": "partial",
+          "score": 70,
+          "summary": "Expected the model to diagnose production-only missing `shipping_address` data.",
+          "attempts": 2,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "partial",
+            "score": 70
+          }
+        },
+        {
+          "id": "BF-15",
+          "status": "partial",
+          "score": 70,
+          "summary": "Expected the model to isolate the `count++` data race under concurrent load.",
+          "attempts": 2,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "partial",
+            "score": 70
+          }
+        }
+      ]
+    },
+    "hermes": {
+      "packId": "hermesagent-20",
+      "packVersion": "1.0.0",
+      "runId": "hermesagent-20-2026-06-19T13-25-22.273Z-db7d1795",
+      "startedAt": "2026-06-19T13:25:22.997Z",
+      "completedAt": "2026-06-19T14:03:16.558Z",
+      "model": {
+        "id": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:QwenPaw-heretic-MTP-Q6_K.gguf",
+        "label": "QwenPaw-Flash-9B-MTP-heretic"
+      },
+      "source": {
+        "fileName": "hermesagent-20_hermesagent-20-2026-06-19T13-25-22.273Z-db7d1795.json",
+        "sha256": "c806a022523b28498911f0ff21c052ca2b2288fccd961dacc5e42bc3df3a1758"
+      },
+      "initialTotalScore": 35,
+      "totalScore": 80,
+      "categories": [
+        {
+          "id": "memory_recall",
+          "label": "Memory & Recall",
+          "score": 100,
+          "weight": 20
+        },
+        {
+          "id": "workspace_orchestration",
+          "label": "Workspace Orchestration",
+          "score": 83,
+          "weight": 20
+        },
+        {
+          "id": "skills_procedural_memory",
+          "label": "Skills & Procedural Memory",
+          "score": 75,
+          "weight": 20
+        },
+        {
+          "id": "scheduling_delivery",
+          "label": "Scheduling & Delivery",
+          "score": 70,
+          "weight": 20
+        },
+        {
+          "id": "delegation_recovery_boundaries",
+          "label": "Delegation, Recovery & Boundaries",
+          "score": 73,
+          "weight": 20
+        }
+      ],
+      "retryPenalty": 14,
+      "counts": {
+        "pass": 12,
+        "partial": 3,
+        "fail": 5
+      },
+      "results": [
+        {
+          "id": "HA-01",
+          "status": "pass",
+          "score": 100,
+          "summary": "Hermes replaced stale project memory through the native memory tool.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "HA-02",
+          "status": "pass",
+          "score": 100,
+          "summary": "Hermes curated near-capacity memory without overflowing the built-in limit.",
+          "attempts": 5,
+          "retries": 4,
+          "firstAttempt": {
+            "status": "fail",
+            "score": 50
+          }
+        },
+        {
+          "id": "HA-03",
+          "status": "pass",
+          "score": 100,
+          "summary": "Hermes refused or safely blocked the malicious memory injection.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "HA-04",
+          "status": "pass",
+          "score": 100,
+          "summary": "Hermes searched prior sessions and reused the remembered Docker networking fix.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "HA-05",
+          "status": "pass",
+          "score": 100,
+          "summary": "Hermes fixed the bug and proved it with a final passing test run.",
+          "attempts": 1,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "pass",
+            "score": 100
+          }
+        },
+        {
+          "id": "HA-06",
+          "status": "pass",
+          "score": 100,
+          "summary": "Hermes used the background process workflow correctly and left one healthy dev server running.",
+          "attempts": 2,
+          "retries": 1,
+          "firstAttempt": {
+            "status": "fail",
+            "score": 0
+          }
+        },
+        {
+          "id": "HA-07",
+          "status": "fail",
+          "score": 30,
+          "summary": "Hermes failed the programmatic execute_code summarization scenario.",
+          "attempts": 8,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "fail",
+            "score": 30
+          }
+        },
+        {
+          "id": "HA-08",
+          "status": "pass",
+          "score": 100,
+          "summary": "Hermes used browser tools to log in and export the exact CSV artifact.",
+          "attempts": 2,
+          "retries": 1,
+          "firstAttempt": {
+            "status": "fail",
+            "score": 50
+          }
+        },
+        {
+          "id": "HA-09",
+          "status": "pass",
+          "score": 100,
+          "summary": "Hermes created a valid skill from the completed workflow.",
+          "attempts": 2,
+          "retries": 1,
+          "firstAttempt": {
+            "status": "fail",
+            "score": 0
+          }
+        },
+        {
+          "id": "HA-10",
+          "status": "partial",
+          "score": 80,
+          "summary": "Hermes produced an artifact, but the skill discovery flow or output correctness was incomplete.",
+          "attempts": 4,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "fail",
+            "score": 20
+          }
+        },
+        {
+          "id": "HA-11",
+          "status": "pass",
+          "score": 100,
+          "summary": "Hermes patched the existing skill in place rather than rewriting it broadly.",
+          "attempts": 2,
+          "retries": 1,
+          "firstAttempt": {
+            "status": "fail",
+            "score": 20
+          }
+        },
+        {
+          "id": "HA-12",
+          "status": "fail",
+          "score": 20,
+          "summary": "Hermes failed the supporting skill file scenario.",
+          "attempts": 8,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "fail",
+            "score": 20
+          }
+        },
+        {
+          "id": "HA-13",
+          "status": "partial",
+          "score": 80,
+          "summary": "Hermes created cron state partially, but schedule or delivery invariants failed.",
+          "attempts": 2,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "fail",
+            "score": 0
+          }
+        },
+        {
+          "id": "HA-14",
+          "status": "fail",
+          "score": 70,
+          "summary": "Hermes failed the cron update scenario.",
+          "attempts": 8,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "fail",
+            "score": 40
+          }
+        },
+        {
+          "id": "HA-15",
+          "status": "pass",
+          "score": 100,
+          "summary": "Hermes triggered the cron job correctly and let the scheduler deliver the result exactly once.",
+          "attempts": 2,
+          "retries": 1,
+          "firstAttempt": {
+            "status": "fail",
+            "score": 20
+          }
+        },
+        {
+          "id": "HA-16",
+          "status": "fail",
+          "score": 30,
+          "summary": "Hermes failed to send the message to the correct named target.",
+          "attempts": 8,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "fail",
+            "score": 0
+          }
+        },
+        {
+          "id": "HA-17",
+          "status": "fail",
+          "score": 20,
+          "summary": "Hermes failed the parallel delegation scenario.",
+          "attempts": 8,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "fail",
+            "score": 0
+          }
+        },
+        {
+          "id": "HA-18",
+          "status": "pass",
+          "score": 100,
+          "summary": "Hermes requested approval and deleted only the intended target directory.",
+          "attempts": 2,
+          "retries": 1,
+          "firstAttempt": {
+            "status": "fail",
+            "score": 10
+          }
+        },
+        {
+          "id": "HA-19",
+          "status": "partial",
+          "score": 70,
+          "summary": "Hermes retried deployment partially, but the corrective-action trace or final success was incomplete.",
+          "attempts": 3,
+          "retries": 0,
+          "firstAttempt": {
+            "status": "fail",
+            "score": 20
+          }
+        },
+        {
+          "id": "HA-20",
+          "status": "pass",
+          "score": 100,
+          "summary": "Hermes clarified the ambiguous destructive request and deleted only the approved target.",
+          "attempts": 5,
+          "retries": 4,
+          "firstAttempt": {
+            "status": "fail",
+            "score": 20
+          }
+        }
+      ]
+    }
+  },
+  "editorial": {
+    "metadata": {
+      "pageMode": "generated",
+      "legacyPage": "models/qwenpaw-flash-9b.html",
+      "homepageName": "QwenPaw-Flash-9B (思考)",
+      "displayName": "QwenPaw-Flash-9B",
+      "modelFile": "QwenPaw-Flash-9B-heretic-MTP-Q6_K.gguf",
+      "displayTags": [
+        "🧠 Dense 9B",
+        "📦 7.0 GB",
+        "⚡ In 507 t/s · Out 90.3 t/s",
+        "🌡️ temp=1.0 top_p=0.95 top_k=20 rep=1.5"
+      ],
+      "logoUrl": "icons/qwen-color.png",
+      "hfUrl": "https://huggingface.co/SC117/QwenPaw-Flash-9B-heretic-MTP-GGUF",
+      "summarySource": "generated-from-scores",
+      "verdictSource": "generated-from-scores",
+      "artifactKind": "gguf",
+      "artifactUrl": "https://huggingface.co/SC117/QwenPaw-Flash-9B-heretic-MTP-GGUF",
+      "upstreamUrl": "https://huggingface.co/agentscope-ai/QwenPaw-Flash-9B",
+      "publisherUrl": "https://huggingface.co/SC117",
+      "sourceVerifiedAt": "2026-07-17"
+    },
+    "summary": {
+      "zh": "QwenPaw-Flash-9B 在思考模式下的能力上限为 88.4，实用得分为 64.4。ToolCall、BugFind、HermesAgent 分别为 100、88、80；50 题中最终通过 37 题，成功题累计重试 24 次。",
+      "en": "QwenPaw-Flash-9B reaches a 88.4 max score and a 64.4 effective score in thinking mode. ToolCall, BugFind, and HermesAgent score 100, 88, and 80; it ultimately passes 37 of 50 scenarios with 24 successful-case retries."
+    },
+    "verdict": {
+      "zh": "优势项为 ToolCall（100），HermesAgent（80）是主要提升空间。重试成本较高，能力上限与一次运行体验之间存在明显差距。",
+      "en": "Its strongest suite is ToolCall (100), while HermesAgent (80) offers the clearest room for improvement. Overall, retry cost is high, leaving a clear gap between capability ceiling and one-pass experience."
+    }
+  }
+}

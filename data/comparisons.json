@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-17T13:04:49.663Z",
+  "models": [
+    {
+      "slug": "agents-a1",
+      "label": "Agents-A1-MTP-GGUF",
+      "variants": {
+        "no-thinking": {
+          "maxScore": 93.1,
+          "effectiveScore": 61.1,
+          "retryPenalty": 32,
+          "toolcall": 97,
+          "bugfind": 100,
+          "hermes": 85
+        },
+        "thinking": {
+          "maxScore": 91.2,
+          "effectiveScore": 71.2,
+          "retryPenalty": 20,
+          "toolcall": 100,
+          "bugfind": 88,
+          "hermes": 87
+        }
+      },
+      "deltaThinkingMinusNoThinking": {
+        "maxScore": -1.9,
+        "effectiveScore": 10.1,
+        "retryPenalty": -12,
+        "toolcall": 3,
+        "bugfind": -12,
+        "hermes": 2
+      }
+    },
+    {
+      "slug": "gemma4-26b",
+      "label": "gemma-4-26B-A4B-it-qat-heretic",
+      "variants": {
+        "no-thinking": {
+          "maxScore": 89.8,
+          "effectiveScore": 80.8,
+          "retryPenalty": 9,
+          "toolcall": 97,
+          "bugfind": 89,
+          "hermes": 85
+        },
+        "thinking": {
+          "maxScore": 91.8,
+          "effectiveScore": 83.8,
+          "retryPenalty": 8,
+          "toolcall": 93,
+          "bugfind": 97,
+          "hermes": 87
+        }
+      },
+      "deltaThinkingMinusNoThinking": {
+        "maxScore": 2,
+        "effectiveScore": 3,
+        "retryPenalty": -1,
+        "toolcall": -4,
+        "bugfind": 8,
+        "hermes": 2
+      }
+    },
+    {
+      "slug": "ornith-35b-heretic-mtp-apex",
+      "label": "Ornith-1.0-35B-Heretic-MTP-APEX-GGUF",
+      "variants": {
+        "no-thinking": {
+          "maxScore": 92.2,
+          "effectiveScore": 76.2,
+          "retryPenalty": 16,
+          "toolcall": 97,
+          "bugfind": 97,
+          "hermes": 85
+        },
+        "thinking": {
+          "maxScore": 95,
+          "effectiveScore": 90,
+          "retryPenalty": 5,
+          "toolcall": 100,
+          "bugfind": 98,
+          "hermes": 89
+        }
+      },
+      "deltaThinkingMinusNoThinking": {
+        "maxScore": 2.8,
+        "effectiveScore": 13.8,
+        "retryPenalty": -11,
+        "toolcall": 3,
+        "bugfind": 1,
+        "hermes": 4
+      }
+    },
+    {
+      "slug": "ornith-35b-mtp",
+      "label": "Ornith-1.0-35B-MTP-GGUF",
+      "variants": {
+        "no-thinking": {
+          "maxScore": 93.2,
+          "effectiveScore": 85.2,
+          "retryPenalty": 8,
+          "toolcall": 100,
+          "bugfind": 92,
+          "hermes": 89
+        },
+        "thinking": {
+          "maxScore": 93.5,
+          "effectiveScore": 75.5,
+          "retryPenalty": 18,
+          "toolcall": 100,
+          "bugfind": 93,
+          "hermes": 89
+        }
+      },
+      "deltaThinkingMinusNoThinking": {
+        "maxScore": 0.3,
+        "effectiveScore": -9.7,
+        "retryPenalty": 10,
+        "toolcall": 0,
+        "bugfind": 1,
+        "hermes": 0
+      }
+    },
+    {
+      "slug": "qwen-agentworld-35b",
+      "label": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored",
+      "variants": {
+        "no-thinking": {
+          "maxScore": 75,
+          "effectiveScore": 75,
+          "retryPenalty": 0,
+          "toolcall": 83,
+          "bugfind": 83,
+          "hermes": 63
+        },
+        "thinking": {
+          "maxScore": 85.6,
+          "effectiveScore": 81.6,
+          "retryPenalty": 4,
+          "toolcall": 93,
+          "bugfind": 87,
+          "hermes": 79
+        }
+      },
+      "deltaThinkingMinusNoThinking": {
+        "maxScore": 10.6,
+        "effectiveScore": 6.6,
+        "retryPenalty": 4,
+        "toolcall": 10,
+        "bugfind": 4,
+        "hermes": 16
+      }
+    },
+    {
+      "slug": "qwen36-27b",
+      "label": "Qwen3.6-27B",
+      "variants": {
+        "no-thinking": {
+          "maxScore": 87.8,
+          "effectiveScore": 84.8,
+          "retryPenalty": 3,
+          "toolcall": 97,
+          "bugfind": 85,
+          "hermes": 83
+        },
+        "thinking": {
+          "maxScore": 91.9,
+          "effectiveScore": 73.9,
+          "retryPenalty": 18,
+          "toolcall": 100,
+          "bugfind": 93,
+          "hermes": 85
+        }
+      },
+      "deltaThinkingMinusNoThinking": {
+        "maxScore": 4.1,
+        "effectiveScore": -10.9,
+        "retryPenalty": 15,
+        "toolcall": 3,
+        "bugfind": 8,
+        "hermes": 2
+      }
+    },
+    {
+      "slug": "qwen36-35b-mtp",
+      "label": "Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX",
+      "variants": {
+        "no-thinking": {
+          "maxScore": 91.5,
+          "effectiveScore": 80.5,
+          "retryPenalty": 11,
+          "toolcall": 97,
+          "bugfind": 96,
+          "hermes": 84
+        },
+        "thinking": {
+          "maxScore": 89.5,
+          "effectiveScore": 81.5,
+          "retryPenalty": 8,
+          "toolcall": 97,
+          "bugfind": 88,
+          "hermes": 85
+        }
+      },
+      "deltaThinkingMinusNoThinking": {
+        "maxScore": -2,
+        "effectiveScore": 1,
+        "retryPenalty": -3,
+        "toolcall": 0,
+        "bugfind": -8,
+        "hermes": 1
+      }
+    },
+    {
+      "slug": "ternary-bonsai-27b-q2-0",
+      "label": "Ternary-Bonsai-27B-Q2_0",
+      "variants": {
+        "no-thinking": {
+          "maxScore": 91,
+          "effectiveScore": 88,
+          "retryPenalty": 3,
+          "toolcall": 100,
+          "bugfind": 90,
+          "hermes": 85
+        },
+        "thinking": {
+          "maxScore": 93.7,
+          "effectiveScore": 87.7,
+          "retryPenalty": 6,
+          "toolcall": 100,
+          "bugfind": 95,
+          "hermes": 88
+        }
+      },
+      "deltaThinkingMinusNoThinking": {
+        "maxScore": 2.7,
+        "effectiveScore": -0.3,
+        "retryPenalty": 3,
+        "toolcall": 0,
+        "bugfind": 5,
+        "hermes": 3
+      }
+    }
+  ]
+}

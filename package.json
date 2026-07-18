@@ -1,0 +1,30 @@
+{
+  "name": "benchlocal-results-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "extract": "node publisher/extract.mjs",
+    "status": "node publisher/status.mjs",
+    "audit:migration": "node publisher/audit-migration.mjs",
+    "migrate:unique": "node publisher/audit-migration.mjs --migrate-unique",
+    "match:runs": "node publisher/match-runs.mjs",
+    "migrate:runs": "node publisher/match-runs.mjs --migrate-unique",
+    "prepare:display": "node publisher/prepare-display.mjs",
+    "enrich:editorial": "node publisher/enrich-editorial.mjs",
+    "build:data": "node publisher/build-catalog.mjs",
+    "build:pages": "node publisher/render-pages.mjs",
+    "build:homepage": "node publisher/render-homepage.mjs",
+    "build": "npm run enrich:editorial && npm run build:data && npm run build:homepage && npm run build:pages",
+    "test": "node --test publisher/test/*.test.mjs",
+    "validate:data": "node publisher/validate-data.mjs",
+    "validate:generated": "node publisher/build-catalog.mjs --check",
+    "validate:pages": "node publisher/render-pages.mjs --check",
+    "validate:merged-homepage": "node publisher/render-homepage.mjs --check",
+    "validate:site": "node publisher/validate-site.mjs",
+    "audit:external": "node publisher/check-external-links.mjs",
+    "check": "npm test && npm run validate:data && npm run validate:generated && npm run validate:pages && npm run validate:merged-homepage && npm run validate:site"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

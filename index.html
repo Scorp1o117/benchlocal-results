@@ -1,1082 +1,337 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" id="top">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BenchLocal · 模型测试数据库</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--red:#E53E3E;--orange:#ED8936;--grad:linear-gradient(135deg,#E53E3E,#ED8936);--grad2:linear-gradient(135deg,#667eea,#764ba2);--grad3:linear-gradient(135deg,#f093fb,#f5576c);--grad4:linear-gradient(135deg,#4facfe,#00f2fe);--bg:#F8F9FC;--card:#FFF;--text:#1A202C;--text2:#64748B;--text3:#94A3B8;--border:#E2E8F0;--r:20px;--sh:0 1px 3px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.04)}
-body{font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-
-/* Nav */
-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.8);backdrop-filter:blur(24px);border-bottom:1px solid rgba(226,232,240,.6)}
-nav .inner{max-width:1280px;margin:0 auto;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
-.logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800}
-.logo-icon{width:32px;height:32px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
-.nav-links{display:flex;gap:28px;font-size:14px;font-weight:500;color:var(--text2)}
-.nav-links a:hover{color:var(--text)}.nav-links a.active{color:var(--red)}
-
-/* Hero */
-.hero{padding:100px 48px 80px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-300px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(102,126,234,.06) 0%,transparent 70%);pointer-events:none}
-.hero h1{font-size:56px;font-weight:900;letter-spacing:-2px;line-height:1.1;margin-bottom:16px}
-.hero h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{font-size:18px;color:var(--text2);max-width:560px;margin:0 auto 48px}
-.hero-stats{display:flex;justify-content:center;gap:64px}
-.hero-stat{text-align:center}
-.hero-stat .val{font-size:48px;font-weight:900;letter-spacing:-2px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero-stat .lbl{font-size:13px;color:var(--text3);font-weight:500;margin-top:4px}
-
-/* Leaderboard */
-.board{max-width:1280px;margin:0 auto;padding:0 48px 80px}
-.board-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
-.board-header h2{font-size:28px;font-weight:800}
-.sort-btns{display:flex;gap:8px}
-.sort-btn{padding:6px 16px;border-radius:100px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:#fff;color:var(--text2);transition:all .2s}
-.sort-btn:hover{border-color:var(--text);color:var(--text)}
-.sort-btn.active{background:var(--text);color:#fff;border-color:var(--text)}
-.filter-btn{padding:6px 16px;border-radius:100px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:#fff;color:var(--text2);transition:all .2s}
-.filter-btn:hover{border-color:var(--text2);color:var(--text)}
-.filter-btn.active{background:var(--text);color:#fff;border-color:var(--text)}
-.score-bar{margin-top:10px;height:6px;background:#F1F5F9;border-radius:3px;position:relative;overflow:hidden}
-.score-bar-max{position:absolute;left:0;top:0;height:100%;background:var(--grad);opacity:.25;border-radius:3px;transition:width .3s}
-.score-bar-eff{position:absolute;left:0;top:0;height:100%;background:var(--grad);border-radius:3px;transition:width .3s}
-.score-bar::after{content:'';position:absolute;right:0;top:-2px;bottom:-2px;width:1px;background:var(--border)}
-.card-stability{margin-top:8px;display:flex;gap:10px;font-size:12px;font-weight:600;align-items:center}
-.card-stability .stab-item{display:flex;align-items:center;gap:3px}
-.card-stability .stab-pass{color:#16A34A}
-.card-stability .stab-partial{color:#D97706}
-.card-stability .stab-fail{color:#DC2626}
-
-/* Model Cards Grid */
-.models-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:24px}
-.model-card{background:var(--card);border-radius:var(--r);padding:32px;box-shadow:var(--sh);transition:transform .25s,box-shadow .25s,order .3s;cursor:pointer;position:relative;overflow:hidden}
-.model-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
-.model-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
-.model-card.thinking::before{background:var(--red)}
-.model-card.no-thinking::before{background:#CBD5E1}
-.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
-.card-top-left{display:flex;align-items:flex-start;gap:12px}
-.card-rank{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;background:var(--text)!important;flex-shrink:0}
-.card-scores{display:flex;gap:8px;flex:1;justify-content:flex-end}
-.card-score-box{text-align:center;padding:8px 14px;border-radius:12px;min-width:80px}
-.card-score-box.primary{background:var(--grad);color:#fff}
-.card-score-box.secondary{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff}
-.card-score-box .lbl{font-size:10px;font-weight:500;opacity:.85}
-.card-score-box .val{font-size:24px;font-weight:900;line-height:1.1}
-.card-score-box .sub{font-size:9px;opacity:.7;margin-top:2px}
-.card-score{font-size:36px;font-weight:900;letter-spacing:-1px;line-height:1}
-.card-score span{font-size:16px;font-weight:500;color:var(--text3)}
-.card-model{margin-bottom:16px}
-.card-model h3{font-size:18px;font-weight:700;margin-bottom:4px;line-height:1.3}
-.card-model .desc{font-size:13px;color:var(--text2)}
-.card-meta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:20px}
-.card-tag{font-size:11px;padding:4px 10px;border-radius:6px;font-weight:600;background:#F1F5F9;color:var(--text2)}
-
-/* Score Bars */
-.card-bars{display:flex;flex-direction:column;gap:10px}
-.bar-row{display:flex;align-items:center;gap:12px}
-.bar-label{font-size:12px;font-weight:600;color:var(--text2);width:100px;flex-shrink:0}
-.bar-track{flex:1;height:8px;background:#F1F5F9;border-radius:4px;overflow:hidden}
-.bar-fill{height:100%;border-radius:4px;transition:width 1.2s ease}
-.bar-val{font-size:12px;font-weight:700;width:32px;text-align:right;flex-shrink:0}
-
-/* Card Footer */
-.card-footer{margin-top:20px;padding-top:16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-.card-footer .date{font-size:12px;color:var(--text3)}
-.card-footer .cta{font-size:13px;font-weight:600;color:var(--red);display:flex;align-items:center;gap:4px;transition:gap .2s}
-.model-card:hover .cta{gap:8px}
-
-/* Future Models Section */
-.future{max-width:1280px;margin:0 auto;padding:0 48px 80px}
-.future h2{font-size:28px;font-weight:800;margin-bottom:32px}
-.future-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:24px}
-.future-card{background:var(--card);border-radius:var(--r);padding:32px;box-shadow:0 1px 3px rgba(0,0,0,.02);border:2px dashed var(--border);opacity:.5;transition:opacity .2s}
-.future-card:hover{opacity:.7}
-.future-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
-.future-card p{font-size:13px;color:var(--text2);margin-bottom:16px}
-.future-badge{display:inline-block;padding:4px 12px;border-radius:6px;font-size:11px;font-weight:600;background:#FEF3C7;color:#92400E}
-
-/* About */
-.about{max-width:1280px;margin:0 auto;padding:0 48px 80px}
-.about-box{background:var(--card);border-radius:var(--r);padding:48px;box-shadow:var(--sh);display:grid;grid-template-columns:1fr 1fr;gap:48px}
-.about-box h3{font-size:22px;font-weight:800;margin-bottom:16px}
-.about-box p{font-size:14px;color:var(--text2);line-height:1.8}
-.about-list{list-style:none;padding:0}
-.about-list li{padding:10px 0;border-bottom:1px solid #F7FAFC;font-size:14px;color:var(--text2);display:flex;align-items:center;gap:8px}
-.about-list li::before{content:'';width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.about-list li:nth-child(1)::before{background:var(--red)}
-.about-list li:nth-child(2)::before{background:#ED8936}
-.about-list li:nth-child(3)::before{background:var(--grad2)}
-.about-list li:nth-child(4)::before{background:var(--grad4)}
-
-/* Section & Summary */
-.section{max-width:1280px;margin:60px auto;padding:0 48px}
-.section-header{margin-bottom:32px}
-.section-header h2{font-size:28px;font-weight:800;letter-spacing:-.5px}
-.section-header p{font-size:14px;color:var(--text2);margin-top:4px}
-.roast-box{background:var(--card);border-radius:var(--r);padding:48px;box-shadow:var(--sh)}
-.roast-section{margin-bottom:28px}
-.roast-section h4{font-size:16px;font-weight:700;margin-bottom:12px}
-.roast-section ul{list-style:none;padding:0}
-.roast-section li{padding:8px 0;font-size:14px;color:var(--text2);border-bottom:1px solid #F7FAFC;display:flex;align-items:flex-start;gap:8px}
-.roast-section.pro li::before{content:'✅';flex-shrink:0}
-.roast-section.con li::before{content:'⚠️';flex-shrink:0}
-.roast-section.tip li::before{content:'💡';flex-shrink:0}
-.roast-conclusion{background:linear-gradient(135deg,#FFF5F5,#FFFAF0);border-radius:12px;padding:28px;margin-top:24px}
-.roast-conclusion p{font-size:15px;line-height:1.8}
-
-/* Footer */
-.card-retry{padding:12px 20px;border-top:1px solid #F1F5F9;display:flex;justify-content:space-between;align-items:center;font-size:13px}
-footer{background:#0F172A;color:#94A3B8;padding:48px 48px 32px}
-footer .inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start}
-footer .brand{font-size:18px;font-weight:800;color:#fff;margin-bottom:8px;display:flex;align-items:center;gap:8px}
-footer .links{display:flex;gap:48px}
-footer .links div h5{color:#fff;font-size:13px;font-weight:600;margin-bottom:12px}
-footer .links div a{display:block;font-size:13px;padding:4px 0;color:#94A3B8}
-footer .links div a:hover{color:#fff}
-footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1px solid #1E293B;font-size:12px;text-align:center}
-
-@media(max-width:768px){
-  .hero h1{font-size:36px}.hero-stats{gap:32px}.hero-stat .val{font-size:32px}
-  .models-grid,.future-grid{grid-template-columns:1fr}
-  .about-box{grid-template-columns:1fr}
-  .board,.future,.about,.section{padding-left:20px;padding-right:20px}
-  nav .inner{padding:0 20px}.hero{padding:60px 20px 40px}
-  footer .inner{flex-direction:column;gap:32px}
-}
-
-/* HuggingFace Link */
-.hf-link{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;background:linear-gradient(135deg,#FFD21E,#FF9D00);color:#1A202C;text-decoration:none;transition:all .2s;white-space:nowrap}
-.hf-link:hover{transform:translateY(-1px);box-shadow:0 2px 8px rgba(255,210,30,.3);background:linear-gradient(135deg,#FFE066,#FFB347)}
-.hf-link svg{width:14px;height:14px;flex-shrink:0}
-
-/* i18n */
-[data-lang]{display:none}
-html[lang="zh-CN"] [data-lang="zh"],html[lang="en"] [data-lang="en"]{display:revert}
-html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:none}
-.lang-toggle{display:flex;align-items:center;gap:2px;padding:3px;border-radius:8px;background:#F1F5F9;cursor:pointer;user-select:none;margin-left:auto}
-.lang-toggle span{padding:3px 10px;border-radius:6px;font-size:12px;font-weight:600;color:var(--text2);transition:all .2s;pointer-events:none}
-.lang-toggle span.active{background:#fff;color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.1)}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BenchLocal-Results 本地模型评测数据库：比较模型在工具调用、代码调试与智能体任务中的真实表现。">
+  <meta name="theme-color" content="#f4f6fa">
+  <title>BenchLocal-Results · 本地模型评测数据库</title>
+  <link rel="icon" type="image/png" href="icons/benchlocal-results-logo.png">
+  <link rel="canonical" href="https://scorp1o117.github.io/benchlocal-results/">
+  <link rel="stylesheet" href="styles/site.css">
+  <script src="scripts/site.js" defer></script>
 </head>
 <body>
-
-<nav><div class="inner">
-  <div class="logo"><div class="logo-icon">⚡</div>BenchLocal</div>
-  <div class="nav-links">
-    <a href="#leaderboard" class="active"><span data-lang="zh">排行榜</span><span data-lang="en">Leaderboard</span></a>
-    <a href="#future"><span data-lang="zh">计划中</span><span data-lang="en">Planned</span></a>
-    <a href="#about"><span data-lang="zh">关于</span><span data-lang="en">About</span></a><a href="changelog.html"><span data-lang="zh">更新日志</span><span data-lang="en">Changelog</span></a>
-  </div>
-  <div class="lang-toggle" onclick="toggleLang(document.documentElement.lang==='zh-CN'?'en':'zh')"><span data-lb="zh" class="active">中</span><span data-lb="en">EN</span></div>
-</div></nav>
-
-<!-- Hero -->
-<section class="hero">
-  <p style="font-size:13px;color:var(--text3);margin-bottom:24px;padding:6px 14px;background:#FEF3C7;color:#92400E;border-radius:8px;display:inline-block">⚠️ <span data-lang="zh">非严谨学术评测，结果仅供参考与简单对比</span><span data-lang="en">Non-strict academic evaluation — results are for reference and rough comparison only</span></p>
-  <h1><span data-lang="zh">本地模型</span><span data-lang="en">Local Models</span><br><span><span data-lang="zh">测试数据库</span><span data-lang="en">Benchmark Database</span></span></h1>
-  <p><span data-lang="zh">基于 BenchLocal 桌面应用，在本地对真实任务进行基准测试，横向对比模型表现</span><span data-lang="en">Based on BenchLocal desktop app, benchmarking LLMs on real-world tasks locally</span></p><p style="font-size:13px;color:var(--text3);margin-top:8px"><span data-lang="zh">当前测试环境：RTX 5070 Ti 16GB + 128GB RAM · MoE模型部分专家层offload到CPU</span><span data-lang="en">Test environment: RTX 5070 Ti 16GB + 128GB RAM · MoE expert layers partially offloaded to CPU</span></p>
-  <p style="font-size:13px;color:var(--text3);margin-top:8px"><span data-lang="zh">排名基于<strong style="color:var(--text2)">能力上限</strong>（加权原始分），<strong style="color:var(--text2)">实用得分</strong> = 能力上限 − 重试扣分（每题首次通过不扣分，重试后通过每重试1次扣1分）</span><span data-lang="en">Ranked by <strong style="color:var(--text2)">Max Score</strong> (weighted raw score), <strong style="color:var(--text2)">Effective Score</strong> = Max Score − retry penalty (first pass = no penalty, each retry = +1pt)</span></p>
-  <p style="font-size:12px;color:var(--text3);margin-top:6px;opacity:.8">&#9889; <span data-lang="zh">卡片中的速度数据（如 In 725 t/s · Out 60.6 t/s）仅供参考，非真实环境！</span><span data-lang="en">Speed data on cards (e.g. In 725 t/s · Out 60.6 t/s) is for reference only!</span></p>
-  <div class="hero-stats">
-    <div class="hero-stat"><div class="val">21</div><div class="lbl"><span data-lang="zh">已测试模型</span><span data-lang="en">Models Tested</span></div></div>
-    <div class="hero-stat"><div class="val">50</div><div class="lbl"><span data-lang="zh">总测试题数</span><span data-lang="en">Total Questions</span></div></div>
-    <div class="hero-stat"><div class="val">3</div><div class="lbl"><span data-lang="zh">测试项目</span><span data-lang="en">Test Suites</span></div></div>
-  </div>
-</section>
-
-<!-- Leaderboard -->
-<section class="board" id="leaderboard">
-  <div class="board-header">
-    <h2>🏆 <span data-lang="zh">模型排行榜</span><span data-lang="en">Model Leaderboard</span></h2>
-    <div class="sort-btns">
-      <div class="sort-btn active" onclick="sortModels('total',this)"><span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span></div>
-      <div class="sort-btn" onclick="sortModels('adjusted',this)"><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></div>
-      <div class="sort-btn" onclick="sortModels('tc',this)">ToolCall</div>
-      <div class="sort-btn" onclick="sortModels('bf',this)">BugFind</div>
-      <div class="sort-btn" onclick="sortModels('ha',this)">HermesAgent</div>
-    </div>
-  </div>
-  <div class="filter-btns" style="margin-bottom:24px;display:flex;gap:8px">
-    <div class="filter-btn active" data-mode="all" onclick="filterMode('all',this)"><span data-lang="zh">全部</span><span data-lang="en">All</span></div>
-    <div class="filter-btn" data-mode="thinking" onclick="filterMode('thinking',this)">🧠 <span data-lang="zh">仅思考</span><span data-lang="en">Thinking only</span></div>
-    <div class="filter-btn" data-mode="no-thinking" onclick="filterMode('no-thinking',this)">⚡ <span data-lang="zh">仅无思考</span><span data-lang="en">No-thinking only</span></div>
-  </div>
-
-  <div class="models-grid">
-    <!-- Model 1: Step-3.7-Flash -->
-    <div class="model-card rank-1 thinking" onclick="location.href='models/step37-flash.html'">
-      <div class="card-top">
-        <div class="card-rank">1</div>
-        <div class="card-scores">
-        <div class="card-score-box primary"><div class="lbl"><span data-lang="zh">上限</span><span data-lang="en">Max</span></div><div class="val">88.8</div></div>
-        <div class="card-score-box secondary"><div class="lbl"><span data-lang="zh">实用</span><span data-lang="en">Eff.</span></div><div class="val">78.8</div></div>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <div class="nav-inner">
+      <a class="brand" href="#top"><span class="brand-mark"><img src="icons/benchlocal-results-logo.png" alt=""></span><span>BenchLocal-Results</span></a>
+      <div class="nav-links">
+        <a href="#leaderboard"><span data-lang="zh">排行榜</span><span data-lang="en">Leaderboard</span></a>
+        <a href="#method"><span data-lang="zh">测试方法</span><span data-lang="en">Method</span></a>
+        <a href="changelog.html"><span data-lang="zh">更新日志</span><span data-lang="en">Changelog</span></a>
       </div>
-      </div>
-      <div class="card-model">
-        <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/stepfun-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Step-3.7-Flash-APEX-I-Mini <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></span></h3>
-        <div class="desc">Step-3.7-Flash-APEX-I-Mini.gguf · Q3_K_M · 67.9 GB</div>
-      </div>
-      <div class="card-meta">
-        <span class="card-tag">🧠 MoE</span>
-        <span class="card-tag">📦 67.0 GB</span>
-        <span class="card-tag">⚡ In 98 t/s · Out 13.9 t/s</span>
-        <span class="card-tag">🎮 RTX 5070 Ti</span>
-        <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=1.0</span>
-      </div>
-      <div class="card-bars">
-        <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">100</span></div>
-        <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:87%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">87</span></div>
-        <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:81%;background:#548235"></div></div><span class="bar-val" style="color:#548235">81</span></div>
-      </div>
-      
-      <div class="card-retry"><span data-lang="zh">🔄 上限分 88.8 → 重试 -10 → 实用 <strong>78.8</strong></span><span data-lang="en">🔄 Max 88.8 → retries -10 → Eff. <strong>78.8</strong></span></div>
-      <div class="card-footer">
-        <span class="date">2026-06-21 <span data-lang="zh">测试</span><span data-lang="en">tested</span></span>
-        <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
-        
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lb="zh" aria-pressed="true">中</button>
+        <button type="button" data-lb="en" aria-pressed="false">EN</button>
       </div>
     </div>
+  </nav>
 
-    <!-- Model 2: Nex-N2-Mini -->
-    <div class="model-card rank-2 thinking" onclick="location.href='models/n2mini.html'">
-      <div class="card-top">
-        <div class="card-rank">2</div>
-        <div class="card-scores">
-        <div class="card-score-box primary"><div class="lbl"><span data-lang="zh">上限</span><span data-lang="en">Max</span></div><div class="val">87.2</div></div>
-        <div class="card-score-box secondary"><div class="lbl"><span data-lang="zh">实用</span><span data-lang="en">Eff.</span></div><div class="val">60.2</div></div>
+  <main>
+    <section class="hero reveal" aria-labelledby="hero-title">
+      <div class="hero-kicker"><span></span>Local model intelligence index · 2026</div>
+      <h1 id="hero-title"><span data-lang="zh">让模型的真实能力，<br><em>在本地被看见。</em></span><span data-lang="en">See what models can really do,<br><em>right on local hardware.</em></span></h1>
+      <p class="hero-copy"><span data-lang="zh">统一硬件、统一题集，分别记录思考与无思考表现。这里不只给一个总分，而是呈现模型在工具调用、代码调试与智能体任务中的真实可用性。</span><span data-lang="en">One hardware setup and one test set, with thinking and no-thinking results tracked separately. More than a single score: a practical view of tool use, debugging, and agent tasks.</span></p>
+      <div class="hero-actions"><a class="primary-action" href="#leaderboard"><span data-lang="zh">查看排行榜</span><span data-lang="en">View leaderboard</span></a><a class="text-action" href="#spotlight"><span data-lang="zh">探索模型表现</span><span data-lang="en">Explore model performance</span> ↓</a></div>
+      <div class="model-orbit" data-model-orbit aria-label="All benchmarked models in a rotating ring">
+        <div class="orbit-aura" aria-hidden="true"></div>
+        <div class="orbit-ring" aria-hidden="true"></div>
+        <span class="orbit-core"><img src="icons/benchlocal-results-logo.png" alt="BenchLocal-Results"></span>
+        <a class="orbit-node orbit-model" href="models/dsv4-flash.html" title="DeepSeek-V4-Flash"><img src="icons/deepseek-color.png" alt="DeepSeek-V4-Flash"></a>
+        <a class="orbit-node orbit-model" href="models/gemma4-26b.html" title="Gemma family"><img src="icons/gemma-color.png" alt="Gemma family"></a>
+        <a class="orbit-node orbit-model" href="models/n2mini.html" title="Nex-N2-Mini"><img src="icons/nex.svg" alt="Nex-N2-Mini"></a>
+        <a class="orbit-node orbit-model" href="models/ornith-35b-heretic-mtp-apex.html" title="Ornith family"><img src="icons/ornith-color.png" alt="Ornith family"></a>
+        <a class="orbit-node orbit-model" href="models/qwen-agentworld-35b.html" title="Qwen family"><img src="icons/qwen-color.png" alt="Qwen family"></a>
+        <a class="orbit-node orbit-model" href="models/step37-flash.html" title="Step-3.7-Flash"><img src="icons/stepfun-color.png" alt="Step-3.7-Flash"></a>
+        <a class="orbit-node orbit-model" href="models/ternary-bonsai-27b-q2-0.html" title="Ternary-Bonsai-27B"><img src="icons/bonsai-logo.svg" alt="Ternary-Bonsai-27B"></a>
       </div>
-      </div>
-      <div class="card-model">
-        <h3><img src="icons/nex.svg" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Nex-N2-Mini-abliterated-APEX <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></span></h3>
-        <div class="desc">Huihui-Nex-N2-mini-abliterated-APEX-I-Compact.gguf · Q4_K_M · 15.4 GB</div>
-      </div>
-      <div class="card-meta">
-        <span class="card-tag">🧠 MoE</span>
-        <span class="card-tag">📦 15.4 GB</span>
-        <span class="card-tag">⚡ In 321 t/s · Out 62.5 t/s</span>
-        <span class="card-tag">🎮 RTX 5070 Ti</span>
-        <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=0.7 top_p=0.95 top_k=40</span>
-      </div>
-      <div class="card-bars">
-        <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:93%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">93</span></div>
-        <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:88%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">88</span></div>
-        <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:81%;background:#548235"></div></div><span class="bar-val" style="color:#548235">81</span></div>
-      </div>
-      
-      <div class="card-retry"><span data-lang="zh">🔄 上限分 87.2 → 重试 -27 → 实用 <strong>60.2</strong></span><span data-lang="en">🔄 Max 87.2 → retries -27 → Eff. <strong>60.2</strong></span></div>
-      <div class="card-footer">
-        <span class="date">2026-06-20 <span data-lang="zh">测试</span><span data-lang="en">tested</span></span>
-        <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
-        <a href="https://huggingface.co/SC117/Huihui-Nex-N2-mini-abliterated-APEX-GGUF" target="_blank" class="hf-link" onclick="event.stopPropagation()"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 32.4 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10z" fill="#FFD21E"/><path d="M30 65c0-8 4-15 10-18l2-1c2 3 6 5 10 5s7-2 10-5l2 1c6 3 10 10 10 18v15c0 3-2 5-5 5H35c-3 0-5-2-5-5V65z" fill="#1A202C"/><circle cx="45" cy="62" r="5" fill="white"/><circle cx="75" cy="62" r="5" fill="white"/><path d="M48 78c0 0 5 8 12 8s12-8 12-8" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>HF</a> 
+      <p class="hero-disclaimer"><span data-lang="zh">非严谨学术评测，结果用于参考与简单对比；速度仅记录测试环境。</span><span data-lang="en">Not a strict academic benchmark. Results support reference and rough comparison; speed only records the test environment.</span></p>
+    </section>
+
+    <section class="dataset-strip reveal" aria-label="Current dataset">
+      <div class="dataset-state"><span class="live-dot"></span><div><strong><span data-lang="zh">当前数据集已校验</span><span data-lang="en">Current dataset validated</span></strong><small>RTX 5070 Ti 16GB · 128GB RAM · llama.cpp</small></div></div>
+      <div class="dataset-stat"><strong data-model-count>15</strong><span><span data-lang="zh">模型</span><span data-lang="en">Models</span></span></div>
+      <div class="dataset-stat"><strong data-config-count>23</strong><span><span data-lang="zh">配置</span><span data-lang="en">Configurations</span></span></div>
+      <div class="dataset-stat"><strong>50</strong><span><span data-lang="zh">场景 / 每轮</span><span data-lang="en">Scenarios / run</span></span></div>
+    </section>
+
+    <section class="spotlight section-shell reveal" id="spotlight">
+      <header class="section-heading"><div><span class="section-index">01 / Model spotlight</span><h2><span data-lang="zh">一眼看懂模型差异</span><span data-lang="en">Understand a model at a glance</span></h2></div><p><span data-lang="zh">重点数据先出现，测试细节按需展开；动态只用于解释状态变化。</span><span data-lang="en">Key results lead, details follow on demand, and motion only clarifies state changes.</span></p></header>
+      <article class="product-stage" data-tilt>
+        <div class="product-visual"><div class="product-halo"></div><div class="product-logo"><img src="icons/bonsai-logo.svg" alt="Ternary-Bonsai logo"></div></div>
+        <div class="product-content">
+          <span class="product-eyebrow">Featured local model</span>
+          <h2>Ternary-Bonsai-27B</h2>
+          <p class="product-file">Ternary-Bonsai-27B-Q2_0.gguf · 6.67 GB · Out 61.3 t/s</p>
+          <div class="mode-switch" role="group" aria-label="Ternary-Bonsai mode">
+            <button type="button" data-spotlight-mode="thinking" aria-pressed="true"><span data-lang="zh">思考</span><span data-lang="en">Thinking</span></button>
+            <button type="button" data-spotlight-mode="no-thinking" aria-pressed="false"><span data-lang="zh">无思考</span><span data-lang="en">No thinking</span></button>
+          </div>
+          <div class="product-scores">
+            <div><span class="score-caption"><i data-spotlight-dot></i><span data-lang="zh">能力上限</span><span data-lang="en">Max score</span></span><strong data-spotlight-max>93.7</strong></div>
+            <div><span class="score-caption"><span data-lang="zh">实用得分</span><span data-lang="en">Effective score</span></span><strong data-spotlight-effective>87.7</strong></div>
+          </div>
+          <div class="product-metrics">
+            <div><span>ToolCall</span><i><b data-spotlight-bar="tc" style="width:100%"></b></i><strong data-spotlight-value="tc">100</strong></div>
+            <div><span>BugFind</span><i><b data-spotlight-bar="bf" style="width:95%"></b></i><strong data-spotlight-value="bf">95</strong></div>
+            <div><span>HermesAgent</span><i><b data-spotlight-bar="ha" style="width:88%"></b></i><strong data-spotlight-value="ha">88</strong></div>
+          </div>
+          <a class="product-link" href="models/ternary-bonsai-27b-q2-0.html"><span data-lang="zh">查看完整双模式详情</span><span data-lang="en">View full dual-mode details</span> →</a>
         </div>
-  </div>
+      </article>
+    </section>
 
-    <!-- Model 3b: Qwen3.6-35B-MTP <span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span> -->
-    <div class="model-card rank-2 no-thinking" onclick="location.href='models/qwen36-35b-mtp.html'">
-      <div class="card-top">
-        <div class="card-rank" style="background:#548235">3</div>
-        <div class="card-scores">
-        <div class="card-score-box primary"><div class="lbl"><span data-lang="zh">上限</span><span data-lang="en">Max</span></div><div class="val">91.5</div></div>
-        <div class="card-score-box secondary"><div class="lbl"><span data-lang="zh">实用</span><span data-lang="en">Eff.</span></div><div class="val">80.5</div></div>
-      </div>
-      </div>
-      <div class="card-model">
-        <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Qwen3.6-35B-A3B-uncensored-MTP <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(无思考 · MTP)</span><span data-lang="en">(No Think · MTP)</span></span></h3>
-        <div class="desc">Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX-I-Compact.gguf · Q4_K_M · 16.6 GB</div>
-      </div>
-      <div class="card-meta">
-        <span class="card-tag">🧠 MoE</span>
-        <span class="card-tag">📦 16.6 GB</span>
-        <span class="card-tag">⚡ In 766 t/s · Out 62.6 t/s</span>
-        <span class="card-tag">🎮 RTX 5070 Ti</span>
-        <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=0.7 top_p=0.8 top_k=20 rep=1.5</span>
-      </div>
-      <div class="card-bars">
-        <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:97%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">97</span></div>
-        <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:96%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">96</span></div>
-        <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:84%;background:#548235"></div></div><span class="bar-val" style="color:#548235">84</span></div>
-      </div>
-      
-      <div class="card-retry"><span data-lang="zh">🔄 上限分 91.5 → 重试 -11 → 实用 <strong>80.5</strong></span><span data-lang="en">🔄 Max 91.5 → retries -11 → Eff. <strong>80.5</strong></span></div>
-      <div class="card-footer">
-        <span class="date">2026-06-23 <span data-lang="zh">测试</span><span data-lang="en">tested</span></span>
-        <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
-        <a href="https://huggingface.co/SC117/Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX-GGUF" target="_blank" class="hf-link" onclick="event.stopPropagation()"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 32.4 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10z" fill="#FFD21E"/><path d="M30 65c0-8 4-15 10-18l2-1c2 3 6 5 10 5s7-2 10-5l2 1c6 3 10 10 10 18v15c0 3-2 5-5 5H35c-3 0-5-2-5-5V65z" fill="#1A202C"/><circle cx="45" cy="62" r="5" fill="white"/><circle cx="75" cy="62" r="5" fill="white"/><path d="M48 78c0 0 5 8 12 8s12-8 12-8" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>HF</a> 
+    <section class="leaderboard section-shell reveal" id="leaderboard">
+      <header class="section-heading leaderboard-heading"><div><span class="section-index">02 / Leaderboard</span><h2><span data-lang="zh">模型排行榜</span><span data-lang="en">Model leaderboard</span></h2></div><p><span data-lang="zh">双模式模型合并展示，筛选后重新计算排名。</span><span data-lang="en">Dual-mode models stay merged; ranking updates after filtering.</span></p></header>
+      <div class="leader-toolbar" aria-label="Leaderboard controls">
+        <div class="filter-group" role="group" aria-label="Mode filter">
+          <button type="button" data-filter="all" aria-pressed="true"><span data-lang="zh">全部模型</span><span data-lang="en">All models</span></button>
+          <button type="button" data-filter="thinking" aria-pressed="false"><span class="control-dot thinking"></span><span data-lang="zh">思考</span><span data-lang="en">Thinking</span></button>
+          <button type="button" data-filter="no-thinking" aria-pressed="false"><span class="control-dot no-thinking"></span><span data-lang="zh">无思考</span><span data-lang="en">No thinking</span></button>
         </div>
-    </div>
+        <label class="sort-control"><span data-lang="zh">排序</span><span data-lang="en">Sort</span><select data-sort aria-label="Sort models"><option value="total">能力上限 / Max score</option><option value="adjusted">实用得分 / Effective</option><option value="tc">ToolCall</option><option value="bf">BugFind</option><option value="ha">HermesAgent</option></select></label>
+      </div>
+      <div class="model-list" aria-live="polite">
+        <!-- Generated model cards: publisher/render-homepage.mjs -->
+<a class="model-card dual-mode" href="models/ornith-35b-heretic-mtp-apex.html" aria-label="Ornith-1.0-35B-Heretic-MTP-APEX model details" data-model-name="Ornith-1.0-35B-Heretic-MTP-APEX" data-modes="thinking,no-thinking" data-total="95" data-adjusted="90" data-tc="100" data-bf="98" data-ha="89" data-thinking-total="95" data-thinking-adjusted="90" data-thinking-tc="100" data-thinking-bf="98" data-thinking-ha="89" data-no-thinking-total="92.2" data-no-thinking-adjusted="76.2" data-no-thinking-tc="97" data-no-thinking-bf="97" data-no-thinking-ha="85">
+    <div class="model-rank"><span>#</span><strong>01</strong></div>
+    <div class="model-identity"><span class="model-logo"><img src="icons/ornith-color.png" alt=""></span><div><h3>Ornith-1.0-35B-Heretic-MTP-APEX</h3><p>Ornith-1.0-35B-Heretic-MTP-APEX-I-Compact.gguf</p></div></div>
+    <div class="model-modes"><div class="mode-readout thinking">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">思考</span><span data-lang="en">Thinking</span></div>
+    <div class="mode-readout-scores"><strong>95</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 90</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:95%"></i><i class="mode-score-effective" style="width:90%"></i></div>
+    <div class="mode-readout-suites"><span>TC 100</span><span>BF 98</span><span>HA 89</span></div>
+  </div><div class="mode-readout no-thinking">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">无思考</span><span data-lang="en">No Thinking</span></div>
+    <div class="mode-readout-scores"><strong>92.2</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 76.2</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:92.2%"></i><i class="mode-score-effective" style="width:76.2%"></i></div>
+    <div class="mode-readout-suites"><span>TC 97</span><span>BF 97</span><span>HA 85</span></div>
+  </div></div>
+    <div class="model-primary-score"><span><span data-lang="zh">能力上限</span><span data-lang="en">Max score</span></span><strong>95</strong><small><span data-lang="zh">实用</span><span data-lang="en">Effective</span> 90</small></div>
+    <span class="model-arrow" aria-hidden="true">→</span>
+  </a>
+<a class="model-card single-mode" href="models/dsv4-flash.html" aria-label="DeepSeek-V4-Flash model details" data-model-name="DeepSeek-V4-Flash" data-modes="default" data-total="93.9" data-adjusted="84.9" data-tc="100" data-bf="93" data-ha="90" data-default-total="93.9" data-default-adjusted="84.9" data-default-tc="100" data-default-bf="93" data-default-ha="90">
+    <div class="model-rank"><span>#</span><strong>02</strong></div>
+    <div class="model-identity"><span class="model-logo"><img src="icons/deepseek-color.png" alt=""></span><div><h3>DeepSeek-V4-Flash</h3><p>deepseek-v4-flash-free via opencode</p></div></div>
+    <div class="model-modes"><div class="mode-readout default">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">默认</span><span data-lang="en">Default</span></div>
+    <div class="mode-readout-scores"><strong>93.9</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 84.9</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:93.9%"></i><i class="mode-score-effective" style="width:84.9%"></i></div>
+    <div class="mode-readout-suites"><span>TC 100</span><span>BF 93</span><span>HA 90</span></div>
+  </div></div>
+    <div class="model-primary-score"><span><span data-lang="zh">能力上限</span><span data-lang="en">Max score</span></span><strong>93.9</strong><small><span data-lang="zh">实用</span><span data-lang="en">Effective</span> 84.9</small></div>
+    <span class="model-arrow" aria-hidden="true">→</span>
+  </a>
+<a class="model-card dual-mode" href="models/ternary-bonsai-27b-q2-0.html" aria-label="Ternary-Bonsai-27B model details" data-model-name="Ternary-Bonsai-27B" data-modes="thinking,no-thinking" data-total="93.7" data-adjusted="88" data-tc="100" data-bf="95" data-ha="88" data-thinking-total="93.7" data-thinking-adjusted="87.7" data-thinking-tc="100" data-thinking-bf="95" data-thinking-ha="88" data-no-thinking-total="91" data-no-thinking-adjusted="88" data-no-thinking-tc="100" data-no-thinking-bf="90" data-no-thinking-ha="85">
+    <div class="model-rank"><span>#</span><strong>03</strong></div>
+    <div class="model-identity"><span class="model-logo"><img src="icons/bonsai-logo.svg" alt=""></span><div><h3>Ternary-Bonsai-27B</h3><p>Ternary-Bonsai-27B-Q2_0.gguf</p></div></div>
+    <div class="model-modes"><div class="mode-readout thinking">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">思考</span><span data-lang="en">Thinking</span></div>
+    <div class="mode-readout-scores"><strong>93.7</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 87.7</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:93.7%"></i><i class="mode-score-effective" style="width:87.7%"></i></div>
+    <div class="mode-readout-suites"><span>TC 100</span><span>BF 95</span><span>HA 88</span></div>
+  </div><div class="mode-readout no-thinking">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">无思考</span><span data-lang="en">No Thinking</span></div>
+    <div class="mode-readout-scores"><strong>91</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 88</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:91%"></i><i class="mode-score-effective" style="width:88%"></i></div>
+    <div class="mode-readout-suites"><span>TC 100</span><span>BF 90</span><span>HA 85</span></div>
+  </div></div>
+    <div class="model-primary-score"><span><span data-lang="zh">能力上限</span><span data-lang="en">Max score</span></span><strong>93.7</strong><small><span data-lang="zh">实用</span><span data-lang="en">Effective</span> 88</small></div>
+    <span class="model-arrow" aria-hidden="true">→</span>
+  </a>
+<a class="model-card dual-mode" href="models/ornith-35b-mtp.html" aria-label="Ornith-1.0-35B-MTP-APEX model details" data-model-name="Ornith-1.0-35B-MTP-APEX" data-modes="thinking,no-thinking" data-total="93.5" data-adjusted="85.2" data-tc="100" data-bf="93" data-ha="89" data-thinking-total="93.5" data-thinking-adjusted="75.5" data-thinking-tc="100" data-thinking-bf="93" data-thinking-ha="89" data-no-thinking-total="93.2" data-no-thinking-adjusted="85.2" data-no-thinking-tc="100" data-no-thinking-bf="92" data-no-thinking-ha="89">
+    <div class="model-rank"><span>#</span><strong>04</strong></div>
+    <div class="model-identity"><span class="model-logo"><img src="icons/ornith-color.png" alt=""></span><div><h3>Ornith-1.0-35B-MTP-APEX</h3><p>Ornith-1.0-35B-MTP-APEX-I-Compact.gguf</p></div></div>
+    <div class="model-modes"><div class="mode-readout thinking">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">思考</span><span data-lang="en">Thinking</span></div>
+    <div class="mode-readout-scores"><strong>93.5</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 75.5</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:93.5%"></i><i class="mode-score-effective" style="width:75.5%"></i></div>
+    <div class="mode-readout-suites"><span>TC 100</span><span>BF 93</span><span>HA 89</span></div>
+  </div><div class="mode-readout no-thinking">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">无思考</span><span data-lang="en">No Thinking</span></div>
+    <div class="mode-readout-scores"><strong>93.2</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 85.2</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:93.2%"></i><i class="mode-score-effective" style="width:85.2%"></i></div>
+    <div class="mode-readout-suites"><span>TC 100</span><span>BF 92</span><span>HA 89</span></div>
+  </div></div>
+    <div class="model-primary-score"><span><span data-lang="zh">能力上限</span><span data-lang="en">Max score</span></span><strong>93.5</strong><small><span data-lang="zh">实用</span><span data-lang="en">Effective</span> 85.2</small></div>
+    <span class="model-arrow" aria-hidden="true">→</span>
+  </a>
+<a class="model-card dual-mode" href="models/agents-a1.html" aria-label="Agents-A1 model details" data-model-name="Agents-A1" data-modes="thinking,no-thinking" data-total="93.1" data-adjusted="71.2" data-tc="100" data-bf="100" data-ha="87" data-thinking-total="91.2" data-thinking-adjusted="71.2" data-thinking-tc="100" data-thinking-bf="88" data-thinking-ha="87" data-no-thinking-total="93.1" data-no-thinking-adjusted="61.1" data-no-thinking-tc="97" data-no-thinking-bf="100" data-no-thinking-ha="85">
+    <div class="model-rank"><span>#</span><strong>05</strong></div>
+    <div class="model-identity"><span class="model-logo"><img src="icons/qwen-color.png" alt=""></span><div><h3>Agents-A1</h3><p>Agents-A1-APEX-I-Compact.gguf</p></div></div>
+    <div class="model-modes"><div class="mode-readout thinking">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">思考</span><span data-lang="en">Thinking</span></div>
+    <div class="mode-readout-scores"><strong>91.2</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 71.2</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:91.2%"></i><i class="mode-score-effective" style="width:71.2%"></i></div>
+    <div class="mode-readout-suites"><span>TC 100</span><span>BF 88</span><span>HA 87</span></div>
+  </div><div class="mode-readout no-thinking">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">无思考</span><span data-lang="en">No Thinking</span></div>
+    <div class="mode-readout-scores"><strong>93.1</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 61.1</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:93.1%"></i><i class="mode-score-effective" style="width:61.1%"></i></div>
+    <div class="mode-readout-suites"><span>TC 97</span><span>BF 100</span><span>HA 85</span></div>
+  </div></div>
+    <div class="model-primary-score"><span><span data-lang="zh">能力上限</span><span data-lang="en">Max score</span></span><strong>93.1</strong><small><span data-lang="zh">实用</span><span data-lang="en">Effective</span> 71.2</small></div>
+    <span class="model-arrow" aria-hidden="true">→</span>
+  </a>
+<a class="model-card dual-mode" href="models/qwen36-27b.html" aria-label="Qwen3.6-27B model details" data-model-name="Qwen3.6-27B" data-modes="thinking,no-thinking" data-total="91.9" data-adjusted="84.8" data-tc="100" data-bf="93" data-ha="85" data-thinking-total="91.9" data-thinking-adjusted="73.9" data-thinking-tc="100" data-thinking-bf="93" data-thinking-ha="85" data-no-thinking-total="87.8" data-no-thinking-adjusted="84.8" data-no-thinking-tc="97" data-no-thinking-bf="85" data-no-thinking-ha="83">
+    <div class="model-rank"><span>#</span><strong>06</strong></div>
+    <div class="model-identity"><span class="model-logo"><img src="icons/qwen-color.png" alt=""></span><div><h3>Qwen3.6-27B</h3><p>Qwen3.6-27B-uncensored-heretic-v2-Native-MTP-Preserved.i1-IQ3_M.gguf</p></div></div>
+    <div class="model-modes"><div class="mode-readout thinking">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">思考</span><span data-lang="en">Thinking</span></div>
+    <div class="mode-readout-scores"><strong>91.9</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 73.9</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:91.9%"></i><i class="mode-score-effective" style="width:73.9%"></i></div>
+    <div class="mode-readout-suites"><span>TC 100</span><span>BF 93</span><span>HA 85</span></div>
+  </div><div class="mode-readout no-thinking">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">无思考</span><span data-lang="en">No Thinking</span></div>
+    <div class="mode-readout-scores"><strong>87.8</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 84.8</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:87.8%"></i><i class="mode-score-effective" style="width:84.8%"></i></div>
+    <div class="mode-readout-suites"><span>TC 97</span><span>BF 85</span><span>HA 83</span></div>
+  </div></div>
+    <div class="model-primary-score"><span><span data-lang="zh">能力上限</span><span data-lang="en">Max score</span></span><strong>91.9</strong><small><span data-lang="zh">实用</span><span data-lang="en">Effective</span> 84.8</small></div>
+    <span class="model-arrow" aria-hidden="true">→</span>
+  </a>
+<a class="model-card dual-mode" href="models/gemma4-26b.html" aria-label="Gemma-4-26B-A4B-it-qat model details" data-model-name="Gemma-4-26B-A4B-it-qat" data-modes="thinking,no-thinking" data-total="91.8" data-adjusted="83.8" data-tc="97" data-bf="97" data-ha="87" data-thinking-total="91.8" data-thinking-adjusted="83.8" data-thinking-tc="93" data-thinking-bf="97" data-thinking-ha="87" data-no-thinking-total="89.8" data-no-thinking-adjusted="80.8" data-no-thinking-tc="97" data-no-thinking-bf="89" data-no-thinking-ha="85">
+    <div class="model-rank"><span>#</span><strong>07</strong></div>
+    <div class="model-identity"><span class="model-logo"><img src="icons/gemma-color.png" alt=""></span><div><h3>Gemma-4-26B-A4B-it-qat</h3><p>gemma-4-26B-A4B-it-qat-heretic-UD-Q4_K_XL.gguf</p></div></div>
+    <div class="model-modes"><div class="mode-readout thinking">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">思考</span><span data-lang="en">Thinking</span></div>
+    <div class="mode-readout-scores"><strong>91.8</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 83.8</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:91.8%"></i><i class="mode-score-effective" style="width:83.8%"></i></div>
+    <div class="mode-readout-suites"><span>TC 93</span><span>BF 97</span><span>HA 87</span></div>
+  </div><div class="mode-readout no-thinking">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">无思考</span><span data-lang="en">No Thinking</span></div>
+    <div class="mode-readout-scores"><strong>89.8</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 80.8</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:89.8%"></i><i class="mode-score-effective" style="width:80.8%"></i></div>
+    <div class="mode-readout-suites"><span>TC 97</span><span>BF 89</span><span>HA 85</span></div>
+  </div></div>
+    <div class="model-primary-score"><span><span data-lang="zh">能力上限</span><span data-lang="en">Max score</span></span><strong>91.8</strong><small><span data-lang="zh">实用</span><span data-lang="en">Effective</span> 83.8</small></div>
+    <span class="model-arrow" aria-hidden="true">→</span>
+  </a>
+<a class="model-card dual-mode" href="models/qwen36-35b-mtp.html" aria-label="Qwen3.6-35B-A3B-uncensored-MTP model details" data-model-name="Qwen3.6-35B-A3B-uncensored-MTP" data-modes="thinking,no-thinking" data-total="91.5" data-adjusted="81.5" data-tc="97" data-bf="96" data-ha="85" data-thinking-total="89.5" data-thinking-adjusted="81.5" data-thinking-tc="97" data-thinking-bf="88" data-thinking-ha="85" data-no-thinking-total="91.5" data-no-thinking-adjusted="80.5" data-no-thinking-tc="97" data-no-thinking-bf="96" data-no-thinking-ha="84">
+    <div class="model-rank"><span>#</span><strong>08</strong></div>
+    <div class="model-identity"><span class="model-logo"><img src="icons/qwen-color.png" alt=""></span><div><h3>Qwen3.6-35B-A3B-uncensored-MTP</h3><p>Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX-I-Compact.gguf</p></div></div>
+    <div class="model-modes"><div class="mode-readout thinking">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">思考</span><span data-lang="en">Thinking</span></div>
+    <div class="mode-readout-scores"><strong>89.5</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 81.5</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:89.5%"></i><i class="mode-score-effective" style="width:81.5%"></i></div>
+    <div class="mode-readout-suites"><span>TC 97</span><span>BF 88</span><span>HA 85</span></div>
+  </div><div class="mode-readout no-thinking">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">无思考</span><span data-lang="en">No Thinking</span></div>
+    <div class="mode-readout-scores"><strong>91.5</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 80.5</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:91.5%"></i><i class="mode-score-effective" style="width:80.5%"></i></div>
+    <div class="mode-readout-suites"><span>TC 97</span><span>BF 96</span><span>HA 84</span></div>
+  </div></div>
+    <div class="model-primary-score"><span><span data-lang="zh">能力上限</span><span data-lang="en">Max score</span></span><strong>91.5</strong><small><span data-lang="zh">实用</span><span data-lang="en">Effective</span> 81.5</small></div>
+    <span class="model-arrow" aria-hidden="true">→</span>
+  </a>
+<a class="model-card single-mode" href="models/gemma4-12b.html" aria-label="Gemma-4-12B-it-heretic-QAT model details" data-model-name="Gemma-4-12B-it-heretic-QAT" data-modes="thinking" data-total="90.3" data-adjusted="85.3" data-tc="97" data-bf="88" data-ha="87" data-thinking-total="90.3" data-thinking-adjusted="85.3" data-thinking-tc="97" data-thinking-bf="88" data-thinking-ha="87">
+    <div class="model-rank"><span>#</span><strong>09</strong></div>
+    <div class="model-identity"><span class="model-logo"><img src="icons/gemma-color.png" alt=""></span><div><h3>Gemma-4-12B-it-heretic-QAT</h3><p>gemma-4-12B-it-heretic-QAT-Q4_0.gguf</p></div></div>
+    <div class="model-modes"><div class="mode-readout thinking">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">思考</span><span data-lang="en">Thinking</span></div>
+    <div class="mode-readout-scores"><strong>90.3</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 85.3</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:90.3%"></i><i class="mode-score-effective" style="width:85.3%"></i></div>
+    <div class="mode-readout-suites"><span>TC 97</span><span>BF 88</span><span>HA 87</span></div>
+  </div></div>
+    <div class="model-primary-score"><span><span data-lang="zh">能力上限</span><span data-lang="en">Max score</span></span><strong>90.3</strong><small><span data-lang="zh">实用</span><span data-lang="en">Effective</span> 85.3</small></div>
+    <span class="model-arrow" aria-hidden="true">→</span>
+  </a>
+<a class="model-card single-mode" href="models/ornith-1-0-9b-heretic.html" aria-label="Ornith-1.0-9B-heretic-MTP model details" data-model-name="Ornith-1.0-9B-heretic-MTP" data-modes="thinking" data-total="89.8" data-adjusted="68.8" data-tc="100" data-bf="94" data-ha="79" data-thinking-total="89.8" data-thinking-adjusted="68.8" data-thinking-tc="100" data-thinking-bf="94" data-thinking-ha="79">
+    <div class="model-rank"><span>#</span><strong>10</strong></div>
+    <div class="model-identity"><span class="model-logo"><img src="icons/ornith-color.png" alt=""></span><div><h3>Ornith-1.0-9B-heretic-MTP</h3><p>Ornith-1.0-9B-heretic-MTP-Q6_K.gguf</p></div></div>
+    <div class="model-modes"><div class="mode-readout thinking">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">思考</span><span data-lang="en">Thinking</span></div>
+    <div class="mode-readout-scores"><strong>89.8</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 68.8</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:89.8%"></i><i class="mode-score-effective" style="width:68.8%"></i></div>
+    <div class="mode-readout-suites"><span>TC 100</span><span>BF 94</span><span>HA 79</span></div>
+  </div></div>
+    <div class="model-primary-score"><span><span data-lang="zh">能力上限</span><span data-lang="en">Max score</span></span><strong>89.8</strong><small><span data-lang="zh">实用</span><span data-lang="en">Effective</span> 68.8</small></div>
+    <span class="model-arrow" aria-hidden="true">→</span>
+  </a>
+<a class="model-card single-mode" href="models/qwen-agentworld-35b-original.html" aria-label="Qwen-AgentWorld-35B-A3B-APEX-I-Compact model details" data-model-name="Qwen-AgentWorld-35B-A3B-APEX-I-Compact" data-modes="thinking" data-total="88.5" data-adjusted="87.5" data-tc="100" data-bf="87" data-ha="81" data-thinking-total="88.5" data-thinking-adjusted="87.5" data-thinking-tc="100" data-thinking-bf="87" data-thinking-ha="81">
+    <div class="model-rank"><span>#</span><strong>11</strong></div>
+    <div class="model-identity"><span class="model-logo"><img src="icons/qwen-color.png" alt=""></span><div><h3>Qwen-AgentWorld-35B-A3B-APEX-I-Compact</h3><p>Qwen-AgentWorld-35B-A3B-APEX-I-Compact.gguf</p></div></div>
+    <div class="model-modes"><div class="mode-readout thinking">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">思考</span><span data-lang="en">Thinking</span></div>
+    <div class="mode-readout-scores"><strong>88.5</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 87.5</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:88.5%"></i><i class="mode-score-effective" style="width:87.5%"></i></div>
+    <div class="mode-readout-suites"><span>TC 100</span><span>BF 87</span><span>HA 81</span></div>
+  </div></div>
+    <div class="model-primary-score"><span><span data-lang="zh">能力上限</span><span data-lang="en">Max score</span></span><strong>88.5</strong><small><span data-lang="zh">实用</span><span data-lang="en">Effective</span> 87.5</small></div>
+    <span class="model-arrow" aria-hidden="true">→</span>
+  </a>
+<a class="model-card single-mode" href="models/step37-flash.html" aria-label="Step-3.7-Flash-APEX-I-Mini model details" data-model-name="Step-3.7-Flash-APEX-I-Mini" data-modes="thinking" data-total="88.5" data-adjusted="78.5" data-tc="100" data-bf="87" data-ha="81" data-thinking-total="88.5" data-thinking-adjusted="78.5" data-thinking-tc="100" data-thinking-bf="87" data-thinking-ha="81">
+    <div class="model-rank"><span>#</span><strong>12</strong></div>
+    <div class="model-identity"><span class="model-logo"><img src="icons/stepfun-color.png" alt=""></span><div><h3>Step-3.7-Flash-APEX-I-Mini</h3><p>Step-3.7-Flash-APEX-I-Mini.gguf</p></div></div>
+    <div class="model-modes"><div class="mode-readout thinking">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">思考</span><span data-lang="en">Thinking</span></div>
+    <div class="mode-readout-scores"><strong>88.5</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 78.5</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:88.5%"></i><i class="mode-score-effective" style="width:78.5%"></i></div>
+    <div class="mode-readout-suites"><span>TC 100</span><span>BF 87</span><span>HA 81</span></div>
+  </div></div>
+    <div class="model-primary-score"><span><span data-lang="zh">能力上限</span><span data-lang="en">Max score</span></span><strong>88.5</strong><small><span data-lang="zh">实用</span><span data-lang="en">Effective</span> 78.5</small></div>
+    <span class="model-arrow" aria-hidden="true">→</span>
+  </a>
+<a class="model-card single-mode" href="models/qwenpaw-flash-9b.html" aria-label="QwenPaw-Flash-9B model details" data-model-name="QwenPaw-Flash-9B" data-modes="thinking" data-total="88.4" data-adjusted="64.4" data-tc="100" data-bf="88" data-ha="80" data-thinking-total="88.4" data-thinking-adjusted="64.4" data-thinking-tc="100" data-thinking-bf="88" data-thinking-ha="80">
+    <div class="model-rank"><span>#</span><strong>13</strong></div>
+    <div class="model-identity"><span class="model-logo"><img src="icons/qwen-color.png" alt=""></span><div><h3>QwenPaw-Flash-9B</h3><p>QwenPaw-Flash-9B-heretic-MTP-Q6_K.gguf</p></div></div>
+    <div class="model-modes"><div class="mode-readout thinking">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">思考</span><span data-lang="en">Thinking</span></div>
+    <div class="mode-readout-scores"><strong>88.4</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 64.4</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:88.4%"></i><i class="mode-score-effective" style="width:64.4%"></i></div>
+    <div class="mode-readout-suites"><span>TC 100</span><span>BF 88</span><span>HA 80</span></div>
+  </div></div>
+    <div class="model-primary-score"><span><span data-lang="zh">能力上限</span><span data-lang="en">Max score</span></span><strong>88.4</strong><small><span data-lang="zh">实用</span><span data-lang="en">Effective</span> 64.4</small></div>
+    <span class="model-arrow" aria-hidden="true">→</span>
+  </a>
+<a class="model-card single-mode" href="models/n2mini.html" aria-label="Nex-N2-Mini model details" data-model-name="Nex-N2-Mini" data-modes="thinking" data-total="86.7" data-adjusted="59.7" data-tc="93" data-bf="88" data-ha="81" data-thinking-total="86.7" data-thinking-adjusted="59.7" data-thinking-tc="93" data-thinking-bf="88" data-thinking-ha="81">
+    <div class="model-rank"><span>#</span><strong>14</strong></div>
+    <div class="model-identity"><span class="model-logo"><img src="icons/nex.svg" alt=""></span><div><h3>Nex-N2-Mini</h3><p>Huihui-Nex-N2-mini-abliterated-APEX-I-Compact.gguf</p></div></div>
+    <div class="model-modes"><div class="mode-readout thinking">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">思考</span><span data-lang="en">Thinking</span></div>
+    <div class="mode-readout-scores"><strong>86.7</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 59.7</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:86.7%"></i><i class="mode-score-effective" style="width:59.7%"></i></div>
+    <div class="mode-readout-suites"><span>TC 93</span><span>BF 88</span><span>HA 81</span></div>
+  </div></div>
+    <div class="model-primary-score"><span><span data-lang="zh">能力上限</span><span data-lang="en">Max score</span></span><strong>86.7</strong><small><span data-lang="zh">实用</span><span data-lang="en">Effective</span> 59.7</small></div>
+    <span class="model-arrow" aria-hidden="true">→</span>
+  </a>
+<a class="model-card dual-mode" href="models/qwen-agentworld-35b.html" aria-label="Qwen-AgentWorld-35B-A3B-MTP-Uncensored model details" data-model-name="Qwen-AgentWorld-35B-A3B-MTP-Uncensored" data-modes="thinking,no-thinking" data-total="85.6" data-adjusted="81.6" data-tc="93" data-bf="87" data-ha="79" data-thinking-total="85.6" data-thinking-adjusted="81.6" data-thinking-tc="93" data-thinking-bf="87" data-thinking-ha="79" data-no-thinking-total="75" data-no-thinking-adjusted="75" data-no-thinking-tc="83" data-no-thinking-bf="83" data-no-thinking-ha="63">
+    <div class="model-rank"><span>#</span><strong>15</strong></div>
+    <div class="model-identity"><span class="model-logo"><img src="icons/qwen-color.png" alt=""></span><div><h3>Qwen-AgentWorld-35B-A3B-MTP-Uncensored</h3><p>Qwen-AgentWorld-35B-A3B-MTP-Uncensored-APEX-I-Compact.gguf</p></div></div>
+    <div class="model-modes"><div class="mode-readout thinking">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">思考</span><span data-lang="en">Thinking</span></div>
+    <div class="mode-readout-scores"><strong>85.6</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 81.6</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:85.6%"></i><i class="mode-score-effective" style="width:81.6%"></i></div>
+    <div class="mode-readout-suites"><span>TC 93</span><span>BF 87</span><span>HA 79</span></div>
+  </div><div class="mode-readout no-thinking">
+    <div class="mode-readout-head"><span class="mode-dot"></span><span data-lang="zh">无思考</span><span data-lang="en">No Thinking</span></div>
+    <div class="mode-readout-scores"><strong>75</strong><span><span data-lang="zh">实用</span><span data-lang="en">Eff.</span> 75</span></div>
+    <div class="mode-score-track" aria-hidden="true"><i class="mode-score-max" style="width:75%"></i><i class="mode-score-effective" style="width:75%"></i></div>
+    <div class="mode-readout-suites"><span>TC 83</span><span>BF 83</span><span>HA 63</span></div>
+  </div></div>
+    <div class="model-primary-score"><span><span data-lang="zh">能力上限</span><span data-lang="en">Max score</span></span><strong>85.6</strong><small><span data-lang="zh">实用</span><span data-lang="en">Effective</span> 81.6</small></div>
+    <span class="model-arrow" aria-hidden="true">→</span>
+  </a>
+    <!-- End generated model cards -->
+      </div>
+    </section>
 
-        <!-- Model 4: Qwen3.6-35B-MTP <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span> -->
-    <div class="model-card rank-1 thinking" onclick="location.href='models/qwen36-35b-mtp-thinking.html'">
-      <div class="card-top">
-        <div class="card-rank">1</div>
-        <div class="card-scores">
-        <div class="card-score-box primary"><div class="lbl"><span data-lang="zh">上限</span><span data-lang="en">Max</span></div><div class="val">89.5</div></div>
-        <div class="card-score-box secondary"><div class="lbl"><span data-lang="zh">实用</span><span data-lang="en">Eff.</span></div><div class="val">81.5</div></div>
+    <section class="method section-shell reveal" id="method">
+      <header class="section-heading"><div><span class="section-index">03 / Method</span><h2><span data-lang="zh">同一环境，三个真实任务面</span><span data-lang="en">One environment, three practical dimensions</span></h2></div><p><span data-lang="zh">能力上限看模型能做到什么，实用得分同时计算到达结果所付出的重试成本。</span><span data-lang="en">Max score shows what a model can achieve; effective score also accounts for retry cost.</span></p></header>
+      <div class="method-grid">
+        <article><img class="method-art" src="assets/method-toolcall.png" alt=""><span>01</span><h3>ToolCall-15</h3><p><span data-lang="zh">参数提取、多轮上下文、并行调用等工具使用场景。</span><span data-lang="en">Tool use across parameter extraction, multi-turn context, and parallel calls.</span></p></article>
+        <article><img class="method-art" src="assets/method-bugfind.png" alt=""><span>02</span><h3>BugFind-15</h3><p><span data-lang="zh">跨语言代码调试，包含无 Bug 与红鲱鱼陷阱题。</span><span data-lang="en">Cross-language debugging, including no-bug and red-herring traps.</span></p></article>
+        <article><img class="method-art" src="assets/method-hermes.png" alt=""><span>03</span><h3>HermesAgent-20</h3><p><span data-lang="zh">记忆、技能、调度、消息投递等智能体任务。</span><span data-lang="en">Agent work across memory, skills, scheduling, and message delivery.</span></p></article>
       </div>
-      </div>
-      <div class="card-model">
-        <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Qwen3.6-35B-A3B-uncensored-MTP <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(思考 · MTP)</span><span data-lang="en">(Thinking · MTP)</span></span></h3>
-        <div class="desc">Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX-I-Compact.gguf · Q4_K_M · 16.6 GB</div>
-      </div>
-      <div class="card-meta">
-        <span class="card-tag">🧠 MoE</span>
-        <span class="card-tag">📦 16.6 GB</span>
-        <span class="card-tag">⚡ In 766 t/s · Out 62.6 t/s</span>
-        <span class="card-tag">🎮 RTX 5070 Ti</span>
-        <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=1.0 top_p=0.95 top_k=20 rep=1.5</span>
-      </div>
-      <div class="card-bars">
-        <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:97%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">97</span></div>
-        <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:88%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">88</span></div>
-        <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:85%;background:#548235"></div></div><span class="bar-val" style="color:#548235">85</span></div>
-      </div>
-      
-      <div class="card-retry"><span data-lang="zh">🔄 上限分 89.5 → 重试 -8 → 实用 <strong>81.5</strong></span><span data-lang="en">🔄 Max 89.5 → retries -8 → Eff. <strong>81.5</strong></span></div>
-      <div class="card-footer">
-        <span class="date">2026-06-23 <span data-lang="zh">测试</span><span data-lang="en">tested</span></span>
-        <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
-        <a href="https://huggingface.co/SC117/Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX-GGUF" target="_blank" class="hf-link" onclick="event.stopPropagation()"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 32.4 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10z" fill="#FFD21E"/><path d="M30 65c0-8 4-15 10-18l2-1c2 3 6 5 10 5s7-2 10-5l2 1c6 3 10 10 10 18v15c0 3-2 5-5 5H35c-3 0-5-2-5-5V65z" fill="#1A202C"/><circle cx="45" cy="62" r="5" fill="white"/><circle cx="75" cy="62" r="5" fill="white"/><path d="M48 78c0 0 5 8 12 8s12-8 12-8" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>HF</a> 
-        </div>
-    </div>
+      <div class="formula"><div><span><span data-lang="zh">能力上限</span><span data-lang="en">Max score</span></span><strong>TC × 0.3 + BF × 0.3 + HA × 0.4</strong></div><div><span><span data-lang="zh">实用得分</span><span data-lang="en">Effective score</span></span><strong><span data-lang="zh">能力上限 − 成功题重试次数</span><span data-lang="en">Max score − successful-case retries</span></strong></div></div>
+    </section>
+  </main>
 
-    <!-- Model 5: Gemma 4 26B -->
-    <div class="model-card rank-1 no-thinking" onclick="location.href='models/gemma4-26b.html'">
-      <div class="card-top">
-        <div class="card-rank">1</div>
-        <div class="card-scores">
-        <div class="card-score-box primary"><div class="lbl"><span data-lang="zh">上限</span><span data-lang="en">Max</span></div><div class="val">88.7</div></div>
-        <div class="card-score-box secondary"><div class="lbl"><span data-lang="zh">实用</span><span data-lang="en">Eff.</span></div><div class="val">82.7</div></div>
-      </div>
-      </div>
-      <div class="card-model">
-        <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/gemma-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Gemma-4-26B-A4B-it-qat <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span></span></h3>
-        <div class="desc">gemma-4-26B-A4B-it-qat-heretic-UD-Q4_K_XL.gguf · Q4_K_XL · 13.3 GB</div>
-      </div>
-      <div class="card-meta">
-        <span class="card-tag">🧠 MoE 4B active</span>
-        <span class="card-tag">📦 13.3 GB</span>
-        <span class="card-tag">⚡ In 832 t/s · Out 53.9 t/s</span>
-        <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=1.0 top_p=0.95 top_k=64</span>
-      </div>
-      <div class="card-bars">
-        <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:97%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">96.7</span></div>
-        <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:86%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">86</span></div>
-        <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:85%;background:#548235"></div></div><span class="bar-val" style="color:#548235">84.8</span></div>
-      </div>
-      
-      <div class="card-retry"><span data-lang="zh">🔄 上限分 88.7 → 重试 -6 → 实用 <strong>82.7</strong></span><span data-lang="en">🔄 Max 88.7 → retries -6 → Eff. <strong>82.7</strong></span></div>
-      <div class="card-footer">
-        <span class="date">2026-06-19 <span data-lang="zh">测试</span><span data-lang="en">tested</span></span>
-        <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
-        <a href="https://huggingface.co/SC117/gemma-4-26B-A4B-it-qat-heretic-GGUF" target="_blank" class="hf-link" onclick="event.stopPropagation()"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 32.4 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10z" fill="#FFD21E"/><path d="M30 65c0-8 4-15 10-18l2-1c2 3 6 5 10 5s7-2 10-5l2 1c6 3 10 10 10 18v15c0 3-2 5-5 5H35c-3 0-5-2-5-5V65z" fill="#1A202C"/><circle cx="45" cy="62" r="5" fill="white"/><circle cx="75" cy="62" r="5" fill="white"/><path d="M48 78c0 0 5 8 12 8s12-8 12-8" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>HF</a> 
-        </div>
-    </div>
-
-    <!-- Model 6: Gemma 4 26B <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span> -->
-    <div class="model-card rank-1 thinking" onclick="location.href='models/gemma4-26b-thinking.html'">
-      <div class="card-top">
-        <div class="card-rank">1</div>
-        <div class="card-scores">
-        <div class="card-score-box primary"><div class="lbl"><span data-lang="zh">上限</span><span data-lang="en">Max</span></div><div class="val">91.6</div></div>
-        <div class="card-score-box secondary"><div class="lbl"><span data-lang="zh">实用</span><span data-lang="en">Eff.</span></div><div class="val">83.6</div></div>
-      </div>
-      </div>
-      <div class="card-model">
-        <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/gemma-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Gemma-4-26B-A4B-it-qat <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></span></h3>
-        <div class="desc">gemma-4-26B-A4B-it-qat-heretic-UD-Q4_K_XL.gguf · Q4_K_XL · 13.3 GB</div>
-      </div>
-      <div class="card-meta">
-        <span class="card-tag">🧠 MoE 4B active</span>
-        <span class="card-tag">📦 13.3 GB</span>
-        <span class="card-tag">⚡ In 832 t/s · Out 53.9 t/s</span>
-        <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=1.0 top_p=0.95 top_k=64</span>
-      </div>
-      <div class="card-bars">
-        <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:93%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">93.3</span></div>
-        <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:96%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">96</span></div>
-        <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:87%;background:#548235"></div></div><span class="bar-val" style="color:#548235">87</span></div>
-      </div>
-      
-      <div class="card-retry"><span data-lang="zh">🔄 上限分 91.6 → 重试 -8 → 实用 <strong>83.6</strong></span><span data-lang="en">🔄 Max 91.6 → retries -8 → Eff. <strong>83.6</strong></span></div>
-      <div class="card-footer">
-        <span class="date">2026-06-19 <span data-lang="zh">测试</span><span data-lang="en">tested</span></span>
-        <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
-        <a href="https://huggingface.co/SC117/gemma-4-26B-A4B-it-qat-heretic-GGUF" target="_blank" class="hf-link" onclick="event.stopPropagation()"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 32.4 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10z" fill="#FFD21E"/><path d="M30 65c0-8 4-15 10-18l2-1c2 3 6 5 10 5s7-2 10-5l2 1c6 3 10 10 10 18v15c0 3-2 5-5 5H35c-3 0-5-2-5-5V65z" fill="#1A202C"/><circle cx="45" cy="62" r="5" fill="white"/><circle cx="75" cy="62" r="5" fill="white"/><path d="M48 78c0 0 5 8 12 8s12-8 12-8" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>HF</a> 
-        </div>
-    </div>
-
-    <!-- Model 7: Gemma 4 12B -->
-    <div class="model-card rank-1 thinking" onclick="location.href='models/gemma4-12b.html'">
-      <div class="card-top">
-        <div class="card-rank">1</div>
-        <div class="card-scores">
-        <div class="card-score-box primary"><div class="lbl"><span data-lang="zh">上限</span><span data-lang="en">Max</span></div><div class="val">90.3</div></div>
-        <div class="card-score-box secondary"><div class="lbl"><span data-lang="zh">实用</span><span data-lang="en">Eff.</span></div><div class="val">85.3</div></div>
-      </div>
-      </div>
-      <div class="card-model">
-        <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/gemma-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Gemma-4-12B-it-heretic-QAT <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></span></h3>
-        <div class="desc">gemma-4-12B-it-heretic-QAT-Q4_0.gguf · Q4_0 · 6.4 GB</div>
-      </div>
-      <div class="card-meta">
-        <span class="card-tag">🧠 Dense 12B</span>
-        <span class="card-tag">📦 6.4 GB</span>
-        <span class="card-tag">⚡ In 1522 t/s · Out 126.3 t/s</span>
-        <span class="card-tag" style="background:#FFF5F5;color:#E53E3E"><span data-lang="zh">🌡️ QAT量化</span><span data-lang="en">🌡️ QAT Quantization</span></span>
-      </div>
-      <div class="card-bars">
-        <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:97%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">97</span></div>
-        <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:88%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">88</span></div>
-        <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:87%;background:#548235"></div></div><span class="bar-val" style="color:#548235">87</span></div>
-      </div>
-      
-      <div class="card-retry"><span data-lang="zh">🔄 上限分 90.3 → 重试 -5 → 实用 <strong>85.3</strong></span><span data-lang="en">🔄 Max 90.3 → retries -5 → Eff. <strong>85.3</strong></span></div>
-      <div class="card-footer">
-        <span class="date">2026-06-21 <span data-lang="zh">测试</span><span data-lang="en">tested</span></span>
-        <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
-        <a href="https://huggingface.co/SC117/gemma-4-12B-it-heretic-QAT-GGUF" target="_blank" class="hf-link" onclick="event.stopPropagation()"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 32.4 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10z" fill="#FFD21E"/><path d="M30 65c0-8 4-15 10-18l2-1c2 3 6 5 10 5s7-2 10-5l2 1c6 3 10 10 10 18v15c0 3-2 5-5 5H35c-3 0-5-2-5-5V65z" fill="#1A202C"/><circle cx="45" cy="62" r="5" fill="white"/><circle cx="75" cy="62" r="5" fill="white"/><path d="M48 78c0 0 5 8 12 8s12-8 12-8" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>HF</a> 
-        </div>
-    </div>
-        <div class="model-card rank-default thinking" onclick="location.href='models/ornith-1-0-9b-heretic.html'">
-      <div class="card-top">
-        <div class="card-rank">-</div>
-        <div class="card-scores">
-        <div class="card-score-box primary"><div class="lbl"><span data-lang="zh">上限</span><span data-lang="en">Max</span></div><div class="val">89.8</div></div>
-        <div class="card-score-box secondary"><div class="lbl"><span data-lang="zh">实用</span><span data-lang="en">Eff.</span></div><div class="val">68.8</div></div>
-      </div>
-      </div>
-      <div class="card-model">
-        <h3><img src="icons/ornith-color.png" alt="" style="width:28px;height:auto;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Ornith-1.0-9B-heretic-MTP <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></span></h3>
-        <div class="desc">Ornith-1.0-9B-heretic-MTP-Q6_K.gguf · Q6_K · 7.6 GB</div>
-      </div>
-      <div class="card-meta">
-        <span class="card-tag">🧠 Dense 9B</span>
-        <span class="card-tag">📦 7.6 GB</span>
-        <span class="card-tag">⚡ In 1420 t/s · Out 109.4 t/s</span>
-        <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=0.6 top_p=0.95 top_k=20</span>
-      </div>
-      <div class="card-bars">
-        <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">100</span></div>
-        <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:94%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">94</span></div>
-        <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:79%;background:#548235"></div></div><span class="bar-val" style="color:#548235">79</span></div>
-      </div>
-      
-      <div class="card-retry"><span data-lang="zh">🔄 上限分 89.8 → 重试 -21 → 实用 <strong>68.8</strong></span><span data-lang="en">🔄 Max 89.8 → retries -21 → Eff. <strong>68.8</strong></span></div>
-      <div class="card-footer">
-        <span class="date">2026-06-29 <span data-lang="zh">测试</span><span data-lang="en">tested</span></span>
-        <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
-        <a href="https://huggingface.co/SC117/Ornith-1.0-9B-heretic-MTP-GGUF" target="_blank" class="hf-link" onclick="event.stopPropagation()"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 32.4 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10z" fill="#FFD21E"/><path d="M30 65c0-8 4-15 10-18l2-1c2 3 6 5 10 5s7-2 10-5l2 1c6 3 10 10 10 18v15c0 3-2 5-5 5H35c-3 0-5-2-5-5V65z" fill="#1A202C"/><circle cx="45" cy="62" r="5" fill="white"/><circle cx="75" cy="62" r="5" fill="white"/><path d="M48 78c0 0 5 8 12 8s12-8 12-8" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>HF</a> 
-        </div>
-    </div>
-
-<div class="model-card rank-2 thinking" onclick="location.href='models/qwenpaw-flash-9b.html'">
-      <div class="card-top">
-        <div class="card-rank" style="background:linear-gradient(135deg,#f093fb,#f5576c)">2</div>
-        <div class="card-scores">
-        <div class="card-score-box primary"><div class="lbl"><span data-lang="zh">上限</span><span data-lang="en">Max</span></div><div class="val">88.4</div></div>
-        <div class="card-score-box secondary"><div class="lbl"><span data-lang="zh">实用</span><span data-lang="en">Eff.</span></div><div class="val">64.4</div></div>
-      </div>
-      </div>
-      <div class="card-model">
-        <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">QwenPaw-Flash-9B-MTP <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(思考 · MTP)</span><span data-lang="en">(Thinking · MTP)</span></span></h3>
-        <div class="desc">QwenPaw-Flash-9B-heretic-MTP-Q6_K.gguf · Q6_K · 7.0 GB</div>
-      </div>
-      <div class="card-meta">
-        <span class="card-tag">🧠 Dense 9B</span>
-        <span class="card-tag">📦 7.0 GB</span>
-        <span class="card-tag">⚡ In 507 t/s · Out 90.3 t/s</span>
-        <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=1.0 top_p=0.95 top_k=20 rep=1.5</span>
-      </div>
-      <div class="card-bars">
-        <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">100</span></div>
-        <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:84%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">84</span></div>
-        <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:80%;background:#548235"></div></div><span class="bar-val" style="color:#548235">80</span></div>
-      </div>
-      
-      <div class="card-retry"><span data-lang="zh">🔄 上限分 88.4 → 重试 -24 → 实用 <strong>64.4</strong></span><span data-lang="en">🔄 Max 88.4 → retries -24 → Eff. <strong>64.4</strong></span></div>
-      <div class="card-footer">
-        <span class="date">2026-06-19 <span data-lang="zh">测试</span><span data-lang="en">tested</span></span>
-        <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
-        <a href="https://huggingface.co/SC117/QwenPaw-Flash-9B-heretic-MTP-GGUF" target="_blank" class="hf-link" onclick="event.stopPropagation()"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 32.4 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10z" fill="#FFD21E"/><path d="M30 65c0-8 4-15 10-18l2-1c2 3 6 5 10 5s7-2 10-5l2 1c6 3 10 10 10 18v15c0 3-2 5-5 5H35c-3 0-5-2-5-5V65z" fill="#1A202C"/><circle cx="45" cy="62" r="5" fill="white"/><circle cx="75" cy="62" r="5" fill="white"/><path d="M48 78c0 0 5 8 12 8s12-8 12-8" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>HF</a> 
-        </div>
-    </div>
-
-    <!-- Model 8: Qwen3.6-27B <span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span> -->
-    <div class="model-card rank-2 no-thinking" onclick="location.href='models/qwen36-27b.html'">
-      <div class="card-top">
-        <div class="card-rank" style="background:#548235">3</div>
-        <div class="card-scores">
-        <div class="card-score-box primary"><div class="lbl"><span data-lang="zh">上限</span><span data-lang="en">Max</span></div><div class="val">87.4</div></div>
-        <div class="card-score-box secondary"><div class="lbl"><span data-lang="zh">实用</span><span data-lang="en">Eff.</span></div><div class="val">84.4</div></div>
-      </div>
-      </div>
-      <div class="card-model">
-        <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Qwen3.6-27B-uncensored-MTP <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(无思考 · MTP)</span><span data-lang="en">(No Think · MTP)</span></span></h3>
-        <div class="desc">Qwen3.6-27B-uncensored-heretic-v2-Native-MTP-Preserved.i1-IQ3_M.gguf · IQ3_M · 11.9 GB</div>
-      </div>
-      <div class="card-meta">
-        <span class="card-tag">🧠 Dense 27B</span>
-        <span class="card-tag">📦 11.9 GB</span>
-        <span class="card-tag">⚡ In 725 t/s · Out 60.6 t/s</span>
-        <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=0.7 top_p=0.8 top_k=20 rep=1.5</span>
-      </div>
-      <div class="card-bars">
-        <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:97%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">96.7</span></div>
-        <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:84%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">84.2</span></div>
-        <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:83%;background:#548235"></div></div><span class="bar-val" style="color:#548235">82.8</span></div>
-      </div>
-      
-      <div class="card-retry"><span data-lang="zh">🔄 上限分 87.4 → 重试 -3 → 实用 <strong>84.4</strong></span><span data-lang="en">🔄 Max 87.4 → retries -3 → Eff. <strong>84.4</strong></span></div>
-      <div class="card-footer">
-        <span class="date">2026-06-19 <span data-lang="zh">测试</span><span data-lang="en">tested</span></span>
-        <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
-        </div>
-    </div>
-
-    
-
-<!-- Model 9: Qwen3.6-27B <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span> -->
-    <div class="model-card rank-1 thinking" onclick="location.href='models/qwen36-27b-thinking.html'">
-      <div class="card-top">
-        <div class="card-rank">1</div>
-        <div class="card-scores">
-        <div class="card-score-box primary"><div class="lbl"><span data-lang="zh">上限</span><span data-lang="en">Max</span></div><div class="val">91.9</div></div>
-        <div class="card-score-box secondary"><div class="lbl"><span data-lang="zh">实用</span><span data-lang="en">Eff.</span></div><div class="val">73.9</div></div>
-      </div>
-      </div>
-      <div class="card-model">
-        <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Qwen3.6-27B-uncensored-MTP <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(思考 · MTP)</span><span data-lang="en">(Thinking · MTP)</span></span></h3>
-        <div class="desc">Qwen3.6-27B-uncensored-heretic-v2-Native-MTP-Preserved.i1-IQ3_M.gguf · IQ3_M · 11.9 GB</div>
-      </div>
-      <div class="card-meta">
-        <span class="card-tag">🧠 Dense 27B</span>
-        <span class="card-tag">📦 11.9 GB</span>
-        <span class="card-tag">⚡ In 725 t/s · Out 60.6 t/s</span>
-        <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=1.0 top_p=0.95 top_k=20 rep=1.5</span>
-      </div>
-      <div class="card-bars">
-        <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">100</span></div>
-        <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:93%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">93.3</span></div>
-        <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:85%;background:#548235"></div></div><span class="bar-val" style="color:#548235">84.8</span></div>
-      </div>
-      
-      <div class="card-retry"><span data-lang="zh">🔄 上限分 91.9 → 重试 -18 → 实用 <strong>73.9</strong></span><span data-lang="en">🔄 Max 91.9 → retries -18 → Eff. <strong>73.9</strong></span></div>
-      <div class="card-footer">
-        <span class="date">2026-06-19 <span data-lang="zh">测试</span><span data-lang="en">tested</span></span>
-        <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
-        </div>
-    </div>
-
-    <!-- Model 10: DeepSeek V4 Flash (API) -->
-    <div class="model-card rank-1 thinking" onclick="location.href='models/dsv4-flash.html'">
-      <div class="card-top">
-        <div class="card-rank">1</div>
-        <div class="card-scores">
-        <div class="card-score-box primary"><div class="lbl"><span data-lang="zh">上限</span><span data-lang="en">Max</span></div><div class="val">94.0</div></div>
-        <div class="card-score-box secondary"><div class="lbl"><span data-lang="zh">实用</span><span data-lang="en">Eff.</span></div><div class="val">85.0</div></div>
-      </div>
-      </div>
-      <div class="card-model">
-        <img src="icons/deepseek-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">DeepSeek-V4-Flash <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(思考 · API)</span><span data-lang="en">(Thinking · API)</span></span>
-      </div>
-      <div class="card-meta">
-        <span class="card-tag">🧠 MoE · 284B (13B active)</span>
-        <span class="card-tag">☁️ OpenCode API</span>
-        <span class="card-tag">📅 2026-06-19</span>
-      </div>
-      <div class="card-bars">
-        <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">100</span></div>
-        <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:93%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">93.3</span></div>
-        <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:90%;background:#548235"></div></div><span class="bar-val" style="color:#548235">90</span></div>
-      </div>
-      
-      <div class="card-retry"><span data-lang="zh">🔄 上限分 94.0 → 重试 -9 → 实用 <strong>85.0</strong></span><span data-lang="en">🔄 Max 94.0 → retries -9 → Eff. <strong>85.0</strong></span></div>
-      <div class="card-footer">
-        <span class="date">2026-06-19 <span data-lang="zh">测试</span><span data-lang="en">tested</span> · ⚡ <span data-lang="zh">作为参考</span><span data-lang="en">reference</span></span>
-        <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
-      </div>
-    </div>
-
-    <!-- Model 12: Ornith-1.0-35B-MTP-APEX <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span> -->
-    <div class="model-card rank-2 thinking" onclick="location.href='models/ornith-35b-mtp-thinking.html'">
-      <div class="card-top">
-        <div class="card-rank">2</div>
-        <div class="card-scores">
-        <div class="card-score-box primary"><div class="lbl"><span data-lang="zh">上限</span><span data-lang="en">Max</span></div><div class="val">93.5</div></div>
-        <div class="card-score-box secondary"><div class="lbl"><span data-lang="zh">实用</span><span data-lang="en">Eff.</span></div><div class="val">75.5</div></div>
-      </div>
-      </div>
-      <div class="card-model">
-        <h3><img src="icons/ornith-color.png" alt="" style="width:28px;height:auto;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Ornith-1.0-35B-MTP-APEX <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(思考 · MTP)</span><span data-lang="en">(Thinking · MTP)</span></span></h3>
-        <div class="desc">Ornith-1.0-35B-MTP-APEX-I-Compact.gguf · Q4_K_M · 15.85 GB</div>
-      </div>
-      <div class="card-meta">
-        <span class="card-tag">🧠 MoE (3B active)</span>
-        <span class="card-tag">📦 15.85 GB</span>
-        <span class="card-tag">🎮 RTX 5070 Ti</span>
-        <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=0.6 top_p=0.95 top_k=20</span>
-      </div>
-      <div class="card-bars">
-        <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">100</span></div>
-        <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:93%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">93</span></div>
-        <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:89%;background:#548235"></div></div><span class="bar-val" style="color:#548235">89</span></div>
-      </div>
-      
-      <div class="card-retry"><span data-lang="zh">🔄 上限分 93.5 → 重试 -18 → 实用 <strong>75.5</strong></span><span data-lang="en">🔄 Max 93.5 → retries -18 → Eff. <strong>75.5</strong></span></div>
-      <div class="card-footer">
-        <span class="date">2026-06-26 <span data-lang="zh">测试</span><span data-lang="en">tested</span></span>
-        <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
-        <a href="https://huggingface.co/SC117/Ornith-1.0-35B-MTP-APEX-GGUF" target="_blank" class="hf-link" onclick="event.stopPropagation()"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 32.4 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10z" fill="#FFD21E"/><path d="M30 65c0-8 4-15 10-18l2-1c2 3 6 5 10 5s7-2 10-5l2 1c6 3 10 10 10 18v15c0 3-2 5-5 5H35c-3 0-5-2-5-5V65z" fill="#1A202C"/><circle cx="45" cy="62" r="5" fill="white"/><circle cx="75" cy="62" r="5" fill="white"/><path d="M48 78c0 0 5 8 12 8s12-8 12-8" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>HF</a> 
-      </div>
-    </div>
-
-    <!-- Model 12b: Ornith-1.0-35B-Heretic-MTP-APEX <思考> -->
-    <div class="model-card rank-1 thinking" onclick="location.href='models/ornith-35b-heretic-mtp-apex-thinking.html'">
-      <div class="card-top">
-        <div class="card-rank">1</div>
-        <div class="card-scores">
-        <div class="card-score-box primary"><div class="lbl"><span data-lang="zh">上限</span><span data-lang="en">Max</span></div><div class="val">95.0</div></div>
-        <div class="card-score-box secondary"><div class="lbl"><span data-lang="zh">实用</span><span data-lang="en">Eff.</span></div><div class="val">90.0</div></div>
-      </div>
-      </div>
-      <div class="card-model">
-        <h3><img src="icons/ornith-color.png" alt="" style="width:28px;height:auto;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Ornith-1.0-35B-Heretic-MTP-APEX <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(思考 · Heretic · MTP)</span><span data-lang="en">(Thinking · Heretic · MTP)</span></span></h3>
-        <div class="desc">Ornith-1.0-35B-Heretic-MTP-APEX-I-Compact.gguf · Q4_K_M · 15.85 GB</div>
-      </div>
-      <div class="card-meta">
-        <span class="card-tag">🧠 MoE (3B active)</span>
-        <span class="card-tag">📦 15.85 GB</span>
-        <span class="card-tag">🎮 RTX 5070 Ti</span>
-        <span class="card-tag" style="background:#FFF7ED;color:#9A3412">🔥 Heretic Abliterated</span>
-        <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=0.6 top_p=0.95 top_k=20</span>
-      </div>
-      <div class="card-bars">
-        <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">100</span></div>
-        <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:98%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">98</span></div>
-        <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:89%;background:#548235"></div></div><span class="bar-val" style="color:#548235">89</span></div>
-      </div>
-
-      <div class="card-retry"><span data-lang="zh">🔄 上限分 95.0 → 重试 -5 → 实用 <strong>90.0</strong></span><span data-lang="en">🔄 Max 95.0 → retries -5 → Eff. <strong>90.0</strong></span></div>
-      <div class="card-footer">
-        <span class="date">2026-07-12 <span data-lang="zh">测试</span><span data-lang="en">tested</span></span>
-        <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
-        <a href="https://huggingface.co/SC117/Ornith-1.0-35B-Heretic-MTP-APEX-GGUF" target="_blank" class="hf-link" onclick="event.stopPropagation()"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 60 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10z" fill="#FFD21E"/><path d="M30 65c0-8 4-15 10-18l2-1c2 3 6 5 10 5s7-2 10-5l2 1c6 3 10 10 10 18v15c0 3-2 5-5 5H35c-3 0-5-2-5-5V65z" fill="#1A202C"/><circle cx="45" cy="62" r="5" fill="white"/><circle cx="75" cy="62" r="5" fill="white"/><path d="M48 78c0 0 5 8 12 8s12-8 12-8" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>HF</a>
-      </div>
-    </div>
-
-    <!-- Model 12c: Ornith-1.0-35B-Heretic-MTP-APEX <无思考> -->
-    <div class="model-card rank-default no-thinking" onclick="location.href='models/ornith-35b-heretic-mtp-apex.html'">
-      <div class="card-top">
-        <div class="card-rank">-</div>
-        <div class="card-scores">
-        <div class="card-score-box primary"><div class="lbl"><span data-lang="zh">上限</span><span data-lang="en">Max</span></div><div class="val">92.2</div></div>
-        <div class="card-score-box secondary"><div class="lbl"><span data-lang="zh">实用</span><span data-lang="en">Eff.</span></div><div class="val">76.2</div></div>
-      </div>
-      </div>
-      <div class="card-model">
-        <h3><img src="icons/ornith-color.png" alt="" style="width:28px;height:auto;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Ornith-1.0-35B-Heretic-MTP-APEX <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(无思考 · Heretic · MTP)</span><span data-lang="en">(No Thinking · Heretic · MTP)</span></span></h3>
-        <div class="desc">Ornith-1.0-35B-Heretic-MTP-APEX-I-Compact.gguf · Q4_K_M · 15.85 GB</div>
-      </div>
-      <div class="card-meta">
-        <span class="card-tag">🧠 MoE (3B active)</span>
-        <span class="card-tag">📦 15.85 GB</span>
-        <span class="card-tag">🎮 RTX 5070 Ti</span>
-        <span class="card-tag" style="background:#FFF7ED;color:#9A3412">🔥 Heretic Abliterated</span>
-        <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=0.6 top_p=0.95 top_k=20</span>
-      </div>
-      <div class="card-bars">
-        <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:97%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">97</span></div>
-        <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:97%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">97</span></div>
-        <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:85%;background:#548235"></div></div><span class="bar-val" style="color:#548235">85</span></div>
-      </div>
-
-      <div class="card-retry"><span data-lang="zh">🔄 上限分 92.2 → 重试 -16 → 实用 <strong>76.2</strong></span><span data-lang="en">🔄 Max 92.2 → retries -16 → Eff. <strong>76.2</strong></span></div>
-      <div class="card-footer">
-        <span class="date">2026-07-12 <span data-lang="zh">测试</span><span data-lang="en">tested</span></span>
-        <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
-        <a href="https://huggingface.co/SC117/Ornith-1.0-35B-Heretic-MTP-APEX-GGUF" target="_blank" class="hf-link" onclick="event.stopPropagation()"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 60 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10z" fill="#FFD21E"/><path d="M30 65c0-8 4-15 10-18l2-1c2 3 6 5 10 5s7-2 10-5l2 1c6 3 10 10 10 18v15c0 3-2 5-5 5H35c-3 0-5-2-5-5V65z" fill="#1A202C"/><circle cx="45" cy="62" r="5" fill="white"/><circle cx="75" cy="62" r="5" fill="white"/><path d="M48 78c0 0 5 8 12 8s12-8 12-8" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>HF</a>
-      </div>
-    </div>
-
-    <!-- Model 13: Ornith-1.0-35B-MTP-APEX <span data-lang="zh">(无思考)</span><span data-lang="en">(No Thinking)</span> -->
-    <div class="model-card rank-2 no-thinking" onclick="location.href='models/ornith-35b-mtp.html'">
-      <div class="card-top">
-        <div class="card-rank">2</div>
-        <div class="card-scores">
-        <div class="card-score-box primary"><div class="lbl"><span data-lang="zh">上限</span><span data-lang="en">Max</span></div><div class="val">93.2</div></div>
-        <div class="card-score-box secondary"><div class="lbl"><span data-lang="zh">实用</span><span data-lang="en">Eff.</span></div><div class="val">85.2</div></div>
-      </div>
-      </div>
-      <div class="card-model">
-        <h3><img src="icons/ornith-color.png" alt="" style="width:28px;height:auto;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Ornith-1.0-35B-MTP-APEX <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(无思考 · MTP)</span><span data-lang="en">(No Thinking · MTP)</span></span></h3>
-        <div class="desc">Ornith-1.0-35B-MTP-APEX-I-Compact.gguf · Q4_K_M · 15.85 GB</div>
-      </div>
-      <div class="card-meta">
-        <span class="card-tag">🧠 MoE (3B active)</span>
-        <span class="card-tag">📦 15.85 GB</span>
-        <span class="card-tag">🎮 RTX 5070 Ti</span>
-        <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=0.6 top_p=0.95 top_k=20</span>
-      </div>
-      <div class="card-bars">
-        <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">100</span></div>
-        <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:92%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">92</span></div>
-        <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:89%;background:#548235"></div></div><span class="bar-val" style="color:#548235">89</span></div>
-      </div>
-      
-      <div class="card-retry"><span data-lang="zh">🔄 上限分 93.2 → 重试 -8 → 实用 <strong>85.2</strong></span><span data-lang="en">🔄 Max 93.2 → retries -8 → Eff. <strong>85.2</strong></span></div>
-      <div class="card-footer">
-        <span class="date">2026-06-27 <span data-lang="zh">测试</span><span data-lang="en">tested</span></span>
-        <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
-        <a href="https://huggingface.co/SC117/Ornith-1.0-35B-MTP-APEX-GGUF" target="_blank" class="hf-link" onclick="event.stopPropagation()"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 32.4 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10z" fill="#FFD21E"/><path d="M30 65c0-8 4-15 10-18l2-1c2 3 6 5 10 5s7-2 10-5l2 1c6 3 10 10 10 18v15c0 3-2 5-5 5H35c-3 0-5-2-5-5V65z" fill="#1A202C"/><circle cx="45" cy="62" r="5" fill="white"/><circle cx="75" cy="62" r="5" fill="white"/><path d="M48 78c0 0 5 8 12 8s12-8 12-8" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>HF</a> 
-      </div>
-    </div>
-
-      <!-- Model: Agents-A1 (思考) -->
-      <div class="model-card rank-default thinking" onclick="location.href='models/agents-a1-thinking.html'">
-        <div class="card-top">
-          <div class="card-rank">-</div>
-          <div class="card-scores">
-          <div class="card-score-box primary"><div class="lbl">上限</div><div class="val">91.2</div></div>
-          <div class="card-score-box secondary"><div class="lbl">实用</div><div class="val">71.2</div></div>
-        </div>
-        </div>
-        <div class="card-model">
-          <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Agents-A1 <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(思考 · MTP)</span><span data-lang="en">(Thinking · MTP)</span></span></h3>
-          <div class="desc">Agents-A1-APEX-I-Compact.gguf · Q4_K_M · 16.1 GB</div>
-        </div>
-        <div class="card-meta">
-          <span class="card-tag">🧠 MoE (3B active)</span>
-          <span class="card-tag">📦 16.1 GB</span>
-          <span class="card-tag">🎮 RTX 5070 Ti 16GB + 128GB RAM</span>
-          <span class="card-tag">⚡ In 804 t/s · Out 55.6 t/s</span>
-          <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=0.85 top_p=0.95 top_k=20 min_p=0.0 presence=1.1 rep=1.0</span>
-        </div>
-        <div class="card-bars">
-          <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">100</span></div>
-          <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:88%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">88</span></div>
-          <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:87%;background:#548235"></div></div><span class="bar-val" style="color:#548235">87</span></div>
-        </div>
-        
-        <div class="card-retry"><span data-lang="zh">🔄 上限分 91.2 → 重试 -20 → 实用 <strong>71.2</strong></span><span data-lang="en">🔄 Max 91.2 → retries -20 → Eff. <strong>71.2</strong></span></div>
-        <div class="card-footer">
-          <span class="date">2026-07-03 <span data-lang="zh">测试</span><span data-lang="en">tested</span></span>
-          <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
-          <a href="https://huggingface.co/InternScience/Agents-A1" target="_blank" class="hf-link" onclick="event.stopPropagation()"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 32.4 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10zm4.7 75.3c-1.5 0-2.7-1.2-2.7-2.7v-4.7c0-6.2-2.8-11.3-8.2-15.2 2.8-1.3 5.4-3.1 7.8-5.4 3.4-3.4 5.1-7.5 5.1-12.3 0-3.6-1.1-6.6-3.2-9-1.9-2.1-4.4-3.6-7.5-4.5V30c0-1.5 1.2-2.7 2.7-2.7s2.7 1.2 2.7 2.7v2.7c5.6 1.6 9.7 5.2 12.3 10.8 1.1 2.3 1.7 4.8 1.7 7.5 0 4.7-1.5 8.6-4.5 11.6-1.8 1.8-3.9 3.2-6.3 4.1-3.6 1.3-6.1 3.4-7.4 6.3v3.5c0 1.5-1.2 2.7-2.7 2.7zM60 92c-5.5 0-10-4.5-10-10s4.5-10 10-10 10 4.5 10 10-4.5 10-10 10z" fill="#FF9D00"/></svg>HF</a>
-        </div>
-      </div>
-    <!-- Model: Agents-A1 (无思考) -->
-    <div class="model-card rank-default no-thinking" onclick="location.href='models/agents-a1.html'">
-        <div class="card-top">
-          <div class="card-rank">-</div>
-          <div class="card-scores">
-          <div class="card-score-box primary"><div class="lbl">上限</div><div class="val">93.1</div></div>
-          <div class="card-score-box secondary"><div class="lbl">实用</div><div class="val">57.1</div></div>
-        </div>
-        </div>
-        <div class="card-model">
-          <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Agents-A1 <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(无思考 · MTP)</span><span data-lang="en">(No Think · MTP)</span></span></h3>
-          <div class="desc">Agents-A1-APEX-I-Compact.gguf · Q4_K_M · 16.1 GB</div>
-        </div>
-        <div class="card-meta">
-          <span class="card-tag">🧠 MoE (3B active)</span>
-          <span class="card-tag">📦 16.1 GB</span>
-          <span class="card-tag">🎮 RTX 5070 Ti 16GB + 128GB RAM</span>
-          <span class="card-tag">⚡ In 804 t/s · Out 55.6 t/s</span>
-          <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=0.85 top_p=0.95 top_k=20 min_p=0.0 presence=1.1 rep=1.0</span>
-        </div>
-        <div class="card-bars">
-          <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:97%;background:var(--grad)"></div></div><span class="bar-val" style="color:#ED8936">97</span></div>
-          <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:#ED8936"></div></div><span class="bar-val" style="color:#E53E3E">100</span></div>
-          <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:85%;background:#548235"></div></div><span class="bar-val" style="color:#ED8936">85</span></div>
-        </div>
-
-        <div class="card-retry"><span data-lang="zh">🔄 上限分 93.1 → 重试 -36 → 实用 <strong>57.1</strong></span><span data-lang="en">🔄 Max 93.1 → retries -36 → Eff. <strong>57.1</strong></span></div>
-        <div class="card-footer">
-          <span class="date">2026-07-03 <span data-lang="zh">测试</span><span data-lang="en">tested</span></span>
-          <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
-          <a href="https://huggingface.co/InternScience/Agents-A1" target="_blank" class="hf-link" onclick="event.stopPropagation()"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 32.4 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10zm4.7 75.3c-1.5 0-2.7-1.2-2.7-2.7v-4.7c0-6.2-2.8-11.3-8.2-15.2 2.8-1.3 5.4-3.1 7.8-5.4 3.4-3.4 5.1-7.5 5.1-12.3 0-3.6-1.1-6.6-3.2-9-1.9-2.1-4.4-3.6-7.5-4.5V30c0-1.5 1.2-2.7 2.7-2.7s2.7 1.2 2.7 2.7v2.7c5.6 1.6 9.7 5.2 12.3 10.8 1.1 2.3 1.7 4.8 1.7 7.5 0 4.7-1.5 8.6-4.5 11.6-1.8 1.8-3.9 3.2-6.3 4.1-3.6 1.3-6.1 3.4-7.4 6.3v3.5c0 1.5-1.2 2.7-2.7 2.7zM60 92c-5.5 0-10-4.5-10-10s4.5-10 10-10 10 4.5 10 10-4.5 10-10 10z" fill="#FF9D00"/></svg>HF</a>
-      </div>
-    </div>
-
-    <!-- Model: Qwen-AgentWorld-35B-MTP-Uncensored (思考) -->
-    <div class="model-card rank-default thinking" onclick="location.href='models/qwen-agentworld-35b-thinking.html'">
-        <div class="card-top">
-          <div class="card-rank">-</div>
-          <div class="card-scores">
-          <div class="card-score-box primary"><div class="lbl"><span data-lang="zh">上限</span><span data-lang="en">Max</span></div><div class="val">85.6</div></div>
-          <div class="card-score-box secondary"><div class="lbl"><span data-lang="zh">实用</span><span data-lang="en">Eff.</span></div><div class="val">81.6</div></div>
-        </div>
-        </div>
-        <div class="card-model">
-          <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Qwen-AgentWorld-35B-A3B-MTP-Uncensored <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(思考 · MTP)</span><span data-lang="en">(Thinking · MTP)</span></span></h3>
-          <div class="desc">Qwen-AgentWorld-35B-A3B-MTP-Uncensored-APEX-I-Compact.gguf · Q4_K_M · 16.6 GB</div>
-        </div>
-        <div class="card-meta">
-          <span class="card-tag">🧠 MoE (3B active)</span>
-          <span class="card-tag">📦 16.6 GB</span>
-          <span class="card-tag">⚡ In 766 t/s · Out 62.6 t/s</span>
-          <span class="card-tag">🎮 RTX 5070 Ti 16GB + 128GB RAM</span>
-          <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=1.0 top_p=0.95 top_k=20 rep=1.5</span>
-        </div>
-        <div class="card-bars">
-          <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:93%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">93</span></div>
-          <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:87%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">87</span></div>
-          <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:79%;background:#548235"></div></div><span class="bar-val" style="color:#548235">79</span></div>
-        </div>
-
-        <div class="card-retry"><span data-lang="zh">🔄 上限分 85.6 → 重试 -4 → 实用 <strong>81.6</strong></span><span data-lang="en">🔄 Max 85.6 → retries -4 → Eff. <strong>81.6</strong></span></div>
-        <div class="card-footer">
-          <span class="date">2026-07-07 <span data-lang="zh">测试</span><span data-lang="en">tested</span></span>
-          <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
-          <a href="https://huggingface.co/SC117" target="_blank" class="hf-link" onclick="event.stopPropagation()"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 32.4 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10z" fill="#FFD21E"/><path d="M30 65c0-8 4-15 10-18l2-1c2 3 6 5 10 5s7-2 10-5l2 1c6 3 10 10 10 18v15c0 3-2 5-5 5H35c-3 0-5-2-5-5V65z" fill="#1A202C"/><circle cx="45" cy="62" r="5" fill="white"/><circle cx="75" cy="62" r="5" fill="white"/><path d="M48 78c0 0 5 8 12 8s12-8 12-8" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>HF</a>
-      </div>
-    </div>
-
-    <!-- Model: Qwen-AgentWorld-35B-MTP-Uncensored (无思考) -->
-    <div class="model-card rank-default no-thinking" onclick="location.href='models/qwen-agentworld-35b.html'">
-        <div class="card-top">
-          <div class="card-rank">-</div>
-          <div class="card-scores">
-          <div class="card-score-box primary"><div class="lbl"><span data-lang="zh">上限</span><span data-lang="en">Max</span></div><div class="val">75.0</div></div>
-          <div class="card-score-box secondary"><div class="lbl"><span data-lang="zh">实用</span><span data-lang="en">Eff.</span></div><div class="val">75.0</div></div>
-        </div>
-        </div>
-        <div class="card-model">
-          <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Qwen-AgentWorld-35B-A3B-MTP-Uncensored <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(无思考 · MTP)</span><span data-lang="en">(No Think · MTP)</span></span></h3>
-          <div class="desc">Qwen-AgentWorld-35B-A3B-MTP-Uncensored-APEX-I-Compact.gguf · Q4_K_M · 16.6 GB</div>
-        </div>
-        <div class="card-meta">
-          <span class="card-tag">🧠 MoE (3B active)</span>
-          <span class="card-tag">📦 16.6 GB</span>
-          <span class="card-tag">⚡ In 766 t/s · Out 62.6 t/s</span>
-          <span class="card-tag">🎮 RTX 5070 Ti 16GB + 128GB RAM</span>
-          <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=0.7 top_p=0.8 top_k=20 rep=1.5</span>
-        </div>
-        <div class="card-bars">
-          <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:83%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">83</span></div>
-          <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:83%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">83</span></div>
-          <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:63%;background:#548235"></div></div><span class="bar-val" style="color:#548235">63</span></div>
-        </div>
-
-        <div class="card-retry"><span data-lang="zh">🔄 上限分 75.0 → 重试 -0 → 实用 <strong>75.0</strong></span><span data-lang="en">🔄 Max 75.0 → retries -0 → Eff. <strong>75.0</strong></span></div>
-        <div class="card-footer">
-          <span class="date">2026-07-08 <span data-lang="zh">测试</span><span data-lang="en">tested</span></span>
-          <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
-          <a href="https://huggingface.co/SC117" target="_blank" class="hf-link" onclick="event.stopPropagation()"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 32.4 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10z" fill="#FFD21E"/><path d="M30 65c0-8 4-15 10-18l2-1c2 3 6 5 10 5s7-2 10-5l2 1c6 3 10 10 10 18v15c0 3-2 5-5 5H35c-3 0-5-2-5-5V65z" fill="#1A202C"/><circle cx="45" cy="62" r="5" fill="white"/><circle cx="75" cy="62" r="5" fill="white"/><path d="M48 78c0 0 5 8 12 8s12-8 12-8" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>HF</a>
-      </div>
-    </div>
-
-    <!-- Model: Qwen-AgentWorld-35B-A3B-APEX-I-Compact (原版·思考) -->
-    <div class="model-card rank-default thinking" onclick="location.href='models/qwen-agentworld-35b-original.html'">
-        <div class="card-top">
-          <div class="card-rank">-</div>
-          <div class="card-scores">
-          <div class="card-score-box primary"><div class="lbl"><span data-lang="zh">上限</span><span data-lang="en">Max</span></div><div class="val">88.5</div></div>
-          <div class="card-score-box secondary"><div class="lbl"><span data-lang="zh">实用</span><span data-lang="en">Eff.</span></div><div class="val">87.5</div></div>
-        </div>
-        </div>
-        <div class="card-model">
-          <h3><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/qwen-color.png" alt="" style="width:28px;height:28px;border-radius:6px;margin-right:8px;vertical-align:middle;display:inline-block">Qwen-AgentWorld-35B-A3B-APEX-I-Compact <span style="font-size:12px;color:var(--text3);font-weight:400"><span data-lang="zh">(原版 · 思考)</span><span data-lang="en">(Original · Thinking)</span></span></h3>
-          <div class="desc">Qwen-AgentWorld-35B-A3B-APEX-I-Compact.gguf · Q4_K_M · 16.6 GB</div>
-        </div>
-        <div class="card-meta">
-          <span class="card-tag">🧠 MoE (3B active)</span>
-          <span class="card-tag">📦 16.6 GB</span>
-          <span class="card-tag">⚡ In 766 t/s · Out 62.6 t/s</span>
-          <span class="card-tag">🎮 RTX 5070 Ti 16GB + 128GB RAM</span>
-          <span class="card-tag" style="background:#FFF5F5;color:#E53E3E">🌡️ temp=1.0 top_p=0.95 top_k=20 rep=1.5</span>
-        </div>
-        <div class="card-bars">
-          <div class="bar-row"><span class="bar-label">ToolCall-15</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div><span class="bar-val" style="color:#E53E3E">100</span></div>
-          <div class="bar-row"><span class="bar-label">BugFind-15</span><div class="bar-track"><div class="bar-fill" style="width:87%;background:#ED8936"></div></div><span class="bar-val" style="color:#ED8936">87</span></div>
-          <div class="bar-row"><span class="bar-label">HermesAgent-20</span><div class="bar-track"><div class="bar-fill" style="width:81%;background:#548235"></div></div><span class="bar-val" style="color:#548235">81</span></div>
-        </div>
-
-        <div class="card-retry"><span data-lang="zh">🔄 上限分 88.5 → 重试 -1 → 实用 <strong>87.5</strong></span><span data-lang="en">🔄 Max 88.5 → retries -1 → Eff. <strong>87.5</strong></span></div>
-        <div class="card-footer">
-          <span class="date">2026-07-08 <span data-lang="zh">测试</span><span data-lang="en">tested</span></span>
-          <span class="cta"><span data-lang="zh">查看详情 →</span><span data-lang="en">View Details →</span></span>
-          <a href="https://huggingface.co/SC117" target="_blank" class="hf-link" onclick="event.stopPropagation()"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 32.4 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10z" fill="#FFD21E"/><path d="M30 65c0-8 4-15 10-18l2-1c2 3 6 5 10 5s7-2 10-5l2 1c6 3 10 10 10 18v15c0 3-2 5-5 5H35c-3 0-5-2-5-5V65z" fill="#1A202C"/><circle cx="45" cy="62" r="5" fill="white"/><circle cx="75" cy="62" r="5" fill="white"/><path d="M48 78c0 0 5 8 12 8s12-8 12-8" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>HF</a>
-      </div>
-    </div>
-
-  </div>
-
-
-</section>
-
-<!-- About -->
-<section class="about" id="about">
-  <div class="about-box">
-    <div>
-      <h3>⚡ <span data-lang="zh">关于 BenchLocal</span><span data-lang="en">About BenchLocal</span></h3>
-      <p><span data-lang="zh"><a href="https://github.com/stevibe/BenchLocal" target="_blank" style="color:var(--red);font-weight:600">BenchLocal</a> 是一个本地优先的桌面应用，用于运行、比较和管理可安装的 LLM Bench Packs。支持本地或远程模型，通过可安装的测试包对模型进行标准化评估。</span><span data-lang="en"><a href="https://github.com/stevibe/BenchLocal" target="_blank" style="color:var(--red);font-weight:600">BenchLocal</a> is a local-first desktop app for running, comparing, and managing installable LLM Bench Packs. Supports local or remote models with standardized evaluation via installable test packs.</span></p>
-    </div>
-    <div>
-      <h3>📋 <span data-lang="zh">测试项目</span><span data-lang="en">Test Suites</span></h3>
-      <ul class="about-list">
-        <li><span data-lang="zh"><strong>ToolCall-15</strong> — 15 题工具调用测试，覆盖参数提取、多轮上下文、并行调用等</span><span data-lang="en"><strong>ToolCall-15</strong> — 15-question tool calling test covering parameter extraction, multi-turn context, parallel calls</span></li>
-        <li><span data-lang="zh"><strong>BugFind-15</strong> — 15 题跨语言代码调试，含 Trap 陷阱题，难度 Easy~Expert</span><span data-lang="en"><strong>BugFind-15</strong> — 15-question cross-language debugging with Trap questions, Easy~Expert</span></li>
-        <li><span data-lang="zh"><strong>HermesAgent-20</strong> — 20 题 Agent 场景测试，覆盖记忆管理、技能创建、调度投递等</span><span data-lang="en"><strong>HermesAgent-20</strong> — 20-question Agent scenarios covering memory management, skill creation, scheduling</span></li>
-        <li><span data-lang="zh"><strong>能力上限</strong> — 加权原始分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4（模型最高能拿多少分）</span><span data-lang="en"><strong>Max Score</strong> — Weighted raw score = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4 (highest possible score)</span></li>
-        <li><span data-lang="zh"><strong>实用得分</strong> — 能力上限 − 重试扣分（每题首次通过不扣分，重试后通过每重试1次扣1分，重试后仍失败不参与扣分）</span><span data-lang="en"><strong>Effective Score</strong> — Max Score − retry penalty (first pass = no penalty, each retry = +1pt, failed retries excluded)</span></li>
-        <li><span data-lang="zh">能力上限排序（看天花板）、实用得分排序（看实际表现）、三项专项排序</span><span data-lang="en">Sort by max score (ceiling), effective score (actual performance), or per-suite ranking</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="section-header">
-    <h2>📊 <span data-lang="zh">测试总结</span><span data-lang="en">Test Summary</span></h2>
-    <p><span data-lang="zh">基于 BenchLocal 在同一硬件环境下的本地推理测试，横向对比 19 个模型配置</span><span data-lang="en">Based on BenchLocal local inference tests on the same hardware, comparing 19 model configurations</span></p>
-  </div>
-  <div class="roast-box">
-    <div class="roast-section pro"><h4>🏆 <span data-lang="zh">核心发现</span><span data-lang="en">Key Findings</span></h4><ul>
-      <li><span data-lang="zh"><strong>能力上限 vs 实用得分差距显著</strong> — 重试次数越多，两者的差距越大：N2-Mini 差 27 分（87.2→60.2），27B 无思考版仅差 3 分（87.4→84.4）</span><span data-lang="en"><strong>Big gap between Max Score and Effective Score</strong> — The more retries, the bigger the gap: N2-Mini drops 27 pts (87.2→60.2), while 27B no-think only drops 3 (87.4→84.4)</span></li>
-      <li><span data-lang="zh">ToolCall 满分常见</span><span data-lang="en">ToolCall perfect scores are common</span></li>
-      <li><span data-lang="zh">DeepSeek-V4-Flash（284B MoE）拿到 94.0 分，实用 85.0 分，三项均衡</span><span data-lang="en">DeepSeek-V4-Flash (284B MoE) scored 94.0, effective 85.0, well-balanced across all three</span></li>
-      <li><span data-lang="zh"><strong>BugFind BF-03 Trap 题全场最难</strong> — 多数模型在"代码没bug"场景翻车，无法判断代码是正确的</span><span data-lang="en"><strong>BugFind BF-03 Trap was the hardest</strong> — Most models fail in "code has no bug" scenarios, unable to judge that code is correct</span></li>
-    </ul></div>
-    <div class="roast-section con"><h4>⚠️ <span data-lang="zh">已知局限</span><span data-lang="en">Known Limitations</span></h4><ul>
-      <li><span data-lang="zh">BF-03（代码没bug）和 BF-10（红鲱鱼）是多数模型的软肋</span><span data-lang="en">BF-03 (code has no bug) and BF-10 (red herring) are weak points for most models</span></li>
-      <li><span data-lang="zh"><strong>HA-07（代码批量处理）大部分失败</strong> — execute_code 能力普遍薄弱</span><span data-lang="en"><strong>HA-07 (batch code processing) mostly failed</strong> — execute_code capability is generally weak</span></li>
-      <li><span data-lang="zh"><strong>HA-16（消息投递）全军覆没</strong> — 所有模型都无法找到正确的消息通道</span><span data-lang="en"><strong>HA-16 (message delivery) completely failed</strong> — No model could find the correct message channel</span></li>
-      <li><span data-lang="zh">重试成本差异巨大</span><span data-lang="en">Retry costs vary dramatically</span></li>
-    </ul></div>
-    <div class="roast-section tip"><h4>💡 <span data-lang="zh">测试环境</span><span data-lang="en">Test Environment</span></h4><ul>
-      <li><span data-lang="zh"><strong>硬件</strong> — RTX 5070 Ti 16GB + 128GB RAM，MoE模型部分专家层offload到CPU</span><span data-lang="en"><strong>Hardware</strong> — RTX 5070 Ti 16GB + 128GB RAM, MoE expert layers partially offloaded to CPU</span></li>
-      <li><span data-lang="zh"><strong>推理后端</strong> — llama.cpp</span><span data-lang="en"><strong>Inference Backend</strong> — llama.cpp</span></li>
-      <li><span data-lang="zh"><strong>测试包</strong> — ToolCall-15 / BugFind-15 / HermesAgent-20（共 50 题）</span><span data-lang="en"><strong>Test Suites</strong> — ToolCall-15 / BugFind-15 / HermesAgent-20 (50 questions total)</span></li>
-      <li><span data-lang="zh"><strong>模型下载</strong></span><span data-lang="en"><strong>Model Download</strong></span> — <a href="https://huggingface.co/SC117" target="_blank" style="color:var(--red)">HF: SC117</a></li>
-    </ul></div>
-  </div>
-</section>
-
-<footer>
-  <div class="inner">
-    <div><div class="brand">⚡ BenchLocal</div><div style="font-size:13px"><span data-lang="zh">本地模型测试数据库</span><span data-lang="en">Local Model Benchmark Database</span></div></div>
-    <div class="links">
-      <div><h5><span data-lang="zh">测试项目</span><span data-lang="en">Test Suites</span></h5><a href="#">ToolCall-15</a><a href="#">BugFind-15</a><a href="#">HermesAgent-20</a><a href="#"><span data-lang="zh">更多 Bench Packs →</span><span data-lang="en">More Bench Packs →</span></a></div>
-      <div><h5><span data-lang="zh">模型</span><span data-lang="en">Models</span></h5><a href="models/step37-flash.html">Step-3.7-Flash</a><a href="models/n2mini.html">Nex-N2-Mini</a><a href="models/qwen36-35b-mtp.html">Qwen3.6-35B-A3B-uncensored-MTP <span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span></a><a href="models/qwen36-35b-mtp-thinking.html">Qwen3.6-35B-A3B-uncensored-MTP <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></a><a href="models/gemma4-26b.html">Gemma-4-26B-A4B-it-qat <span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span></a><a href="models/gemma4-26b-thinking.html">Gemma-4-26B-A4B-it-qat <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></a><a href="models/gemma4-12b.html">Gemma-4-12B (QAT)</a><a href="models/qwenpaw-flash-9b.html">QwenPaw-Flash-9B</a><a href="models/qwen36-27b.html">Qwen3.6-27B <span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span></a><a href="models/qwen36-27b-thinking.html">Qwen3.6-27B <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></a><a href="models/dsv4-flash.html">DeepSeek-V4-Flash</a><a href="models/ornith-35b-mtp-thinking.html">Ornith-1.0-35B-MTP-APEX <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></a><a href="models/ornith-35b-heretic-mtp-apex-thinking.html">Ornith-1.0-35B-Heretic-MTP-APEX <span data-lang="zh">(思考·Heretic)</span><span data-lang="en">(Thinking·Heretic)</span></a><a href="models/ornith-35b-heretic-mtp-apex.html" style="color:var(--red)">Ornith-1.0-35B-Heretic-MTP-APEX <span data-lang="zh">(无思考·Heretic)</span><span data-lang="en">(No Thinking·Heretic)</span></a><a href="models/ornith-35b-mtp.html">Ornith-1.0-35B-MTP-APEX <span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span></a><a href="models/agents-a1-thinking.html">Agents-A1 <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></a><a href="models/agents-a1.html" style="color:var(--red)">Agents-A1 <span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span></a><a href="models/qwen-agentworld-35b-thinking.html">Qwen-AgentWorld-35B-A3B-MTP-Uncensored <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></a><a href="models/qwen-agentworld-35b.html" style="color:var(--red)">Qwen-AgentWorld-35B-A3B-MTP-Uncensored <span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span></a><a href="models/qwen-agentworld-35b-original.html">Qwen-AgentWorld-35B-A3B-APEX-I-Compact <span data-lang="zh">(原版·思考)</span><span data-lang="en">(Original·Thinking)</span></a></div>
-      <div><h5>BenchLocal</h5><a href="https://github.com/stevibe/BenchLocal" target="_blank"><span data-lang="zh">GitHub 仓库</span><span data-lang="en">GitHub Repo</span></a><a href="https://benchlocal.com" target="_blank"><span data-lang="zh">官网</span><span data-lang="en">Website</span></a><a href="https://github.com/stevibe/BenchLocal/releases/latest" target="_blank"><span data-lang="zh">下载最新版</span><span data-lang="en">Download Latest</span></a></div>
-    </div>
-  </div>
-  <div class="bottom">© 2026 BenchLocal</div>
-</footer>
-
-<script>
-const models = [
-  {el:null, total:88.8, adjusted:78.8, tc:100, bf:87, ha:81, name:'Step-3.7-Flash (思考)', retries:10, pass:35, fail:13, partial:2, totalQs:50},
-  {el:null, total:87.2, adjusted:60.2, tc:93, bf:88, ha:81, name:'Nex-N2-Mini (思考)', retries:27, pass:40, fail:8, partial:2, totalQs:50},
-  {el:null, total:91.5, adjusted:80.5, tc:97, bf:96, ha:84, name:'Qwen3.6-35B-A3B-uncensored-MTP (无思考)', retries:11, pass:43, fail:6, partial:1, totalQs:50},
-  {el:null, total:89.5, adjusted:81.5, tc:97, bf:88, ha:85, name:'Qwen3.6-35B-A3B-uncensored-MTP (思考)', retries:8, pass:37, fail:11, partial:2, totalQs:50},
-  {el:null, total:88.7, adjusted:82.7, tc:96.7, bf:86, ha:84.8, name:'Gemma-4 (无思考)', retries:6, pass:35, fail:13, partial:2, totalQs:50},
-  {el:null, total:91.6, adjusted:83.6, tc:93.3, bf:96, ha:87, name:'Gemma-4 (思考)', retries:8, pass:42, fail:6, partial:2, totalQs:50},
-  {el:null, total:90.3, adjusted:85.3, tc:97, bf:88, ha:87, name:'Gemma-4-12B (思考)', retries:5, pass:41, fail:7, partial:2, totalQs:50},
-  {el:null, total:89.8, adjusted:68.8, tc:100, bf:94, ha:79, name:'Ornith-1.0-9B-heretic-MTP (思考)', retries:21, pass:42, fail:8, partial:0, totalQs:50},
-  {el:null, total:88.4, adjusted:64.4, tc:100, bf:88, ha:80, name:'QwenPaw-Flash-9B (思考)', retries:24, pass:33, fail:13, partial:4, totalQs:50},
-  {el:null, total:87.4, adjusted:84.4, tc:96.7, bf:84.2, ha:82.8, name:'Qwen3.6-27B-uncensored-MTP (无思考)', retries:3, pass:39, fail:7, partial:4, totalQs:50},
-  {el:null, total:91.9, adjusted:73.9, tc:100, bf:93.3, ha:84.8, name:'Qwen3.6-27B-uncensored-MTP (思考)', retries:18, pass:43, fail:5, partial:2, totalQs:50},
-  {el:null, total:94.0, adjusted:85.0, tc:100, bf:93.3, ha:90, name:'DeepSeek-V4-Flash (API)', retries:9, pass:45, fail:5, partial:0, totalQs:50},
-  {el:null, total:93.5, adjusted:75.5, tc:100, bf:93, ha:89, name:'Ornith-1.0-35B-MTP-APEX (思考)', retries:18, pass:44, fail:4, partial:2, totalQs:50},
-  {el:null, total:95.0, adjusted:90.0, tc:100, bf:98, ha:89, name:'Ornith-1.0-35B-Heretic-MTP-APEX (思考 · Heretic)', retries:5, pass:45, fail:3, partial:2, totalQs:50},
-  {el:null, total:92.2, adjusted:76.2, tc:97, bf:97, ha:85, name:'Ornith-1.0-35B-Heretic-MTP-APEX (无思考 · Heretic)', retries:16, pass:42, fail:6, partial:2, totalQs:50},
-  {el:null, total:93.2, adjusted:85.2, tc:100, bf:92, ha:89, name:'Ornith-1.0-35B-MTP-APEX (无思考)', retries:8, pass:45, fail:4, partial:1, totalQs:50},
-  {el:null, total:91.2, adjusted:71.2, tc:100, bf:88, ha:87, name:'Agents-A1 (思考)', retries:20, pass:43, fail:7, partial:0, totalQs:50},
-  {el:null, total:93.1, adjusted:57.1, tc:97, bf:100, ha:85, name:'Agents-A1 (无思考)', retries:36, pass:44, fail:0, partial:6, totalQs:50},
-  {el:null, total:85.6, adjusted:81.6, tc:93, bf:87, ha:79, name:'Qwen-AgentWorld-35B-A3B-MTP-Uncensored (思考)', retries:4, pass:40, fail:8, partial:2, totalQs:50},
-  {el:null, total:75.0, adjusted:75.0, tc:83, bf:83, ha:63, name:'Qwen-AgentWorld-35B-A3B-MTP-Uncensored (无思考)', retries:0, pass:33, fail:13, partial:4, totalQs:50},
-  {el:null, total:88.5, adjusted:87.5, tc:100, bf:87, ha:81, name:'Qwen-AgentWorld-35B-A3B-APEX-I-Compact (原版·思考)', retries:1, pass:41, fail:8, partial:1, totalQs:50},
-];
-const grid = document.querySelector('.models-grid');
-const cards = grid.querySelectorAll('.model-card');
-models.forEach((m,i) => m.el = cards[i]);
-
-// 渲染进度条：浅色=能力上限，深色=实用得分
-models.forEach((m) => {
-  const retryDiv = m.el.querySelector('.card-retry');
-  if (!retryDiv || !m.total) return;
-  const bar = document.createElement('div');
-  bar.className = 'score-bar';
-  bar.title = `能力上限 ${m.total} → 实用 ${m.adjusted}（扣 ${m.total - m.adjusted} 分）`;
-  bar.innerHTML = `<div class="score-bar-max" style="width:${m.total}%"></div><div class="score-bar-eff" style="width:${m.adjusted}%"></div>`;
-  retryDiv.appendChild(bar);
-
-  // 渲染稳定性行：通过/失败/部分
-  if (m.totalQs) {
-    const stab = document.createElement('div');
-    stab.className = 'card-stability';
-    stab.title = `共 ${m.totalQs} 题：通过 ${m.pass} · 部分 ${m.partial || 0} · 失败 ${m.fail}`;
-    stab.innerHTML = `
-      <span class="stab-item stab-pass">✅ ${m.pass}</span>
-      ${m.partial ? `<span class="stab-item stab-partial">⚠️ ${m.partial}</span>` : ''}
-      <span class="stab-item stab-fail">❌ ${m.fail}</span>
-      <span style="color:var(--text3);font-weight:500;margin-left:auto">/${m.totalQs}</span>
-    `;
-    retryDiv.appendChild(stab);
-  }
-});
-
-let currentSortKey = 'total';
-
-function sortModels(key, btn) {
-  document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-  currentSortKey = key;
-
-  models.sort((a,b) => b[key] - a[key]);
-
-  let visibleIdx = 0;
-  models.forEach((m) => {
-    if (m.el.style.display === 'none') {
-      m.el.classList.add('rank-default');
-      return;
-    }
-    visibleIdx++;
-    m.el.style.order = visibleIdx - 1;
-    m.el.querySelector('.card-rank').textContent = visibleIdx;
-    m.el.classList.remove('rank-1','rank-2','rank-3','rank-default');
-    m.el.classList.add(visibleIdx <= 3 ? 'rank-' + visibleIdx : 'rank-default');
-  });
-}
-
-function filterMode(mode, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.model-card').forEach(el => {
-    const isThinking = el.classList.contains('thinking');
-    let show = true;
-    if (mode === 'thinking') show = isThinking;
-    else if (mode === 'no-thinking') show = !isThinking;
-    el.style.display = show ? '' : 'none';
-  });
-  // 切换 filter 后重新排可见卡片（数字、位置、颜色一致）
-  sortModels(currentSortKey, document.querySelector('.sort-btn.active'));
-}
-// Auto-sort by total on page load
-sortModels('total', document.querySelector('.sort-btn'));
-</script>
-
-<script>(function(){
-  var s=localStorage.getItem('bl-lang')||'zh';
-  document.documentElement.lang=s==='en'?'en':'zh-CN';
-  window.toggleLang=function(l){
-    document.documentElement.lang=l==='en'?'en':'zh-CN';
-    localStorage.setItem('bl-lang',l);
-    document.querySelectorAll('.lang-toggle span').forEach(function(e){
-      e.classList.toggle('active',e.dataset.lb===l);
-    });
-  };
-  document.addEventListener('DOMContentLoaded',function(){window.toggleLang(s)});
-})();</script>
+  <footer class="site-footer">
+    <div><a class="brand footer-brand" href="#top"><span class="brand-mark"><img src="icons/benchlocal-results-logo.png" alt=""></span><span>BenchLocal-Results</span></a><p><span data-lang="zh">本地模型评测数据库</span><span data-lang="en">Local model benchmark database</span></p></div>
+    <div class="footer-links"><a href="#leaderboard"><span data-lang="zh">排行榜</span><span data-lang="en">Leaderboard</span></a><a href="#method"><span data-lang="zh">测试方法</span><span data-lang="en">Method</span></a><a href="changelog.html"><span data-lang="zh">更新日志</span><span data-lang="en">Changelog</span></a><a href="https://github.com/Scorp1o117/benchlocal-results" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+    <small>© 2026 BenchLocal-Results</small>
+  </footer>
 </body>
 </html>
-
-
-

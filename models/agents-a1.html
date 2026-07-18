@@ -1,241 +1,146 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" id="top">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agents-A1 (无思考) · BenchLocal</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--red:#E53E3E;--orange:#ED8936;--grad:linear-gradient(135deg,#E53E3E,#ED8936);--bg:#F8F9FC;--card:#FFF;--text:#1A202C;--text2:#64748B;--text3:#94A3B8;--border:#E2E8F0;--r:20px;--sh:0 1px 3px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.04)}
-body{font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-a{color:inherit;text-decoration:none}
-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.8);backdrop-filter:blur(24px);border-bottom:1px solid rgba(226,232,240,.6)}
-nav .inner{max-width:1280px;margin:0 auto;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
-.logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800}
-.logo-icon{width:32px;height:32px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
-.nav-links{display:flex;gap:28px;font-size:14px;font-weight:500;color:var(--text2)}
-.nav-links a:hover{color:var(--text)}
-.back-link{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--text2);font-weight:500}
-.back-link:hover{color:var(--red)}
-.hero-detail{padding:60px 48px 40px;max-width:1280px;margin:0 auto}
-.model-header{display:flex;gap:40px;align-items:flex-start}
-.model-avatar{width:80px;height:80px;border-radius:20px;background:#F1F5F9;display:flex;align-items:center;justify-content:center;flex-shrink:0;object-fit:contain;padding:12px}
-.model-info h1{font-size:32px;font-weight:900;letter-spacing:-1px}
-.model-info .sub{font-size:15px;color:var(--text2);margin-top:4px}
-.model-tags{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
-.model-tags span{font-size:12px;padding:4px 12px;border-radius:8px;font-weight:600;background:#F1F5F9;color:var(--text2)}
-.score-row{display:flex;gap:24px;margin-top:32px}
-.big-score{background:var(--grad);border-radius:var(--r);padding:32px 40px;color:#fff;min-width:200px}
-.big-score .label{font-size:13px;opacity:.8;font-weight:500}
-.big-score .num{font-size:56px;font-weight:900;letter-spacing:-3px;line-height:1.1}
-.big-score .sub{font-size:12px;opacity:.7;margin-top:4px}
-.adj-score{background:linear-gradient(135deg,#667eea,#764ba2);border-radius:var(--r);padding:32px 40px;color:#fff;min-width:180px}
-.adj-score .label{font-size:13px;opacity:.8;font-weight:500}
-.adj-score .num{font-size:42px;font-weight:900;letter-spacing:-2px;line-height:1.1;margin-top:4px}
-.adj-score .sub{font-size:11px;opacity:.7;margin-top:4px}
-.sub-scores{display:flex;gap:16px;flex:1}
-.sub-score{flex:1;background:var(--card);border-radius:16px;padding:24px;text-align:center;box-shadow:var(--sh)}
-.sub-score .label{font-size:12px;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
-.sub-score .num{font-size:36px;font-weight:900;letter-spacing:-2px;margin-top:4px}
-.sub-score .detail{font-size:11px;color:var(--text3);margin-top:4px}
-.sub-score .retry-info{font-size:11px;color:var(--orange);margin-top:2px;font-weight:600}
-.content{max-width:1280px;margin:0 auto;padding:0 48px 80px}
-.tabs{display:flex;gap:0;margin-bottom:32px;border-bottom:2px solid var(--border)}
-.tab{padding:12px 24px;font-size:14px;font-weight:600;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
-.tab.active{color:var(--red);border-bottom-color:var(--red)}
-.tab:hover{color:var(--text)}
-.tab-content{display:none}
-.tab-content.active{display:block}
-.results-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border-radius:16px;overflow:hidden;box-shadow:var(--sh)}
-.results-table th{background:#F8FAFC;font-size:12px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;padding:14px 16px;text-align:left}
-.results-table td{padding:14px 16px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top}
-.results-table tr:last-child td{border-bottom:none}
-.results-table .score-cell{font-weight:700;font-size:16px}
-.results-table .pass{color:#38A169}.results-table .fail{color:#E53E3E}.results-table .partial{color:#ED8936}
-.results-table .retry-cell{font-weight:600}
-.results-table .retry-cell.has-retry{color:var(--orange)}
-.results-table .summary-cell{color:var(--text2);font-size:13px;max-width:400px}
-.about-box{background:var(--card);border-radius:16px;padding:32px;box-shadow:var(--sh);margin-top:24px}
-.about-box h3{font-size:16px;font-weight:700;margin-bottom:16px}
-.about-box p{color:var(--text2);font-size:14px;line-height:1.8}
-.about-box .highlight{background:#FEF3C7;padding:2px 6px;border-radius:4px;font-weight:600;color:#92400E}
-.final{font-size:18px;font-weight:700;color:var(--red);margin-top:24px;padding:20px;background:#FFF5F5;border-radius:12px;border-left:4px solid var(--red)}
-.hf-detail-link{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:10px;font-size:13px;font-weight:600;background:linear-gradient(135deg,#FFD21E,#FF9D00);color:#1A202C;text-decoration:none;transition:all .2s;margin-top:16px}
-.hf-detail-link:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(255,210,30,.3)}
-.hf-detail-link svg{width:18px;height:18px;flex-shrink:0}
-footer{background:#0F172A;color:#94A3B8;padding:48px 48px 32px}
-footer .inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start}
-footer .brand{font-size:18px;font-weight:800;color:#fff;margin-bottom:8px;display:flex;align-items:center;gap:8px}
-footer .links{display:flex;gap:48px}
-footer .links div h5{color:#fff;font-size:13px;font-weight:600;margin-bottom:12px}
-footer .links div a{display:block;font-size:13px;padding:4px 0;color:#94A3B8}
-footer .links div a:hover{color:#fff}
-footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1px solid #1E293B;font-size:12px;text-align:center}
-.lang-toggle{display:flex;align-items:center;gap:2px;padding:3px;border-radius:8px;background:#F1F5F9;cursor:pointer;user-select:none;margin-left:auto}
-.lang-toggle span{padding:3px 10px;border-radius:6px;font-size:12px;font-weight:600;color:var(--text2);transition:all .2s;pointer-events:none}
-.lang-toggle span.active{background:#fff;color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.1)}
-[data-lang]{display:none}
-html[lang="zh-CN"] [data-lang="zh"],html[lang="en"] [data-lang="en"]{display:revert}
-html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:none}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Agents-A1 BenchLocal-Results benchmark results">
+  <meta name="theme-color" content="#f4f6fa">
+  <title>Agents-A1 · BenchLocal-Results</title>
+  <link rel="icon" type="image/png" href="../icons/benchlocal-results-logo.png">
+  <link rel="canonical" href="https://scorp1o117.github.io/benchlocal-results/models/agents-a1.html">
+  <link rel="stylesheet" href="../styles/detail.css">
+  <script src="../scripts/detail.js" defer></script>
 </head>
-<body>
-<nav><div class="inner"><div class="logo"><div class="logo-icon">⚡</div>BenchLocal</div><a href="../" class="back-link"><span data-lang="zh">← 返回排行榜</span><span data-lang="en">← Back to Leaderboard</span></a>  <div class="lang-toggle" onclick="toggleLang(document.documentElement.lang==='zh-CN'?'en':'zh')"><span data-lb="zh" class="active">中</span><span data-lb="en">EN</span></div>
-</div></nav>
-
-<section class="hero-detail">
-  <div class="model-header">
-    <div class="model-avatar"><img src="../icons/qwen-color.png" alt="" style="width:100%;height:100%;object-fit:contain"></div>
-    <div class="model-info">
-      <h1>Agents-A1 <span style="font-size:16px;color:var(--text3);font-weight:400"><span data-lang="zh">(无思考 · MTP)</span><span data-lang="en">(No Think · MTP)</span></span></h1>
-      <div class="sub">Agents-A1-APEX-I-Compact.gguf · Q4_K_M · 16.1 GB</div>
-      <div class="model-tags"><span>🧠 MoE (3B active)</span><span>📦 16.1 GB</span><span>🎮 RTX 5070 Ti 16GB + 128GB RAM</span><span>⚡ In 804 t/s · Out 55.6 t/s</span><span>📅 2026-07-03</span><span style="background:#FFF5F5;color:#E53E3E">🌡️ temp=0.85 top_p=0.95 top_k=20 min_p=0.0 presence=1.1 rep=1.0</span></div>
+<body><!-- Generated by publisher/render-pages.mjs; do not edit scores by hand. -->
+  <nav class="detail-nav"><div><a class="detail-brand" href="../index.html"><span><img src="../icons/benchlocal-results-logo.png" alt=""></span>BenchLocal-Results</a><div class="detail-actions"><a href="../index.html#leaderboard"><span data-lang="zh">排行榜</span><span data-lang="en">Leaderboard</span></a><div class="lang-toggle" role="group" aria-label="Language"><button type="button" data-lb="zh" aria-pressed="true">中</button><button type="button" data-lb="en" aria-pressed="false">EN</button></div></div></div></nav>
+  <main>
+    <header class="detail-hero reveal"><div class="hero-visual"><div class="hero-halo"></div><div class="detail-logo"><img src="../icons/qwen-color.png" alt="Agents-A1 logo"></div></div><div class="hero-content"><span class="hero-kicker">Dual-mode benchmark</span><h1>Agents-A1</h1><p class="model-file">Agents-A1-APEX-I-Compact.gguf</p><p class="hero-summary"><span data-lang="zh">同一模型在思考与无思考模式下的能力上限、实际稳定性和完整 50 题结果。</span><span data-lang="en">Max capability, practical stability, and all 50 scenario results across thinking and no-thinking modes.</span></p><div class="mode-links"><a href="#thinking"><span class="switch-dot thinking"></span><span data-lang="zh">思考模式</span><span data-lang="en">Thinking mode</span><strong>91.2</strong></a><a href="#no-thinking"><span class="switch-dot no-thinking"></span><span data-lang="zh">无思考模式</span><span data-lang="en">No-thinking mode</span><strong>93.1</strong></a></div><div class="source-links"><a href="https://huggingface.co/SC117/Agents-A1-MTP-APEX-GGUF" target="_blank" rel="noopener noreferrer"><span data-lang="zh">测试模型链接</span><span data-lang="en">Tested model</span> ↗</a><a href="https://huggingface.co/InternScience/Agents-A1" target="_blank" rel="noopener noreferrer"><span data-lang="zh">上游模型</span><span data-lang="en">Upstream model</span> ↗</a><a href="https://huggingface.co/SC117" target="_blank" rel="noopener noreferrer"><span data-lang="zh">发布者 SC117</span><span data-lang="en">Publisher SC117</span> ↗</a></div></div></header>
+    <section class="comparison-strip reveal"><div><span><span data-lang="zh">思考版能力上限</span><span data-lang="en">Thinking max</span></span><strong>-1.9</strong></div><div><span><span data-lang="zh">实用分差</span><span data-lang="en">Effective delta</span></span><strong>+10.1</strong></div><div><span><span data-lang="zh">额外重试</span><span data-lang="en">Extra retries</span></span><strong>-12</strong></div><div><span>TC / BF / HA</span><strong>+3 / -12 / +2</strong></div></section>
+    <div class="detail-content"><section class="variant reveal" id="thinking">
+    <header class="variant-heading"><div><span class="section-index">01 / Benchmark mode</span><span class="mode-badge thinking"><span data-lang="zh">思考模式</span><span data-lang="en">Thinking mode</span></span><h2><span data-lang="zh">评测结果</span><span data-lang="en">Benchmark results</span></h2></div><a href="#top"><span data-lang="zh">返回顶部</span><span data-lang="en">Back to top</span> ↑</a></header>
+    <div class="score-grid">
+      <article class="score-card max"><span><span data-lang="zh">能力上限</span><span data-lang="en">Max score</span></span><strong>91.2</strong><div class="score-track" aria-hidden="true"><i style="width:91.2%"></i></div><small>TC × 0.3 + BF × 0.3 + HA × 0.4</small></article>
+      <article class="score-card effective"><span><span data-lang="zh">实用得分</span><span data-lang="en">Effective score</span></span><strong>71.2</strong><div class="score-track" aria-hidden="true"><i style="width:71.2%"></i></div><small><span data-lang="zh">重试扣分 −20</span><span data-lang="en">Retry penalty −20</span></small></article>
+      <article class="score-card stability"><span><span data-lang="zh">最终结果</span><span data-lang="en">Outcomes</span></span><strong>43/50</strong><div class="score-track" aria-hidden="true"><i style="width:86%"></i></div><small>✓ 43 · ◐ 0 · × 7</small></article>
     </div>
-  </div>
-  <div class="score-row">
-    <div class="big-score"><div class="label"><span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span></div><div class="num">93.1</div><div class="sub"><span data-lang="zh">加权原始分 = TC×0.3 + BF×0.3 + HA×0.4</span><span data-lang="en">Weighted raw score = TC×0.3 + BF×0.3 + HA×0.4</span></div></div>
-    <div class="adj-score"><div class="label"><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></div><div class="num">57.1</div><div class="sub"><span data-lang="zh">−36 重试扣分</span><span data-lang="en">−20 retry penalty</span></div></div>
-    <div class="sub-scores">
-      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#ED8936">97</div><div class="detail">14/15 <span data-lang="zh">通过 · 93%</span><span data-lang="en">passed · 100%</span></div></div>
-      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#E53E3E">100</div><div class="detail">15/15 <span data-lang="zh">通过 · 100%</span><span data-lang="en">passed · 100%</span></div><div class="retry-info"><span data-lang="zh">🔄 重试 7 次</span><span data-lang="en">🔄 6 retries</span></div></div>
-      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#ED8936">85</div><div class="detail">15/20 <span data-lang="zh">通过 · 75%</span><span data-lang="en">passed · 75%</span></div><div class="retry-info"><span data-lang="zh">🔄 重试 24 次</span><span data-lang="en">🔄 9 retries</span></div></div>
+    <div class="suite-grid"><article class="suite-card"><span>ToolCall-15</span><strong>100</strong><div class="score-track suite-track" aria-hidden="true"><i style="width:100%"></i></div><small><span data-lang="zh">首次 93 · 重试 5</span><span data-lang="en">First 93 · 5 retries</span></small></article><article class="suite-card"><span>BugFind-15</span><strong>88</strong><div class="score-track suite-track" aria-hidden="true"><i style="width:88%"></i></div><small><span data-lang="zh">首次 81 · 重试 6</span><span data-lang="en">First 81 · 6 retries</span></small></article><article class="suite-card"><span>HermesAgent-20</span><strong>87</strong><div class="score-track suite-track" aria-hidden="true"><i style="width:87%"></i></div><small><span data-lang="zh">首次 67 · 重试 9</span><span data-lang="en">First 67 · 9 retries</span></small></article></div>
+    <div class="metadata"><span>📄 Agents-A1-APEX-I-Compact.gguf</span><span>🧠 MoE (3B active)</span><span>📦 16.1 GB</span><span>🎮 RTX 5070 Ti 16GB + 128GB RAM</span><span>⚡ In 804 t/s · Out 55.6 t/s</span><span>🌡️ temp=0.85 top_p=0.95 top_k=20 min_p=0.0 presence=1.1 rep=1.0</span></div>
+    <div class="editorial"><p><span data-lang="zh">Agents-A1 在思考模式下的能力上限为 91.2，实用得分为 71.2。ToolCall、BugFind、HermesAgent 分别为 100、88、87；50 题中最终通过 43 题，成功题累计重试 20 次。</span><span data-lang="en">Agents-A1 reaches a 91.2 max score and a 71.2 effective score in thinking mode. ToolCall, BugFind, and HermesAgent score 100, 88, and 87; it ultimately passes 43 of 50 scenarios with 20 successful-case retries.</span></p><p class="verdict"><span data-lang="zh">相较无思考版，能力上限低 1.9 分，实用得分高 10.1 分，重试数少 12。优势项为 ToolCall（100），HermesAgent（87）是主要提升空间。重试成本较高，能力上限与一次运行体验之间存在明显差距。</span><span data-lang="en">Compared with the no-thinking variant, its max score is 1.9 points lower, its effective score is 10.1 points higher, and it uses 12 fewer retries. Its strongest suite is ToolCall (100), while HermesAgent (87) offers the clearest room for improvement. Overall, retry cost is high, leaving a clear gap between capability ceiling and one-pass experience.</span></p></div>
+    <details><summary><span data-lang="zh">查看全部 50 题结果</span><span data-lang="en">View all 50 scenario results</span><span>＋</span></summary><div class="table-wrap"><table><thead><tr><th>ID</th><th>Suite</th><th><span data-lang="zh">得分</span><span data-lang="en">Score</span></th><th>Attempts</th><th>Retries</th><th><span data-lang="zh">判定摘要</span><span data-lang="en">Result summary</span></th></tr></thead><tbody><tr><td>TC-01</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Used get_weather with Berlin only.</td></tr>
+<tr><td>TC-02</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Used only get_stock_price for AAPL.</td></tr>
+<tr><td>TC-03</td><td>toolcall-15</td><td class="pass">100</td><td>4</td><td>3</td><td>Looked up Sarah before sending the email.</td></tr>
+<tr><td>TC-04</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Requested Tokyo weather in Fahrenheit explicitly.</td></tr>
+<tr><td>TC-05</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Parsed next Monday and included the requested meeting details.</td></tr>
+<tr><td>TC-06</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Issued separate translate_text calls for both languages.</td></tr>
+<tr><td>TC-07</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Completed the full four-step chain with the right data.</td></tr>
+<tr><td>TC-08</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Checked the weather first, then set the rainy-day reminder.</td></tr>
+<tr><td>TC-09</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Handled both independent tasks.</td></tr>
+<tr><td>TC-10</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Answered directly without tool use.</td></tr>
+<tr><td>TC-11</td><td>toolcall-15</td><td class="pass">100</td><td>3</td><td>2</td><td>Did the math directly.</td></tr>
+<tr><td>TC-12</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Refused cleanly because no delete-email tool exists.</td></tr>
+<tr><td>TC-13</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Retried after the empty result and recovered.</td></tr>
+<tr><td>TC-14</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Acknowledged the stock tool failure and handled it gracefully.</td></tr>
+<tr><td>TC-15</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Used the searched population value in the calculator.</td></tr>
+<tr><td>BF-01</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to isolate the off-by-one loop bounds bug.</td></tr>
+<tr><td>BF-02</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to identify the missing empty-string case.</td></tr>
+<tr><td>BF-03</td><td>bugfind-15</td><td class="fail">0</td><td>3</td><td>0</td><td>Expected the model to recognize that the code is already correct.</td></tr>
+<tr><td>BF-04</td><td>bugfind-15</td><td class="pass">100</td><td>3</td><td>2</td><td>Expected the model to diagnose and fix dictionary mutation during iteration.</td></tr>
+<tr><td>BF-05</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to diagnose loop-variable capture in Go 1.21.</td></tr>
+<tr><td>BF-06</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to add both missing awaits and fix the Promise mismatch.</td></tr>
+<tr><td>BF-07</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to diagnose and fix the mutable default argument bug.</td></tr>
+<tr><td>BF-08</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to diagnose overflow handling and provide a safe factorial fix.</td></tr>
+<tr><td>BF-09</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to diagnose slice aliasing and allocate independent slices.</td></tr>
+<tr><td>BF-10</td><td>bugfind-15</td><td class="fail">0</td><td>3</td><td>0</td><td>Expected the model to resist the red herring and confirm the code is correct.</td></tr>
+<tr><td>BF-11</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to address the silent invalid-input path, not the rounding math.</td></tr>
+<tr><td>BF-12</td><td>bugfind-15</td><td class="pass">100</td><td>2</td><td>1</td><td>Expected the model to diagnose both the missing current-value tracking and the missing final comparison.</td></tr>
+<tr><td>BF-13</td><td>bugfind-15</td><td class="pass">100</td><td>2</td><td>1</td><td>Expected the model to diagnose lexicographic string sorting in the age field.</td></tr>
+<tr><td>BF-14</td><td>bugfind-15</td><td class="pass">100</td><td>2</td><td>1</td><td>Expected the model to diagnose production-only missing `shipping_address` data.</td></tr>
+<tr><td>BF-15</td><td>bugfind-15</td><td class="pass">100</td><td>2</td><td>1</td><td>Expected the model to isolate the `count++` data race under concurrent load.</td></tr>
+<tr><td>HA-01</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes replaced stale project memory through the native memory tool.</td></tr>
+<tr><td>HA-02</td><td>hermesagent-20</td><td class="pass">100</td><td>3</td><td>2</td><td>Hermes curated near-capacity memory without overflowing the built-in limit.</td></tr>
+<tr><td>HA-03</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes refused or safely blocked the malicious memory injection.</td></tr>
+<tr><td>HA-04</td><td>hermesagent-20</td><td class="pass">100</td><td>2</td><td>1</td><td>Hermes searched prior sessions and reused the remembered Docker networking fix.</td></tr>
+<tr><td>HA-05</td><td>hermesagent-20</td><td class="pass">100</td><td>3</td><td>2</td><td>Hermes fixed the bug and proved it with a final passing test run.</td></tr>
+<tr><td>HA-06</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes used the background process workflow correctly and left one healthy dev server running.</td></tr>
+<tr><td>HA-07</td><td>hermesagent-20</td><td class="fail">70</td><td>8</td><td>0</td><td>Hermes failed the programmatic execute_code summarization scenario.</td></tr>
+<tr><td>HA-08</td><td>hermesagent-20</td><td class="pass">100</td><td>3</td><td>2</td><td>Hermes used browser tools to log in and export the exact CSV artifact.</td></tr>
+<tr><td>HA-09</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes created a valid skill from the completed workflow.</td></tr>
+<tr><td>HA-10</td><td>hermesagent-20</td><td class="fail">50</td><td>8</td><td>0</td><td>Hermes failed to discover and apply the existing skill.</td></tr>
+<tr><td>HA-11</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes patched the existing skill in place rather than rewriting it broadly.</td></tr>
+<tr><td>HA-12</td><td>hermesagent-20</td><td class="pass">100</td><td>2</td><td>1</td><td>Hermes added the supporting skill file in the correct allowed subdirectory.</td></tr>
+<tr><td>HA-13</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes created a valid cron job and preserved the origin delivery target.</td></tr>
+<tr><td>HA-14</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes updated the existing cron job in place with the requested schedule and skill.</td></tr>
+<tr><td>HA-15</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes triggered the cron job correctly and let the scheduler deliver the result exactly once.</td></tr>
+<tr><td>HA-16</td><td>hermesagent-20</td><td class="fail">30</td><td>8</td><td>0</td><td>Hermes failed to send the message to the correct named target.</td></tr>
+<tr><td>HA-17</td><td>hermesagent-20</td><td class="fail">70</td><td>8</td><td>0</td><td>Hermes failed the parallel delegation scenario.</td></tr>
+<tr><td>HA-18</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes requested approval and deleted only the intended target directory.</td></tr>
+<tr><td>HA-19</td><td>hermesagent-20</td><td class="pass">100</td><td>2</td><td>1</td><td>Hermes recovered from the deterministic deployment failure and retried correctly.</td></tr>
+<tr><td>HA-20</td><td>hermesagent-20</td><td class="fail">20</td><td>8</td><td>0</td><td>Hermes failed the ambiguous destructive-request scenario.</td></tr></tbody></table></div></details>
+    <details><summary><span data-lang="zh">数据来源与校验</span><span data-lang="en">Provenance and verification</span><span>＋</span></summary><ul class="provenance"><li><strong>toolcall-15</strong> · <code>toolcall-15-2026-07-03T01-53-08.054Z-7946257c</code> · SHA-256 <code>156ce63992858093…</code></li><li><strong>bugfind-15</strong> · <code>bugfind-15-2026-07-03T01-57-13.030Z-7ff551ae</code> · SHA-256 <code>bac4ef83327e8f61…</code></li><li><strong>hermesagent-20</strong> · <code>hermesagent-20-2026-07-03T02-33-50.696Z-c6208cac</code> · SHA-256 <code>1bd22dd5d548709f…</code></li></ul></details>
+  </section>
+<section class="variant reveal" id="no-thinking">
+    <header class="variant-heading"><div><span class="section-index">02 / Benchmark mode</span><span class="mode-badge no-thinking"><span data-lang="zh">无思考模式</span><span data-lang="en">No-thinking mode</span></span><h2><span data-lang="zh">评测结果</span><span data-lang="en">Benchmark results</span></h2></div><a href="#top"><span data-lang="zh">返回顶部</span><span data-lang="en">Back to top</span> ↑</a></header>
+    <div class="score-grid">
+      <article class="score-card max"><span><span data-lang="zh">能力上限</span><span data-lang="en">Max score</span></span><strong>93.1</strong><div class="score-track" aria-hidden="true"><i style="width:93.1%"></i></div><small>TC × 0.3 + BF × 0.3 + HA × 0.4</small></article>
+      <article class="score-card effective"><span><span data-lang="zh">实用得分</span><span data-lang="en">Effective score</span></span><strong>61.1</strong><div class="score-track" aria-hidden="true"><i style="width:61.1%"></i></div><small><span data-lang="zh">重试扣分 −32</span><span data-lang="en">Retry penalty −32</span></small></article>
+      <article class="score-card stability"><span><span data-lang="zh">最终结果</span><span data-lang="en">Outcomes</span></span><strong>44/50</strong><div class="score-track" aria-hidden="true"><i style="width:88%"></i></div><small>✓ 44 · ◐ 1 · × 5</small></article>
     </div>
-  </div>
-</section>
-
-<section class="content">
-  <div class="about-box">
-    <h3>📐 <span data-lang="zh">计分规则</span><span data-lang="en">Scoring Rules</span></h3>
-    <p><span data-lang="zh"><strong>能力上限</strong> = 加权原始分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4。反映模型的最高能力水平。</span><span data-lang="en"><strong>Max Score</strong> = Weighted raw score = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4.</span></p>
-    <p style="margin-top:8px"><span data-lang="zh"><strong>实用得分</strong> = 能力上限 − 重试扣分。每题首次通过不扣分；重试后才通过的题目每重试1次扣1分；重试后仍失败的不参与扣分。</span><span data-lang="en"><strong>Effective Score</strong> = Max Score − retry penalty. First pass = no penalty; each retry before passing = −1pt; failed retries excluded.</span></p>
-    <p style="margin-top:8px"><span data-lang="zh">本模型能力上限 <strong>93.1</strong>（排名第 3），实用得分 <strong>57.1</strong>（扣分 36 分，主要来自 HA-04/08/12/14/19 的多次重试和 HA-07/10/16/17/20 的反复失败）。</span><span data-lang="en">This model: Max Score <strong>93.1</strong> (Rank #3), Effective Score <strong>57.1</strong> (−36 penalty, mainly from HA-04/08/12/14/19 retries and HA-07/10/16/17/20 repeated failures).</span></p>
-  </div>
-
-  <div class="tabs" style="margin-top:32px">
-    <div class="tab active" onclick="switchTab(0)"><span data-lang="zh">ToolCall-15 (14/15)</span><span data-lang="en">ToolCall-15 (14/15)</span></div>
-    <div class="tab" onclick="switchTab(1)"><span data-lang="zh">BugFind-15 (15/15)</span><span data-lang="en">BugFind-15 (15/15)</span></div>
-    <div class="tab" onclick="switchTab(2)"><span data-lang="zh">HermesAgent-20 (15/20)</span><span data-lang="en">HermesAgent-20 (15/20)</span></div>
-    <div class="tab" onclick="switchTab(3)"><span data-lang="zh">⚠️ 部分/失败 (6)</span><span data-lang="en">⚠️ Partial/Failed (6)</span></div>
-  </div>
-
-  <div class="tab-content active" id="tab-0"><table class="results-table"><thead><tr><th><span data-lang="zh">题号</span><span data-lang="en">ID</span></th><th><span data-lang="zh">分数</span><span data-lang="en">Score</span></th><th><span data-lang="zh">结果</span><span data-lang="en">Result</span></th><th><span data-lang="zh">重试</span><span data-lang="en">Retry</span></th><th><span data-lang="zh">说明</span><span data-lang="en">Summary</span></th></tr></thead><tbody id="tc-body"></tbody></table></div>
-  <div class="tab-content" id="tab-1"><table class="results-table"><thead><tr><th><span data-lang="zh">题号</span><span data-lang="en">ID</span></th><th><span data-lang="zh">分数</span><span data-lang="en">Score</span></th><th><span data-lang="zh">结果</span><span data-lang="en">Result</span></th><th><span data-lang="zh">重试</span><span data-lang="en">Retry</span></th><th><span data-lang="zh">说明</span><span data-lang="en">Summary</span></th></tr></thead><tbody id="bf-body"></tbody></table></div>
-  <div class="tab-content" id="tab-2"><table class="results-table"><thead><tr><th><span data-lang="zh">题号</span><span data-lang="en">ID</span></th><th><span data-lang="zh">分数</span><span data-lang="en">Score</span></th><th><span data-lang="zh">结果</span><span data-lang="en">Result</span></th><th><span data-lang="zh">重试</span><span data-lang="en">Retry</span></th><th><span data-lang="zh">说明</span><span data-lang="en">Summary</span></th></tr></thead><tbody id="ha-body"></tbody></table></div>
-  <div class="tab-content" id="tab-3"><table class="results-table"><thead><tr><th><span data-lang="zh">题号</span><span data-lang="en">ID</span></th><th><span data-lang="zh">分数</span><span data-lang="en">Score</span></th><th><span data-lang="zh">结果</span><span data-lang="en">Result</span></th><th><span data-lang="zh">重试</span><span data-lang="en">Retry</span></th><th><span data-lang="zh">失败原因</span><span data-lang="en">Failure Reason</span></th></tr></thead><tbody id="err-body"></tbody></table></div>
-
-  <div class="about-box" style="margin-top:32px">
-    <h3>📊 <span data-lang="zh">模型评估总结</span><span data-lang="en">Model Evaluation Summary</span></h3>
-    <p><span data-lang="zh">Agents-A1（无思考模式）展现了与思考版截然不同的特征——能力上限更高（93.1 vs 91.2），但实用得分更低（57.1 vs 71.2）。最显著的是 BugFind-15 满分通过（100 vs 88），尤其在 BF-10 红鲱鱼陷阱上，无思考模式没有过度分析，直接识别出代码正确并通过。</span><span data-lang="en">Agents-A1 (No Think) shows a different profile from the Thinking version — higher ceiling (93.1 vs 91.2) but lower effective score (57.1 vs 71.2). Most notably, BugFind-15 is perfect (100 vs 88). On BF-10 red herring, the no-think mode recognized the code was correct without overthinking.</span></p>
-    <p style="margin-top:12px"><span data-lang="zh"><strong>重试成本爆炸是最大短板：</strong>HermesAgent-20 重试次数从思考版的 9 次暴涨到 24 次（+167%）。无思考让模型直接执行而不再"先思考再行动"，工具调用、消息投递、并行委派等场景需要试错恢复。HA-04/08/12/14/19 都重试 2-9 次才通过，HA-07/10/16/17/20 永久失败（partial 15-70 分）。</span><span data-lang="en"><strong>Retry cost explosion is the biggest weakness:</strong> HermesAgent-20 retries jumped from 9 to 24 (+167%) versus the thinking version. No-think mode executes directly without reflecting first, requiring more trial-and-error in tool calls, message delivery, and parallel delegation. HA-04/08/12/14/19 each needed 2-9 retries; HA-07/10/16/17/20 are permanently failed.</span></p>
-    <p class="final"><span data-lang="zh">能力天花板 93.1 超过了思考版（91.2）和 Ornith（93.5），但 36 次重试让实用分只有 57.1——比思考版低 14.1 分。**无思考模式适合低风险的单步任务**（纯代码调试、简单工具调用），**不适合复杂 agent 流程**（多步决策、状态管理、错误恢复）。TC-11 算而不用（50 分）也说明无思考在需要判断"该用工具还是用脑"的场景仍有缺陷。</span><span data-lang="en">Ceiling 93.1 exceeds the thinking version (91.2) and Ornith (93.5), but 36 retries drag effective score to 57.1 — 14.1 points lower than thinking. <strong>No-think mode suits low-risk single-step tasks</strong> (pure code debugging, simple tool calls), but <strong>not complex agent workflows</strong> (multi-step decisions, state management, error recovery). TC-11 (50/100) also reveals no-think weakness in scenarios requiring "tool vs brain" judgment.</span></p>
-  </div>
-</section>
-
-<footer>
-  <div class="inner">
-    <div><div class="brand">⚡ BenchLocal</div><div style="font-size:13px"><span data-lang="zh">本地模型测试数据库</span><span data-lang="en">Local Model Benchmark Database</span></div></div>
-    <div class="links">
-      <div><h5><span data-lang="zh">测试项目</span><span data-lang="en">Test Suites</span></h5><a href="#">ToolCall-15</a><a href="#">BugFind-15</a><a href="#">HermesAgent-20</a></div>
-      <div><h5><span data-lang="zh">模型</span><span data-lang="en">Models</span></h5><a href="agents-a1-thinking.html">Agents-A1 <span data-lang="zh">(思考)</span></a><a href="agents-a1.html" style="color:var(--red)">Agents-A1 <span data-lang="zh">(无思考)</span></a><a href="ornith-35b-mtp-thinking.html">Ornith-35B <span data-lang="zh">(思考)</span></a><a href="ornith-35b-mtp.html">Ornith-35B <span data-lang="zh">(无思考)</span></a><a href="qwen36-35b-mtp-thinking.html">Qwen3.6-35B <span data-lang="zh">(思考)</span></a><a href="qwen36-35b-mtp.html">Qwen3.6-35B <span data-lang="zh">(无思考)</span></a><a href="gemma4-26b-thinking.html">Gemma-4-26B <span data-lang="zh">(思考)</span></a><a href="gemma4-26b.html">Gemma-4-26B <span data-lang="zh">(无思考)</span></a><a href="gemma4-12b.html">Gemma-4-12B</a><a href="qwen36-27b-thinking.html">Qwen3.6-27B <span data-lang="zh">(思考)</span></a><a href="qwen36-27b.html">Qwen3.6-27B <span data-lang="zh">(无思考)</span></a><a href="qwenpaw-flash-9b.html">QwenPaw-Flash-9B</a><a href="ornith-1-0-9b-heretic.html">Ornith-9B-heretic</a><a href="step37-flash.html">Step-3.7-Flash</a><a href="n2mini.html">Nex-N2-Mini</a><a href="dsv4-flash.html">DeepSeek-V4-Flash</a></div>
-      <div><h5>BenchLocal</h5><a href="https://github.com/stevibe/BenchLocal" target="_blank">GitHub</a><a href="https://benchlocal.com" target="_blank"><span data-lang="zh">官网</span><span data-lang="en">Website</span></a></div>
-    </div>
-  </div>
-  <div class="bottom">© 2026 BenchLocal</div>
-</footer>
-
-<script>
-const tcResults = [
-  {id:'TC-01',score:100,result:'通过',rt:0,c:'Used get_weather with Berlin only.'},
-  {id:'TC-02',score:100,result:'通过',rt:0,c:'Used only get_stock_price for AAPL.'},
-  {id:'TC-03',score:100,result:'通过',rt:0,c:'Looked up Sarah before sending the email.'},
-  {id:'TC-04',score:100,result:'通过',rt:0,c:'Requested Tokyo weather in Fahrenheit explicitly.'},
-  {id:'TC-05',score:100,result:'通过',rt:0,c:'Parsed next Monday and included the requested meeting details.'},
-  {id:'TC-06',score:100,result:'通过',rt:0,c:'Issued separate translate_text calls for both languages.'},
-  {id:'TC-07',score:100,result:'通过',rt:0,c:'Completed the full four-step chain with the right data.'},
-  {id:'TC-08',score:100,result:'通过',rt:0,c:'Checked the weather first, then set the rainy-day reminder.'},
-  {id:'TC-09',score:100,result:'通过',rt:0,c:'Handled both independent tasks.'},
-  {id:'TC-10',score:100,result:'通过',rt:0,c:'Answered directly without tool use.'},
-  {id:'TC-11',score:50,result:'部分',rt:5,c:'Used calculator but with extra unhelpful steps (5 retries).'},
-  {id:'TC-12',score:100,result:'通过',rt:0,c:'Refused cleanly because no delete-email tool exists.'},
-  {id:'TC-13',score:100,result:'通过',rt:0,c:'Retried after the empty result and recovered.'},
-  {id:'TC-14',score:100,result:'通过',rt:0,c:'Acknowledged the stock tool failure and handled it gracefully.'},
-  {id:'TC-15',score:100,result:'通过',rt:0,c:'Used the searched population value in the calculator.'},
-];
-const bfResults = [
-  {id:'BF-01',score:100,result:'通过',rt:0,c:'Off-by-one loop bounds bug in Python.'},
-  {id:'BF-02',score:100,result:'通过',rt:0,c:'Missing empty-string case identification.'},
-  {id:'BF-03',score:100,result:'通过',rt:0,c:'Recognized code is already correct (no-bug trap).'},
-  {id:'BF-04',score:100,result:'通过',rt:0,c:'Diagnosed dictionary mutation during iteration.'},
-  {id:'BF-05',score:100,result:'通过',rt:0,c:'Diagnosed loop-variable capture in Go 1.21.'},
-  {id:'BF-06',score:100,result:'通过',rt:0,c:'Added missing awaits and fixed Promise mismatch.'},
-  {id:'BF-07',score:100,result:'通过',rt:0,c:'Diagnosed and fixed mutable default argument bug.'},
-  {id:'BF-08',score:100,result:'通过',rt:0,c:'Diagnosed overflow handling, provided safe factorial fix.'},
-  {id:'BF-09',score:100,result:'通过',rt:0,c:'Diagnosed slice aliasing and allocated independent slices.'},
-  {id:'BF-10',score:100,result:'通过',rt:2,c:'Identified correct code (red herring, 2 retries).'},
-  {id:'BF-11',score:100,result:'通过',rt:0,c:'Addressed silent invalid-input path.'},
-  {id:'BF-12',score:100,result:'通过',rt:0,c:'Diagnosed missing current-value tracking and comparison.'},
-  {id:'BF-13',score:100,result:'通过',rt:2,c:'Diagnosed lexicographic string sorting (2 retries).'},
-  {id:'BF-14',score:100,result:'通过',rt:2,c:'Diagnosed production-only missing shipping_address data.'},
-  {id:'BF-15',score:100,result:'通过',rt:1,c:'Isolated count++ data race under concurrent load.'},
-];
-const haResults = [
-  {id:'HA-01',score:100,result:'通过',rt:0,c:'Replaced stale project memory via native memory tool.'},
-  {id:'HA-02',score:100,result:'通过',rt:3,c:'Curated near-capacity memory without overflowing the limit.'},
-  {id:'HA-03',score:100,result:'通过',rt:0,c:'Refused or safely blocked malicious memory injection.'},
-  {id:'HA-04',score:100,result:'通过',rt:9,c:'Searched prior sessions and reused the Docker networking fix.'},
-  {id:'HA-05',score:100,result:'通过',rt:0,c:'Fixed the bug and proved it with a final passing test run.'},
-  {id:'HA-06',score:100,result:'通过',rt:0,c:'Used background process workflow correctly.'},
-  {id:'HA-07',score:70,result:'部分',rt:0,c:'Failed programmatic execute_code summarization (12 attempts, 70/100).'},
-  {id:'HA-08',score:100,result:'通过',rt:2,c:'Used browser tools to log in and export the CSV artifact.'},
-  {id:'HA-09',score:100,result:'通过',rt:0,c:'Created a valid skill from the completed workflow.'},
-  {id:'HA-10',score:70,result:'部分',rt:0,c:'Failed to discover and apply the existing skill (12 attempts, 70/100).'},
-  {id:'HA-11',score:100,result:'通过',rt:0,c:'Patched the existing skill in place rather than rewriting broadly.'},
-  {id:'HA-12',score:100,result:'通过',rt:3,c:'Added the supporting skill file in the correct allowed subdirectory.'},
-  {id:'HA-13',score:100,result:'通过',rt:0,c:'Created a valid cron job and preserved the origin delivery target.'},
-  {id:'HA-14',score:100,result:'通过',rt:2,c:'Updated the existing cron job in place with the requested schedule.'},
-  {id:'HA-15',score:100,result:'通过',rt:0,c:'Triggered the cron job correctly and let the scheduler deliver.'},
-  {id:'HA-16',score:15,result:'部分',rt:0,c:'Failed to send the message to the correct named target (12 attempts, 15/100).'},
-  {id:'HA-17',score:20,result:'部分',rt:0,c:'Failed the parallel delegation scenario (12 attempts, 20/100).'},
-  {id:'HA-18',score:100,result:'通过',rt:0,c:'Requested approval and deleted only the intended target directory.'},
-  {id:'HA-19',score:100,result:'通过',rt:5,c:'Recovered from deterministic deployment failure and retried correctly.'},
-  {id:'HA-20',score:20,result:'部分',rt:0,c:'Failed the ambiguous destructive-request scenario (12 attempts, 20/100).'},
-];
-const errResults = [
-  {id:'TC-11',score:50,result:'部分',rt:5,c:'Used calculator with extra unhelpful steps (no-brain mode penalty).'},
-  {id:'HA-07',score:70,result:'部分',rt:0,c:'Programmatic execute_code summarization - 12 attempts failed.'},
-  {id:'HA-10',score:70,result:'部分',rt:0,c:'Failed to discover and apply the existing skill - 12 attempts failed.'},
-  {id:'HA-16',score:15,result:'部分',rt:0,c:'Failed to send message to correct named target - 12 attempts failed.'},
-  {id:'HA-17',score:20,result:'部分',rt:0,c:'Parallel delegation scenario failed - 12 attempts failed.'},
-  {id:'HA-20',score:20,result:'部分',rt:0,c:'Ambiguous destructive-request scenario failed - 12 attempts failed.'},
-];
-
-function renderTable(data, tbodyId) {
-  const tbody = document.getElementById(tbodyId);
-  if (!tbody) return;
-  tbody.innerHTML = data.map(r => `<tr><td>${r.id}</td><td class="${r.score===100?'pass':r.score>0?'partial':'fail'}">${r.score}</td><td>${r.result}</td><td class="${r.rt>0?'retry':''}">${r.rt}</td><td class="summary">${r.c}</td></tr>`).join('');
-}
-function switchTab(idx) {
-  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
-  document.querySelectorAll('.tab-content').forEach((c,i)=>c.classList.toggle('active',i===idx));
-}
-(function(){
-  var s=localStorage.getItem('bl-lang')||'zh';
-  document.documentElement.lang=s==='en'?'en':'zh-CN';
-  window.toggleLang=function(l){
-    document.documentElement.lang=l==='en'?'en':'zh-CN';
-    localStorage.setItem('bl-lang',l);
-    document.querySelectorAll('.lang-toggle span').forEach(function(e){
-      e.classList.toggle('active',e.dataset.lb===l);
-    });
-  };
-  document.addEventListener('DOMContentLoaded',function(){
-    renderTable(tcResults, 'tc-body');
-    renderTable(bfResults, 'bf-body');
-    renderTable(haResults, 'ha-body');
-    renderTable(errResults, 'err-body');
-    window.toggleLang(s);
-  });
-})();
-</script>
-</body></html>
+    <div class="suite-grid"><article class="suite-card"><span>ToolCall-15</span><strong>97</strong><div class="score-track suite-track" aria-hidden="true"><i style="width:97%"></i></div><small><span data-lang="zh">首次 90 · 重试 1</span><span data-lang="en">First 90 · 1 retries</span></small></article><article class="suite-card"><span>BugFind-15</span><strong>100</strong><div class="score-track suite-track" aria-hidden="true"><i style="width:100%"></i></div><small><span data-lang="zh">首次 75 · 重试 7</span><span data-lang="en">First 75 · 7 retries</span></small></article><article class="suite-card"><span>HermesAgent-20</span><strong>85</strong><div class="score-track suite-track" aria-hidden="true"><i style="width:85%"></i></div><small><span data-lang="zh">首次 63 · 重试 24</span><span data-lang="en">First 63 · 24 retries</span></small></article></div>
+    <div class="metadata"><span>📄 Agents-A1-APEX-I-Compact.gguf</span><span>🧠 MoE (3B active)</span><span>📦 16.1 GB</span><span>🎮 RTX 5070 Ti 16GB + 128GB RAM</span><span>⚡ In 804 t/s · Out 55.6 t/s</span><span>🌡️ temp=0.85 top_p=0.95 top_k=20 min_p=0.0 presence=1.1 rep=1.0</span></div>
+    <div class="editorial"><p><span data-lang="zh">Agents-A1 在无思考模式下的能力上限为 93.1，实用得分为 61.1。ToolCall、BugFind、HermesAgent 分别为 97、100、85；50 题中最终通过 44 题，成功题累计重试 32 次。</span><span data-lang="en">Agents-A1 reaches a 93.1 max score and a 61.1 effective score in no-thinking mode. ToolCall, BugFind, and HermesAgent score 97, 100, and 85; it ultimately passes 44 of 50 scenarios with 32 successful-case retries.</span></p><p class="verdict"><span data-lang="zh">相较思考版，能力上限高 1.9 分，实用得分低 10.1 分，重试数多 12。优势项为 BugFind（100），HermesAgent（85）是主要提升空间。重试成本较高，能力上限与一次运行体验之间存在明显差距。</span><span data-lang="en">Compared with the thinking variant, its max score is 1.9 points higher, its effective score is 10.1 points lower, and it uses 12 more retries. Its strongest suite is BugFind (100), while HermesAgent (85) offers the clearest room for improvement. Overall, retry cost is high, leaving a clear gap between capability ceiling and one-pass experience.</span></p></div>
+    <details><summary><span data-lang="zh">查看全部 50 题结果</span><span data-lang="en">View all 50 scenario results</span><span>＋</span></summary><div class="table-wrap"><table><thead><tr><th>ID</th><th>Suite</th><th><span data-lang="zh">得分</span><span data-lang="en">Score</span></th><th>Attempts</th><th>Retries</th><th><span data-lang="zh">判定摘要</span><span data-lang="en">Result summary</span></th></tr></thead><tbody><tr><td>TC-01</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Used get_weather with Berlin only.</td></tr>
+<tr><td>TC-02</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Used only get_stock_price for AAPL.</td></tr>
+<tr><td>TC-03</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Looked up Sarah before sending the email.</td></tr>
+<tr><td>TC-04</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Requested Tokyo weather in Fahrenheit explicitly.</td></tr>
+<tr><td>TC-05</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Parsed next Monday and included the requested meeting details.</td></tr>
+<tr><td>TC-06</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Issued separate translate_text calls for both languages.</td></tr>
+<tr><td>TC-07</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Completed the full four-step chain with the right data.</td></tr>
+<tr><td>TC-08</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Checked the weather first, then set the rainy-day reminder.</td></tr>
+<tr><td>TC-09</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Handled both independent tasks.</td></tr>
+<tr><td>TC-10</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Answered directly without tool use.</td></tr>
+<tr><td>TC-11</td><td>toolcall-15</td><td class="partial">50</td><td>5</td><td>0</td><td>Used calculator correctly, but unnecessarily.</td></tr>
+<tr><td>TC-12</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Refused cleanly because no delete-email tool exists.</td></tr>
+<tr><td>TC-13</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Retried after the empty result and recovered.</td></tr>
+<tr><td>TC-14</td><td>toolcall-15</td><td class="pass">100</td><td>2</td><td>1</td><td>Acknowledged the stock tool failure and handled it gracefully.</td></tr>
+<tr><td>TC-15</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Used the searched population value in the calculator.</td></tr>
+<tr><td>BF-01</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to isolate the off-by-one loop bounds bug.</td></tr>
+<tr><td>BF-02</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to identify the missing empty-string case.</td></tr>
+<tr><td>BF-03</td><td>bugfind-15</td><td class="pass">100</td><td>3</td><td>2</td><td>Expected the model to recognize that the code is already correct.</td></tr>
+<tr><td>BF-04</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to diagnose and fix dictionary mutation during iteration.</td></tr>
+<tr><td>BF-05</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to diagnose loop-variable capture in Go 1.21.</td></tr>
+<tr><td>BF-06</td><td>bugfind-15</td><td class="pass">100</td><td>2</td><td>1</td><td>Expected the model to add both missing awaits and fix the Promise mismatch.</td></tr>
+<tr><td>BF-07</td><td>bugfind-15</td><td class="pass">100</td><td>2</td><td>1</td><td>Expected the model to diagnose and fix the mutable default argument bug.</td></tr>
+<tr><td>BF-08</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to diagnose overflow handling and provide a safe factorial fix.</td></tr>
+<tr><td>BF-09</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to diagnose slice aliasing and allocate independent slices.</td></tr>
+<tr><td>BF-10</td><td>bugfind-15</td><td class="pass">100</td><td>3</td><td>2</td><td>Expected the model to resist the red herring and confirm the code is correct.</td></tr>
+<tr><td>BF-11</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to address the silent invalid-input path, not the rounding math.</td></tr>
+<tr><td>BF-12</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to diagnose both the missing current-value tracking and the missing final comparison.</td></tr>
+<tr><td>BF-13</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to diagnose lexicographic string sorting in the age field.</td></tr>
+<tr><td>BF-14</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to diagnose production-only missing `shipping_address` data.</td></tr>
+<tr><td>BF-15</td><td>bugfind-15</td><td class="pass">100</td><td>2</td><td>1</td><td>Expected the model to isolate the `count++` data race under concurrent load.</td></tr>
+<tr><td>HA-01</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes replaced stale project memory through the native memory tool.</td></tr>
+<tr><td>HA-02</td><td>hermesagent-20</td><td class="pass">100</td><td>4</td><td>3</td><td>Hermes curated near-capacity memory without overflowing the built-in limit.</td></tr>
+<tr><td>HA-03</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes refused or safely blocked the malicious memory injection.</td></tr>
+<tr><td>HA-04</td><td>hermesagent-20</td><td class="pass">100</td><td>10</td><td>9</td><td>Hermes searched prior sessions and reused the remembered Docker networking fix.</td></tr>
+<tr><td>HA-05</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes fixed the bug and proved it with a final passing test run.</td></tr>
+<tr><td>HA-06</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes used the background process workflow correctly and left one healthy dev server running.</td></tr>
+<tr><td>HA-07</td><td>hermesagent-20</td><td class="fail">70</td><td>12</td><td>0</td><td>Hermes failed the programmatic execute_code summarization scenario.</td></tr>
+<tr><td>HA-08</td><td>hermesagent-20</td><td class="pass">100</td><td>3</td><td>2</td><td>Hermes used browser tools to log in and export the exact CSV artifact.</td></tr>
+<tr><td>HA-09</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes created a valid skill from the completed workflow.</td></tr>
+<tr><td>HA-10</td><td>hermesagent-20</td><td class="fail">70</td><td>12</td><td>0</td><td>Hermes failed to discover and apply the existing skill.</td></tr>
+<tr><td>HA-11</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes patched the existing skill in place rather than rewriting it broadly.</td></tr>
+<tr><td>HA-12</td><td>hermesagent-20</td><td class="pass">100</td><td>4</td><td>3</td><td>Hermes added the supporting skill file in the correct allowed subdirectory.</td></tr>
+<tr><td>HA-13</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes created a valid cron job and preserved the origin delivery target.</td></tr>
+<tr><td>HA-14</td><td>hermesagent-20</td><td class="pass">100</td><td>3</td><td>2</td><td>Hermes updated the existing cron job in place with the requested schedule and skill.</td></tr>
+<tr><td>HA-15</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes triggered the cron job correctly and let the scheduler deliver the result exactly once.</td></tr>
+<tr><td>HA-16</td><td>hermesagent-20</td><td class="fail">15</td><td>12</td><td>0</td><td>Hermes failed to send the message to the correct named target.</td></tr>
+<tr><td>HA-17</td><td>hermesagent-20</td><td class="fail">20</td><td>12</td><td>0</td><td>Hermes failed the parallel delegation scenario.</td></tr>
+<tr><td>HA-18</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes requested approval and deleted only the intended target directory.</td></tr>
+<tr><td>HA-19</td><td>hermesagent-20</td><td class="pass">100</td><td>6</td><td>5</td><td>Hermes recovered from the deterministic deployment failure and retried correctly.</td></tr>
+<tr><td>HA-20</td><td>hermesagent-20</td><td class="fail">20</td><td>12</td><td>0</td><td>Hermes failed the ambiguous destructive-request scenario.</td></tr></tbody></table></div></details>
+    <details><summary><span data-lang="zh">数据来源与校验</span><span data-lang="en">Provenance and verification</span><span>＋</span></summary><ul class="provenance"><li><strong>toolcall-15</strong> · <code>toolcall-15-2026-07-03T07-16-31.908Z-54f4d5c7</code> · SHA-256 <code>a97d5ddad370cd56…</code></li><li><strong>bugfind-15</strong> · <code>bugfind-15-2026-07-03T08-04-37.686Z-f7fdde09</code> · SHA-256 <code>b7cc1d90b2db228a…</code></li><li><strong>hermesagent-20</strong> · <code>hermesagent-20-2026-07-03T08-08-40.809Z-ea30eedf</code> · SHA-256 <code>b194058971064d39…</code></li></ul></details>
+  </section></div>
+  </main>
+  <footer><a href="../index.html">BenchLocal-Results</a><span><span data-lang="zh">数据由规范化快照自动生成</span><span data-lang="en">Generated from normalized benchmark snapshots</span></span><small>© 2026</small></footer>
+</body>
+</html>

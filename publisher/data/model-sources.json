@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-07-17",
+  "models": {
+    "agents-a1": { "artifactKind": "gguf", "artifactUrl": "https://huggingface.co/SC117/Agents-A1-MTP-APEX-GGUF", "upstreamUrl": "https://huggingface.co/InternScience/Agents-A1", "publisherUrl": "https://huggingface.co/SC117" },
+    "dsv4-flash": { "artifactKind": "api", "artifactUrl": "https://pi.dev/models/opencode/deepseek-v4-flash-free?provider=fireworks", "upstreamUrl": null, "publisherUrl": "https://opencode.ai/zen" },
+    "gemma4-12b": { "artifactKind": "gguf", "artifactUrl": "https://huggingface.co/SC117/gemma-4-12B-it-heretic-QAT-GGUF", "upstreamUrl": "https://huggingface.co/google/gemma-4-12B-it", "publisherUrl": "https://huggingface.co/SC117" },
+    "gemma4-26b": { "artifactKind": "gguf", "artifactUrl": "https://huggingface.co/SC117/gemma-4-26B-A4B-it-qat-heretic-GGUF", "upstreamUrl": "https://huggingface.co/google/gemma-4-26B-A4B-it", "publisherUrl": "https://huggingface.co/SC117" },
+    "n2mini": { "artifactKind": "gguf", "artifactUrl": "https://huggingface.co/SC117/Huihui-Nex-N2-mini-abliterated-APEX-GGUF", "upstreamUrl": "https://huggingface.co/nex-agi/Nex-N2-mini", "publisherUrl": "https://huggingface.co/SC117" },
+    "ornith-1-0-9b-heretic": { "artifactKind": "gguf", "artifactUrl": "https://huggingface.co/SC117/Ornith-1.0-9B-heretic-MTP-GGUF", "upstreamUrl": "https://huggingface.co/deepreinforce-ai/Ornith-1.0-9B", "publisherUrl": "https://huggingface.co/SC117" },
+    "ornith-35b-heretic-mtp-apex": { "artifactKind": "gguf", "artifactUrl": "https://huggingface.co/SC117/Ornith-1.0-35B-Heretic-MTP-APEX-GGUF", "upstreamUrl": "https://huggingface.co/deepreinforce-ai/Ornith-1.0-35B", "publisherUrl": "https://huggingface.co/SC117" },
+    "ornith-35b-mtp": { "artifactKind": "gguf", "artifactUrl": "https://huggingface.co/SC117/Ornith-1.0-35B-MTP-APEX-GGUF", "upstreamUrl": "https://huggingface.co/deepreinforce-ai/Ornith-1.0-35B", "publisherUrl": "https://huggingface.co/SC117" },
+    "qwen-agentworld-35b": { "artifactKind": "gguf", "artifactUrl": "https://huggingface.co/SC117/Qwen-AgentWorld-35B-A3B-MTP-Uncensored-APEX-GGUF", "upstreamUrl": "https://huggingface.co/Qwen/Qwen-AgentWorld-35B-A3B", "publisherUrl": "https://huggingface.co/SC117" },
+    "qwen-agentworld-35b-original": { "artifactKind": "gguf", "artifactUrl": "https://huggingface.co/SC117/Qwen-AgentWorld-35B-A3B-MTP-APEX-GGUF", "upstreamUrl": "https://huggingface.co/Qwen/Qwen-AgentWorld-35B-A3B", "publisherUrl": "https://huggingface.co/SC117" },
+    "qwen36-27b": { "artifactKind": "gguf", "artifactUrl": "https://huggingface.co/mradermacher/Qwen3.6-27B-uncensored-heretic-v2-Native-MTP-Preserved-i1-GGUF", "upstreamUrl": "https://huggingface.co/llmfan46/Qwen3.6-27B-uncensored-heretic-v2-Native-MTP-Preserved", "publisherUrl": "https://huggingface.co/mradermacher" },
+    "qwen36-35b-mtp": { "artifactKind": "gguf", "artifactUrl": "https://huggingface.co/SC117/Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX-GGUF", "upstreamUrl": "https://huggingface.co/llmfan46/Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved", "publisherUrl": "https://huggingface.co/SC117" },
+    "qwenpaw-flash-9b": { "artifactKind": "gguf", "artifactUrl": "https://huggingface.co/SC117/QwenPaw-Flash-9B-heretic-MTP-GGUF", "upstreamUrl": "https://huggingface.co/agentscope-ai/QwenPaw-Flash-9B", "publisherUrl": "https://huggingface.co/SC117" },
+    "step37-flash": { "artifactKind": null, "artifactUrl": null, "upstreamUrl": "https://huggingface.co/stepfun-ai/Step-3.7-Flash", "publisherUrl": "https://huggingface.co/stepfun-ai" },
+    "ternary-bonsai-27b-q2-0": { "artifactKind": "gguf", "artifactUrl": "https://huggingface.co/prism-ml/Ternary-Bonsai-27B-gguf", "upstreamUrl": "https://huggingface.co/Qwen/Qwen3.6-27B", "publisherUrl": "https://huggingface.co/prism-ml" }
+  }
+}

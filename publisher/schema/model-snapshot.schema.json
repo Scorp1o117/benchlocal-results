@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://scorp1o117.github.io/benchlocal-results/schema/model-snapshot.schema.json",
+  "title": "BenchLocal published model snapshot",
+  "type": "object",
+  "required": ["schemaVersion", "generatedAt", "model", "scoring", "suites", "editorial"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "model": {
+      "type": "object",
+      "required": ["id", "label", "slug", "variant"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "label": { "type": "string", "minLength": 1 },
+        "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "variant": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
+      },
+      "additionalProperties": false
+    },
+    "scoring": {
+      "type": "object",
+      "required": ["weights", "maxScore", "retryPenalty", "effectiveScore", "counts"]
+    },
+    "suites": {
+      "type": "object",
+      "required": ["toolcall", "bugfind", "hermes"]
+    },
+    "editorial": { "type": "object" }
+  },
+  "additionalProperties": false
+}

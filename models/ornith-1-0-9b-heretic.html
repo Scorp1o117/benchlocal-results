@@ -1,281 +1,83 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" id="top">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ornith-1.0-9B-heretic-MTP (思考) · BenchLocal</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--red:#E53E3E;--orange:#ED8936;--grad:linear-gradient(135deg,#E53E3E,#ED8936);--bg:#F8F9FC;--card:#FFF;--text:#1A202C;--text2:#64748B;--text3:#94A3B8;--border:#E2E8F0;--r:20px;--sh:0 1px 3px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.04)}
-body{font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-a{color:inherit;text-decoration:none}
-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.8);backdrop-filter:blur(24px);border-bottom:1px solid rgba(226,232,240,.6)}
-nav .inner{max-width:1280px;margin:0 auto;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
-.logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800}
-.logo-icon{width:32px;height:32px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
-.nav-links{display:flex;gap:28px;font-size:14px;font-weight:500;color:var(--text2)}
-.nav-links a:hover{color:var(--text)}
-.back-link{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--text2);font-weight:500}
-.back-link:hover{color:var(--red)}
-.hero-detail{padding:60px 48px 40px;max-width:1280px;margin:0 auto}
-.model-header{display:flex;gap:40px;align-items:flex-start}
-.model-avatar{width:80px;height:80px;border-radius:20px;background:#F1F5F9;display:flex;align-items:center;justify-content:center;flex-shrink:0;object-fit:contain;padding:12px}
-.model-info h1{font-size:32px;font-weight:900;letter-spacing:-1px}
-.model-info .sub{font-size:15px;color:var(--text2);margin-top:4px}
-.model-tags{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
-.model-tags span{font-size:12px;padding:4px 12px;border-radius:8px;font-weight:600;background:#F1F5F9;color:var(--text2)}
-.score-row{display:flex;gap:24px;margin-top:32px}
-.big-score{background:var(--grad);border-radius:var(--r);padding:32px 40px;color:#fff;min-width:200px}
-.big-score .label{font-size:13px;opacity:.8;font-weight:500}
-.big-score .num{font-size:56px;font-weight:900;letter-spacing:-3px;line-height:1.1}
-.big-score .sub{font-size:12px;opacity:.7;margin-top:4px}
-.adj-score{background:linear-gradient(135deg,#667eea,#764ba2);border-radius:var(--r);padding:32px 40px;color:#fff;min-width:180px}
-.adj-score .label{font-size:13px;opacity:.8;font-weight:500}
-.adj-score .num{font-size:42px;font-weight:900;letter-spacing:-2px;line-height:1.1;margin-top:4px}
-.adj-score .sub{font-size:11px;opacity:.7;margin-top:4px}
-.sub-scores{display:flex;gap:16px;flex:1}
-.sub-score{flex:1;background:var(--card);border-radius:var(--r);padding:24px;box-shadow:var(--sh)}
-.sub-score .label{font-size:12px;color:var(--text3);font-weight:500}
-.sub-score .num{font-size:28px;font-weight:900;letter-spacing:-1px;margin-top:4px}
-.sub-score .sub{font-size:11px;color:var(--text3);margin-top:4px}
-.sub-score .bar{height:4px;background:#F1F5F9;border-radius:2px;margin-top:12px;overflow:hidden}
-.sub-score .bar-fill{height:100%;border-radius:2px}
-.section{max-width:1280px;margin:0 auto;padding:40px 48px}
-.section h2{font-size:24px;font-weight:800;margin-bottom:24px}
-.tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
-.tab{padding:8px 20px;border-radius:100px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:#fff;color:var(--text2);transition:all .2s}
-.tab:hover{border-color:var(--red);color:var(--red)}.tab.active{background:var(--text);color:#fff;border-color:var(--text)}
-.table-wrap{background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
-table{width:100%;border-collapse:collapse;font-size:13px}
-thead{background:#F7FAFC}
-th{padding:14px 16px;text-align:left;font-weight:600;color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
-td{padding:14px 16px;border-top:1px solid var(--border);vertical-align:top}
-tr:hover{background:#FAFBFC}
-.badge{display:inline-block;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700}
-.badge.tc{background:#EBF5FF;color:#2563EB}.badge.bf{background:#FFF7ED;color:#EA580C}.badge.ha{background:#F0FDF4;color:#16A34A}
-.badge.pass{background:#DCFCE7;color:#166534}.badge.fail{background:#FEE2E2;color:#991B1B}.badge.partial{background:#FEF3C7;color:#92400E}
-.difficulty{font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px}
-.difficulty.easy{background:#DCFCE7;color:#166534}.difficulty.med{background:#FEF3C7;color:#92400E}.difficulty.hard{background:#FEE2E2;color:#991B1B}.difficulty.expert{background:#F3E8FF;color:#7C3AED}
-.comment{font-size:12px;color:var(--text2);max-width:200px}
-.error-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
-.error-card{background:var(--card);border-radius:var(--r);padding:24px;box-shadow:var(--sh);border-left:4px solid var(--border)}
-.error-card h4{font-size:14px;font-weight:700;margin-bottom:8px}
-.error-card .meta{font-size:12px;color:var(--text2);margin-bottom:8px;display:flex;gap:12px}
-.error-card .desc{font-size:13px;color:var(--text2);line-height:1.6}
-.error-card .roast{font-size:13px;color:var(--red);font-weight:500;padding:10px 14px;background:#FFF5F5;border-radius:8px;margin-top:8px}
-.error-card.score-issue{border-left-color:var(--orange)}
-.roast-box{background:var(--card);border-radius:var(--r);padding:48px;box-shadow:var(--sh)}
-.roast-section{margin-bottom:24px}
-.roast-section h4{font-size:16px;font-weight:700;margin-bottom:12px}
-.roast-section ul{list-style:none;padding:0}
-.roast-section li{padding:8px 0;font-size:14px;color:var(--text2);border-bottom:1px solid #F7FAFC;display:flex;align-items:flex-start;gap:8px}
-.roast-section.pro li::before{content:'✅';flex-shrink:0}
-.roast-section.con li::before{content:'❌';flex-shrink:0}
-.roast-section.tip li::before{content:'💡';flex-shrink:0}
-.roast-conclusion{background:linear-gradient(135deg,#FFF5F5,#FFFAF0);border-radius:12px;padding:28px;margin-top:24px}
-.roast-conclusion p{font-size:15px;line-height:1.8}
-.roast-conclusion .final{font-size:18px;font-weight:800;color:var(--red);margin-top:12px}
-footer{background:#0F172A;color:#94A3B8;padding:48px 48px 32px;margin-top:60px}
-footer .inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start}
-footer .brand{font-size:18px;font-weight:800;color:#fff;margin-bottom:8px}
-footer .links{display:flex;gap:48px}
-footer .links div h5{color:#fff;font-size:13px;font-weight:600;margin-bottom:12px}
-footer .links div a{display:block;font-size:13px;padding:4px 0;color:#94A3B8}
-footer .links div a:hover{color:#fff}
-footer .bottom{max-width:1280px;margin:32px auto 0;padding-top:24px;border-top:1px solid #1E293B;font-size:12px;text-align:center}
-@media(max-width:768px){.model-header{flex-direction:column;gap:20px}.score-row{flex-direction:column}.sub-scores{flex-direction:column}.error-grid{grid-template-columns:1fr}.section{padding:20px}.hero-detail{padding:40px 20px}}
-.hf-detail-link{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:12px;font-size:14px;font-weight:600;background:linear-gradient(135deg,#FFD21E,#FF9D00);color:#1A202C;text-decoration:none;transition:all .25s;margin-top:16px}
-.hf-detail-link:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(255,210,30,.35);background:linear-gradient(135deg,#FFE066,#FFB347)}
-.hf-detail-link svg{width:18px;height:18px;flex-shrink:0}
-[data-lang]{display:none}
-html[lang="zh-CN"] [data-lang="zh"],html[lang="en"] [data-lang="en"]{display:revert}
-html[lang="zh-CN"] [data-lang="en"],html[lang="en"] [data-lang="zh"]{display:none}
-.lang-toggle{display:flex;align-items:center;gap:2px;padding:3px;border-radius:8px;background:#F1F5F9;cursor:pointer;user-select:none;margin-left:auto}
-.lang-toggle span{padding:3px 10px;border-radius:6px;font-size:12px;font-weight:600;color:var(--text2);transition:all .2s;pointer-events:none}
-.lang-toggle span.active{background:#fff;color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.1)}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ornith-1.0-9B-heretic-MTP BenchLocal-Results benchmark results">
+  <meta name="theme-color" content="#f4f6fa">
+  <title>Ornith-1.0-9B-heretic-MTP · BenchLocal-Results</title>
+  <link rel="icon" type="image/png" href="../icons/benchlocal-results-logo.png">
+  <link rel="canonical" href="https://scorp1o117.github.io/benchlocal-results/models/ornith-1-0-9b-heretic.html">
+  <link rel="stylesheet" href="../styles/detail.css">
+  <script src="../scripts/detail.js" defer></script>
 </head>
-<body>
-<nav><div class="inner"><div class="logo"><div class="logo-icon">⚡</div>BenchLocal</div><a href="../" class="back-link"><span data-lang="zh">← 返回排行榜</span><span data-lang="en">← Back to Leaderboard</span></a>  <div class="lang-toggle" onclick="toggleLang(document.documentElement.lang==='zh-CN'?'en':'zh')"><span data-lb="zh" class="active">中</span><span data-lb="en">EN</span></div>
-</div></nav>
-
-<section class="hero-detail">
-  <div class="model-header">
-    <div class="model-avatar"><img src="../icons/ornith-color.png" alt="" style="width:100%;height:100%;object-fit:contain"></div>
-    <div class="model-info">
-      <h1>Ornith-1.0-9B-heretic-MTP <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></h1>
-      <div class="sub">Ornith-1.0-9B-heretic-MTP-Q6_K.gguf · Q6_K · 7.6 GB</div>
-      <div class="model-tags"><span>🧠 Dense 9B</span><span>📦 7.6 GB</span><span>⚡ In 1420 t/s · Out 109.4 t/s</span><span>🌡️ temp=0.6 top_p=0.95 top_k=20</span><span>📅 2026-06-29</span></div>
+<body><!-- Generated by publisher/render-pages.mjs; do not edit scores by hand. -->
+  <nav class="detail-nav"><div><a class="detail-brand" href="../index.html"><span><img src="../icons/benchlocal-results-logo.png" alt=""></span>BenchLocal-Results</a><div class="detail-actions"><a href="../index.html#leaderboard"><span data-lang="zh">排行榜</span><span data-lang="en">Leaderboard</span></a><div class="lang-toggle" role="group" aria-label="Language"><button type="button" data-lb="zh" aria-pressed="true">中</button><button type="button" data-lb="en" aria-pressed="false">EN</button></div></div></div></nav>
+  <main>
+    <header class="detail-hero reveal"><div class="hero-visual"><div class="hero-halo"></div><div class="detail-logo"><img src="../icons/ornith-color.png" alt="Ornith-1.0-9B-heretic-MTP logo"></div></div><div class="hero-content"><span class="hero-kicker">Model benchmark</span><h1>Ornith-1.0-9B-heretic-MTP</h1><p class="model-file">Ornith-1.0-9B-heretic-MTP-Q6_K.gguf</p><p class="hero-summary"><span data-lang="zh">模型的能力上限、实际稳定性和完整 50 题结果。</span><span data-lang="en">Max capability, practical stability, and all 50 scenario results.</span></p><div class="mode-links"><a href="#thinking"><span class="switch-dot thinking"></span><span data-lang="zh">思考模式</span><span data-lang="en">Thinking mode</span><strong>89.8</strong></a></div><div class="source-links"><a href="https://huggingface.co/SC117/Ornith-1.0-9B-heretic-MTP-GGUF" target="_blank" rel="noopener noreferrer"><span data-lang="zh">测试模型链接</span><span data-lang="en">Tested model</span> ↗</a><a href="https://huggingface.co/deepreinforce-ai/Ornith-1.0-9B" target="_blank" rel="noopener noreferrer"><span data-lang="zh">上游模型</span><span data-lang="en">Upstream model</span> ↗</a><a href="https://huggingface.co/SC117" target="_blank" rel="noopener noreferrer"><span data-lang="zh">发布者 SC117</span><span data-lang="en">Publisher SC117</span> ↗</a></div></div></header>
+    <div class="detail-content"><section class="variant reveal" id="thinking">
+    <header class="variant-heading"><div><span class="section-index">01 / Benchmark mode</span><span class="mode-badge thinking"><span data-lang="zh">思考模式</span><span data-lang="en">Thinking mode</span></span><h2><span data-lang="zh">评测结果</span><span data-lang="en">Benchmark results</span></h2></div><a href="#top"><span data-lang="zh">返回顶部</span><span data-lang="en">Back to top</span> ↑</a></header>
+    <div class="score-grid">
+      <article class="score-card max"><span><span data-lang="zh">能力上限</span><span data-lang="en">Max score</span></span><strong>89.8</strong><div class="score-track" aria-hidden="true"><i style="width:89.8%"></i></div><small>TC × 0.3 + BF × 0.3 + HA × 0.4</small></article>
+      <article class="score-card effective"><span><span data-lang="zh">实用得分</span><span data-lang="en">Effective score</span></span><strong>68.8</strong><div class="score-track" aria-hidden="true"><i style="width:68.8%"></i></div><small><span data-lang="zh">重试扣分 −21</span><span data-lang="en">Retry penalty −21</span></small></article>
+      <article class="score-card stability"><span><span data-lang="zh">最终结果</span><span data-lang="en">Outcomes</span></span><strong>43/50</strong><div class="score-track" aria-hidden="true"><i style="width:86%"></i></div><small>✓ 43 · ◐ 0 · × 7</small></article>
     </div>
-  </div>
-  <a href="https://huggingface.co/SC117/Ornith-1.0-9B-heretic-MTP-GGUF" target="_blank" class="hf-detail-link"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10C32.4 10 10 32.4 10 60s22.4 50 50 50 50-22.4 50-50S87.6 10 60 10z" fill="#FFD21E"/><path d="M30 65c0-8 4-15 10-18l2-1c2 3 6 5 10 5s7-2 10-5l2 1c6 3 10 10 10 18v15c0 3-2 5-5 5H35c-3 0-5-2-5-5V65z" fill="#1A202C"/><circle cx="45" cy="62" r="5" fill="white"/><circle cx="75" cy="62" r="5" fill="white"/><path d="M48 78c0 0 5 8 12 8s12-8 12-8" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg> <span data-lang="zh">在 HuggingFace 查看模型 →</span><span data-lang="en">View on HuggingFace →</span></a>
-  <div class="score-row">
-    <div class="big-score"><div class="label"><span data-lang="zh">加权总分</span><span data-lang="en">Weighted Total</span></div><div class="num">89.8</div><div class="sub"><span data-lang="zh">加权原始分 = TC×0.3 + BF×0.3 + HA×0.4</span><span data-lang="en">Weighted raw score = TC×0.3 + BF×0.3 + HA×0.4</span></div></div>
-    <div class="adj-score"><div class="label"><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></div><div class="num">68.8</div><div class="sub"><span data-lang="zh">−21 重试扣分</span><span data-lang="en">−21 retry penalty</span></div></div>
-    <div class="sub-scores">
-      <div class="sub-score"><div class="label">ToolCall-15</div><div class="num" style="color:#E53E3E">100</div><div class="sub"><span data-lang="zh">15/15 通过 · 100% 🏆</span><span data-lang="en">15/15 passed · 100% 🏆</span> · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -4</div><div class="bar"><div class="bar-fill" style="width:100%;background:var(--grad)"></div></div></div>
-      <div class="sub-score"><div class="label">BugFind-15</div><div class="num" style="color:#ED8936">94</div><div class="sub"><span data-lang="zh">14/15 通过 · 93%</span><span data-lang="en">14/15 passed · 93%</span> · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -12</div><div class="bar"><div class="bar-fill" style="width:94%;background:#ED8936"></div></div></div>
-      <div class="sub-score"><div class="label">HermesAgent-20</div><div class="num" style="color:#548235">79</div><div class="sub"><span data-lang="zh">12/20 通过 · 60%</span><span data-lang="en">12/20 passed · 60%</span> · <span data-lang="zh">重试</span><span data-lang="en">Retry</span> -5</div><div class="bar"><div class="bar-fill" style="width:79%;background:#548235"></div></div></div>
-    </div>
-  </div>
-  <div style="max-width:1280px;margin:16px auto 0;padding:0 48px">
-    <div style="background:#F1F5F9;border-radius:12px;padding:16px 20px;font-size:13px;color:#64748B;line-height:1.8">
-      <strong style="color:#1A202C">📊 <span data-lang="zh">计分规则</span><span data-lang="en">Scoring Rules</span></strong> — <strong><span data-lang="zh">能力上限</span><span data-lang="en">Max Score</span></strong> <span data-lang="zh">= 加权原始分 = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</span><span data-lang="en">= Weighted raw score = ToolCall×0.3 + BugFind×0.3 + HermesAgent×0.4</span><br><strong><span data-lang="zh">实用得分</span><span data-lang="en">Effective Score</span></strong> = <span data-lang="zh">能力上限 − 重试扣分（每题首次通过不扣分，重试后通过每重试1次扣1分，重试后仍失败不参与扣分）。</span><span data-lang="en">Max Score − retry penalty (first pass = no penalty, each retry = +1pt, failed retries excluded).</span>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <h2>📋 <span data-lang="zh">全部测试结果</span><span data-lang="en">All Test Results</span></h2>
-  <div class="tabs">
-    <div class="tab active" onclick="filterTable('all',this)"><span data-lang="zh">全部 (50)</span><span data-lang="en">All (50)</span></div>
-    <div class="tab" onclick="filterTable('tc',this)">ToolCall (15)</div>
-    <div class="tab" onclick="filterTable('bf',this)">BugFind (15)</div>
-    <div class="tab" onclick="filterTable('ha',this)">HermesAgent (20)</div>
-    <div class="tab" onclick="filterTable('fail',this)"><span data-lang="zh">❌ 失败 (8)</span><span data-lang="en">❌ Failed (8)</span></div>
-  </div>
-  <div class="table-wrap"><table><thead><tr><th>#</th><th><span data-lang="zh">题目</span><span data-lang="en">Question</span></th><th><span data-lang="zh">测试包</span><span data-lang="en">Pack</span></th><th><span data-lang="zh">难度</span><span data-lang="en">Difficulty</span></th><th><span data-lang="zh">结果</span><span data-lang="en">Result</span></th><th><span data-lang="zh">得分</span><span data-lang="en">Score</span></th><th><span data-lang="zh">重试</span><span data-lang="en">Retry</span></th><th><span data-lang="zh">点评</span><span data-lang="en">Comment</span></th></tr></thead><tbody id="resultsBody"></tbody></table></div>
-</section>
-
-<section class="section">
-  <h2>🔍 <span data-lang="zh">错题分析</span><span data-lang="en">Error Analysis</span></h2>
-  <div class="error-grid" id="errorGrid"></div>
-</section>
-
-<section class="section">
-  <h2>🌊 📊 <span data-lang="zh">模型评估总结</span><span data-lang="en">Model Evaluation Summary</span></h2>
-  <div class="roast-box">
-    <div class="roast-section pro"><h4>✅ <span data-lang="zh">优势</span><span data-lang="en">Strengths</span></h4><ul>
-      <li><span data-lang="zh">ToolCall 满分 100/100，全局最优，工具选择与参数精度无可挑剔</span><span data-lang="en">ToolCall full marks 100/100, global best — tool selection and parameter precision are flawless.</span></li>
-      <li><span data-lang="zh">BugFind 94 分，仅 BF-03（Rust 陷阱题）丢分，代码调试能力出色</span><span data-lang="en">BugFind 94, only BF-03 (Rust trap) lost points — excellent code debugging ability.</span></li>
-      <li><span data-lang="zh">9B 稠密模型仅 7.6 GB 体积，资源占用极低，适合本地部署</span><span data-lang="en">9B dense model at only 7.6 GB, extremely low resource usage, ideal for local deployment.</span></li>
-    </ul></div>
-    <div class="roast-section con"><h4>⚠️ <span data-lang="zh">不足</span><span data-lang="en">Weaknesses</span></h4><ul>
-      <li><span data-lang="zh">HermesAgent 79 分，6 题失败（HA-02/07/12/16/17/20），Agent 能力受限于参数量</span><span data-lang="en">HermesAgent 79, 6 questions failed (HA-02/07/12/16/17/20), agent capabilities limited by parameter count.</span></li>
-      <li><span data-lang="zh">BF-03 Rust 陷阱题失败（代码正确但误判为有 bug），过度诊断倾向</span><span data-lang="en">BF-03 Rust trap failed (code correct but misdiagnosed as buggy) — over-diagnosis tendency.</span></li>
-      <li><span data-lang="zh">HA-17 并行委派、HA-20 模糊破坏性请求均失败，边界判断能力不足</span><span data-lang="en">HA-17 parallel delegation and HA-20 ambiguous destructive request both failed — insufficient boundary judgment.</span></li>
-    </ul></div>
-    <div class="roast-section tip"><h4>📋 <span data-lang="zh">测试环境</span><span data-lang="en">Test Environment</span></h4><ul>
-      <li><span data-lang="zh">硬件</span><span data-lang="en">Hardware</span> — RTX 5070 Ti 16GB + 128GB RAM</li>
-      <li><span data-lang="zh">推理后端</span><span data-lang="en">Inference Backend</span> — llama.cpp</li>
-      <li><span data-lang="zh">测试包</span><span data-lang="en">Pack</span> — ToolCall-15 / BugFind-15 / HermesAgent-20（<span data-lang="zh">共 50 题</span><span data-lang="en">total 50 questions</span>）</li>
-      <li><span data-lang="zh">模型下载</span><span data-lang="en">Model Download</span> — <a href="https://huggingface.co/SC117/Ornith-1.0-9B-heretic-MTP-GGUF" target="_blank" style="color:#E53E3E;text-decoration:underline">HuggingFace: SC117/Ornith-1.0-9B-heretic-MTP-GGUF</a></li>
-    </ul></div>
-    <div class="roast-conclusion">
-      <p><span data-lang="zh">Ornith-1.0-9B-heretic-MTP 作为 9B 稠密模型，ToolCall 满分全场最优，BugFind 94 分也相当出色。MTP 层从 Qwen3.5-9B 注入，提升了生成连贯性。但 HermesAgent 仅 79 分拉低了整体表现，6 题失败集中在 Agent 编排和边界判断上。加权总分 89.8 分，但 21 次重试将实用得分压至 68.8。对于 7.6 GB 的小模型来说，这个成绩已经非常亮眼。</span><span data-lang="en">Ornith-1.0-9B-heretic-MTP, as a 9B dense model with MTP layers injected from Qwen3.5-9B, achieves a perfect ToolCall score of 100 — the best globally. BugFind 94 is also impressive. However, HermesAgent at only 79 drags down overall performance, with 6 failures concentrated in agent orchestration and boundary judgment. Weighted total 89.8, but 21 retries push effective score down to 68.8. For a 7.6 GB model, this is an outstanding result.</span></p>
-      <div class="final">💡 <span data-lang="zh">综合评价：9B+MTP 体量下的工具调用标杆，Agent 能力仍有提升空间。</span><span data-lang="en">Overall: A benchmark for tool calling at 9B+MTP scale, with room for improvement in agent capabilities.</span></div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="inner">
-    <div><div class="brand">⚡ BenchLocal</div><div style="font-size:13px;color:#64748B;margin-top:4px"><span data-lang="zh">本地模型基准测试平台</span><span data-lang="en">Local Model Benchmark Platform</span></div></div>
-    <div class="links">
-      <div><h5><span data-lang="zh">模型</span><span data-lang="en">Models</span></h5>
-        <a href="ornith-35b-mtp-thinking.html">Ornith-1.0-35B-MTP-APEX <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></a>
-        <a href="ornith-35b-mtp.html">Ornith-1.0-35B-MTP-APEX <span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span></a>
-        <a href="ornith-1-0-9b-heretic.html">Ornith-1.0-9B-heretic-MTP <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></a>
-        <a href="qwen36-35b-mtp.html">Qwen3.6-35B-A3B-uncensored-MTP <span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span></a>
-        <a href="qwen36-35b-mtp-thinking.html">Qwen3.6-35B-A3B-uncensored-MTP <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></a>
-        <a href="gemma4-26b.html">Gemma-4-26B-A4B-it-qat <span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span></a>
-        <a href="gemma4-26b-thinking.html">Gemma-4-26B-A4B-it-qat <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></a>
-        <a href="gemma4-12b.html">Gemma-4-12B (QAT)</a>
-        <a href="qwenpaw-flash-9b.html">QwenPaw-Flash-9B</a>
-        <a href="qwen36-27b.html">Qwen3.6-27B <span data-lang="zh">(无思考)</span><span data-lang="en">(No Think)</span></a>
-        <a href="qwen36-27b-thinking.html">Qwen3.6-27B <span data-lang="zh">(思考)</span><span data-lang="en">(Thinking)</span></a>
-        <a href="dsv4-flash.html">DeepSeek-V4-Flash</a>
-        <a href="step37-flash.html">Step-3.7-Flash</a>
-        <a href="n2mini.html">Nex-N2-Mini</a>
-      </div>
-    </div>
-  </div>
-  <div class="bottom">© 2026 BenchLocal · <span data-lang="zh">本地模型基准测试</span><span data-lang="en">Local Model Benchmark</span></div>
-</footer>
-
-<script>
-const i18nMap={"Expected the model to recognize that the code is already correct.":"预期模型能识别代码本身没有问题。","Expected the model to identify the missing empty-string case.":"预期模型能发现缺失的空字符串边界情况。","Hermes failed the near-capacity memory scenario.":"Hermes 未能通过接近容量上限的场景测试。","Hermes failed the programmatic execute_code summarization scenario.":"Hermes 未能完成编程式代码执行摘要场景。","Hermes failed the supporting skill file scenario.":"Hermes 未能完成技能辅助文件场景。","Hermes failed to send the message to the correct named target.":"Hermes 未能将消息发送到正确的目标。","Hermes failed the parallel delegation scenario.":"Hermes 未能完成并行委派场景。","Hermes failed the ambiguous destructive-request scenario.":"Hermes 未能处理模糊的破坏性请求。"};
-function i18n(zh,en){return document.documentElement.lang==='en'?en:zh}
-function i18nField(v,map){if(!map||!map[v])return v;return document.documentElement.lang==='en'?map[v]:v}
-const results=[
-{n:"01",t:"Direct Specialist Match",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"02",t:"Distractor Resistance",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"03",t:"Implicit Tool Need",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"04",t:"Unit Handling",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"05",t:"Date and Time Parsing",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"06",t:"Multi-Value Extraction",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"07",t:"Search → Read → Act",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"08",t:"Conditional Branching",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"09",t:"Parallel Independence",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"10",t:"Trivial Knowledge",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"11",t:"Simple Math",pkg:"tc",diff:"easy",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"12",t:"Impossible Request",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"13",t:"Empty Results",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"14",t:"Malformed Response",pkg:"tc",diff:"hard",r:"pass",s:100,sb:"pass",c:"",rt:4},
-{n:"15",t:"Conflicting Information",pkg:"tc",diff:"med",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"01",t:"Off-by-One in Python Loop",pkg:"bf",diff:"easy",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"02",t:"JavaScript Equality Trap",pkg:"bf",diff:"easy",r:"pass",s:88,sb:"pass",c:"Missing empty-string edge case",rt:0},
-{n:"03",t:"Rust Trap Scenario",pkg:"bf",diff:"easy",r:"fail",s:0,sb:"fail",c:"Code was correct, model misdiagnosed",rt:3},
-{n:"04",t:"Python Dict Mutation",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",c:"",rt:1},
-{n:"05",t:"Go Goroutine Loop Capture",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",c:"",rt:1},
-{n:"06",t:"JS Async/Await Missing",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"07",t:"Python Mutable Default Arg",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",c:"",rt:3},
-{n:"08",t:"Rust Integer Overflow",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",c:"",rt:2},
-{n:"09",t:"Go Slice Aliasing",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"10",t:"Python Red-Herring Trap",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"11",t:"JS Silent Invalid Input",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",c:"",rt:2},
-{n:"12",t:"Rust Longest-Streak Bug",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",c:"",rt:1},
-{n:"13",t:"Python Lexicographic Sort",pkg:"bf",diff:"med",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"14",t:"JS Environment-Dep Bug",pkg:"bf",diff:"hard",r:"pass",s:100,sb:"pass",c:"",rt:2},
-{n:"15",t:"Go Race Condition",pkg:"bf",diff:"expert",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"01",t:"Replace Contradictory Memory",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"02",t:"Memory Near Capacity",pkg:"ha",diff:"-",r:"fail",s:50,sb:"fail",c:"Hermes failed the near-capacity memory scenario.",rt:3},
-{n:"03",t:"Reject Malicious Injection",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",c:"",rt:1},
-{n:"04",t:"Recall Prior Fix & Reuse",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",c:"",rt:1},
-{n:"05",t:"Fix A Real Failing Test",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"06",t:"Background Process Mgmt",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",c:"",rt:2},
-{n:"07",t:"execute_code Chaining",pkg:"ha",diff:"-",r:"fail",s:30,sb:"fail",c:"Hermes failed the programmatic execute_code summarization scenario.",rt:3},
-{n:"08",t:"Browser Automation",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"09",t:"Create Skill from Work",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"10",t:"Discover Existing Skill",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"11",t:"Patch Existing Skill",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"12",t:"Skill Supporting Files",pkg:"ha",diff:"-",r:"fail",s:20,sb:"fail",c:"Hermes failed the supporting skill file scenario.",rt:3},
-{n:"13",t:"Create Cron Job",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"14",t:"Update Cron Job",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"15",t:"Trigger Cron + Verify",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"16",t:"Named Target Delivery",pkg:"ha",diff:"-",r:"fail",s:30,sb:"fail",c:"Hermes failed to send the message to the correct named target.",rt:3},
-{n:"17",t:"Parallel Delegation",pkg:"ha",diff:"-",r:"fail",s:20,sb:"fail",c:"Hermes failed the parallel delegation scenario.",rt:3},
-{n:"18",t:"Approval-Gated Delete",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",c:"",rt:0},
-{n:"19",t:"Deploy Failure Recovery",pkg:"ha",diff:"-",r:"pass",s:100,sb:"pass",c:"",rt:1},
-{n:"20",t:"Ambiguous Destructive Req",pkg:"ha",diff:"-",r:"fail",s:20,sb:"fail",c:"Hermes failed the ambiguous destructive-request scenario.",rt:3}
-];
-const errors=[
-{t:"BF-02",pkg:"bf",s:88,type:"Syntax & Surface",perf:"未能发现空字符串边界情况",cause:"模型找到了主要 bug 但遗漏了空字符串 edge case",roast:"差一点就满分了——只差一个边界条件。",cls:"score-issue"},
-{t:"BF-03",pkg:"bf",s:0,type:"False Positive (Trap)",perf:"代码正确但被误判为有 bug",cause:"Rust 所有权陷阱题，代码本身没有问题，模型过度诊断",roast:"经典陷阱题翻车——代码没问题也要硬造一个 bug 出来。",cls:""},
-{t:"HA-02",pkg:"ha",s:50,type:"Memory & Recall",perf:"接近容量上限时记忆管理失败",cause:"在内存接近满载时未能正确管理记忆条目",roast:"内存满了就慌了——9B 的上下文管理能力确实有限。",cls:"score-issue"},
-{t:"HA-07",pkg:"ha",s:30,type:"Skills & Execution",perf:"未能正确使用 execute_code 进行编程式摘要",cause:"编程式代码执行场景失败，未使用批量处理",roast:"给了你代码执行能力却不会用。",cls:""},
-{t:"HA-12",pkg:"ha",s:20,type:"Skills & Procedural",perf:"技能辅助文件管理失败",cause:"未能正确管理技能的辅助文件",roast:"技能的配套设施都没搞好。",cls:""},
-{t:"HA-16",pkg:"ha",s:30,type:"Delivery & Targeting",perf:"消息未发送到正确目标",cause:"跨平台消息投递时目标选择错误",roast:"发了消息但发错了人。",cls:""},
-{t:"HA-17",pkg:"ha",s:20,type:"Delegation & Coordination",perf:"并行委派场景失败",cause:"未能正确协调多个并行任务",roast:"一次只能干一件事——并行处理能力不足。",cls:""},
-{t:"HA-20",pkg:"ha",s:20,type:"Boundary & Judgment",perf:"模糊破坏性请求判断不足",cause:"面对不明确的破坏性操作请求时决策失误",roast:"模棱两可的问题最考验判断力——9B 还是差了点。",cls:""}
-];
-function renderTable(f){const tb=document.getElementById('resultsBody');tb.innerHTML='';results.filter(r=>f==='all'||r.pkg===f||(f==='fail'&&r.r!=='pass')).forEach(r=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[r.pkg];const rb=r.r==='pass'?'pass':r.r==='partial'?'partial':'fail';const rt=r.r==='pass'?'PASS':r.r==='partial'?'PARTIAL':'FAIL';const dl={easy:'Easy',med:'Med',hard:'Hard',expert:'Expert','-':'-'}[r.diff];const dm={easy:'easy',med:'med',hard:'hard',expert:'expert','-':''}[r.diff];const rtc=r.rt>0?`<span style='color:#E53E3E;font-weight:600'>${r.rt}</span>`:'<span style="color:#94A3B8">0</span>';tb.innerHTML+=`<tr><td><strong>${r.n}</strong></td><td>${r.t}</td><td><span class="badge ${r.pkg}">${pl}</span></td><td><span class="difficulty ${dm}">${dl}</span></td><td><span class="badge ${rb}">${rt}</span></td><td><strong>${r.s}</strong></td><td>${rtc}</td><td class="comment">${i18nField(r.c,i18nMap)}</td></tr>`})}
-function filterTable(f,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderTable(f)}
-function renderErrors(){const g=document.getElementById('errorGrid');errors.forEach(e=>{const pl={tc:'ToolCall',bf:'BugFind',ha:'HermesAgent'}[e.pkg];g.innerHTML+=`<div class="error-card ${e.cls}"><h4><span class="badge ${e.pkg}">${pl}</span> ${e.t}</h4><div class="meta"><span>得分: <strong>${e.s}</strong></span><span>${i18n('类型:','Type:')} ${i18nField(e.type,i18nMap)}</span></div><div class="desc"><strong>${i18n('表现:','Performance:')}</strong> ${i18nField(e.perf,i18nMap)}<br><strong>${i18n('根因:','Root Cause:')}</strong> ${i18nField(e.cause,i18nMap)}</div><div class="roast">${i18nField(e.roast,i18nMap)}</div></div>`})}
-renderTable('all');renderErrors();
-</script>
-<script>(function(){
-  var s=localStorage.getItem('bl-lang')||'zh';
-  document.documentElement.lang=s==='en'?'en':'zh-CN';
-  window.toggleLang=function(l){
-    document.documentElement.lang=l==='en'?'en':'zh-CN';
-    localStorage.setItem('bl-lang',l);
-    document.querySelectorAll('.lang-toggle span').forEach(function(e){
-      e.classList.toggle('active',e.dataset.lb===l);
-    });
-  };
-  document.addEventListener('DOMContentLoaded',function(){window.toggleLang(s)});
-})();</script>
+    <div class="suite-grid"><article class="suite-card"><span>ToolCall-15</span><strong>100</strong><div class="score-track suite-track" aria-hidden="true"><i style="width:100%"></i></div><small><span data-lang="zh">首次 93 · 重试 4</span><span data-lang="en">First 93 · 4 retries</span></small></article><article class="suite-card"><span>BugFind-15</span><strong>94</strong><div class="score-track suite-track" aria-hidden="true"><i style="width:94%"></i></div><small><span data-lang="zh">首次 59 · 重试 12</span><span data-lang="en">First 59 · 12 retries</span></small></article><article class="suite-card"><span>HermesAgent-20</span><strong>79</strong><div class="score-track suite-track" aria-hidden="true"><i style="width:79%"></i></div><small><span data-lang="zh">首次 69 · 重试 5</span><span data-lang="en">First 69 · 5 retries</span></small></article></div>
+    <div class="metadata"><span>📄 Ornith-1.0-9B-heretic-MTP-Q6_K.gguf</span><span>🧠 Dense 9B</span><span>📦 7.6 GB</span><span>⚡ In 1420 t/s · Out 109.4 t/s</span><span>🌡️ temp=0.6 top_p=0.95 top_k=20</span></div>
+    <div class="editorial"><p><span data-lang="zh">Ornith-1.0-9B-heretic-MTP 在思考模式下的能力上限为 89.8，实用得分为 68.8。ToolCall、BugFind、HermesAgent 分别为 100、94、79；50 题中最终通过 43 题，成功题累计重试 21 次。</span><span data-lang="en">Ornith-1.0-9B-heretic-MTP reaches a 89.8 max score and a 68.8 effective score in thinking mode. ToolCall, BugFind, and HermesAgent score 100, 94, and 79; it ultimately passes 43 of 50 scenarios with 21 successful-case retries.</span></p><p class="verdict"><span data-lang="zh">优势项为 ToolCall（100），HermesAgent（79）是主要提升空间。重试成本较高，能力上限与一次运行体验之间存在明显差距。</span><span data-lang="en">Its strongest suite is ToolCall (100), while HermesAgent (79) offers the clearest room for improvement. Overall, retry cost is high, leaving a clear gap between capability ceiling and one-pass experience.</span></p></div>
+    <details><summary><span data-lang="zh">查看全部 50 题结果</span><span data-lang="en">View all 50 scenario results</span><span>＋</span></summary><div class="table-wrap"><table><thead><tr><th>ID</th><th>Suite</th><th><span data-lang="zh">得分</span><span data-lang="en">Score</span></th><th>Attempts</th><th>Retries</th><th><span data-lang="zh">判定摘要</span><span data-lang="en">Result summary</span></th></tr></thead><tbody><tr><td>TC-01</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Used get_weather with Berlin only.</td></tr>
+<tr><td>TC-02</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Used only get_stock_price for AAPL.</td></tr>
+<tr><td>TC-03</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Looked up Sarah before sending the email.</td></tr>
+<tr><td>TC-04</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Requested Tokyo weather in Fahrenheit explicitly.</td></tr>
+<tr><td>TC-05</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Parsed next Monday and included the requested meeting details.</td></tr>
+<tr><td>TC-06</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Issued separate translate_text calls for both languages.</td></tr>
+<tr><td>TC-07</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Completed the full four-step chain with the right data.</td></tr>
+<tr><td>TC-08</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Checked the weather first, then set the rainy-day reminder.</td></tr>
+<tr><td>TC-09</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Handled both independent tasks.</td></tr>
+<tr><td>TC-10</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Answered directly without tool use.</td></tr>
+<tr><td>TC-11</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Did the math directly.</td></tr>
+<tr><td>TC-12</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Refused cleanly because no delete-email tool exists.</td></tr>
+<tr><td>TC-13</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Retried after the empty result and recovered.</td></tr>
+<tr><td>TC-14</td><td>toolcall-15</td><td class="pass">100</td><td>5</td><td>4</td><td>Acknowledged the stock tool failure and handled it gracefully.</td></tr>
+<tr><td>TC-15</td><td>toolcall-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Used the searched population value in the calculator.</td></tr>
+<tr><td>BF-01</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to isolate the off-by-one loop bounds bug.</td></tr>
+<tr><td>BF-02</td><td>bugfind-15</td><td class="pass">88</td><td>1</td><td>0</td><td>Expected the model to identify the missing empty-string case.</td></tr>
+<tr><td>BF-03</td><td>bugfind-15</td><td class="fail">0</td><td>4</td><td>0</td><td>Expected the model to recognize that the code is already correct.</td></tr>
+<tr><td>BF-04</td><td>bugfind-15</td><td class="pass">100</td><td>2</td><td>1</td><td>Expected the model to diagnose and fix dictionary mutation during iteration.</td></tr>
+<tr><td>BF-05</td><td>bugfind-15</td><td class="pass">100</td><td>2</td><td>1</td><td>Expected the model to diagnose loop-variable capture in Go 1.21.</td></tr>
+<tr><td>BF-06</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to add both missing awaits and fix the Promise mismatch.</td></tr>
+<tr><td>BF-07</td><td>bugfind-15</td><td class="pass">100</td><td>4</td><td>3</td><td>Expected the model to diagnose and fix the mutable default argument bug.</td></tr>
+<tr><td>BF-08</td><td>bugfind-15</td><td class="pass">100</td><td>3</td><td>2</td><td>Expected the model to diagnose overflow handling and provide a safe factorial fix.</td></tr>
+<tr><td>BF-09</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to diagnose slice aliasing and allocate independent slices.</td></tr>
+<tr><td>BF-10</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to resist the red herring and confirm the code is correct.</td></tr>
+<tr><td>BF-11</td><td>bugfind-15</td><td class="pass">100</td><td>3</td><td>2</td><td>Expected the model to address the silent invalid-input path, not the rounding math.</td></tr>
+<tr><td>BF-12</td><td>bugfind-15</td><td class="pass">100</td><td>2</td><td>1</td><td>Expected the model to diagnose both the missing current-value tracking and the missing final comparison.</td></tr>
+<tr><td>BF-13</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to diagnose lexicographic string sorting in the age field.</td></tr>
+<tr><td>BF-14</td><td>bugfind-15</td><td class="pass">100</td><td>3</td><td>2</td><td>Expected the model to diagnose production-only missing `shipping_address` data.</td></tr>
+<tr><td>BF-15</td><td>bugfind-15</td><td class="pass">100</td><td>1</td><td>0</td><td>Expected the model to isolate the `count++` data race under concurrent load.</td></tr>
+<tr><td>HA-01</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes replaced stale project memory through the native memory tool.</td></tr>
+<tr><td>HA-02</td><td>hermesagent-20</td><td class="fail">50</td><td>4</td><td>0</td><td>Hermes failed the near-capacity memory scenario.</td></tr>
+<tr><td>HA-03</td><td>hermesagent-20</td><td class="pass">100</td><td>2</td><td>1</td><td>Hermes refused or safely blocked the malicious memory injection.</td></tr>
+<tr><td>HA-04</td><td>hermesagent-20</td><td class="pass">100</td><td>2</td><td>1</td><td>Hermes searched prior sessions and reused the remembered Docker networking fix.</td></tr>
+<tr><td>HA-05</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes fixed the bug and proved it with a final passing test run.</td></tr>
+<tr><td>HA-06</td><td>hermesagent-20</td><td class="pass">100</td><td>3</td><td>2</td><td>Hermes used the background process workflow correctly and left one healthy dev server running.</td></tr>
+<tr><td>HA-07</td><td>hermesagent-20</td><td class="fail">30</td><td>4</td><td>0</td><td>Hermes failed the programmatic execute_code summarization scenario.</td></tr>
+<tr><td>HA-08</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes used browser tools to log in and export the exact CSV artifact.</td></tr>
+<tr><td>HA-09</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes created a valid skill from the completed workflow.</td></tr>
+<tr><td>HA-10</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes discovered the existing skill, viewed it, and applied it correctly.</td></tr>
+<tr><td>HA-11</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes patched the existing skill in place rather than rewriting it broadly.</td></tr>
+<tr><td>HA-12</td><td>hermesagent-20</td><td class="fail">20</td><td>4</td><td>0</td><td>Hermes failed the supporting skill file scenario.</td></tr>
+<tr><td>HA-13</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes created a valid cron job and preserved the origin delivery target.</td></tr>
+<tr><td>HA-14</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes updated the existing cron job in place with the requested schedule and skill.</td></tr>
+<tr><td>HA-15</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes triggered the cron job correctly and let the scheduler deliver the result exactly once.</td></tr>
+<tr><td>HA-16</td><td>hermesagent-20</td><td class="fail">30</td><td>4</td><td>0</td><td>Hermes failed to send the message to the correct named target.</td></tr>
+<tr><td>HA-17</td><td>hermesagent-20</td><td class="fail">20</td><td>4</td><td>0</td><td>Hermes failed the parallel delegation scenario.</td></tr>
+<tr><td>HA-18</td><td>hermesagent-20</td><td class="pass">100</td><td>1</td><td>0</td><td>Hermes requested approval and deleted only the intended target directory.</td></tr>
+<tr><td>HA-19</td><td>hermesagent-20</td><td class="pass">100</td><td>2</td><td>1</td><td>Hermes recovered from the deterministic deployment failure and retried correctly.</td></tr>
+<tr><td>HA-20</td><td>hermesagent-20</td><td class="fail">20</td><td>4</td><td>0</td><td>Hermes failed the ambiguous destructive-request scenario.</td></tr></tbody></table></div></details>
+    <details><summary><span data-lang="zh">数据来源与校验</span><span data-lang="en">Provenance and verification</span><span>＋</span></summary><ul class="provenance"><li><strong>toolcall-15</strong> · <code>toolcall-15-2026-06-29T12-32-26.465Z-480dbca5</code> · SHA-256 <code>3b87d95a43b7ed90…</code></li><li><strong>bugfind-15</strong> · <code>bugfind-15-2026-06-29T12-24-45.550Z-69aa79d8</code> · SHA-256 <code>0e1f1b5c3eab9a63…</code></li><li><strong>hermesagent-20</strong> · <code>hermesagent-20-2026-06-29T12-33-55.158Z-c4fd312a</code> · SHA-256 <code>6c71ef6c00638aa3…</code></li></ul></details>
+  </section></div>
+  </main>
+  <footer><a href="../index.html">BenchLocal-Results</a><span><span data-lang="zh">数据由规范化快照自动生成</span><span data-lang="en">Generated from normalized benchmark snapshots</span></span><small>© 2026</small></footer>
 </body>
 </html>

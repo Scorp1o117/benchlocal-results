@@ -1,0 +1,604 @@
+{
+  "generatedAt": "2026-07-17T13:38:15.681Z",
+  "counts": {
+    "homepage": 23,
+    "archiveGroups": 26,
+    "unique": 8,
+    "ambiguous": 0,
+    "unmatchedArchives": 10,
+    "invalidArchives": 8,
+    "unmatchedHomepage": 15
+  },
+  "archives": [
+    {
+      "archiveModel": "cyberneurova-DeepSeek-V4-Flash-abliterated-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-cha",
+      "archiveVariant": null,
+      "status": "invalid",
+      "error": "Exactly three suites are required."
+    },
+    {
+      "archiveModel": "deepseek-v4-flash",
+      "archiveVariant": null,
+      "status": "invalid",
+      "error": "Exactly three suites are required."
+    },
+    {
+      "archiveModel": "deepseek-v4-flash-free",
+      "archiveVariant": null,
+      "modelId": "openai_compatible-1530754d-0b21-4554-a815-5e235ffa7b8f:deepseek-v4-flash-free",
+      "modelLabel": "deepseek-v4-flash-free via opencode",
+      "maxScore": 93.9,
+      "effectiveScore": 84.9,
+      "retryPenalty": 9,
+      "toolcall": 100,
+      "bugfind": 93,
+      "hermes": 90,
+      "matches": [],
+      "status": "unmatched"
+    },
+    {
+      "archiveModel": "G",
+      "archiveVariant": null,
+      "status": "invalid",
+      "error": "Exactly three suites are required."
+    },
+    {
+      "archiveModel": "gemma-4-12B-it-heretic-QAT-GGUF",
+      "archiveVariant": null,
+      "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:gemma-4-12B-it-heretic-QAT-GGUF",
+      "modelLabel": "gemma-4-12B-it-heretic-QAT",
+      "maxScore": 90.3,
+      "effectiveScore": 85.3,
+      "retryPenalty": 5,
+      "toolcall": 97,
+      "bugfind": 88,
+      "hermes": 87,
+      "matches": [
+        {
+          "index": 7,
+          "name": "Gemma-4-12B (思考)",
+          "link": "models/gemma4-12b.html"
+        }
+      ],
+      "status": "unique"
+    },
+    {
+      "archiveModel": "Nex-N2-mini-abliterated-APEX",
+      "archiveVariant": null,
+      "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Nex-N2-mini-abliterated-APEX",
+      "modelLabel": "Nex-N2-mini-abliterated-APEX",
+      "maxScore": 86.7,
+      "effectiveScore": 59.7,
+      "retryPenalty": 27,
+      "toolcall": 93,
+      "bugfind": 88,
+      "hermes": 81,
+      "matches": [],
+      "status": "unmatched"
+    },
+    {
+      "archiveModel": "Ornith-1_0-35B-Heretic-MTP-APEX-GGUF",
+      "archiveVariant": "no-thinking",
+      "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Agents-A1-Uncensored-MTP-GGUF",
+      "modelLabel": "Ornith-1.0-35B-Heretic-MTP-APEX-GGUF",
+      "maxScore": 92.2,
+      "effectiveScore": 76.2,
+      "retryPenalty": 16,
+      "toolcall": 97,
+      "bugfind": 97,
+      "hermes": 85,
+      "matches": [
+        {
+          "index": 15,
+          "name": "Ornith-1.0-35B-Heretic-MTP-APEX (无思考 · Heretic)",
+          "link": "models/ornith-35b-heretic-mtp-apex.html"
+        }
+      ],
+      "status": "unique"
+    },
+    {
+      "archiveModel": "Ornith-1_0-35B-Heretic-MTP-APEX-GGUF",
+      "archiveVariant": "thinking",
+      "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Agents-A1-Uncensored-MTP-GGUF",
+      "modelLabel": "Ornith-1.0-35B-Heretic-MTP-APEX-GGUF",
+      "maxScore": 95,
+      "effectiveScore": 90,
+      "retryPenalty": 5,
+      "toolcall": 100,
+      "bugfind": 98,
+      "hermes": 89,
+      "matches": [
+        {
+          "index": 14,
+          "name": "Ornith-1.0-35B-Heretic-MTP-APEX (思考 · Heretic)",
+          "link": "models/ornith-35b-heretic-mtp-apex-thinking.html"
+        }
+      ],
+      "status": "unique"
+    },
+    {
+      "archiveModel": "Ornith-1_0-35B-MTP-APEX-I-Compact_gguf",
+      "archiveVariant": null,
+      "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Ornith-1.0-35B-MTP-GGUF",
+      "modelLabel": "Ornith-1.0-35B-MTP-GGUF",
+      "maxScore": 93.2,
+      "effectiveScore": 85.2,
+      "retryPenalty": 8,
+      "toolcall": 100,
+      "bugfind": 92,
+      "hermes": 89,
+      "matches": [
+        {
+          "index": 16,
+          "name": "Ornith-1.0-35B-MTP-APEX (无思考)",
+          "link": "models/ornith-35b-mtp.html"
+        }
+      ],
+      "status": "unique"
+    },
+    {
+      "archiveModel": "Ornith-1_0-9B-heretic-MTP-GGUF",
+      "archiveVariant": null,
+      "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Ornith-1.0-9B-heretic-MTP-GGUF",
+      "modelLabel": "Ornith-1.0-9B-heretic-MTP",
+      "maxScore": 89.8,
+      "effectiveScore": 68.8,
+      "retryPenalty": 21,
+      "toolcall": 100,
+      "bugfind": 94,
+      "hermes": 79,
+      "matches": [
+        {
+          "index": 8,
+          "name": "Ornith-1.0-9B-heretic-MTP (思考)",
+          "link": "models/ornith-1-0-9b-heretic.html"
+        }
+      ],
+      "status": "unique"
+    },
+    {
+      "archiveModel": "poolside_laguna-m_1",
+      "archiveVariant": null,
+      "status": "invalid",
+      "error": "Exactly three suites are required."
+    },
+    {
+      "archiveModel": "Qwen3_5-122B-A10B-Uncensored-HauhauCS-Aggressive-IQ3_M_gguf",
+      "archiveVariant": null,
+      "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Qwen3.5-122B-A10B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf",
+      "modelLabel": "Qwen3.5-122B-A10B-Uncensored-APEX-I-Compact",
+      "maxScore": 76.5,
+      "effectiveScore": 76.5,
+      "retryPenalty": 0,
+      "toolcall": 73,
+      "bugfind": 78,
+      "hermes": 78,
+      "matches": [],
+      "status": "unmatched"
+    },
+    {
+      "archiveModel": "Qwen3_6-27B-uncensored-heretic-v2-Native-MTP-Preserved_i1-IQ3_M_gguf",
+      "archiveVariant": null,
+      "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Qwen3.6-27B-uncensored-heretic-v2-Native-MTP-Preserved.i1-IQ3_M.gguf",
+      "modelLabel": "Qwen3.6-27B",
+      "maxScore": 91.9,
+      "effectiveScore": 73.9,
+      "retryPenalty": 18,
+      "toolcall": 100,
+      "bugfind": 93,
+      "hermes": 85,
+      "matches": [],
+      "status": "unmatched"
+    },
+    {
+      "archiveModel": "Qwen3_6-35B-A3B-uncensored-heretic-APEX-I-Compact_gguf",
+      "archiveVariant": null,
+      "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Qwen3.6-35B-A3B-uncensored-heretic-APEX-I-Compact.gguf",
+      "modelLabel": "Qwen3.6-35B-A3B",
+      "maxScore": 90.5,
+      "effectiveScore": 71.5,
+      "retryPenalty": 19,
+      "toolcall": 97,
+      "bugfind": 94,
+      "hermes": 83,
+      "matches": [],
+      "status": "unmatched"
+    },
+    {
+      "archiveModel": "Qwen3_6-35B-A3B-uncensored-heretic-APEX-I-Quality_gguf",
+      "archiveVariant": null,
+      "status": "invalid",
+      "error": "Exactly three suites are required."
+    },
+    {
+      "archiveModel": "Qwen3_6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX",
+      "archiveVariant": null,
+      "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX",
+      "modelLabel": "Qwen3.6-35B-A3B-uncensored-heretic-Native-MTP-Preserved-APEX",
+      "maxScore": 84.3,
+      "effectiveScore": 82.3,
+      "retryPenalty": 2,
+      "toolcall": 97,
+      "bugfind": 88,
+      "hermes": 72,
+      "matches": [],
+      "status": "unmatched"
+    },
+    {
+      "archiveModel": "QwenPaw-Flash-9B-heretic-Q6_K_gguf",
+      "archiveVariant": null,
+      "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:QwenPaw-Flash-9B-heretic-Q6_K.gguf",
+      "modelLabel": "QwenPaw-Flash-9B-heretic-Q6_K",
+      "maxScore": 77.3,
+      "effectiveScore": 76.3,
+      "retryPenalty": 1,
+      "toolcall": 93,
+      "bugfind": 62,
+      "hermes": 77,
+      "matches": [],
+      "status": "unmatched"
+    },
+    {
+      "archiveModel": "QwenPaw-heretic-MTP-Q6_K_gguf",
+      "archiveVariant": null,
+      "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:QwenPaw-heretic-MTP-Q6_K.gguf",
+      "modelLabel": "QwenPaw-Flash-9B-MTP-heretic",
+      "maxScore": 88.4,
+      "effectiveScore": 64.4,
+      "retryPenalty": 24,
+      "toolcall": 100,
+      "bugfind": 88,
+      "hermes": 80,
+      "matches": [
+        {
+          "index": 9,
+          "name": "QwenPaw-Flash-9B (思考)",
+          "link": "models/qwenpaw-flash-9b.html"
+        }
+      ],
+      "status": "unique"
+    },
+    {
+      "archiveModel": "Qwopus3_5-9B-Coder-MTP-Q6_K_gguf",
+      "archiveVariant": null,
+      "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Qwopus3.5-9B-Coder-MTP-Q6_K.gguf",
+      "modelLabel": "Qwopus3.5-9B-Coder-MTP-Q6_K",
+      "maxScore": 75.1,
+      "effectiveScore": 75.1,
+      "retryPenalty": 0,
+      "toolcall": 93,
+      "bugfind": 68,
+      "hermes": 67,
+      "matches": [],
+      "status": "unmatched"
+    },
+    {
+      "archiveModel": "sensenova-6_7-flash-lite",
+      "archiveVariant": null,
+      "status": "invalid",
+      "error": "Exactly three suites are required."
+    },
+    {
+      "archiveModel": "Step-3_7-Flash-APEX-I-Mini",
+      "archiveVariant": null,
+      "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Step-3.7-Flash-APEX-I-Mini",
+      "modelLabel": "Step-3.7-Flash-APEX-I-Mini",
+      "maxScore": 88.5,
+      "effectiveScore": 78.5,
+      "retryPenalty": 10,
+      "toolcall": 100,
+      "bugfind": 87,
+      "hermes": 81,
+      "matches": [],
+      "status": "unmatched"
+    },
+    {
+      "archiveModel": "Ternary-Bonsai-27B-Q2_0",
+      "archiveVariant": "no-thinking",
+      "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Ternary-Bonsai-27B-Q2_0",
+      "modelLabel": "Ternary-Bonsai-27B-Q2_0",
+      "maxScore": 91,
+      "effectiveScore": 88,
+      "retryPenalty": 3,
+      "toolcall": 100,
+      "bugfind": 90,
+      "hermes": 85,
+      "matches": [
+        {
+          "index": 23,
+          "name": "Ternary-Bonsai-27B-Q2_0 (无思考)",
+          "link": "models/ternary-bonsai-27b-q2-0.html#no-thinking"
+        }
+      ],
+      "status": "unique"
+    },
+    {
+      "archiveModel": "Ternary-Bonsai-27B-Q2_0",
+      "archiveVariant": "thinking",
+      "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f:Ternary-Bonsai-27B-Q2_0",
+      "modelLabel": "Ternary-Bonsai-27B-Q2_0",
+      "maxScore": 93.7,
+      "effectiveScore": 87.7,
+      "retryPenalty": 6,
+      "toolcall": 100,
+      "bugfind": 95,
+      "hermes": 88,
+      "matches": [
+        {
+          "index": 22,
+          "name": "Ternary-Bonsai-27B-Q2_0 (思考)",
+          "link": "models/ternary-bonsai-27b-q2-0.html#thinking"
+        }
+      ],
+      "status": "unique"
+    },
+    {
+      "archiveModel": "_gemma-4-26B-A4B-it-qat-heretic-GGUF",
+      "archiveVariant": null,
+      "modelId": "llamacpp-a374d516-fc11-4349-a7c7-d2b47a4a243f: gemma-4-26B-A4B-it-qat-heretic-GGUF",
+      "modelLabel": "gemma-4-26B-A4B-it-qat-heretic",
+      "maxScore": 91.8,
+      "effectiveScore": 83.8,
+      "retryPenalty": 8,
+      "toolcall": 93,
+      "bugfind": 97,
+      "hermes": 87,
+      "matches": [],
+      "status": "unmatched"
+    },
+    {
+      "archiveModel": "_gemma-4-31B-it-heretic-QAT",
+      "archiveVariant": null,
+      "status": "invalid",
+      "error": "Exactly three suites are required."
+    },
+    {
+      "archiveModel": "_Qwen3-Coder-Next",
+      "archiveVariant": null,
+      "status": "invalid",
+      "error": "Exactly three suites are required."
+    }
+  ],
+  "unmatchedHomepage": [
+    {
+      "index": 1,
+      "name": "Step-3.7-Flash (思考)",
+      "link": "models/step37-flash.html",
+      "maxScore": 88.8,
+      "effectiveScore": 78.8,
+      "retryPenalty": 10,
+      "toolcall": 100,
+      "bugfind": 87,
+      "hermes": 81,
+      "outcomes": [
+        35,
+        2,
+        13
+      ]
+    },
+    {
+      "index": 2,
+      "name": "Nex-N2-Mini (思考)",
+      "link": "models/n2mini.html",
+      "maxScore": 87.2,
+      "effectiveScore": 60.2,
+      "retryPenalty": 27,
+      "toolcall": 93,
+      "bugfind": 88,
+      "hermes": 81,
+      "outcomes": [
+        40,
+        2,
+        8
+      ]
+    },
+    {
+      "index": 3,
+      "name": "Qwen3.6-35B-A3B-uncensored-MTP (无思考)",
+      "link": "models/qwen36-35b-mtp.html",
+      "maxScore": 91.5,
+      "effectiveScore": 80.5,
+      "retryPenalty": 11,
+      "toolcall": 97,
+      "bugfind": 96,
+      "hermes": 84,
+      "outcomes": [
+        43,
+        1,
+        6
+      ]
+    },
+    {
+      "index": 4,
+      "name": "Qwen3.6-35B-A3B-uncensored-MTP (思考)",
+      "link": "models/qwen36-35b-mtp-thinking.html",
+      "maxScore": 89.5,
+      "effectiveScore": 81.5,
+      "retryPenalty": 8,
+      "toolcall": 97,
+      "bugfind": 88,
+      "hermes": 85,
+      "outcomes": [
+        37,
+        2,
+        11
+      ]
+    },
+    {
+      "index": 5,
+      "name": "Gemma-4 (无思考)",
+      "link": "models/gemma4-26b.html",
+      "maxScore": 88.7,
+      "effectiveScore": 82.7,
+      "retryPenalty": 6,
+      "toolcall": 96.7,
+      "bugfind": 86,
+      "hermes": 84.8,
+      "outcomes": [
+        35,
+        2,
+        13
+      ]
+    },
+    {
+      "index": 6,
+      "name": "Gemma-4 (思考)",
+      "link": "models/gemma4-26b-thinking.html",
+      "maxScore": 91.6,
+      "effectiveScore": 83.6,
+      "retryPenalty": 8,
+      "toolcall": 93.3,
+      "bugfind": 96,
+      "hermes": 87,
+      "outcomes": [
+        42,
+        2,
+        6
+      ]
+    },
+    {
+      "index": 10,
+      "name": "Qwen3.6-27B-uncensored-MTP (无思考)",
+      "link": "models/qwen36-27b.html",
+      "maxScore": 87.4,
+      "effectiveScore": 84.4,
+      "retryPenalty": 3,
+      "toolcall": 96.7,
+      "bugfind": 84.2,
+      "hermes": 82.8,
+      "outcomes": [
+        39,
+        4,
+        7
+      ]
+    },
+    {
+      "index": 11,
+      "name": "Qwen3.6-27B-uncensored-MTP (思考)",
+      "link": "models/qwen36-27b-thinking.html",
+      "maxScore": 91.9,
+      "effectiveScore": 73.9,
+      "retryPenalty": 18,
+      "toolcall": 100,
+      "bugfind": 93.3,
+      "hermes": 84.8,
+      "outcomes": [
+        43,
+        2,
+        5
+      ]
+    },
+    {
+      "index": 12,
+      "name": "DeepSeek-V4-Flash (API)",
+      "link": "models/dsv4-flash.html",
+      "maxScore": 94,
+      "effectiveScore": 85,
+      "retryPenalty": 9,
+      "toolcall": 100,
+      "bugfind": 93.3,
+      "hermes": 90,
+      "outcomes": [
+        45,
+        0,
+        5
+      ]
+    },
+    {
+      "index": 13,
+      "name": "Ornith-1.0-35B-MTP-APEX (思考)",
+      "link": "models/ornith-35b-mtp-thinking.html",
+      "maxScore": 93.5,
+      "effectiveScore": 75.5,
+      "retryPenalty": 18,
+      "toolcall": 100,
+      "bugfind": 93,
+      "hermes": 89,
+      "outcomes": [
+        44,
+        2,
+        4
+      ]
+    },
+    {
+      "index": 17,
+      "name": "Agents-A1 (思考)",
+      "link": "models/agents-a1-thinking.html",
+      "maxScore": 91.2,
+      "effectiveScore": 71.2,
+      "retryPenalty": 20,
+      "toolcall": 100,
+      "bugfind": 88,
+      "hermes": 87,
+      "outcomes": [
+        43,
+        0,
+        7
+      ]
+    },
+    {
+      "index": 18,
+      "name": "Agents-A1 (无思考)",
+      "link": "models/agents-a1.html",
+      "maxScore": 93.1,
+      "effectiveScore": 57.1,
+      "retryPenalty": 36,
+      "toolcall": 97,
+      "bugfind": 100,
+      "hermes": 85,
+      "outcomes": [
+        44,
+        6,
+        0
+      ]
+    },
+    {
+      "index": 19,
+      "name": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored (思考)",
+      "link": "models/qwen-agentworld-35b-thinking.html",
+      "maxScore": 85.6,
+      "effectiveScore": 81.6,
+      "retryPenalty": 4,
+      "toolcall": 93,
+      "bugfind": 87,
+      "hermes": 79,
+      "outcomes": [
+        40,
+        2,
+        8
+      ]
+    },
+    {
+      "index": 20,
+      "name": "Qwen-AgentWorld-35B-A3B-MTP-Uncensored (无思考)",
+      "link": "models/qwen-agentworld-35b.html",
+      "maxScore": 75,
+      "effectiveScore": 75,
+      "retryPenalty": 0,
+      "toolcall": 83,
+      "bugfind": 83,
+      "hermes": 63,
+      "outcomes": [
+        33,
+        4,
+        13
+      ]
+    },
+    {
+      "index": 21,
+      "name": "Qwen-AgentWorld-35B-A3B-APEX-I-Compact (原版·思考)",
+      "link": "models/qwen-agentworld-35b-original.html",
+      "maxScore": 88.5,
+      "effectiveScore": 87.5,
+      "retryPenalty": 1,
+      "toolcall": 100,
+      "bugfind": 87,
+      "hermes": 81,
+      "outcomes": [
+        41,
+        1,
+        8
+      ]
+    }
+  ]
+}
