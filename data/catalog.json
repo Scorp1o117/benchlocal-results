@@ -168,7 +168,7 @@
             "📦 83.3 GB",
             "⚡ In 50 t/s · Out 12 t/s",
             "🎮 AMD Ryzen™ AI Max+ 395",
-            "🌡️ IQ1_M 量化 · temp=0.6 top_p=0.9 top_k=40"
+            "🌡️ IQ1_M 量化"
           ],
           "logoUrl": "icons/hy3-iq1-m.png",
           "fileSizeGb": 83.3,
