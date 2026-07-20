@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-17T13:04:49.663Z",
+  "generatedAt": "2026-07-20T09:09:48.341Z",
   "models": [
     {
       "slug": "ornith-35b-heretic-mtp-apex",
@@ -94,6 +94,110 @@
         "verdict": {
           "zh": "相较无思考版，能力上限高 2.8 分，实用得分高 13.8 分，重试数少 11。优势项为 ToolCall（100），HermesAgent（89）是主要提升空间。需要少量重试才能达到最终成绩，稳定性尚可。",
           "en": "Compared with the no-thinking variant, its max score is 2.8 points higher, its effective score is 13.8 points higher, and it uses 11 fewer retries. Its strongest suite is ToolCall (100), while HermesAgent (89) offers the clearest room for improvement. Overall, it needs a small number of retries to reach the final score and remains reasonably stable."
+        }
+      }
+    },
+    {
+      "slug": "hy3-iq1-m",
+      "variant": "default",
+      "label": "Hy3-IQ1_M",
+      "generatedAt": "2026-07-20T09:09:48.341Z",
+      "scoring": {
+        "weights": {
+          "toolcall": 0.3,
+          "bugfind": 0.3,
+          "hermes": 0.4
+        },
+        "maxScore": 94.4,
+        "retryPenalty": 3,
+        "effectiveScore": 91.4,
+        "counts": {
+          "pass": 45,
+          "partial": 2,
+          "fail": 3
+        }
+      },
+      "suites": {
+        "toolcall": {
+          "packId": "toolcall-15",
+          "runId": "toolcall-15-2026-07-20T07-34-55.537Z-ab7abea2",
+          "completedAt": "2026-07-20T07:39:59.964Z",
+          "totalScore": 100,
+          "initialTotalScore": 93,
+          "retryPenalty": 1,
+          "counts": {
+            "pass": 15,
+            "partial": 0,
+            "fail": 0
+          }
+        },
+        "bugfind": {
+          "packId": "bugfind-15",
+          "runId": "bugfind-15-2026-07-20T07-40-31.420Z-47089227",
+          "completedAt": "2026-07-20T07:54:48.001Z",
+          "totalScore": 100,
+          "initialTotalScore": 94,
+          "retryPenalty": 2,
+          "counts": {
+            "pass": 15,
+            "partial": 0,
+            "fail": 0
+          }
+        },
+        "hermes": {
+          "packId": "hermesagent-20",
+          "runId": "hermesagent-20-2026-07-20T08-01-46.715Z-c037d50d",
+          "completedAt": "2026-07-20T09:09:48.341Z",
+          "totalScore": 86,
+          "initialTotalScore": 83,
+          "retryPenalty": 0,
+          "counts": {
+            "pass": 15,
+            "partial": 2,
+            "fail": 3
+          }
+        }
+      },
+      "editorial": {
+        "metadata": {
+          "pageMode": "generated",
+          "displayName": "Hy3-IQ1_M",
+          "modelFile": "Hy3-IQ1_M.gguf",
+          "displayTags": [
+            "🧠 MoE",
+            "📦 83.3 GB",
+            "⚡ In 50 t/s · Out 12 t/s",
+            "🎮 AMD Ryzen™ AI Max+ 395",
+            "🌡️ IQ1_M 量化 · temp=0.6 top_p=0.9 top_k=40"
+          ],
+          "logoUrl": "icons/hy3-iq1-m.png",
+          "fileSizeGb": 83.3,
+          "sampling": {
+            "temperature": 0.6,
+            "topP": 0.9,
+            "topK": 40
+          },
+          "speed": {
+            "inputTokensPerSecond": 50,
+            "outputTokensPerSecond": 12
+          },
+          "hardware": "AMD Ryzen™ AI Max+ 395",
+          "summarySource": "generated-from-scores",
+          "verdictSource": "generated-from-scores",
+          "artifactKind": "gguf",
+          "artifactUrl": null,
+          "upstreamUrl": null,
+          "publisherUrl": null,
+          "sourceVerifiedAt": "2026-07-17",
+          "hfUrl": null
+        },
+        "summary": {
+          "zh": "Hy3-IQ1_M 在默认模式下的能力上限为 94.4，实用得分为 91.4。ToolCall、BugFind、HermesAgent 分别为 100、100、86；50 题中最终通过 45 题，成功题累计重试 3 次。",
+          "en": "Hy3-IQ1_M reaches a 94.4 max score and a 91.4 effective score in default mode. ToolCall, BugFind, and HermesAgent score 100, 100, and 86; it ultimately passes 45 of 50 scenarios with 3 successful-case retries."
+        },
+        "verdict": {
+          "zh": "优势项为 ToolCall（100）、BugFind（100），HermesAgent（86）是主要提升空间。整体表现稳定，仅 3 次重试即可达到最终成绩，单条数据未触发严重稳定性问题。",
+          "en": "Its strongest suites are ToolCall (100) and BugFind (100), while HermesAgent (86) offers the clearest room for improvement. Overall, the run is stable: only 3 retries are needed for the final score, with no severe stability concerns on individual scenarios."
         }
       }
     },
